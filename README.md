@@ -1,8 +1,8 @@
-# BITBOUND — Python Practice v26
+# BITBOUND — Python Practice 
 
 Choose **Python Lab Mode** for the full-page IDE or **Story Mode** for a solo Python adventure with 48 missions across eight regions. Both modes start fresh on every new visit.
 
-## New in v26
+## New 
 
 - Fixed the production offline-install failure caused by homepage/manifest drift. Installation no longer depends on downloading every shell file. A separate verified, resumable job reports deployment, connection and storage errors accurately.
 - Retry registers the worker again after an install failure. One job serves concurrent tabs, downloaded runtime files are reused, and a partial update cannot erase a previously completed scoped pack or another repository's cache.
@@ -13,7 +13,7 @@ Choose **Python Lab Mode** for the full-page IDE or **Story Mode** for a solo Py
 
 See [v26 verification and limits](docs/V26_VALIDATION.md). Follow [the update instructions](DEPLOY_TO_GITHUB.txt) and upload the complete release together. Rebuild after any edits, including edits to `index.html`.
 
-## New in v24
+## New 
 
 - Rebuilt human faces with compact features, distinct hair and restrained speech expressions.
 - Shared character rig for story, gameplay, portraits and appearance previews; removed duplicate static body drawings.
@@ -23,7 +23,7 @@ See [v26 verification and limits](docs/V26_VALIDATION.md). Follow [the update in
 
 See [v24 animation review and validation](docs/V24_VALIDATION.md). Extract into a **new folder** and run `START_WINDOWS.bat`. For GitHub Pages, replace the full project files together so the new cache manifest matches the scripts.
 
-## New in v23
+## New 
 
 - **Every trail lesson is required.** Mob encounters contain up to four unfinished questions from the current teaching stage. A fixed lesson sentry before each shrine supplies anything missed. The shrine requires its stage; the terminal and world exit require the whole world. This works even if no roaming creatures remain.
 - **Visible progress.** Mission GPS shows trail lessons completed and the next stage. The question panel shows round and world totals. Wrong answers give an explanation and do not advance or cost health. Save file is available during a question set.
@@ -48,7 +48,7 @@ All 48 Python challenges, the Lab / Story mode choice, joystick, USTP studio int
 
 See [Story Mode guide](docs/STORY_MODE.md) for controls, the complete route and source ownership.
 
-## Animation corrections in v18
+## Animation corrections 
 
 - Walking, running, jumping, falling, landing, dashing, attacking and casting use a shared articulated character rig. Hands hold the weapons; legs bend without stretching. Essential gameplay poses remain visible with reduced motion.
 - Story scenes contain one actor per character. Duplicate draws and full-player dash afterimages are removed. The company enters the hall in a formation that keeps its spacing.
@@ -77,7 +77,7 @@ See [v18 validation and review notes](docs/V18_VALIDATION.md). The build refresh
 
 New sessions and respawns use a short 3-second pet warm-up. Cooldowns stop while a lesson or story dialog pauses the game. The pet HUD tells you when an ability is ready or recovering. Pet support is transient combat state, not a student autosave.
 
-## Features from v13
+## Features 
 
 - **USTP Game Dev Guild opening:** a brief, original studio card appears before Python Lab Mode / Story Mode. Continue or Escape skips it. It lasts 1.8 seconds, shortened for reduced motion, and does not wait for the Python engine or offline pack.
 - **Wider Byte:** 36 × 56 world pixels beside the 24 × 44 player. His taller silhouette, lesson gestures and optional chipmunk-like dialogue chatter remain.
