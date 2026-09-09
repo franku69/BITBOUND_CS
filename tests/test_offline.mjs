@@ -42,7 +42,7 @@ for(const [file,revision] of Object.entries(manifest.assetRevisions)){
 }
 // Removing one file must invalidate readiness and keep failure honest.
 online=true;
-stores.get(manifest.version).delete(base+'app/grader.py');broken='app/grader.py';
+stores.get('bitbound-app:/Basics_of_List/:'+manifest.version).delete(base+'app/grader.py');broken='app/grader.py';
 messages=await pack();assert.equal(messages.at(-1).type,'error');assert.match(messages.at(-1).message,/Could not download/);
 broken='';messages=await pack();assert.equal(messages.at(-1).type,'complete');
 // Shared fetches coalesce concurrent requests for one large asset.

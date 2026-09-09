@@ -1,5 +1,5 @@
 import {startPageMusic} from './page-music.js?v=a47c8ef5bc66';
-import {startOfflineSession} from './offline-session.js?v=775d9d567736';
+import {startOfflineSession} from './offline-session.js?v=69f8d0e7c57b';
 import {installSessionControls} from './session-controls.js?v=d5a34d7e028d';
 import {PythonRunner} from './runner.js?v=73a651e0d5c6';
 import {PythonEditor} from './editor.js?v=2ea6d0875b3f';
@@ -302,5 +302,5 @@ selectTask(embedded?(progress.state.active||'free'):'free',{push:false});
 setMobileView(active.id==='free'?'editor':'mission');
 progress.markSaved();updateSessionStatus();sessionReady=true;
 tellGame({type:'bitbound:workspace-ready',revision:progress.revision});
-const pythonReady=warmPython();
-if(!embedded)startOfflineSession({preparePython:()=>pythonReady});
+warmPython();
+if(!embedded)startOfflineSession();

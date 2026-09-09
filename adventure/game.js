@@ -5216,7 +5216,7 @@ window.addEventListener('blur',()=>{for(const k of Object.keys(state.keys))state
 
 /* Touch controls share actions with keyboard input, but own their movement axis. */
 
-const touchActions={jump,attack,interact,dash,drop:dropOrFastFall,power:castConceptPower};
+const touchActions={jump,attack,interact,dash,drop:dropOrFastFall,power:castConceptPower,cycle:cycleWeapon};
 const joystick=new window.BitboundTouch.Joystick($('moveJoystick'),$('joystickKnob'),{
   enabled:()=>state.started&&!state.paused,
   move:axis=>{state.touchAxis=axis;}

@@ -86,6 +86,11 @@ function buildContext(search, randomValue = 0, initialStorage = {}) {
     const element = new Element('', 'BUTTON', ['pet-option', ...(index===0?['selected']:[])]);
     element.dataset.pet = id;return element;
   });
+  const touchButtons=[...html.matchAll(/<button\b([^>]*data-game-action="([^"]+)"[^>]*)>/g)].map(match=>{
+    const id=match[1].match(/\bid="([^"]+)"/)?.[1];
+    const button=id?elements.get(id):new Element('', 'BUTTON');
+    button.dataset.gameAction=match[2];return button;
+  });
   const overlays = [...elements.values()].filter(element => element.classList.contains('overlay'));
   const routes = ['spawn','shrine0','shrine1','shrine2','shrine3','terminal','boss','portal'].map(route => {
     const element = new Element('', 'SPAN', ['route-node']);
@@ -105,6 +110,7 @@ function buildContext(search, randomValue = 0, initialStorage = {}) {
     createElement(tag) { return new Element('', String(tag).toUpperCase()); },
     querySelectorAll(selector) {
       if (selector === '.member') return members;
+      if (selector === '[data-game-action]') return touchButtons;
       if (selector === '.slot') return slots;
       if (selector === '.pet-option') return petOptions;
       if (selector === '.overlay') return overlays;

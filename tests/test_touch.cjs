@@ -38,3 +38,17 @@ drag();s.document.hidden=true;for(const callback of listeners['document:visibili
 assert.match(fs.readFileSync('story.html','utf8'),/id="moveJoystick"/);
 assert.doesNotMatch(fs.readFileSync('app/lab.html','utf8'),/id="moveJoystick"/);
 console.log('PASS touch: dead zone, analog bounds, pointer capture, second-finger isolation, cancellation, pause/blur/rotation/visibility resets; Story-only controls.');
+
+// Touch users can change gear without a Q key, while moving with another finger.
+const buttons=s.document.querySelectorAll('[data-game-action]');
+assert.equal(buttons.length,7);
+const cycle=buttons.find(button=>button.dataset.gameAction==='cycle');
+api.state.started=true;api.state.paused=false;
+api.grantWeapon(Object.keys(api.WEAPONS)[1]);api.state.weaponIndex=0;
+const tap={pointerId:9,preventDefault(){}};
+cycle.listeners.pointerdown[0](tap);assert.equal(api.state.weaponIndex,1);
+cycle.listeners.click[0]({detail:1});assert.equal(api.state.weaponIndex,1,'pointer tap is not triggered a second time by click');
+cycle.listeners.click[0]({detail:0});assert.equal(api.state.weaponIndex,0,'assistive and keyboard activation works');
+api.show(api.UI.help);cycle.listeners.pointerdown[0](tap);assert.equal(api.state.weaponIndex,0,'gear cannot change through a lesson overlay');api.hide(api.UI.help);
+api.UI.slots[3].onclick();assert.ok(api.state.paused);assert.ok(api.UI.guide.classList.contains('show'),'Field Guide gives touch users pause, skills, music and manual saves');
+console.log('PASS mobile gear: touch cycle, no double activation, keyboard access, pause guard and Field Guide access.');

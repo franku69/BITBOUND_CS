@@ -1,0 +1,4 @@
+# The offline manifest verifies exact bytes, including text-file line endings.
+# Keep release bytes unchanged when checking out/committing on Windows or Unix.
+# Rebuild after every source edit. Do not let core.autocrlf alter hashed assets.
+* -text

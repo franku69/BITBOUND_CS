@@ -9,8 +9,9 @@
 <link rel="stylesheet" href="adventure/mobile.css?v=b32d0b71480f">
 <link rel="manifest" href="manifest.webmanifest"><meta name="theme-color" content="#0b1321"><link rel="stylesheet" href="game-windows.css?v=67c9cf63e671">
 <link rel="stylesheet" href="adventure/story-controls.css?v=e2bd55592459">
+  <link rel="stylesheet" href="mobile-refinements.css?v=30e32bac8f4a">
 </head>
-<body>
+<body class="story-mode-page">
   <input id="sessionFileUpload" type="file" accept=".json,application/json" hidden>
   <div id="shell">
     <canvas id="game" width="1280" height="720" aria-label="BITBOUND game canvas"></canvas>
@@ -47,7 +48,8 @@
       <button id="weaponSlot" class="slot selected" data-slot="0" title="Press 1 to select. Press Q to cycle collected weapons."><span class="key">1</span><span id="weaponIcon" class="slot-icon blade">✦</span><span><b id="weaponName">Data Blade</b><small id="weaponCount">1 weapon • Q cycle</small></span></button>
       <button id="powerSlot" class="slot power-slot" data-slot="1" title="Press 2 to select your Concept Power. Press K to cast instantly without changing your equipped weapon."><span class="key">2</span><span class="power-emblem"><span id="powerIcon" class="slot-icon power">01</span></span><span class="power-copy"><b id="powerName">Concept Power</b><small id="powerStatus">READY • 0/4 XP</small></span><span id="powerLevelBadge" class="power-level-badge">LV 1</span><span class="power-cooldown-track"><span id="powerCooldownFill" class="power-cooldown-fill"></span></span></button>
       <button class="slot" data-slot="2" aria-label="Place a torch"><span class="key">3</span><span class="slot-icon torch">♨</span><span>Torches <b id="torchCount">6</b></span></button>
-      <button class="slot" data-slot="3" aria-label="Open field guide"><span class="key">4</span><span class="slot-icon guide">▤</span><span>Field Guide</span></button>
+      <button class="slot" data-slot="3" aria-label="Pause and open field guide, skills and save controls"><span class="key">4</span><span class="slot-icon guide">▤</span><span>Field Guide</span></button>
+      <button class="touch-tool" id="cycleWeaponTouch" data-game-action="cycle" aria-label="Cycle equipped weapon" title="Next weapon">↻<small>Gear</small></button>
     </div>
 
     <div id="petHud" class="pet-hud hidden" aria-label="Selected list companion">
@@ -336,15 +338,16 @@
     </section>
 
   </div>
-  <div id="offlineBanner" class="offline-banner" role="status"><span id="offlineGameStatus">Downloading app files for offline play…</span><button id="retryOffline" hidden>Retry</button></div>
+  <div id="offlineBanner" class="offline-banner"><span id="offlineGameStatus" role="status" aria-live="polite">Preparing offline access…</span><div class="offline-actions"><button id="retryOffline" type="button" hidden>Retry</button><button id="dismissOffline" type="button" aria-label="Minimize offline status">×</button></div></div>
+  <button id="showOffline" class="offline-summary" type="button" aria-controls="offlineBanner" aria-expanded="false" hidden>Offline setup…</button>
   <div class="touch-controls" aria-label="Touch game controls">
     <div class="joystick-area"><button id="moveJoystick" class="move-joystick" aria-label="Movement joystick. Drag left or right to move. Use Jump to jump."><span class="joystick-arrows" aria-hidden="true">← &nbsp; →</span><span id="joystickKnob" class="joystick-knob" aria-hidden="true"></span></button><span class="joystick-caption">MOVE</span></div>
     <div class="touch-actions"><button data-game-action="drop">Drop</button><button data-game-action="dash">Dash</button><button data-game-action="jump">Jump</button><button data-game-action="attack">Attack</button><button data-game-action="power">Power</button><button data-game-action="interact">Use</button></div>
   </div>
   <script src="adventure/engine.js?v=6bfec7cb343b"></script>
   <script src="adventure/questions.js?v=4392737b090d"></script>
-  <script src="adventure/game.js?v=b2d46555b5ef"></script>
+  <script src="adventure/game.js?v=630e5acf20aa"></script>
 <script>if(location.protocol==='file:')document.getElementById('offlineGameStatus').textContent='Start with START_WINDOWS.bat or open your HTTPS game link to use Python.';</script>
-<script type="module" src="app/game-session.js?v=0b5e003f0063"></script>
+<script type="module" src="app/game-session.js?v=17ddf8acb9c6"></script>
 </body>
 </html>

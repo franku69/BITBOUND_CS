@@ -1,0 +1,161 @@
+/* Responsive refinements shared by the chooser, Story and Python Lab.
+   No animation loops, viewport polling, external fonts or game-physics changes. */
+:root {
+  --safe-top: env(safe-area-inset-top, 0px);
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
+  --safe-left: env(safe-area-inset-left, 0px);
+  --safe-right: env(safe-area-inset-right, 0px);
+}
+[hidden] { display: none !important; }
+
+/* Offline details can be minimized without cancelling the verified download. */
+.offline-banner { display: flex; align-items: center; gap: 10px; }
+.offline-banner #offlineGameStatus { min-width: 0; flex: 1; }
+.offline-actions { display: flex; flex: 0 0 auto; gap: 4px; }
+.offline-actions button { min-width: 44px; min-height: 44px; margin: 0; }
+#dismissOffline { font: 24px/1 system-ui; }
+.offline-error { border-color: #c4a268; }
+.offline-summary {
+  position: fixed; z-index: 60;
+  right: max(12px, var(--safe-right)); bottom: calc(64px + var(--safe-bottom));
+  max-width: calc(100% - 24px - var(--safe-left) - var(--safe-right));
+  min-height: 44px; padding: 8px 12px; border: 1px solid #527685;
+  border-radius: 6px; background: #0b2133; color: #b9e7df;
+  font: 13px/1.4 system-ui; touch-action: manipulation; cursor: pointer;
+}
+body.python-window-visible .offline-summary { display: none; }
+.touch-tool { display: none; }
+
+/* All touch layouts, including tablets and desktop-mode mobile browsers. */
+.touch-capable #hotbar { backdrop-filter: none; width: min(360px, calc(100% - 16px - var(--safe-left) - var(--safe-right))); padding: 5px; gap: 4px; }
+.touch-capable #hotbar .slot { flex: 1 1 0; width: 0; min-width: 44px; height: 60px; padding: 5px; grid-template-columns: 1fr; justify-items: center; }
+.touch-capable #hotbar .slot > span:last-child:not(.slot-icon), .touch-capable #powerSlot .power-copy,
+.touch-capable #powerSlot .power-level-badge, .touch-capable #powerSlot::before, .touch-capable #weaponSlot::before { display: none; }
+.touch-capable #hotbar .slot-icon, .touch-capable #powerSlot .power-emblem { display: grid; }
+.touch-capable #hotbar .slot[data-slot="3"]::after { content: 'Guide'; font: 11px/1 system-ui; color: #b6e9dc; }
+.touch-capable #petHud { display: none; }
+.touch-capable #hotbar .touch-tool {
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  flex: 0 0 48px; min-width: 44px; min-height: 52px; padding: 4px;
+  border: 2px solid #527c98; border-radius: 4px; background: #11283b;
+  color: #d7f6ff; font: 24px/1.1 system-ui; touch-action: none;
+}
+.touch-tool small { font: 11px/1.3 system-ui; }
+.touch-capable .touch-controls > div { max-width: none; }
+.touch-capable .offline-summary { bottom: calc(var(--touch-space) + 80px + var(--safe-bottom)); }
+/* During play, open the Field Guide to see offline details. They never cover a fight. */
+.touch-capable body:not(.adventure-paused) .offline-banner,
+.touch-capable body:not(.adventure-paused) .offline-summary { display: none; }
+.touch-capable .adventure-paused .offline-banner,
+.touch-capable .adventure-paused .offline-summary { bottom: max(10px, var(--safe-bottom)); }
+
+@media (max-width: 760px), (max-height: 500px) and (pointer: coarse) {
+  /* Safe areas apply to the scroll container and its height, including notches. */
+  #startScreen, .story-mode-page .overlay:not(.practice-open) {
+    padding: max(12px, var(--safe-top)) max(12px, var(--safe-right)) max(12px, var(--safe-bottom)) max(12px, var(--safe-left));
+  }
+  #startScreen > .start-card, .story-scene-card, .mentor-card, .encounter-card, .intro-card {
+    max-height: calc(100vh - 24px - var(--safe-top) - var(--safe-bottom)) !important;
+    max-height: calc(100dvh - 24px - var(--safe-top) - var(--safe-bottom)) !important;
+    min-width: 0; overflow-x: hidden; overflow-y: auto; scroll-padding-block: 16px;
+  }
+  .overlay .close-x { min-width: 44px; min-height: 44px; }
+  .start-card .swatch { width: 44px; height: 44px; flex: 0 0 44px; }
+  .creator-select select, .story-mode-page select, .story-mode-page input { min-height: 44px; font-size: 16px; }
+  .creator-row, .creator-select { font-size: 13px; }
+  .creator-note, .pet-picker-head small { color: #acc5d5; font-size: 12px; }
+  .pet-option b { font-size: 14px; }
+  .pet-option small { font-size: 12px; line-height: 1.45; }
+  .practice-open .python-window-head {
+    padding-top: calc(8px + var(--safe-top)); padding-right: calc(58px + var(--safe-right));
+    padding-left: max(12px, var(--safe-left)); gap: 6px 10px;
+  }
+  .practice-open #puzzleClose { top: calc(7px + var(--safe-top)); right: max(9px, var(--safe-right)); }
+  .practice-open .python-window-head > div:first-child { min-width: 0; }
+  .practice-open .python-window-head .challenge-actions { flex-basis: auto; }
+  .practice-open .python-window-head button { min-height: 44px; margin: 0; }
+  #pythonWindowTitle { font-size: 14px; }
+  .story-dialogue.has-portrait { display: flow-root; }
+  #storyPortrait { float: left; margin: 0 12px 8px 0; }
+  #storyText { font-size: 18px; line-height: 1.65; }
+  .story-scene-card button, .mentor-card button { font-size: 14px; }
+  .story-scene-footer { gap: 8px; }
+  .story-scene-footer > div { gap: 6px; }
+  .story-scene-footer > div button { padding: 8px; flex: 1 1 auto; }
+  .encounter-card pre, #mentorCode, #mentorOutput { max-width: 100%; overflow-x: auto; }
+  .offline-banner { font-size: 12px; padding: 8px; }
+}
+
+/* Portrait phone: keep the next destination visible without the full desktop GPS. */
+@media (max-width: 760px) {
+  .touch-capable #hotbar { width: min(360px, calc(100% - 16px - var(--safe-left) - var(--safe-right))); }
+  .touch-capable #hotbar .slot { height: 60px; }
+  .touch-capable #hotbar .slot[data-slot="3"]::after { content: 'Guide'; font: 11px/1 system-ui; color: #b6e9dc; }
+  .touch-capable #missionCompass:not(.hidden) {
+    display: flex !important; align-items: center; justify-content: space-between; gap: 8px;
+    top: calc(86px + var(--safe-top)) !important; bottom: auto;
+    left: max(8px, var(--safe-left)); right: max(8px, var(--safe-right)) !important;
+    width: auto; max-width: none !important; padding: 6px 8px;
+    border-width: 1px; box-shadow: none; text-shadow: none;
+  }
+  #missionCompass .mission-guide-head, #missionCompass #objectiveAction,
+  #missionCompass #routeTrack, #missionCompass #trailProgress,
+  #missionCompass .mission-guide-foot > span:last-child { display: none; }
+  #missionCompass #objectiveTitle { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font: 12px/1.4 system-ui; }
+  #missionCompass .mission-guide-foot { margin: 0; flex: 0 0 auto; font: 10px/1.4 system-ui; }
+  .touch-capable #bossBar { top: calc(122px + var(--safe-top)); width: min(400px, calc(100% - 32px)); }
+  .touch-capable #hud { top: var(--safe-top) !important; }
+  .touch-capable .hud-right { flex-direction: row; }
+  .touch-capable .academic-points { width: 78px; }
+  .touch-capable .hearts { font-size: 14px; }
+  .touch-capable .hud-sub { font-size: 10px; }
+
+  /* Lab: a single swipeable symbols row saves space above the phone keyboard. */
+  .topbar, .session-toolbar, .workspace-save, .mobile-tabs, .code-panel, .results-panel {
+    padding-left: max(12px, var(--safe-left)); padding-right: max(12px, var(--safe-right));
+  }
+  body:not(.embedded) .topbar { padding-top: max(12px, var(--safe-top)); }
+  .topbar button, .session-toolbar button, .filebar button, .filebar select,
+  .mobile-tabs button, .edit-tools button, .results-head button { min-height: 44px; }
+  .filebar select, .CodeMirror-dialog input { font-size: 16px; }
+  .edit-tools { flex-wrap: nowrap; overflow-x: auto; overscroll-behavior-x: contain; gap: 6px; padding: 6px; scrollbar-width: thin; }
+  .edit-tools button { flex: 0 0 auto; min-width: 44px; }
+  .session-toolbar { gap: 6px; }
+  .session-toolbar span { flex-basis: 100%; font-size: 12px; }
+  .mobile-tabs { top: 0; }
+  .code-panel, .results-panel { scroll-margin-top: 64px; }
+  .runbar { padding-bottom: max(10px, var(--safe-bottom)); }
+  .CodeMirror, #codeEditor { min-height: 150px; height: clamp(150px, 42dvh, 480px); }
+  body.embedded .topbar { flex-wrap: wrap; }
+  body.embedded .topbar nav { min-width: 0; flex-wrap: wrap; }
+  .lab-offline { padding-block: 4px; line-height: 1.5; }
+}
+
+/* Short landscape: inventory fits between the thumbs instead of above them. */
+@media (min-width: 720px) and (max-height: 500px) {
+  .touch-capable #hotbar { width: 268px; bottom: max(12px, var(--safe-bottom)); padding: 5px; gap: 4px; }
+  .touch-capable #hotbar .slot { width: 44px; flex: 1 1 44px; min-width: 44px; height: 56px; padding: 3px; grid-template-columns: 1fr; justify-items: center; }
+  .touch-capable #hotbar .slot > span:last-child:not(.slot-icon),
+  .touch-capable #powerSlot .power-copy, .touch-capable #powerSlot .power-level-badge,
+  .touch-capable #powerSlot::before, .touch-capable #weaponSlot::before { display: none; }
+  .touch-capable #hotbar .touch-tool { flex-basis: 44px; }
+  .touch-capable #petHud, .touch-capable #campaignHud, .touch-capable #missionCompass:not(.hidden),
+  .touch-capable #mobilityHud, .touch-capable .hud-center { display: none !important; }
+  .touch-capable #hud { top: var(--safe-top); grid-template-columns: 1fr auto; padding-block: 6px; }
+  .touch-capable #bossBar { top: calc(66px + var(--safe-top)); width: min(340px, 46vw); }
+  .touch-capable .academic-points small { display: none; }
+  .touch-capable .touch-controls .touch-actions { flex-basis: 184px; }
+  .touch-capable .touch-controls .move-joystick { width: 96px; height: 96px; min-width: 96px; }
+}
+
+/* Compact phone cards keep both modes near the top without cropping either logo. */
+@media (max-width: 600px) {
+  .mode-choice-page { padding: max(20px, var(--safe-top)) max(14px, var(--safe-right)) max(20px, var(--safe-bottom)) max(14px, var(--safe-left)); }
+  .mode-card { display: grid; grid-template-columns: 44px minmax(0, 1fr); gap: 10px 16px; padding: 18px; }
+  .mode-card .mode-logo { height: 92px; grid-row: 1 / 3; margin: 0; max-width: 44px; }
+  .mode-card h2 { margin: 0; font-size: 21px; }
+  .mode-card p { margin: 0; font-size: 14px; line-height: 1.55; }
+  .mode-action { grid-column: 1 / -1; padding-top: 10px; font-size: 14px; }
+  .mode-intro { margin-bottom: 14px; }
+  .mode-music { margin-bottom: 16px; }
+}

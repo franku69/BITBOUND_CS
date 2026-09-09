@@ -1,42 +1,54 @@
-UPDATE YOUR GITHUB PAGES GAME
+BITBOUND v26 — UPDATE THE EXISTING GITHUB PAGES SITE
 
-1. Extract this ZIP completely.
-2. Copy the CONTENTS of BITBOUND_Python_DSA into your existing repository
-   root, replacing the previous game files. Keep a backup of your version.
-   Include app/, adventure/, runtime/, vendor/, index.html, styles.css,
-   game-windows.css, manifest.webmanifest, offline-manifest.json and sw.js.
-   Keep .nojekyll too. Upload the files, not the ZIP by itself.
-3. Commit and push. Git or GitHub Desktop is convenient for the whole folder.
-   The package already contains its generated files: no npm or build step.
-4. If needed, set the repository's Pages publishing source to your branch
-   and its root folder. Keep an existing working Pages setup if you have one.
-5. Wait for the deployment to finish, then open your website link, such as:
-   https://YOUR-USERNAME.github.io/YOUR-REPOSITORY/
-6. Close old game tabs and reopen the link. If an old version still appears,
-   reload while online. Export saved progress before clearing any site data.
-7. Confirm the opening screen shows Python Lab Mode | Story Mode.
-   Python Lab opens the full IDE; Story Mode opens character setup.
-8. Leave the page open online until it says:
-   Offline ready · app files cached · progress saves manually
-   Only app files download automatically (about 15 MB uncompressed).
-9. Share that SAME website link with students. Each student must complete
-   the first download in their own browser before using it offline.
+The v25 production failure was an edited index.html paired with the old offline
+manifest. That caused worker installation to fail. v26 includes a matching
+release plus a recoverable installer. It preserves the removed studio tagline.
 
-No student account, local Python installation, or backend is required.
-Offline play uses the same address and browser with site data retained.
-Simply opening a link and immediately disconnecting cannot download all
-files. An interrupted download shows Retry and resumes when connected.
-Private browsing or clearing/evicting site storage can remove offline files.
+1. Download and fully extract this ZIP.
+2. Copy the CONTENTS of BITBOUND_Python_DSA into your existing repository folder:
+   C:\Users\im\Desktop\python_for_students\BITBOUND_Python_DSA
+   Replace the previous files together. Keep your existing Git repository.
+   Include app/, adventure/, runtime/, vendor/, all root HTML/CSS files,
+   offline-manifest.json, sw.js, .nojekyll and .gitattributes.
+   Upload the extracted files, not the ZIP.
+3. The release is already built. Before committing, optionally check its bytes:
+     python scripts/check_offline_pack.py
+   If you edit ANY HTML, CSS, JavaScript, image or lesson file, rebuild FIRST:
+     python scripts/build.py
+     python scripts/check_offline_pack.py
+   Do not edit index.html again after building without rebuilding again.
+4. In your existing repository's PowerShell window:
+     git add .
+     git commit -m "Fix offline installation and improve mobile UI"
+     git push
+   Keep your current working Pages publishing settings.
+5. Wait for the Pages deployment to finish. Open:
+   https://franku69.github.io/BITBOUND_CS/
+   Reload while online. Do not clear site storage; the new worker updates itself.
+   Save any work in an existing game tab before reloading it.
+6. Check the deployed files with this read-only command:
+     python scripts/check_offline_pack.py --url https://franku69.github.io/BITBOUND_CS/
+   It should report that all 53 assets and the worker match. If deployment is
+   still in progress, wait for it to finish and rerun the check.
+7. Wait for "Offline ready" before disconnecting. In Story Mode the detailed
+   status can be minimized. On touch devices, open Guide to pause and see the
+   status, skills, music and manual Save file / Load file controls.
+8. Try both modes. Run print("Hello, BITBOUND!") in Python Lab. In Story Mode,
+   test the joystick with Jump, Attack and Use; tap Gear to cycle collected
+   weapons. On a phone, test portrait and landscape and open a coding shrine.
+9. Only after "Offline ready", reopen the SAME link in the SAME browser while
+   disconnected and check Story Mode and a Python run again.
 
-The website supports repository subpaths. Do not remove runtime files:
-Python runs on each student's device using the included engine.
-New visits start fresh. Old browser student data is ignored.
-Students explicitly use Save file and Load file for their own JSON saves.
-Use New player before handing over an already-open game.
-Legacy adventure links redirect into the game. A direct legacy workspace URL
-redirects to the full-page Python Lab.
+The cache stores app files, not student progress. New visits still start fresh.
+Students must use Save file before leaving. Each browser needs its own first
+online download (about 17 MB). Private browsing, blocked storage or browser
+storage eviction can make offline access unavailable; online play still works.
 
-AFTER EDITING SOURCE
-  python scripts/build.py
-This rebuilds the game/editor bundles and content-versioned offline files.
-Edit adventure/systems/ rather than the generated adventure/game.js.
+A site that is partially uploaded or whose files were edited after building
+cannot truthfully be marked offline-ready. Retry resumes valid downloaded files
+and reports the problem. .gitattributes preserves exact file bytes on Windows
+so Git's automatic line-ending conversion cannot invalidate the offline hashes.
+
+No student GitHub account, npm install, local Python install or backend is needed
+for the published site. Local maintainer scripts require Python 3. Build and
+regression testing: python scripts/build.py, then npm test (requires Node.js).

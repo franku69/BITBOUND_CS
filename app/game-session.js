@@ -1,4 +1,4 @@
-import {startOfflineSession} from './offline-session.js?v=775d9d567736';
+import {startOfflineSession} from './offline-session.js?v=69f8d0e7c57b';
 import {blankProgress} from './storage.js?v=8749b2c7cc4b';
 import {installSessionControls} from './session-controls.js?v=d5a34d7e028d';
 const story=window.BitboundStory;
@@ -20,4 +20,4 @@ installSessionControls({
   hasUnsaved:story.hasUnsaved,
   onSaved:snapshot=>story.markSaved(snapshot.token)
 });
-startOfflineSession({preparePython:()=>window.BitboundChallenges.prewarm()});
+startOfflineSession();

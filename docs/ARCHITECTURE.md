@@ -42,7 +42,7 @@ The workspace uses native ES modules with explicit imports and has no animation 
 
 ## Mode routing and lifetime
 
-`index.html` is the mode chooser. Its native links go to `app/lab.html` and `story.html`; navigation never waits for offline setup or interpreter startup. The chooser loads only its small stylesheet and offline-session modules. It has no canvas, game script, audio engine or hidden Python iframe. Offline caching can still download the complete pack in the background.
+`index.html` is the mode chooser. Its native links go to `app/lab.html` and `story.html`; navigation never waits for offline setup or interpreter startup. The chooser loads only its small stylesheet and offline-session modules. It has no game canvas, gameplay script or hidden Python iframe. Its small music score starts only after user interaction. Offline caching can still download the complete pack in the background.
 
 Direct lab entry always selects a fresh `free` workspace and the mobile Code view. It does not redirect or mount a story window. `app/main.js` guards parent messages with the embedded flag plus origin/source checks. Standalone lab starts its own offline session; a challenge iframe relies on its story parent. `app/workspace.html` is a legacy redirect to the lab, while `adventure/index.html` redirects old game links to the chooser.
 
@@ -374,3 +374,15 @@ The player animator integrates its gait phase each update. Do not derive phase f
 `04-audio.js` owns Story routing and shares the existing AudioContext with SFX/voices. Modal controls select quieter lesson, question or cinematic tracks; world and boss routes return on closure. Aster, Veyr and the Fused Crown have separate combat scores. `app/page-music.js` owns one context for the chooser or standalone IDE and creates nothing in embedded frames. Web Audio starts after a user gesture, never on a fresh page load. Hidden/pagehide states disconnect music sources and suspend the context; page return resumes the selected score. The only new sessionStorage item is the on/off music preference, not student data. Audio allocation failure leaves gameplay and coding usable.
 
 The exact supplied PNGs are `app/assets/modes/story-logo.png` (human) and `lab-logo.png` (robot). The mode cards use intrinsic dimensions and contained, pixelated rendering with responsive height. Gameplay and cinematic character art are unchanged.
+
+## v26 offline lifecycle and mobile layout
+
+Worker installation only activates the worker. `app/offline-session.js` observes the actual registration through `app/offline.js`, then requests one resumable `bitbound:cache-offline` job. It never waits for, or starts, a Python interpreter. The standalone Lab starts its own interpreter; Story starts one when its coding workspace is opened.
+
+The worker verifies every offline file against `offline-manifest.json` before writing its ready marker. A mismatched homepage can no longer reject the worker installation or leave `navigator.serviceWorker.ready` pending forever. Retry re-registers, observes the newest worker, repairs invalid cached assets and resumes the pack. Manifest mismatches are not persisted. Downloads have a body-inclusive timeout and two consumers; the 10 MB runtime is reused rather than hashed again on every completed-pack visit. Online asset delivery survives blocked Cache Storage or quota errors.
+
+Application caches use `bitbound-app:<scope-path>:<version>`. Activation never deletes packs. Successful verification may prune older caches for this scope, keeping one previous scoped release. Fallback code must match the requested module revision. Unscoped legacy caches are left untouched and never revived, so old automatic-student-storage code cannot reappear. Python/editor caches remain versioned, keyed by full URLs.
+
+`mobile-refinements.css` is loaded last by all three entries. It contains the current responsive adjustments without altering story scenes, rigs or physics. `cycleWeaponTouch` invokes the same existing cycle action as Q. Field Guide retains pause, skills and explicit save controls. Offline details can be minimized and are hidden during active touch gameplay. Layout uses CSS media queries and safe-area insets; no resize polling or new render loop was added.
+
+After any file edit, run `python scripts/build.py`, `python scripts/check_offline_pack.py`, and the relevant tests. The offline manifest hashes exact bytes; `.gitattributes` disables Git line-ending conversion. `python scripts/check_offline_pack.py --url https://host/repository/` verifies what students actually receive after deployment.

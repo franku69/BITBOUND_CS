@@ -71,7 +71,7 @@ for entry_name in ['index.html','story.html','app/lab.html']:
  entry_path.write_text(entry)
 
 # Only runtime files go in the offline pack. Source/tests stay in the download.
-files=['index.html','story.html','mode-select.css','styles.css','game-windows.css','manifest.webmanifest']
+files=['index.html','story.html','mode-select.css','mobile-refinements.css','styles.css','game-windows.css','manifest.webmanifest']
 files += [str(p.relative_to(ROOT)) for folder in ['app','runtime','adventure/assets'] for p in (ROOT/folder).rglob('*') if p.is_file() and '__pycache__' not in p.parts and p.suffix!='.pyc']
 files += ['adventure/engine.js','adventure/index.html','adventure/game.js','adventure/questions.js','adventure/style.css','adventure/mobile.css','adventure/story-controls.css']
 files += ['docs/TEACHER_GUIDE.md','docs/ARCHITECTURE.md']
