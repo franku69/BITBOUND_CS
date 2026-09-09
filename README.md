@@ -1,4 +1,5 @@
 # BITBOUND — Python Practice 
+LINK:https://franku69.github.io/BITBOUND_CS/
 
 Choose **Python Lab Mode** for the full-page IDE or **Story Mode** for a solo Python adventure with 48 missions across eight regions. Both modes start fresh on every new visit.
 
