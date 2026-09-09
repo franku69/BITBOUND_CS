@@ -1,0 +1,161 @@
+/* Story dialogs and challenge editor. The free Python Lab is a separate mode. */
+:root { --edge-left: calc(8px + env(safe-area-inset-left, 0px)); --touch-space: 0px; }
+#shell { width: 100%; height: 100vh; height: 100dvh; }
+.overlay:not(.practice-open) { padding: 12px max(12px, env(safe-area-inset-right, 0px)) 12px max(12px, env(safe-area-inset-left, 0px)); }
+#puzzleOverlay[hidden] { display: none !important; }
+.mode-return { display: inline-flex; align-items: center; min-height: 44px; padding: 8px 0; color: #aff5e5; font: 600 14px/1.4 system-ui; text-decoration: none; }
+.mode-return:hover { text-decoration: underline; }
+/* Status stays separate from the menu and inventory. */
+.offline-banner {
+  position: fixed;
+  right: calc(12px + env(safe-area-inset-right, 0px));
+  bottom: calc(64px + env(safe-area-inset-bottom, 0px));
+  z-index: 60;
+  max-width: min(480px, calc(100% - 24px - env(safe-area-inset-left, 0px) - env(safe-area-inset-right, 0px)));
+  padding: 6px 11px;
+  border: 1px solid #406077;
+  border-radius: 5px;
+  color: #caddeb;
+  background: #07172eee;
+  font: 13px/1.5 system-ui;
+  overflow-wrap: anywhere;
+  pointer-events: none;
+}
+.offline-banner button {
+  pointer-events: auto;
+  min-height: 44px;
+  margin: 4px 0 0 8px;
+  padding: 5px 8px;
+  border: 1px solid #839faf;
+  border-radius: 4px;
+  background: #173448;
+  color: #dffbf5;
+}
+.offline-banner.ready { border-color: #467562; color: #adf9ce; }
+.offline-banner.ready #offlineGameStatus::before { content: '✓ '; }
+#audioPanel { bottom: 12px; right: 12px; }
+.race-timer { display: none !important; }
+
+/* Equal margins center the setup without a reserved launcher strip. */
+#startScreen {
+  padding: 12px max(12px, env(safe-area-inset-right, 0px), env(safe-area-inset-left, 0px));
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+#startScreen > .start-card {
+  flex: 0 1 auto;
+  width: 100%;
+  max-width: 1680px;
+  min-width: 0;
+  max-height: calc(100vh - 24px) !important;
+  max-height: calc(100dvh - 24px) !important;
+  margin: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+.start-card .lead { max-width: 850px; }
+/* Chapter narrative and manual controls remain reachable on short phone screens. */
+.intro-card {
+  max-height: calc(100vh - 24px);
+  max-height: calc(100dvh - 24px);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+.start-actions { gap: 10px; }
+.start-actions button { min-height: 48px; }
+
+/* In-game Python windows retain their own responsive editor. */
+.python-window-head { display: none; }
+.practice-open .python-window-head {
+  display: flex;
+  flex: 0 0 auto;
+  gap: 16px;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 58px;
+  padding: 7px 62px 7px 18px;
+  background: #13263b;
+  border-bottom: 1px solid #47687e;
+  color: #eff9ff;
+  font: 16px system-ui;
+}
+.python-window-head b { display: block; }
+.python-window-head span { display: block; margin-top: 4px; font-size: 13px; color: #b3cdde; }
+.python-window-head button {
+  min-height: 44px;
+  padding: 8px 12px;
+  border: 1px solid #ffd166;
+  border-radius: 5px;
+  background: #ffd166;
+  color: #292006;
+  cursor: pointer;
+  font: 600 14px system-ui;
+}
+.practice-open.overlay { padding: 18px; align-items: center; justify-content: center; background: #020916b3; backdrop-filter: none; }
+.practice-open > .modal {
+  display: flex;
+  flex-direction: column;
+  max-width: 1620px;
+  width: 100%;
+  height: calc(100vh - 36px);
+  height: calc(100dvh - 36px);
+  padding: 0 !important;
+  border: 1px solid #7394a8 !important;
+  border-radius: 10px;
+  box-shadow: 0 12px 50px #0009;
+}
+.practice-open #puzzleClose { top: 7px; right: 9px; width: 44px; height: 44px; background: #24364b; border-radius: 5px; font-size: 25px; }
+.practice-open #puzzleOptions { flex: 1; min-height: 0; height: auto !important; display: block; }
+.practice-open .practice-frame { height: 100%; width: 100%; border: 0; }
+body.python-window-visible .offline-banner { display: none; }
+button:focus-visible, a:focus-visible, select:focus-visible { outline: 3px solid #ffd166; outline-offset: 3px; }
+
+/* Compact full-screen challenge editor on phones and short landscape screens. */
+@media (max-width: 760px), (max-height: 500px) {
+  .start-card { margin: 0 auto; padding: 18px 14px; }
+  .offline-banner { right: calc(8px + env(safe-area-inset-right, 0px)); padding: 5px 7px; font-size: 11px; }
+  .practice-open.overlay { padding: 0; align-items: stretch; }
+  .practice-open > .modal { height: 100vh; height: 100dvh; max-height: 100dvh; border-radius: 0; border: 0 !important; }
+  .practice-open .python-window-head { min-height: 56px; padding-left: max(12px, env(safe-area-inset-left, 0px)); gap: 8px; font-size: 14px; }
+  .python-window-head span { font-size: 12px; }
+  .python-window-head button { font-size: 12px; padding: 7px; }
+}
+@media (max-width: 760px) {
+  #hud { top: env(safe-area-inset-top, 0px); padding: 6px max(8px, env(safe-area-inset-right, 0px)) 6px max(8px, env(safe-area-inset-left, 0px)); grid-template-columns: minmax(0, 1fr) auto; gap: 4px; }
+  .hud-left { gap: 6px; min-width: 0; }
+  .hud-left > div:last-child { min-width: 0; }
+  .hud-title, .hud-sub { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .hud-chip { padding: 5px; font-size: 10px; }
+  .hud-right { flex-direction: column; gap: 3px; }
+  .hearts { font-size: 15px; letter-spacing: 0; }
+  .academic-points { width: 96px; padding: 3px 4px; }
+  .academic-points > span { font-size: 7px; }
+  .academic-points > #hudAcademicPoints { font-size: 16px; margin: 2px 0; }
+  #hotbar { width: min(320px, calc(100% - 16px)); padding: 5px; gap: 4px; }
+  #hotbar .slot { flex: 1 1 0; width: 0; min-width: 44px; height: 52px; padding: 5px; grid-template-columns: 1fr; justify-items: center; }
+  #hotbar .slot > span:last-child:not(.slot-icon) { display: none; }
+  #powerSlot::before, #weaponSlot::before, #powerSlot .power-copy, #powerSlot .power-level-badge { display: none; }
+  #hotbar .slot-icon, #powerSlot .power-emblem { display: grid; }
+  .touch-controls button { font-size: 12px; }
+  .creator-row, .creator-select { grid-template-columns: 80px minmax(0, 1fr); }
+  .creator-select select { min-width: 0; font-size: 16px; }
+  .pet-grid { grid-template-columns: 1fr !important; }
+  .swatch { min-width: 32px; min-height: 32px; }
+}
+
+/* Keep the centered setup usable within the narrower phone panel. */
+@media (max-width: 520px) {
+  #startScreen .creator-row, #startScreen .creator-select { grid-template-columns: minmax(0, 1fr); gap: 4px; }
+  #startScreen .creator-preview-wrap canvas { max-width: 100%; height: auto; }
+}
+
+/* Save/load belongs to existing story screens, including the mobile field guide. */
+.story-session-tools { display:flex; flex-wrap:wrap; gap:8px; margin-top:18px; }
+.story-session-tools button { min-height:44px; padding:10px 14px; font:600 14px system-ui; }
+.session-note { font:13px/1.6 system-ui; color:#b8d4df; margin:10px 0 16px; }
+.explorer-name { display:flex; align-items:center; justify-content:center; gap:12px; flex-wrap:wrap; margin:16px 0; font:14px system-ui; color:#bad9e8; }
+.explorer-name input { width:min(240px,100%); min-height:44px; border:1px solid #63879b; border-radius:4px; background:#061727; padding:8px 12px; color:#e0f5ff; font:16px system-ui; }
+.practice-open .challenge-actions { display:flex; flex-wrap:wrap; gap:6px; flex-shrink:0; }
+.challenge-actions button[hidden] { display:none; }
+@media(max-width:520px){ .practice-open .python-window-head { flex-wrap:wrap; padding-right:58px; } .practice-open .challenge-actions { flex-basis:100%; } }

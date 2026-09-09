@@ -1,0 +1,1 @@
+{"type":"commonjs","private":true,"description":"Keep Pyodide's shipped CommonJS runtime compatible with Node-based verification."}

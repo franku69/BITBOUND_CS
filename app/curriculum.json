@@ -1,0 +1,2549 @@
+{
+  "version": 1,
+  "chapters": [
+    {
+      "id": "python",
+      "title": "Python base camp",
+      "summary": "print, input, variables, decisions, loops and functions",
+      "boss": "Sequence Specter"
+    },
+    {
+      "id": "lists",
+      "title": "List caverns",
+      "summary": "Create, index, slice, append, extend, count and index",
+      "boss": "Operator Colossus"
+    },
+    {
+      "id": "methods",
+      "title": "List workshop",
+      "summary": "Insert, pop, remove, reverse, sort and traversal",
+      "boss": "Index Warden"
+    },
+    {
+      "id": "collections",
+      "title": "Collection forge",
+      "summary": "Tuples, dictionaries, sets and nested lists",
+      "boss": "Loop Titan"
+    },
+    {
+      "id": "algorithms",
+      "title": "Algorithm citadel",
+      "summary": "Stacks, queues, linear search, binary search and sorting",
+      "boss": "Method Master"
+    },
+    {
+      "id": "linked",
+      "title": "Linked pathways",
+      "summary": "Nodes, links, traversal and updates",
+      "boss": "Link Keeper"
+    },
+    {
+      "id": "recursion",
+      "title": "Recursion tower",
+      "summary": "Base cases, call stacks and recursive solutions",
+      "boss": "Call Guardian"
+    },
+    {
+      "id": "graphs",
+      "title": "Trees & graphs",
+      "summary": "Tree traversal, adjacency lists, BFS and DFS",
+      "boss": "Graph Guardian"
+    }
+  ],
+  "items": [
+    {
+      "id": "q01",
+      "chapter": "python",
+      "number": 1,
+      "title": "Wake the terminal",
+      "concept": "print() sends text to the output panel. Text needs quotation marks.",
+      "prompt": "Print exactly Hello, BITBOUND! on one line. Run your code first, then choose Check challenge.",
+      "starter": "# Put a message inside print()\n",
+      "solution": "print(\"Hello, BITBOUND!\")",
+      "tests": [
+        {
+          "label": "Case 1",
+          "stdout": "Hello, BITBOUND!\n"
+        }
+      ],
+      "hints": [
+        "Use print(\"your text\").",
+        "Capital letters and punctuation matter here."
+      ],
+      "complexity": "One fixed message: O(1) time and space.",
+      "stdin": "",
+      "prelude": "",
+      "requires": {},
+      "xp": 20
+    },
+    {
+      "id": "q02",
+      "chapter": "python",
+      "number": 2,
+      "title": "Name your explorer",
+      "concept": "input() reads one line as text. Use + to join strings.",
+      "prompt": "Read one name with input() and print Welcome, followed by a space and the name. Do not put a prompt inside input(); the checker supplies the name.",
+      "starter": "name = input()\n# Print the welcome message\n",
+      "solution": "name = input()\nprint(\"Welcome, \" + name)",
+      "tests": [
+        {
+          "label": "Case 1",
+          "stdin": "Ada\n",
+          "stdout": "Welcome, Ada\n"
+        },
+        {
+          "label": "Case 2",
+          "stdin": "Juan dela Cruz\n",
+          "stdout": "Welcome, Juan dela Cruz\n"
+        },
+        {
+          "label": "Case 3",
+          "stdin": "Mia\n",
+          "stdout": "Welcome, Mia\n"
+        }
+      ],
+      "hints": [
+        "The + operator joins two strings.",
+        "Use \"Welcome, \" including the final space."
+      ],
+      "complexity": "O(n) time for a name of n characters.",
+      "stdin": "Ada",
+      "prelude": "",
+      "requires": {},
+      "xp": 20
+    },
+    {
+      "id": "q03",
+      "chapter": "python",
+      "number": 3,
+      "title": "Potion calculator",
+      "concept": "int() converts input text to an integer. * means multiplication.",
+      "prompt": "Read a quantity on the first input line and a price on the second. Print their product, with no label.",
+      "starter": "quantity = int(input())\nprice = int(input())\n# Calculate the total\n",
+      "solution": "quantity = int(input())\nprice = int(input())\nprint(quantity * price)",
+      "tests": [
+        {
+          "label": "Case 1",
+          "stdin": "3\n25\n",
+          "stdout": "75\n"
+        },
+        {
+          "label": "Case 2",
+          "stdin": "0\n10\n",
+          "stdout": "0\n"
+        },
+        {
+          "label": "Case 3",
+          "stdin": "7\n12\n",
+          "stdout": "84\n"
+        }
+      ],
+      "hints": [
+        "Store quantity * price or print that expression directly.",
+        "Read both lines with int(input())."
+      ],
+      "complexity": "O(1) operations for these small integers.",
+      "stdin": "3\n25",
+      "prelude": "",
+      "requires": {},
+      "xp": 20
+    },
+    {
+      "id": "q04",
+      "chapter": "python",
+      "number": 4,
+      "title": "Open the gate",
+      "concept": "An if/else selects one path. Indent each branch by four spaces.",
+      "prompt": "Read an integer score. Print PASS when it is at least 75; otherwise print RETRY. Check the boundary score 75.",
+      "starter": "score = int(input())\n# Write if / else below\n",
+      "solution": "score = int(input())\nif score >= 75:\n    print(\"PASS\")\nelse:\n    print(\"RETRY\")",
+      "tests": [
+        {
+          "label": "Case 1",
+          "stdin": "75\n",
+          "stdout": "PASS\n"
+        },
+        {
+          "label": "Case 2",
+          "stdin": "74\n",
+          "stdout": "RETRY\n"
+        },
+        {
+          "label": "Case 3",
+          "stdin": "100\n",
+          "stdout": "PASS\n"
+        },
+        {
+          "label": "Case 4",
+          "stdin": "0\n",
+          "stdout": "RETRY\n"
+        }
+      ],
+      "hints": [
+        "Use >= for at least.",
+        "if score >= 75: needs a colon and an indented next line."
+      ],
+      "complexity": "O(1) time and space.",
+      "stdin": "75",
+      "prelude": "",
+      "requires": {
+        "nodes": [
+          "If"
+        ]
+      },
+      "xp": 20
+    },
+    {
+      "id": "q05",
+      "chapter": "python",
+      "number": 5,
+      "title": "Build a reusable tool",
+      "concept": "def names a function. A parameter receives a value. return sends the answer back to the caller.",
+      "prompt": "Complete double(number) so it returns twice the supplied number. Keep the function name and parameter. Print a sample call to see your answer when you Run.",
+      "starter": "def double(number):\n    # Replace pass with your code\n    pass\n\nprint(double(4))\n",
+      "solution": "def double(number):\n    return number * 2\n\nprint(double(4))",
+      "tests": [
+        {
+          "label": "Case 1",
+          "expression": "double(4)",
+          "expected": 8
+        },
+        {
+          "label": "Case 2",
+          "expression": "double(0)",
+          "expected": 0
+        },
+        {
+          "label": "Case 3",
+          "expression": "double(-3)",
+          "expected": -6
+        },
+        {
+          "label": "Case 4",
+          "expression": "double(2.5)",
+          "expected": 5.0
+        }
+      ],
+      "hints": [
+        "return is different from print: the checker needs the returned value.",
+        "Use return number * 2."
+      ],
+      "complexity": "O(1) operations for these numbers.",
+      "stdin": "",
+      "prelude": "",
+      "requires": {},
+      "xp": 20
+    },
+    {
+      "id": "q06",
+      "chapter": "python",
+      "number": 6,
+      "title": "Charge the beacon",
+      "concept": "range(1, n + 1) visits 1 through n. A running total remembers the sum so far.",
+      "prompt": "Complete total_to(n). Use a loop to return 1 + 2 + ... + n. For n = 0, return 0. Inputs are non-negative integers.",
+      "starter": "def total_to(n):\n    total = 0\n    # Add each number to total\n    return total\n\nprint(total_to(4))\n",
+      "solution": "def total_to(n):\n    total = 0\n    for number in range(1, n + 1):\n        total += number\n    return total\n\nprint(total_to(4))",
+      "tests": [
+        {
+          "label": "Case 1",
+          "expression": "total_to(4)",
+          "expected": 10
+        },
+        {
+          "label": "Case 2",
+          "expression": "total_to(0)",
+          "expected": 0
+        },
+        {
+          "label": "Case 3",
+          "expression": "total_to(1)",
+          "expected": 1
+        },
+        {
+          "label": "Case 4",
+          "expression": "total_to(10)",
+          "expected": 55
+        }
+      ],
+      "hints": [
+        "Inside the loop, update total with +=.",
+        "The stop of range is excluded, so use n + 1."
+      ],
+      "complexity": "O(n) time, O(1) extra space.",
+      "stdin": "",
+      "prelude": "",
+      "requires": {
+        "anyNodes": [
+          "For",
+          "While"
+        ]
+      },
+      "xp": 20
+    },
+    {
+      "id": "q07",
+      "chapter": "lists",
+      "number": 7,
+      "title": "Pack an inventory",
+      "concept": "A list uses square brackets and keeps elements in order. Duplicates are allowed.",
+      "prompt": "Complete inventory(first, second, third). Return a list containing those three values in the same order.",
+      "starter": "def inventory(first, second, third):\n    pass\n\nprint(inventory(\"potion\", \"key\", \"potion\"))\n",
+      "solution": "def inventory(first, second, third):\n    return [first, second, third]",
+      "tests": [
+        {
+          "label": "Case 1",
+          "expression": "inventory(\"potion\", \"key\", \"potion\")",
+          "expected": [
+            "potion",
+            "key",
+            "potion"
+          ]
+        },
+        {
+          "label": "Case 2",
+          "expression": "inventory(3, 2, 1)",
+          "expected": [
+            3,
+            2,
+            1
+          ]
+        },
+        {
+          "label": "Case 3",
+          "expression": "inventory(\"\", 0, False)",
+          "expected": [
+            "",
+            0,
+            false
+          ]
+        }
+      ],
+      "hints": [
+        "Use [first, second, third].",
+        "Do not use a set; it would lose duplicates."
+      ],
+      "complexity": "O(1) for exactly three items.",
+      "stdin": "",
+      "prelude": "",
+      "requires": {},
+      "xp": 20
+    },
+    {
+      "id": "q08",
+      "chapter": "lists",
+      "number": 8,
+      "title": "First and last",
+      "concept": "Index 0 is first. Index -1 is last. An empty list has no valid index.",
+      "prompt": "Complete edges(items). Return [first_item, last_item]. If items is empty, return an empty list.",
+      "starter": "def edges(items):\n    pass\n\nprint(edges([10, 20, 30]))\n",
+      "solution": "def edges(items):\n    if not items:\n        return []\n    return [items[0], items[-1]]",
+      "tests": [
+        {
+          "label": "Case 1",
+          "expression": "edges([10,20,30])",
+          "expected": [
+            10,
+            30
+          ]
+        },
+        {
+          "label": "Case 2",
+          "expression": "edges([])",
+          "expected": []
+        },
+        {
+          "label": "Case 3",
+          "expression": "edges([7])",
+          "expected": [
+            7,
+            7
+          ]
+        },
+        {
+          "label": "Case 4",
+          "expression": "edges([-2,0,9,4])",
+          "expected": [
+            -2,
+            4
+          ]
+        }
+      ],
+      "hints": [
+        "Check for an empty list before indexing.",
+        "Use items[0] and items[-1]."
+      ],
+      "complexity": "O(1) time and extra space.",
+      "stdin": "",
+      "prelude": "",
+      "requires": {},
+      "xp": 20
+    },
+    {
+      "id": "q09",
+      "chapter": "lists",
+      "number": 9,
+      "title": "Slice a path",
+      "concept": "items[start:stop:step] includes start and excludes stop.",
+      "prompt": "Complete every_other(items). Return the elements at indexes 0, 2, 4, ... using slicing.",
+      "starter": "def every_other(items):\n    pass\n\nprint(every_other([10, 20, 30, 40, 50]))\n",
+      "solution": "def every_other(items):\n    return items[::2]",
+      "tests": [
+        {
+          "label": "Case 1",
+          "expression": "every_other([10,20,30,40,50])",
+          "expected": [
+            10,
+            30,
+            50
+          ]
+        },
+        {
+          "label": "Case 2",
+          "expression": "every_other([])",
+          "expected": []
+        },
+        {
+          "label": "Case 3",
+          "expression": "every_other([1])",
+          "expected": [
+            1
+          ]
+        },
+        {
+          "label": "Case 4",
+          "expression": "every_other([1,2,3,4])",
+          "expected": [
+            1,
+            3
+          ]
+        }
+      ],
+      "hints": [
+        "An omitted start begins at index 0 for a positive step.",
+        "The step belongs after the second colon."
+      ],
+      "complexity": "O(n) time and output space.",
+      "stdin": "",
+      "prelude": "",
+      "requires": {
+        "nodes": [
+          "Slice"
+        ]
+      },
+      "xp": 20
+    },
+    {
+      "id": "q10",
+      "chapter": "lists",
+      "number": 10,
+      "title": "Append one treasure",
+      "concept": "append(x) adds one object at the end and returns None. copy() makes a separate list.",
+      "prompt": "Complete add_one(items, value). Copy items, append value as ONE object, and return the copy. Do not change items; a list value must stay nested.",
+      "starter": "def add_one(items, value):\n    result = items.copy()\n    # Append and return\n\nprint(add_one([1, 2], 3))\n",
+      "solution": "def add_one(items, value):\n    result = items.copy()\n    result.append(value)\n    return result",
+      "tests": [
+        {
+          "label": "Case 1",
+          "expression": "add_one([1,2],3)",
+          "expected": [
+            1,
+            2,
+            3
+          ]
+        },
+        {
+          "label": "Case 2",
+          "expression": "add_one([],7)",
+          "expected": [
+            7
+          ]
+        },
+        {
+          "label": "Case 3",
+          "expression": "add_one([1],[2,3])",
+          "expected": [
+            1,
+            [
+              2,
+              3
+            ]
+          ]
+        },
+        {
+          "label": "Case 4",
+          "setup": "original = [1,2]\nresult = add_one(original, 3)",
+          "expression": "[original, result]",
+          "expected": [
+            [
+              1,
+              2
+            ],
+            [
+              1,
+              2,
+              3
+            ]
+          ]
+        }
+      ],
+      "hints": [
+        "Call result.append(value) on its own line.",
+        "Return result, not result.append(value)."
+      ],
+      "complexity": "O(n) copy; append is amortized O(1).",
+      "stdin": "",
+      "prelude": "",
+      "requires": {
+        "methods": [
+          "append"
+        ]
+      },
+      "xp": 20
+    },
+    {
+      "id": "q11",
+      "chapter": "lists",
+      "number": 11,
+      "title": "Extend the supplies",
+      "concept": "extend(other) adds each item from another iterable. It changes the list in place.",
+      "prompt": "Complete combine(left, right) using extend(). Return a new list of all left items followed by all right items. Leave both input lists unchanged.",
+      "starter": "def combine(left, right):\n    result = left.copy()\n    pass\n\nprint(combine([1, 2], [3, 4]))\n",
+      "solution": "def combine(left, right):\n    result = left.copy()\n    result.extend(right)\n    return result",
+      "tests": [
+        {
+          "label": "Case 1",
+          "expression": "combine([1,2],[3,4])",
+          "expected": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "label": "Case 2",
+          "expression": "combine([],[])",
+          "expected": []
+        },
+        {
+          "label": "Case 3",
+          "expression": "combine([1],[1,1])",
+          "expected": [
+            1,
+            1,
+            1
+          ]
+        },
+        {
+          "label": "Case 4",
+          "setup": "a=[1]\nb=[2]\nr=combine(a,b)",
+          "expression": "[a,b,r]",
+          "expected": [
+            [
+              1
+            ],
+            [
+              2
+            ],
+            [
+              1,
+              2
+            ]
+          ]
+        }
+      ],
+      "hints": [
+        "Use extend rather than append to add individual items.",
+        "Copy left first."
+      ],
+      "complexity": "O(n + m) time and output space.",
+      "stdin": "",
+      "prelude": "",
+      "requires": {
+        "methods": [
+          "extend"
+        ]
+      },
+      "xp": 20
+    },
+    {
+      "id": "q12",
+      "chapter": "lists",
+      "number": 12,
+      "title": "Count and locate",
+      "concept": "count(value) counts matches. index(value) finds the first position but raises ValueError if absent.",
+      "prompt": "Complete locate(items, target). Return [number_of_matches, first_index]. Use -1 for the index when target is absent. Use count() and index().",
+      "starter": "def locate(items, target):\n    pass\n\nprint(locate([4, 7, 4], 4))\n",
+      "solution": "def locate(items, target):\n    count = items.count(target)\n    if count == 0:\n        return [0, -1]\n    return [count, items.index(target)]",
+      "tests": [
+        {
+          "label": "Case 1",
+          "expression": "locate([4,7,4],4)",
+          "expected": [
+            2,
+            0
+          ]
+        },
+        {
+          "label": "Case 2",
+          "expression": "locate([1,2],9)",
+          "expected": [
+            0,
+            -1
+          ]
+        },
+        {
+          "label": "Case 3",
+          "expression": "locate([],0)",
+          "expected": [
+            0,
+            -1
+          ]
+        },
+        {
+          "label": "Case 4",
+          "expression": "locate([8,3,3],3)",
+          "expected": [
+            2,
+            1
+          ]
+        }
+      ],
+      "hints": [
+        "Find the count before calling index.",
+        "When count is zero, return [0, -1]."
+      ],
+      "complexity": "O(n) time, O(1) extra space.",
+      "stdin": "",
+      "prelude": "",
+      "requires": {
+        "methods": [
+          "count",
+          "index"
+        ]
+      },
+      "xp": 20
+    },
+    {
+      "id": "q13",
+      "chapter": "methods",
+      "number": 13,
+      "title": "Insert a checkpoint",
+      "concept": "insert(index, value) places an item before the current item at that index.",
+      "prompt": "Complete insert_copy(items, position, value). Return a copy with value inserted at position. Use Python insert() behavior, including out-of-range positions.",
+      "starter": "def insert_copy(items, position, value):\n    pass\n\nprint(insert_copy([10, 30], 1, 20))\n",
+      "solution": "def insert_copy(items, position, value):\n    result = items.copy()\n    result.insert(position, value)\n    return result",
+      "tests": [
+        {
+          "label": "Case 1",
+          "expression": "insert_copy([10,30],1,20)",
+          "expected": [
+            10,
+            20,
+            30
+          ]
+        },
+        {
+          "label": "Case 2",
+          "expression": "insert_copy([],0,5)",
+          "expected": [
+            5
+          ]
+        },
+        {
+          "label": "Case 3",
+          "expression": "insert_copy([1,2],99,3)",
+          "expected": [
+            1,
+            2,
+            3
+          ]
+        },
+        {
+          "label": "Case 4",
+          "setup": "a=[1,2]\nb=insert_copy(a,-1,7)",
+          "expression": "[a,b]",
+          "expected": [
+            [
+              1,
+              2
+            ],
+            [
+              1,
+              7,
+              2
+            ]
+          ]
+        }
+      ],
+      "hints": [
+        "Copy first, then call insert.",
+        "Return the copy after the call."
+      ],
+      "complexity": "O(n) time and output space.",
+      "stdin": "",
+      "prelude": "",
+      "requires": {
+        "methods": [
+          "insert"
+        ]
+      },
+      "xp": 20
+    },
+    {
+      "id": "q14",
+      "chapter": "methods",
+      "number": 14,
+      "title": "Pop a supply",
+      "concept": "pop(index) removes by position and returns the removed item. Default pop() removes the last item.",
+      "prompt": "Complete take(items, position). Return [removed_item, remaining_copy]. For an empty list return [None, []]. All positions supplied for nonempty lists are valid.",
+      "starter": "def take(items, position):\n    pass\n\nprint(take([5, 8, 13], 1))\n",
+      "solution": "def take(items, position):\n    result = items.copy()\n    if not result:\n        return [None, []]\n    removed = result.pop(position)\n    return [removed, result]",
+      "tests": [
+        {
+          "label": "Case 1",
+          "expression": "take([5,8,13],1)",
+          "expected": [
+            8,
+            [
+              5,
+              13
+            ]
+          ]
+        },
+        {
+          "label": "Case 2",
+          "expression": "take([],0)",
+          "expected": [
+            null,
+            []
+          ]
+        },
+        {
+          "label": "Case 3",
+          "expression": "take([1,2,3],-1)",
+          "expected": [
+            3,
+            [
+              1,
+              2
+            ]
+          ]
+        },
+        {
+          "label": "Case 4",
+          "setup": "a=[4,5]\nr=take(a,0)",
+          "expression": "[a,r]",
+          "expected": [
+            [
+              4,
+              5
+            ],
+            [
+              4,
+              [
+                5
+              ]
+            ]
+          ]
+        }
+      ],
+      "hints": [
+        "Keep the value returned by pop.",
+        "Check if the copy is empty first."
+      ],
+      "complexity": "O(n) including the copy and possible shifts.",
+      "stdin": "",
+      "prelude": "",
+      "requires": {
+        "methods": [
+          "pop"
+        ]
+      },
+      "xp": 20
+    },
+    {
+      "id": "q15",
+      "chapter": "methods",
+      "number": 15,
+      "title": "Remove one match",
+      "concept": "remove(value) deletes the first matching value. It does not remove all duplicates.",
+      "prompt": "Complete remove_first(items, target). Return a copy with the first target removed. If target is missing, return an unchanged copy.",
+      "starter": "def remove_first(items, target):\n    pass\n\nprint(remove_first([2, 7, 2], 2))\n",
+      "solution": "def remove_first(items, target):\n    result = items.copy()\n    if target in result:\n        result.remove(target)\n    return result",
+      "tests": [
+        {
+          "label": "Case 1",
+          "expression": "remove_first([2,7,2],2)",
+          "expected": [
+            7,
+            2
+          ]
+        },
+        {
+          "label": "Case 2",
+          "expression": "remove_first([1,2],9)",
+          "expected": [
+            1,
+            2
+          ]
+        },
+        {
+          "label": "Case 3",
+          "expression": "remove_first([],4)",
+          "expected": []
+        },
+        {
+          "label": "Case 4",
+          "setup": "a=[3,3]\nr=remove_first(a,3)",
+          "expression": "[a,r]",
+          "expected": [
+            [
+              3,
+              3
+            ],
+            [
+              3
+            ]
+          ]
+        }
+      ],
+      "hints": [
+        "Use target in result before remove.",
+        "Only one matching item should disappear."
+      ],
+      "complexity": "O(n) time and output space.",
+      "stdin": "",
+      "prelude": "",
+      "requires": {
+        "methods": [
+          "remove"
+        ]
+      },
+      "xp": 20
+    },
+    {
+      "id": "q16",
+      "chapter": "methods",
+      "number": 16,
+      "title": "Reverse the route",
+      "concept": "reverse() flips the current order. This is different from sorting.",
+      "prompt": "Complete flip(items) using reverse(). Return a reversed copy and leave items unchanged.",
+      "starter": "def flip(items):\n    pass\n\nprint(flip([30, 10, 20]))\n",
+      "solution": "def flip(items):\n    result = items.copy()\n    result.reverse()\n    return result",
+      "tests": [
+        {
+          "label": "Case 1",
+          "expression": "flip([30,10,20])",
+          "expected": [
+            20,
+            10,
+            30
+          ]
+        },
+        {
+          "label": "Case 2",
+          "expression": "flip([])",
+          "expected": []
+        },
+        {
+          "label": "Case 3",
+          "expression": "flip([9])",
+          "expected": [
+            9
+          ]
+        },
+        {
+          "label": "Case 4",
+          "setup": "a=[1,2]\nr=flip(a)",
+          "expression": "[a,r]",
+          "expected": [
+            [
+              1,
+              2
+            ],
+            [
+              2,
+              1
+            ]
+          ]
+        }
+      ],
+      "hints": [
+        "Make a copy, then reverse it.",
+        "reverse() returns None, so return the list separately."
+      ],
+      "complexity": "O(n) time and output space.",
+      "stdin": "",
+      "prelude": "",
+      "requires": {
+        "methods": [
+          "reverse"
+        ]
+      },
+      "xp": 20
+    },
+    {
+      "id": "q17",
+      "chapter": "methods",
+      "number": 17,
+      "title": "Sort the crystals",
+      "concept": "sort() orders a list in place. sorted() creates a new sorted list.",
+      "prompt": "Complete ascending(items) using sort(). Return a sorted copy from smallest to largest. Preserve duplicates and leave items unchanged.",
+      "starter": "def ascending(items):\n    pass\n\nprint(ascending([30, 10, 20]))\n",
+      "solution": "def ascending(items):\n    result = items.copy()\n    result.sort()\n    return result",
+      "tests": [
+        {
+          "label": "Case 1",
+          "expression": "ascending([30,10,20])",
+          "expected": [
+            10,
+            20,
+            30
+          ]
+        },
+        {
+          "label": "Case 2",
+          "expression": "ascending([])",
+          "expected": []
+        },
+        {
+          "label": "Case 3",
+          "expression": "ascending([3,-1,3,0])",
+          "expected": [
+            -1,
+            0,
+            3,
+            3
+          ]
+        },
+        {
+          "label": "Case 4",
+          "setup": "a=[2,1]\nr=ascending(a)",
+          "expression": "[a,r]",
+          "expected": [
+            [
+              2,
+              1
+            ],
+            [
+              1,
+              2
+            ]
+          ]
+        }
+      ],
+      "hints": [
+        "Do not return result.sort().",
+        "Copy the input and return the sorted copy."
+      ],
+      "complexity": "O(n log n) worst-case sorting time; O(n) space with the copy.",
+      "stdin": "",
+      "prelude": "",
+      "requires": {
+        "methods": [
+          "sort"
+        ]
+      },
+      "xp": 20
+    },
+    {
+      "id": "q18",
+      "chapter": "methods",
+      "number": 18,
+      "title": "Map every index",
+      "concept": "enumerate(items) gives each index together with its element. Index and value are different.",
+      "prompt": "Complete index_map(items). Use a loop to return a list of [index, element] pairs for EVERY element, in order. Example: [8, 5] becomes [[0, 8], [1, 5]].",
+      "starter": "def index_map(items):\n    result = []\n    # Visit every index and element\n    return result\n\nprint(index_map([2, 3, 5, 2, 33, 21]))\n",
+      "solution": "def index_map(items):\n    result = []\n    for index, value in enumerate(items):\n        result.append([index, value])\n    return result",
+      "tests": [
+        {
+          "label": "Case 1",
+          "expression": "index_map([2,3,5,2,33,21])",
+          "expected": [
+            [
+              0,
+              2
+            ],
+            [
+              1,
+              3
+            ],
+            [
+              2,
+              5
+            ],
+            [
+              3,
+              2
+            ],
+            [
+              4,
+              33
+            ],
+            [
+              5,
+              21
+            ]
+          ]
+        },
+        {
+          "label": "Case 2",
+          "expression": "index_map([])",
+          "expected": []
+        },
+        {
+          "label": "Case 3",
+          "expression": "index_map([99])",
+          "expected": [
+            [
+              0,
+              99
+            ]
+          ]
+        }
+      ],
+      "hints": [
+        "enumerate gives index, value at every step.",
+        "Append [index, value] to result."
+      ],
+      "complexity": "O(n) time and output space.",
+      "stdin": "",
+      "prelude": "",
+      "requires": {
+        "anyNodes": [
+          "For",
+          "While",
+          "ListComp"
+        ]
+      },
+      "xp": 20
+    },
+    {
+      "id": "q19",
+      "chapter": "collections",
+      "number": 19,
+      "title": "Compute the team average",
+      "concept": "The mean is total divided by count. Dividing by zero causes an error.",
+      "prompt": "Complete average(scores). Return the mean as a number. Return None when scores is empty.",
+      "starter": "def average(scores):\n    pass\n\nprint(average([85, 90, 78, 92, 85]))\n",
+      "solution": "def average(scores):\n    if not scores:\n        return None\n    return sum(scores) / len(scores)",
+      "tests": [
+        {
+          "label": "Case 1",
+          "expression": "average([85,90,78,92,85])",
+          "expected": 86.0
+        },
+        {
+          "label": "Case 2",
+          "expression": "average([])",
+          "expected": null
+        },
+        {
+          "label": "Case 3",
+          "expression": "average([3])",
+          "expected": 3.0
+        },
+        {
+          "label": "Case 4",
+          "expression": "average([-2,2])",
+          "expected": 0.0
+        }
+      ],
+      "hints": [
+        "Check the empty case before dividing.",
+        "Use sum(scores) / len(scores)."
+      ],
+      "complexity": "O(n) time and O(1) extra space.",
+      "stdin": "",
+      "prelude": "",
+      "requires": {},
+      "xp": 30
+    },
+    {
+      "id": "q20",
+      "chapter": "collections",
+      "number": 20,
+      "title": "Unpack a coordinate",
+      "concept": "A tuple groups values and cannot be changed in place. a, b = pair unpacks two values.",
+      "prompt": "Complete swap_coordinate(pair). Input is a tuple (x, y). Return a tuple (y, x), not a list.",
+      "starter": "def swap_coordinate(pair):\n    pass\n\nprint(swap_coordinate((3, 7)))\n",
+      "solution": "def swap_coordinate(pair):\n    x, y = pair\n    return (y, x)",
+      "tests": [
+        {
+          "label": "Case 1",
+          "expression": "swap_coordinate((3,7))",
+          "expected": [
+            7,
+            3
+          ],
+          "type": "tuple"
+        },
+        {
+          "label": "Case 2",
+          "expression": "swap_coordinate((0,-2))",
+          "expected": [
+            -2,
+            0
+          ],
+          "type": "tuple"
+        },
+        {
+          "label": "Case 3",
+          "expression": "swap_coordinate((5,5))",
+          "expected": [
+            5,
+            5
+          ],
+          "type": "tuple"
+        }
+      ],
+      "hints": [
+        "Unpack x, y = pair.",
+        "Return (y, x)."
+      ],
+      "complexity": "O(1) time and extra space.",
+      "stdin": "",
+      "prelude": "",
+      "requires": {},
+      "xp": 30
+    },
+    {
+      "id": "q21",
+      "chapter": "collections",
+      "number": 21,
+      "title": "Count the loot",
+      "concept": "A dictionary maps a key to a value. counts.get(key, 0) gives zero when a key is missing.",
+      "prompt": "Complete frequencies(items). Return a dictionary mapping each string to its number of occurrences.",
+      "starter": "def frequencies(items):\n    counts = {}\n    pass\n\nprint(frequencies([\"key\", \"gem\", \"key\"]))\n",
+      "solution": "def frequencies(items):\n    counts = {}\n    for item in items:\n        counts[item] = counts.get(item, 0) + 1\n    return counts",
+      "tests": [
+        {
+          "label": "Case 1",
+          "expression": "frequencies([\"key\",\"gem\",\"key\"])",
+          "expected": {
+            "key": 2,
+            "gem": 1
+          }
+        },
+        {
+          "label": "Case 2",
+          "expression": "frequencies([])",
+          "expected": {}
+        },
+        {
+          "label": "Case 3",
+          "expression": "frequencies([\"a\",\"a\",\"a\"])",
+          "expected": {
+            "a": 3
+          }
+        },
+        {
+          "label": "Case 4",
+          "expression": "frequencies([\"B\",\"b\"])",
+          "expected": {
+            "B": 1,
+            "b": 1
+          }
+        }
+      ],
+      "hints": [
+        "Loop through every item.",
+        "Update counts[item] using its previous count."
+      ],
+      "complexity": "Expected O(n) time; O(k) space for k distinct keys.",
+      "stdin": "",
+      "prelude": "",
+      "requires": {},
+      "xp": 30
+    },
+    {
+      "id": "q22",
+      "chapter": "collections",
+      "number": 22,
+      "title": "Keep the first copy",
+      "concept": "A set is useful for membership checks. A separate list can preserve first-seen order.",
+      "prompt": "Complete unique_ordered(items) for integers. Return each distinct value once, in the order it first appeared. Use a set to track seen values.",
+      "starter": "def unique_ordered(items):\n    seen = set()\n    result = []\n    pass\n\nprint(unique_ordered([3, 1, 3, 2, 1]))\n",
+      "solution": "def unique_ordered(items):\n    seen = set()\n    result = []\n    for item in items:\n        if item not in seen:\n            seen.add(item)\n            result.append(item)\n    return result",
+      "tests": [
+        {
+          "label": "Case 1",
+          "expression": "unique_ordered([3,1,3,2,1])",
+          "expected": [
+            3,
+            1,
+            2
+          ]
+        },
+        {
+          "label": "Case 2",
+          "expression": "unique_ordered([])",
+          "expected": []
+        },
+        {
+          "label": "Case 3",
+          "expression": "unique_ordered([7,7])",
+          "expected": [
+            7
+          ]
+        },
+        {
+          "label": "Case 4",
+          "expression": "unique_ordered([-1,0,-1])",
+          "expected": [
+            -1,
+            0
+          ]
+        }
+      ],
+      "hints": [
+        "Append only if the item is not in seen.",
+        "Add the item to seen after accepting it."
+      ],
+      "complexity": "Expected O(n) time and O(k) space.",
+      "stdin": "",
+      "prelude": "",
+      "requires": {
+        "calls": [
+          "set"
+        ]
+      },
+      "xp": 30
+    },
+    {
+      "id": "q23",
+      "chapter": "collections",
+      "number": 23,
+      "title": "Read the map rows",
+      "concept": "A nested list contains lists. Two loops can visit rows and then their cells.",
+      "prompt": "Complete row_totals(grid). Return one sum for each row. Rows may have different lengths, and an empty row has sum zero.",
+      "starter": "def row_totals(grid):\n    pass\n\nprint(row_totals([[1, 2], [3], []]))\n",
+      "solution": "def row_totals(grid):\n    result = []\n    for row in grid:\n        result.append(sum(row))\n    return result",
+      "tests": [
+        {
+          "label": "Case 1",
+          "expression": "row_totals([[1,2],[3],[]])",
+          "expected": [
+            3,
+            3,
+            0
+          ]
+        },
+        {
+          "label": "Case 2",
+          "expression": "row_totals([])",
+          "expected": []
+        },
+        {
+          "label": "Case 3",
+          "expression": "row_totals([[-2,2],[4,5,6]])",
+          "expected": [
+            0,
+            15
+          ]
+        }
+      ],
+      "hints": [
+        "Visit rows in order.",
+        "sum(row) works on an empty row too."
+      ],
+      "complexity": "O(c + r) time for c cells and r rows; O(r) output space.",
+      "stdin": "",
+      "prelude": "",
+      "requires": {},
+      "xp": 30
+    },
+    {
+      "id": "q24",
+      "chapter": "collections",
+      "number": 24,
+      "title": "Filter the squad",
+      "concept": "Build a new list when filtering. Removing while traversing can skip values.",
+      "prompt": "Complete passing(scores). Return scores at least 75, in their original order. Leave the input unchanged.",
+      "starter": "def passing(scores):\n    pass\n\nprint(passing([74, 75, 90, 60]))\n",
+      "solution": "def passing(scores):\n    result = []\n    for score in scores:\n        if score >= 75:\n            result.append(score)\n    return result",
+      "tests": [
+        {
+          "label": "Case 1",
+          "expression": "passing([74,75,90,60])",
+          "expected": [
+            75,
+            90
+          ]
+        },
+        {
+          "label": "Case 2",
+          "expression": "passing([])",
+          "expected": []
+        },
+        {
+          "label": "Case 3",
+          "expression": "passing([75,75,100])",
+          "expected": [
+            75,
+            75,
+            100
+          ]
+        },
+        {
+          "label": "Case 4",
+          "setup": "a=[60,80,50,90]\nr=passing(a)",
+          "expression": "[a,r]",
+          "expected": [
+            [
+              60,
+              80,
+              50,
+              90
+            ],
+            [
+              80,
+              90
+            ]
+          ]
+        }
+      ],
+      "hints": [
+        "Start with an empty result list.",
+        "Use >= 75, not > 75."
+      ],
+      "complexity": "O(n) time and up to O(n) output space.",
+      "stdin": "",
+      "prelude": "",
+      "requires": {},
+      "xp": 30
+    },
+    {
+      "id": "q25",
+      "chapter": "algorithms",
+      "number": 25,
+      "title": "Stack of supplies",
+      "concept": "A stack is last in, first out (LIFO). append pushes; pop removes the top.",
+      "prompt": "Complete stack_take(items, new_item). Copy items, push new_item, then pop the top. Return [popped_item, remaining_stack]. Use append() and pop().",
+      "starter": "def stack_take(items, new_item):\n    pass\n\nprint(stack_take([\"rope\", \"key\"], \"gem\"))\n",
+      "solution": "def stack_take(items, new_item):\n    stack = items.copy()\n    stack.append(new_item)\n    top = stack.pop()\n    return [top, stack]",
+      "tests": [
+        {
+          "label": "Case 1",
+          "expression": "stack_take([\"rope\",\"key\"],\"gem\")",
+          "expected": [
+            "gem",
+            [
+              "rope",
+              "key"
+            ]
+          ]
+        },
+        {
+          "label": "Case 2",
+          "expression": "stack_take([],3)",
+          "expected": [
+            3,
+            []
+          ]
+        },
+        {
+          "label": "Case 3",
+          "setup": "a=[1,2]\nr=stack_take(a,8)",
+          "expression": "[a,r]",
+          "expected": [
+            [
+              1,
+              2
+            ],
+            [
+              8,
+              [
+                1,
+                2
+              ]
+            ]
+          ]
+        }
+      ],
+      "hints": [
+        "The last item pushed must be the first popped.",
+        "Call pop() with no index."
+      ],
+      "complexity": "O(n) for copying; each stack operation is amortized O(1).",
+      "stdin": "",
+      "prelude": "",
+      "requires": {
+        "methods": [
+          "append",
+          "pop"
+        ]
+      },
+      "xp": 30
+    },
+    {
+      "id": "q26",
+      "chapter": "algorithms",
+      "number": 26,
+      "title": "Queue at the portal",
+      "concept": "A queue is first in, first out (FIFO). collections.deque supports efficient operations at both ends.",
+      "prompt": "Complete serve(waiting, newcomer). Make a deque, append newcomer, and serve the front with popleft(). Return [served_person, remaining_as_list].",
+      "starter": "from collections import deque\n\ndef serve(waiting, newcomer):\n    pass\n\nprint(serve([\"Ana\", \"Ben\"], \"Cid\"))\n",
+      "solution": "from collections import deque\n\ndef serve(waiting, newcomer):\n    queue = deque(waiting)\n    queue.append(newcomer)\n    served = queue.popleft()\n    return [served, list(queue)]",
+      "tests": [
+        {
+          "label": "Case 1",
+          "expression": "serve([\"Ana\",\"Ben\"],\"Cid\")",
+          "expected": [
+            "Ana",
+            [
+              "Ben",
+              "Cid"
+            ]
+          ]
+        },
+        {
+          "label": "Case 2",
+          "expression": "serve([],\"Eli\")",
+          "expected": [
+            "Eli",
+            []
+          ]
+        },
+        {
+          "label": "Case 3",
+          "expression": "serve([1],2)",
+          "expected": [
+            1,
+            [
+              2
+            ]
+          ]
+        }
+      ],
+      "hints": [
+        "deque(waiting) constructs the queue.",
+        "Use popleft(), not pop() or list.pop(0)."
+      ],
+      "complexity": "O(n) conversion; deque append and popleft are O(1).",
+      "stdin": "",
+      "prelude": "",
+      "requires": {
+        "methods": [
+          "popleft",
+          "append"
+        ]
+      },
+      "xp": 30
+    },
+    {
+      "id": "q27",
+      "chapter": "algorithms",
+      "number": 27,
+      "title": "Balance the shield",
+      "concept": "An opening parenthesis pushes onto a stack. A closing one must match a previous opening.",
+      "prompt": "Complete balanced(text) for text containing only ( and ). Return True when parentheses are balanced, otherwise False. Empty text is balanced. Use a stack.",
+      "starter": "def balanced(text):\n    stack = []\n    pass\n\nprint(balanced(\"(())\"))\n",
+      "solution": "def balanced(text):\n    stack = []\n    for char in text:\n        if char == \"(\":\n            stack.append(char)\n        elif not stack:\n            return False\n        else:\n            stack.pop()\n    return len(stack) == 0",
+      "tests": [
+        {
+          "label": "Case 1",
+          "expression": "balanced(\"(())()\")",
+          "expected": true
+        },
+        {
+          "label": "Case 2",
+          "expression": "balanced(\"\")",
+          "expected": true
+        },
+        {
+          "label": "Case 3",
+          "expression": "balanced(\")(\")",
+          "expected": false
+        },
+        {
+          "label": "Case 4",
+          "expression": "balanced(\"(()\")",
+          "expected": false
+        },
+        {
+          "label": "Case 5",
+          "expression": "balanced(\"())\")",
+          "expected": false
+        }
+      ],
+      "hints": [
+        "A closing parenthesis with an empty stack is invalid.",
+        "At the end, no opening parenthesis should remain."
+      ],
+      "complexity": "O(n) time and O(n) worst-case space.",
+      "stdin": "",
+      "prelude": "",
+      "requires": {
+        "methods": [
+          "append",
+          "pop"
+        ]
+      },
+      "xp": 30
+    },
+    {
+      "id": "q28",
+      "chapter": "algorithms",
+      "number": 28,
+      "title": "Search the tunnel",
+      "concept": "Linear search inspects items in order. Return immediately on the first match.",
+      "prompt": "Complete linear_search(items, target) with a loop. Return the first matching index, or -1 when absent. Do not use index().",
+      "starter": "def linear_search(items, target):\n    pass\n\nprint(linear_search([8, 3, 8], 8))\n",
+      "solution": "def linear_search(items, target):\n    for index, value in enumerate(items):\n        if value == target:\n            return index\n    return -1",
+      "tests": [
+        {
+          "label": "Case 1",
+          "expression": "linear_search([8,3,8],8)",
+          "expected": 0
+        },
+        {
+          "label": "Case 2",
+          "expression": "linear_search([4,7,9],9)",
+          "expected": 2
+        },
+        {
+          "label": "Case 3",
+          "expression": "linear_search([],3)",
+          "expected": -1
+        },
+        {
+          "label": "Case 4",
+          "expression": "linear_search([1,2],8)",
+          "expected": -1
+        }
+      ],
+      "hints": [
+        "Keep return -1 after the loop, not inside it.",
+        "Use enumerate or a range of indexes."
+      ],
+      "complexity": "O(n) worst-case time and O(1) extra space.",
+      "stdin": "",
+      "prelude": "",
+      "requires": {
+        "anyNodes": [
+          "For",
+          "While"
+        ],
+        "forbidMethods": [
+          "index"
+        ]
+      },
+      "xp": 30
+    },
+    {
+      "id": "q29",
+      "chapter": "algorithms",
+      "number": 29,
+      "title": "Halve the search area",
+      "concept": "Binary search repeatedly halves a sorted search interval. It requires sorted input.",
+      "prompt": "Complete binary_search(items, target) for a sorted list of distinct integers. Use a while loop, low/high indexes, and a midpoint. Return the index or -1. Do not sort, use index(), or scan with in.",
+      "starter": "def binary_search(items, target):\n    low = 0\n    high = len(items) - 1\n    pass\n\nprint(binary_search([2, 5, 8, 12, 16], 12))\n",
+      "solution": "def binary_search(items, target):\n    low = 0\n    high = len(items) - 1\n    while low <= high:\n        mid = (low + high) // 2\n        if items[mid] == target:\n            return mid\n        if items[mid] < target:\n            low = mid + 1\n        else:\n            high = mid - 1\n    return -1",
+      "tests": [
+        {
+          "label": "Case 1",
+          "expression": "binary_search([2,5,8,12,16],12)",
+          "expected": 3
+        },
+        {
+          "label": "Case 2",
+          "expression": "binary_search([],7)",
+          "expected": -1
+        },
+        {
+          "label": "Case 3",
+          "expression": "binary_search([3],3)",
+          "expected": 0
+        },
+        {
+          "label": "Case 4",
+          "expression": "binary_search([1,3,5,7],2)",
+          "expected": -1
+        },
+        {
+          "label": "Case 5",
+          "expression": "binary_search(list(range(0,20000,2)),19998)",
+          "expected": 9999
+        }
+      ],
+      "hints": [
+        "Use // to calculate an integer midpoint.",
+        "Move past mid with +1 or -1 so the interval shrinks."
+      ],
+      "complexity": "O(log n) time and O(1) extra space for the intended algorithm.",
+      "stdin": "",
+      "prelude": "",
+      "requires": {
+        "nodes": [
+          "While"
+        ],
+        "forbidMethods": [
+          "index",
+          "sort"
+        ],
+        "forbidCalls": [
+          "sorted"
+        ],
+        "forbidNodes": [
+          "In"
+        ]
+      },
+      "xp": 30
+    },
+    {
+      "id": "q30",
+      "chapter": "algorithms",
+      "number": 30,
+      "title": "Forge selection sort",
+      "concept": "Selection sort finds the smallest remaining value and swaps it into the next position.",
+      "prompt": "Complete selection_sort(items). Return a sorted copy using selection sort and nested loops. Preserve duplicates. Do not use sort() or sorted().",
+      "starter": "def selection_sort(items):\n    result = items.copy()\n    # Find the smallest remaining item and swap it\n    return result\n\nprint(selection_sort([5, 2, 4, 2]))\n",
+      "solution": "def selection_sort(items):\n    result = items.copy()\n    for i in range(len(result)):\n        smallest = i\n        for j in range(i + 1, len(result)):\n            if result[j] < result[smallest]:\n                smallest = j\n        result[i], result[smallest] = result[smallest], result[i]\n    return result",
+      "tests": [
+        {
+          "label": "Case 1",
+          "expression": "selection_sort([5,2,4,2])",
+          "expected": [
+            2,
+            2,
+            4,
+            5
+          ]
+        },
+        {
+          "label": "Case 2",
+          "expression": "selection_sort([])",
+          "expected": []
+        },
+        {
+          "label": "Case 3",
+          "expression": "selection_sort([1])",
+          "expected": [
+            1
+          ]
+        },
+        {
+          "label": "Case 4",
+          "expression": "selection_sort([-1,5,0,-3])",
+          "expected": [
+            -3,
+            -1,
+            0,
+            5
+          ]
+        },
+        {
+          "label": "Case 5",
+          "setup": "a=[3,1,2]\nr=selection_sort(a)",
+          "expression": "[a,r]",
+          "expected": [
+            [
+              3,
+              1,
+              2
+            ],
+            [
+              1,
+              2,
+              3
+            ]
+          ]
+        }
+      ],
+      "hints": [
+        "Track the position of the smallest value.",
+        "Swap once per outer-loop iteration."
+      ],
+      "complexity": "O(n²) time; O(n) space for the copy.",
+      "stdin": "",
+      "prelude": "",
+      "requires": {
+        "anyNodes": [
+          "For",
+          "While"
+        ],
+        "forbidMethods": [
+          "sort"
+        ],
+        "forbidCalls": [
+          "sorted"
+        ]
+      },
+      "xp": 30
+    },
+    {
+      "id": "q31",
+      "chapter": "linked",
+      "number": 31,
+      "title": "Follow the links",
+      "concept": "A linked-list node stores a value and a reference named next. None marks the end.",
+      "prompt": "Complete linked_values(head). Follow next references and return every value in order. The checker provides Node objects; None means an empty list.",
+      "starter": "class Node:\n    def __init__(self, value, next=None):\n        self.value = value\n        self.next = next\n\ndef linked_values(head):\n    pass\n\nprint(linked_values(Node(3, Node(7))))\n",
+      "solution": "class Node:\n    def __init__(self, value, next=None):\n        self.value = value\n        self.next = next\n\ndef linked_values(head):\n    result = []\n    current = head\n    while current is not None:\n        result.append(current.value)\n        current = current.next\n    return result",
+      "tests": [
+        {
+          "label": "Case 1",
+          "expression": "linked_values(chain([3,7,4]))",
+          "expected": [
+            3,
+            7,
+            4
+          ]
+        },
+        {
+          "label": "Case 2",
+          "expression": "linked_values(None)",
+          "expected": []
+        },
+        {
+          "label": "Case 3",
+          "expression": "linked_values(chain([8]))",
+          "expected": [
+            8
+          ]
+        }
+      ],
+      "hints": [
+        "Use current = head to start.",
+        "Update current = current.next on every iteration."
+      ],
+      "complexity": "O(n) time and output space.",
+      "stdin": "",
+      "prelude": "class Node:\n    def __init__(self, value, next=None):\n        self.value = value\n        self.next = next\n\ndef chain(values):\n    head = None\n    for value in reversed(values):\n        head = Node(value, head)\n    return head\n\ndef values_of(head):\n    result = []\n    while head is not None:\n        result.append(head.value)\n        head = head.next\n    return result\n",
+      "requires": {},
+      "xp": 40
+    },
+    {
+      "id": "q32",
+      "chapter": "linked",
+      "number": 32,
+      "title": "Count the nodes",
+      "concept": "A linked list has no built-in index or length. Traverse to count its nodes.",
+      "prompt": "Complete linked_length(head). Return the number of nodes without creating a Python list.",
+      "starter": "class Node:\n    def __init__(self, value, next=None):\n        self.value = value\n        self.next = next\n\ndef linked_length(head):\n    pass\n",
+      "solution": "class Node:\n    def __init__(self, value, next=None):\n        self.value = value\n        self.next = next\n\ndef linked_length(head):\n    count = 0\n    while head is not None:\n        count += 1\n        head = head.next\n    return count",
+      "tests": [
+        {
+          "label": "Case 1",
+          "expression": "linked_length(chain([1,2,3]))",
+          "expected": 3
+        },
+        {
+          "label": "Case 2",
+          "expression": "linked_length(None)",
+          "expected": 0
+        },
+        {
+          "label": "Case 3",
+          "expression": "linked_length(chain([1]))",
+          "expected": 1
+        }
+      ],
+      "hints": [
+        "Start a count at zero.",
+        "Increment once per node and follow next."
+      ],
+      "complexity": "O(n) time and O(1) extra space.",
+      "stdin": "",
+      "prelude": "class Node:\n    def __init__(self, value, next=None):\n        self.value = value\n        self.next = next\n\ndef chain(values):\n    head = None\n    for value in reversed(values):\n        head = Node(value, head)\n    return head\n\ndef values_of(head):\n    result = []\n    while head is not None:\n        result.append(head.value)\n        head = head.next\n    return result\n",
+      "requires": {},
+      "xp": 40
+    },
+    {
+      "id": "q33",
+      "chapter": "linked",
+      "number": 33,
+      "title": "Add at the front",
+      "concept": "Prepending makes a new head whose next reference points to the old head.",
+      "prompt": "Complete prepend(head, value). Return a new Node at the front; keep the old nodes and their links.",
+      "starter": "class Node:\n    def __init__(self, value, next=None):\n        self.value = value\n        self.next = next\n\ndef prepend(head, value):\n    pass\n",
+      "solution": "class Node:\n    def __init__(self, value, next=None):\n        self.value = value\n        self.next = next\n\ndef prepend(head, value):\n    return Node(value, head)",
+      "tests": [
+        {
+          "label": "Case 1",
+          "expression": "values_of(prepend(chain([2,3]),1))",
+          "expected": [
+            1,
+            2,
+            3
+          ]
+        },
+        {
+          "label": "Case 2",
+          "expression": "values_of(prepend(None,9))",
+          "expected": [
+            9
+          ]
+        },
+        {
+          "label": "Case 3",
+          "setup": "head=chain([4,5])\nnew=prepend(head,3)",
+          "expression": "new.next is head",
+          "expected": true
+        }
+      ],
+      "hints": [
+        "Node(value, head) points to the existing head.",
+        "Return the new Node."
+      ],
+      "complexity": "O(1) time and extra space.",
+      "stdin": "",
+      "prelude": "class Node:\n    def __init__(self, value, next=None):\n        self.value = value\n        self.next = next\n\ndef chain(values):\n    head = None\n    for value in reversed(values):\n        head = Node(value, head)\n    return head\n\ndef values_of(head):\n    result = []\n    while head is not None:\n        result.append(head.value)\n        head = head.next\n    return result\n",
+      "requires": {},
+      "xp": 40
+    },
+    {
+      "id": "q34",
+      "chapter": "linked",
+      "number": 34,
+      "title": "Append at the tail",
+      "concept": "Without a tail reference, appending requires walking to the last node.",
+      "prompt": "Complete append_node(head, value). Attach one new node at the end and return the head. For None, return the new node.",
+      "starter": "class Node:\n    def __init__(self, value, next=None):\n        self.value = value\n        self.next = next\n\ndef append_node(head, value):\n    pass\n",
+      "solution": "class Node:\n    def __init__(self, value, next=None):\n        self.value = value\n        self.next = next\n\ndef append_node(head, value):\n    if head is None:\n        return Node(value)\n    current = head\n    while current.next is not None:\n        current = current.next\n    current.next = Node(value)\n    return head",
+      "tests": [
+        {
+          "label": "Case 1",
+          "expression": "values_of(append_node(chain([1,2]),3))",
+          "expected": [
+            1,
+            2,
+            3
+          ]
+        },
+        {
+          "label": "Case 2",
+          "expression": "values_of(append_node(None,7))",
+          "expected": [
+            7
+          ]
+        },
+        {
+          "label": "Case 3",
+          "setup": "h=chain([1])\nr=append_node(h,2)",
+          "expression": "r is h",
+          "expected": true
+        }
+      ],
+      "hints": [
+        "Handle the empty case first.",
+        "Stop when current.next is None, then attach a node."
+      ],
+      "complexity": "O(n) time and O(1) extra space beyond the new node.",
+      "stdin": "",
+      "prelude": "class Node:\n    def __init__(self, value, next=None):\n        self.value = value\n        self.next = next\n\ndef chain(values):\n    head = None\n    for value in reversed(values):\n        head = Node(value, head)\n    return head\n\ndef values_of(head):\n    result = []\n    while head is not None:\n        result.append(head.value)\n        head = head.next\n    return result\n",
+      "requires": {},
+      "xp": 40
+    },
+    {
+      "id": "q35",
+      "chapter": "linked",
+      "number": 35,
+      "title": "Find a linked value",
+      "concept": "Linked-list search follows references. Random access by index is not available.",
+      "prompt": "Complete linked_find(head, target). Return the zero-based position of the first matching value, or -1.",
+      "starter": "class Node:\n    def __init__(self, value, next=None):\n        self.value = value\n        self.next = next\n\ndef linked_find(head, target):\n    pass\n",
+      "solution": "class Node:\n    def __init__(self, value, next=None):\n        self.value = value\n        self.next = next\n\ndef linked_find(head, target):\n    index = 0\n    while head is not None:\n        if head.value == target:\n            return index\n        index += 1\n        head = head.next\n    return -1",
+      "tests": [
+        {
+          "label": "Case 1",
+          "expression": "linked_find(chain([4,8,4]),4)",
+          "expected": 0
+        },
+        {
+          "label": "Case 2",
+          "expression": "linked_find(chain([4,8,9]),9)",
+          "expected": 2
+        },
+        {
+          "label": "Case 3",
+          "expression": "linked_find(None,2)",
+          "expected": -1
+        },
+        {
+          "label": "Case 4",
+          "expression": "linked_find(chain([1]),3)",
+          "expected": -1
+        }
+      ],
+      "hints": [
+        "Count your position while following next.",
+        "Return -1 only after reaching the end."
+      ],
+      "complexity": "O(n) time and O(1) extra space.",
+      "stdin": "",
+      "prelude": "class Node:\n    def __init__(self, value, next=None):\n        self.value = value\n        self.next = next\n\ndef chain(values):\n    head = None\n    for value in reversed(values):\n        head = Node(value, head)\n    return head\n\ndef values_of(head):\n    result = []\n    while head is not None:\n        result.append(head.value)\n        head = head.next\n    return result\n",
+      "requires": {},
+      "xp": 40
+    },
+    {
+      "id": "q36",
+      "chapter": "linked",
+      "number": 36,
+      "title": "Reverse the links",
+      "concept": "Save the next reference before changing it, or you lose the rest of the chain.",
+      "prompt": "Complete reverse_links(head). Reverse next pointers in place and return the new head. Reuse the original nodes.",
+      "starter": "class Node:\n    def __init__(self, value, next=None):\n        self.value = value\n        self.next = next\n\ndef reverse_links(head):\n    previous = None\n    current = head\n    pass\n",
+      "solution": "class Node:\n    def __init__(self, value, next=None):\n        self.value = value\n        self.next = next\n\ndef reverse_links(head):\n    previous = None\n    current = head\n    while current is not None:\n        following = current.next\n        current.next = previous\n        previous = current\n        current = following\n    return previous",
+      "tests": [
+        {
+          "label": "Case 1",
+          "expression": "values_of(reverse_links(chain([1,2,3])))",
+          "expected": [
+            3,
+            2,
+            1
+          ]
+        },
+        {
+          "label": "Case 2",
+          "expression": "values_of(reverse_links(None))",
+          "expected": []
+        },
+        {
+          "label": "Case 3",
+          "setup": "a=Node(1)\nb=Node(2)\na.next=b\nr=reverse_links(a)",
+          "expression": "r is b and b.next is a and a.next is None",
+          "expected": true
+        }
+      ],
+      "hints": [
+        "Remember following = current.next before rewiring.",
+        "Move previous and current one step forward."
+      ],
+      "complexity": "O(n) time and O(1) extra space.",
+      "stdin": "",
+      "prelude": "class Node:\n    def __init__(self, value, next=None):\n        self.value = value\n        self.next = next\n\ndef chain(values):\n    head = None\n    for value in reversed(values):\n        head = Node(value, head)\n    return head\n\ndef values_of(head):\n    result = []\n    while head is not None:\n        result.append(head.value)\n        head = head.next\n    return result\n",
+      "requires": {},
+      "xp": 40
+    },
+    {
+      "id": "q37",
+      "chapter": "recursion",
+      "number": 37,
+      "title": "Find the base case",
+      "concept": "Recursion means a function calls itself. A base case stops further calls.",
+      "prompt": "Complete factorial(n) recursively for integers 0 through 12. Return n!; factorial(0) is 1.",
+      "starter": "def factorial(n):\n    pass\n\nprint(factorial(5))\n",
+      "solution": "def factorial(n):\n    if n <= 1:\n        return 1\n    return n * factorial(n - 1)",
+      "tests": [
+        {
+          "label": "Case 1",
+          "expression": "factorial(0)",
+          "expected": 1
+        },
+        {
+          "label": "Case 2",
+          "expression": "factorial(1)",
+          "expected": 1
+        },
+        {
+          "label": "Case 3",
+          "expression": "factorial(5)",
+          "expected": 120
+        },
+        {
+          "label": "Case 4",
+          "expression": "factorial(10)",
+          "expected": 3628800
+        }
+      ],
+      "hints": [
+        "Stop with 1 when n <= 1.",
+        "The recursive step is n * factorial(n - 1)."
+      ],
+      "complexity": "O(n) calls and O(n) call-stack space.",
+      "stdin": "",
+      "prelude": "",
+      "requires": {
+        "recursive": "factorial"
+      },
+      "xp": 40
+    },
+    {
+      "id": "q38",
+      "chapter": "recursion",
+      "number": 38,
+      "title": "Sum by recursion",
+      "concept": "An index parameter can shrink a problem without copying a list slice on every call.",
+      "prompt": "Complete recursive_sum(items, index=0). Return the sum from index to the end using recursion. Use indexes; do not slice or call sum().",
+      "starter": "def recursive_sum(items, index=0):\n    pass\n\nprint(recursive_sum([2, 4, 6]))\n",
+      "solution": "def recursive_sum(items, index=0):\n    if index >= len(items):\n        return 0\n    return items[index] + recursive_sum(items, index + 1)",
+      "tests": [
+        {
+          "label": "Case 1",
+          "expression": "recursive_sum([2,4,6])",
+          "expected": 12
+        },
+        {
+          "label": "Case 2",
+          "expression": "recursive_sum([])",
+          "expected": 0
+        },
+        {
+          "label": "Case 3",
+          "expression": "recursive_sum([-2,2])",
+          "expected": 0
+        },
+        {
+          "label": "Case 4",
+          "expression": "recursive_sum([1,2,3],1)",
+          "expected": 5
+        }
+      ],
+      "hints": [
+        "Stop when index reaches the list length.",
+        "Add the current item to the result for index + 1."
+      ],
+      "complexity": "O(n) time and call-stack space.",
+      "stdin": "",
+      "prelude": "",
+      "requires": {
+        "recursive": "recursive_sum",
+        "forbidCalls": [
+          "sum"
+        ],
+        "forbidNodes": [
+          "Slice"
+        ]
+      },
+      "xp": 40
+    },
+    {
+      "id": "q39",
+      "chapter": "recursion",
+      "number": 39,
+      "title": "Climb the Fibonacci steps",
+      "concept": "Naive Fibonacci repeats work. A dictionary can remember results from earlier calls.",
+      "prompt": "Complete fib(n, memo=None) recursively with a memo dictionary. fib(0)=0, fib(1)=1. Inputs are 0 through 30.",
+      "starter": "def fib(n, memo=None):\n    if memo is None:\n        memo = {}\n    pass\n\nprint(fib(10))\n",
+      "solution": "def fib(n, memo=None):\n    if memo is None:\n        memo = {}\n    if n < 2:\n        return n\n    if n not in memo:\n        memo[n] = fib(n - 1, memo) + fib(n - 2, memo)\n    return memo[n]",
+      "tests": [
+        {
+          "label": "Case 1",
+          "expression": "fib(0)",
+          "expected": 0
+        },
+        {
+          "label": "Case 2",
+          "expression": "fib(1)",
+          "expected": 1
+        },
+        {
+          "label": "Case 3",
+          "expression": "fib(10)",
+          "expected": 55
+        },
+        {
+          "label": "Case 4",
+          "expression": "fib(30)",
+          "expected": 832040
+        }
+      ],
+      "hints": [
+        "Check memo before making more calls.",
+        "Store fib(n-1, memo) + fib(n-2, memo)."
+      ],
+      "complexity": "O(n) time and space with memoization.",
+      "stdin": "",
+      "prelude": "",
+      "requires": {
+        "recursive": "fib"
+      },
+      "xp": 40
+    },
+    {
+      "id": "q40",
+      "chapter": "recursion",
+      "number": 40,
+      "title": "Euclid’s shortcut",
+      "concept": "The greatest common divisor satisfies gcd(a, b) = gcd(b, a % b) until b is zero.",
+      "prompt": "Complete gcd(a, b) recursively for non-negative integers. Return a when b is zero, including gcd(0,0)=0 for this task.",
+      "starter": "def gcd(a, b):\n    pass\n\nprint(gcd(48, 18))\n",
+      "solution": "def gcd(a, b):\n    if b == 0:\n        return a\n    return gcd(b, a % b)",
+      "tests": [
+        {
+          "label": "Case 1",
+          "expression": "gcd(48,18)",
+          "expected": 6
+        },
+        {
+          "label": "Case 2",
+          "expression": "gcd(7,0)",
+          "expected": 7
+        },
+        {
+          "label": "Case 3",
+          "expression": "gcd(0,9)",
+          "expected": 9
+        },
+        {
+          "label": "Case 4",
+          "expression": "gcd(0,0)",
+          "expected": 0
+        },
+        {
+          "label": "Case 5",
+          "expression": "gcd(17,13)",
+          "expected": 1
+        }
+      ],
+      "hints": [
+        "Check b == 0 before computing a remainder.",
+        "Pass b and a % b to the next call."
+      ],
+      "complexity": "O(log(min(a,b))) recursive steps for positive inputs.",
+      "stdin": "",
+      "prelude": "",
+      "requires": {
+        "recursive": "gcd"
+      },
+      "xp": 40
+    },
+    {
+      "id": "q41",
+      "chapter": "recursion",
+      "number": 41,
+      "title": "Merge two routes",
+      "concept": "Merge compares the first unused values of two sorted lists, then appends the smaller.",
+      "prompt": "Complete merge(left, right) for sorted integer lists. Return their sorted combination using indexes. Preserve duplicates and inputs. Do not call sort() or sorted().",
+      "starter": "def merge(left, right):\n    i = j = 0\n    result = []\n    pass\n\nprint(merge([1, 4], [2, 3]))\n",
+      "solution": "def merge(left, right):\n    i = j = 0\n    result = []\n    while i < len(left) and j < len(right):\n        if left[i] <= right[j]:\n            result.append(left[i])\n            i += 1\n        else:\n            result.append(right[j])\n            j += 1\n    result.extend(left[i:])\n    result.extend(right[j:])\n    return result",
+      "tests": [
+        {
+          "label": "Case 1",
+          "expression": "merge([1,4],[2,3])",
+          "expected": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "label": "Case 2",
+          "expression": "merge([],[])",
+          "expected": []
+        },
+        {
+          "label": "Case 3",
+          "expression": "merge([],[2,3])",
+          "expected": [
+            2,
+            3
+          ]
+        },
+        {
+          "label": "Case 4",
+          "expression": "merge([1,1],[1,2])",
+          "expected": [
+            1,
+            1,
+            1,
+            2
+          ]
+        },
+        {
+          "label": "Case 5",
+          "setup": "a=[1,3]\nb=[2]\nr=merge(a,b)",
+          "expression": "[a,b,r]",
+          "expected": [
+            [
+              1,
+              3
+            ],
+            [
+              2
+            ],
+            [
+              1,
+              2,
+              3
+            ]
+          ]
+        }
+      ],
+      "hints": [
+        "Continue while both lists still have unused elements.",
+        "Append the remainder after one side is exhausted."
+      ],
+      "complexity": "O(n + m) time and output space.",
+      "stdin": "",
+      "prelude": "",
+      "requires": {
+        "forbidMethods": [
+          "sort"
+        ],
+        "forbidCalls": [
+          "sorted"
+        ]
+      },
+      "xp": 40
+    },
+    {
+      "id": "q42",
+      "chapter": "recursion",
+      "number": 42,
+      "title": "Divide, solve, merge",
+      "concept": "Merge sort divides a list, recursively sorts each half, then merges the sorted halves.",
+      "prompt": "Complete merge_sort(items) recursively. The supplied merge(left, right) helper is ready to use. Return a sorted list without changing the input. Do not use sort() or sorted().",
+      "starter": "def merge(left, right):\n    result = []\n    i = j = 0\n    while i < len(left) and j < len(right):\n        if left[i] <= right[j]:\n            result.append(left[i]); i += 1\n        else:\n            result.append(right[j]); j += 1\n    return result + left[i:] + right[j:]\n\ndef merge_sort(items):\n    pass\n\nprint(merge_sort([5, 2, 4, 1]))\n",
+      "solution": "def merge(left, right):\n    result = []\n    i = j = 0\n    while i < len(left) and j < len(right):\n        if left[i] <= right[j]:\n            result.append(left[i]); i += 1\n        else:\n            result.append(right[j]); j += 1\n    return result + left[i:] + right[j:]\n\ndef merge_sort(items):\n    if len(items) <= 1:\n        return items.copy()\n    mid = len(items) // 2\n    return merge(merge_sort(items[:mid]), merge_sort(items[mid:]))",
+      "tests": [
+        {
+          "label": "Case 1",
+          "expression": "merge_sort([5,2,4,1])",
+          "expected": [
+            1,
+            2,
+            4,
+            5
+          ]
+        },
+        {
+          "label": "Case 2",
+          "expression": "merge_sort([])",
+          "expected": []
+        },
+        {
+          "label": "Case 3",
+          "expression": "merge_sort([3,-1,3])",
+          "expected": [
+            -1,
+            3,
+            3
+          ]
+        },
+        {
+          "label": "Case 4",
+          "setup": "a=[2,1]\nr=merge_sort(a)",
+          "expression": "[a,r]",
+          "expected": [
+            [
+              2,
+              1
+            ],
+            [
+              1,
+              2
+            ]
+          ]
+        }
+      ],
+      "hints": [
+        "A list of zero or one item is already sorted.",
+        "Sort each half before passing them to merge."
+      ],
+      "complexity": "O(n log n) time and O(n) peak auxiliary space.",
+      "stdin": "",
+      "prelude": "",
+      "requires": {
+        "recursive": "merge_sort",
+        "forbidMethods": [
+          "sort"
+        ],
+        "forbidCalls": [
+          "sorted"
+        ]
+      },
+      "xp": 40
+    },
+    {
+      "id": "q43",
+      "chapter": "graphs",
+      "number": 43,
+      "title": "Walk a tree in order",
+      "concept": "Inorder traversal visits left subtree, node, then right subtree. A missing child is None.",
+      "prompt": "Complete inorder(root) recursively. Return values in left-node-right order. TreeNode is provided in the starter.",
+      "starter": "class TreeNode:\n    def __init__(self, value, left=None, right=None):\n        self.value = value\n        self.left = left\n        self.right = right\n\ndef inorder(root):\n    pass\n",
+      "solution": "class TreeNode:\n    def __init__(self, value, left=None, right=None):\n        self.value = value\n        self.left = left\n        self.right = right\n\ndef inorder(root):\n    result = []\n    def visit(node):\n        if node is None:\n            return\n        visit(node.left)\n        result.append(node.value)\n        visit(node.right)\n    visit(root)\n    return result",
+      "tests": [
+        {
+          "label": "Case 1",
+          "expression": "inorder(sample_tree())",
+          "expected": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "label": "Case 2",
+          "expression": "inorder(None)",
+          "expected": []
+        },
+        {
+          "label": "Case 3",
+          "expression": "inorder(TreeNode(8))",
+          "expected": [
+            8
+          ]
+        },
+        {
+          "label": "Case 4",
+          "expression": "inorder(TreeNode(5,TreeNode(9)))",
+          "expected": [
+            9,
+            5
+          ]
+        }
+      ],
+      "hints": [
+        "Return immediately for a None node.",
+        "A helper can append into a shared result list."
+      ],
+      "complexity": "O(n) time, O(h) call stack plus O(n) output for height h.",
+      "stdin": "",
+      "prelude": "class TreeNode:\n    def __init__(self, value, left=None, right=None):\n        self.value = value\n        self.left = left\n        self.right = right\n\ndef sample_tree():\n    return TreeNode(2, TreeNode(1), TreeNode(3, None, TreeNode(4)))\n",
+      "requires": {},
+      "xp": 40
+    },
+    {
+      "id": "q44",
+      "chapter": "graphs",
+      "number": 44,
+      "title": "Measure tree height",
+      "concept": "For this task, height counts nodes on the longest root-to-leaf path. Empty height is zero.",
+      "prompt": "Complete height(root). An empty tree returns 0; a leaf returns 1. Use recursion.",
+      "starter": "class TreeNode:\n    def __init__(self, value, left=None, right=None):\n        self.value = value\n        self.left = left\n        self.right = right\n\ndef height(root):\n    pass\n",
+      "solution": "class TreeNode:\n    def __init__(self, value, left=None, right=None):\n        self.value = value\n        self.left = left\n        self.right = right\n\ndef height(root):\n    if root is None:\n        return 0\n    return 1 + max(height(root.left), height(root.right))",
+      "tests": [
+        {
+          "label": "Case 1",
+          "expression": "height(sample_tree())",
+          "expected": 3
+        },
+        {
+          "label": "Case 2",
+          "expression": "height(None)",
+          "expected": 0
+        },
+        {
+          "label": "Case 3",
+          "expression": "height(TreeNode(1))",
+          "expected": 1
+        },
+        {
+          "label": "Case 4",
+          "expression": "height(TreeNode(1,TreeNode(2,TreeNode(3))))",
+          "expected": 3
+        }
+      ],
+      "hints": [
+        "Find the height of each child.",
+        "Choose the larger child height and add one."
+      ],
+      "complexity": "O(n) time and O(h) call-stack space.",
+      "stdin": "",
+      "prelude": "class TreeNode:\n    def __init__(self, value, left=None, right=None):\n        self.value = value\n        self.left = left\n        self.right = right\n\ndef sample_tree():\n    return TreeNode(2, TreeNode(1), TreeNode(3, None, TreeNode(4)))\n",
+      "requires": {
+        "recursive": "height"
+      },
+      "xp": 40
+    },
+    {
+      "id": "q45",
+      "chapter": "graphs",
+      "number": 45,
+      "title": "Connect the map",
+      "concept": "An adjacency list maps each vertex to its neighbors. Undirected edges go both ways.",
+      "prompt": "Complete adjacency(edges). Input is a list of pairs of distinct string vertices, without duplicate edges. Return a dict of neighbor lists in insertion order. Include vertices appearing in edges.",
+      "starter": "def adjacency(edges):\n    graph = {}\n    pass\n\nprint(adjacency([(\"A\", \"B\"), (\"B\", \"C\")]))\n",
+      "solution": "def adjacency(edges):\n    graph = {}\n    for a, b in edges:\n        graph.setdefault(a, []).append(b)\n        graph.setdefault(b, []).append(a)\n    return graph",
+      "tests": [
+        {
+          "label": "Case 1",
+          "expression": "adjacency([(\"A\",\"B\"),(\"B\",\"C\")])",
+          "expected": {
+            "A": [
+              "B"
+            ],
+            "B": [
+              "A",
+              "C"
+            ],
+            "C": [
+              "B"
+            ]
+          }
+        },
+        {
+          "label": "Case 2",
+          "expression": "adjacency([])",
+          "expected": {}
+        },
+        {
+          "label": "Case 3",
+          "expression": "adjacency([(\"X\",\"Y\")])",
+          "expected": {
+            "X": [
+              "Y"
+            ],
+            "Y": [
+              "X"
+            ]
+          }
+        }
+      ],
+      "hints": [
+        "Create an empty neighbor list when a key is new.",
+        "Append b under a and a under b."
+      ],
+      "complexity": "O(V + E) time and space.",
+      "stdin": "",
+      "prelude": "",
+      "requires": {},
+      "xp": 40
+    },
+    {
+      "id": "q46",
+      "chapter": "graphs",
+      "number": 46,
+      "title": "Explore level by level",
+      "concept": "Breadth-first search (BFS) uses a queue. Mark a vertex seen when adding it to prevent repeated work.",
+      "prompt": "Complete bfs(graph, start). Return reachable vertices in BFS order, using the neighbor order in graph. Graph keys include all vertices. If start is absent, return []. Use deque.",
+      "starter": "from collections import deque\n\ndef bfs(graph, start):\n    pass\n\nprint(bfs({\"A\": [\"B\"], \"B\": [\"A\"]}, \"A\"))\n",
+      "solution": "from collections import deque\n\ndef bfs(graph, start):\n    if start not in graph:\n        return []\n    seen = {start}\n    queue = deque([start])\n    result = []\n    while queue:\n        node = queue.popleft()\n        result.append(node)\n        for neighbor in graph[node]:\n            if neighbor not in seen:\n                seen.add(neighbor)\n                queue.append(neighbor)\n    return result",
+      "tests": [
+        {
+          "label": "Case 1",
+          "expression": "bfs({\"A\":[\"B\",\"C\"],\"B\":[\"A\",\"D\"],\"C\":[\"D\"],\"D\":[]},\"A\")",
+          "expected": [
+            "A",
+            "B",
+            "C",
+            "D"
+          ]
+        },
+        {
+          "label": "Case 2",
+          "expression": "bfs({},\"A\")",
+          "expected": []
+        },
+        {
+          "label": "Case 3",
+          "expression": "bfs({\"A\":[\"A\"],\"B\":[]},\"A\")",
+          "expected": [
+            "A"
+          ]
+        },
+        {
+          "label": "Case 4",
+          "expression": "bfs({\"A\":[],\"B\":[]},\"A\")",
+          "expected": [
+            "A"
+          ]
+        }
+      ],
+      "hints": [
+        "Use popleft for FIFO order.",
+        "Mark seen before queue.append, not after processing."
+      ],
+      "complexity": "O(V + E) time and O(V) auxiliary space for reachable vertices.",
+      "stdin": "",
+      "prelude": "",
+      "requires": {
+        "methods": [
+          "popleft"
+        ]
+      },
+      "xp": 40
+    },
+    {
+      "id": "q47",
+      "chapter": "graphs",
+      "number": 47,
+      "title": "Explore one path deeply",
+      "concept": "Depth-first search (DFS) follows a branch before backtracking. A seen set handles cycles.",
+      "prompt": "Complete dfs(graph, start) recursively. Return vertices in preorder, visiting neighbors in listed order. Return [] when start is absent. All neighbors are graph keys.",
+      "starter": "def dfs(graph, start):\n    pass\n\nprint(dfs({\"A\": [\"B\"], \"B\": []}, \"A\"))\n",
+      "solution": "def dfs(graph, start):\n    if start not in graph:\n        return []\n    seen = set()\n    result = []\n    def visit(node):\n        if node in seen:\n            return\n        seen.add(node)\n        result.append(node)\n        for neighbor in graph[node]:\n            visit(neighbor)\n    visit(start)\n    return result",
+      "tests": [
+        {
+          "label": "Case 1",
+          "expression": "dfs({\"A\":[\"B\",\"C\"],\"B\":[\"D\"],\"C\":[],\"D\":[\"A\"]},\"A\")",
+          "expected": [
+            "A",
+            "B",
+            "D",
+            "C"
+          ]
+        },
+        {
+          "label": "Case 2",
+          "expression": "dfs({},\"A\")",
+          "expected": []
+        },
+        {
+          "label": "Case 3",
+          "expression": "dfs({\"A\":[\"A\"]},\"A\")",
+          "expected": [
+            "A"
+          ]
+        }
+      ],
+      "hints": [
+        "Define a visit helper with shared seen and result.",
+        "Add the vertex before recursively visiting neighbors."
+      ],
+      "complexity": "O(V + E) time and O(V) auxiliary space for reachable vertices.",
+      "stdin": "",
+      "prelude": "",
+      "requires": {},
+      "xp": 40
+    },
+    {
+      "id": "q48",
+      "chapter": "graphs",
+      "number": 48,
+      "title": "Find the shortest route",
+      "concept": "In an unweighted graph, BFS reaches vertices in order of edge distance from the start.",
+      "prompt": "Complete distance(graph, start, goal). Return the fewest edges from start to goal, or -1 if unreachable or either vertex is absent. Return 0 when start equals goal and exists. Use BFS.",
+      "starter": "from collections import deque\n\ndef distance(graph, start, goal):\n    pass\n\nprint(distance({\"A\": [\"B\"], \"B\": []}, \"A\", \"B\"))\n",
+      "solution": "from collections import deque\n\ndef distance(graph, start, goal):\n    if start not in graph or goal not in graph:\n        return -1\n    queue = deque([(start, 0)])\n    seen = {start}\n    while queue:\n        node, depth = queue.popleft()\n        if node == goal:\n            return depth\n        for neighbor in graph[node]:\n            if neighbor not in seen:\n                seen.add(neighbor)\n                queue.append((neighbor, depth + 1))\n    return -1",
+      "tests": [
+        {
+          "label": "Case 1",
+          "expression": "distance({\"A\":[\"B\",\"C\"],\"B\":[\"D\"],\"C\":[\"D\"],\"D\":[]},\"A\",\"D\")",
+          "expected": 2
+        },
+        {
+          "label": "Case 2",
+          "expression": "distance({\"A\":[]},\"A\",\"A\")",
+          "expected": 0
+        },
+        {
+          "label": "Case 3",
+          "expression": "distance({\"A\":[],\"B\":[]},\"A\",\"B\")",
+          "expected": -1
+        },
+        {
+          "label": "Case 4",
+          "expression": "distance({},\"A\",\"A\")",
+          "expected": -1
+        },
+        {
+          "label": "Case 5",
+          "expression": "distance({\"A\":[\"B\"],\"B\":[\"A\"]},\"A\",\"B\")",
+          "expected": 1
+        }
+      ],
+      "hints": [
+        "Put (vertex, distance) pairs in the queue.",
+        "The first time you remove goal from the queue is its shortest distance."
+      ],
+      "complexity": "O(V + E) time and O(V) auxiliary space.",
+      "stdin": "",
+      "prelude": "",
+      "requires": {
+        "methods": [
+          "popleft"
+        ]
+      },
+      "xp": 40
+    }
+  ]
+}

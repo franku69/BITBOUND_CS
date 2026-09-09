@@ -1,0 +1,17 @@
+{
+  "environment": "Node worker adapter, local bundled CPython, not a phone/network benchmark",
+  "coldMs": [
+    1397.367479,
+    1380.093798,
+    1350.2595600000004,
+    1475.0268459999998
+  ],
+  "warmMs": [
+    5.114308999999594,
+    1.2267629999996643,
+    1.0699329999997644,
+    1.1782130000001416
+  ],
+  "coldMeanMs": 1400.6869207500001,
+  "warmMeanMs": 2.147304499999791
+}

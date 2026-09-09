@@ -1,0 +1,42 @@
+UPDATE YOUR GITHUB PAGES GAME
+
+1. Extract this ZIP completely.
+2. Copy the CONTENTS of BITBOUND_Python_DSA into your existing repository
+   root, replacing the previous game files. Keep a backup of your version.
+   Include app/, adventure/, runtime/, vendor/, index.html, styles.css,
+   game-windows.css, manifest.webmanifest, offline-manifest.json and sw.js.
+   Keep .nojekyll too. Upload the files, not the ZIP by itself.
+3. Commit and push. Git or GitHub Desktop is convenient for the whole folder.
+   The package already contains its generated files: no npm or build step.
+4. If needed, set the repository's Pages publishing source to your branch
+   and its root folder. Keep an existing working Pages setup if you have one.
+5. Wait for the deployment to finish, then open your website link, such as:
+   https://YOUR-USERNAME.github.io/YOUR-REPOSITORY/
+6. Close old game tabs and reopen the link. If an old version still appears,
+   reload while online. Export saved progress before clearing any site data.
+7. Confirm the opening screen shows Python Lab Mode | Story Mode.
+   Python Lab opens the full IDE; Story Mode opens character setup.
+8. Leave the page open online until it says:
+   Offline ready · app files cached · progress saves manually
+   Only app files download automatically (about 15 MB uncompressed).
+9. Share that SAME website link with students. Each student must complete
+   the first download in their own browser before using it offline.
+
+No student account, local Python installation, or backend is required.
+Offline play uses the same address and browser with site data retained.
+Simply opening a link and immediately disconnecting cannot download all
+files. An interrupted download shows Retry and resumes when connected.
+Private browsing or clearing/evicting site storage can remove offline files.
+
+The website supports repository subpaths. Do not remove runtime files:
+Python runs on each student's device using the included engine.
+New visits start fresh. Old browser student data is ignored.
+Students explicitly use Save file and Load file for their own JSON saves.
+Use New player before handing over an already-open game.
+Legacy adventure links redirect into the game. A direct legacy workspace URL
+redirects to the full-page Python Lab.
+
+AFTER EDITING SOURCE
+  python scripts/build.py
+This rebuilds the game/editor bundles and content-versioned offline files.
+Edit adventure/systems/ rather than the generated adventure/game.js.

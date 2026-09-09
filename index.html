@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#0b1321">
+  <meta name="description" content="Choose Python Lab Mode for a real Python IDE, or Story Mode for a coding adventure. Practice on your phone or computer.">
+  <title>BITBOUND · Choose Your Mode</title>
+  <link rel="icon" href="data:,">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="stylesheet" href="mode-select.css?v=1f5b1bcf274b">
+</head>
+<body>
+  <dialog id="studioIntro" class="studio-intro" open aria-labelledby="studioName" aria-describedby="studioCaption">
+    <div class="studio-card">
+      <img class="guild-emblem" src="app/assets/guild-logo.png" width="883" height="792" alt="USTP Game Dev Guild pixel-art logo" fetchpriority="high">
+      <h2 id="studioName"><img class="guild-wordmark" src="app/assets/guild-wordmark.svg" width="395" height="139" alt="USTP Game Dev Guild"></h2>
+      <p id="studioCaption">PRESENTS <strong>BITBOUND</strong></p>
+      <div class="studio-loading" aria-hidden="true"><span></span></div>
+      <p class="studio-opening">Opening your next adventure…</p>
+      <form method="dialog"><button id="studioContinue" value="continue">Continue <span aria-hidden="true">→</span></button></form>
+    </div>
+  </dialog>
+  <main class="mode-picker" aria-labelledby="modeTitle">
+    <p class="eyebrow">PYTHON • DATA STRUCTURES • PRACTICE</p>
+    <h1 id="modeTitle">BITBOUND</h1>
+    <p class="mode-intro">Your code. Your adventure.</p>
+    <button class="mode-music" type="button" data-music-toggle aria-label="Toggle background music">♫ Play music</button>
+    <nav class="mode-options" aria-label="Choose your mode">
+      <a id="labModeLink" class="mode-card lab-mode" href="app/lab.html">
+        <img class="mode-logo" src="app/assets/modes/lab-logo.png" width="331" height="847" alt="Python Lab robot mascot">
+        <h2>Python Lab Mode</h2>
+        <p>Go straight to the Python IDE. Write your own code, follow along in class, or practice a new idea.</p>
+        <span class="mode-action">Open Python IDE <span aria-hidden="true">→</span></span>
+      </a>
+      <a id="storyModeLink" class="mode-card story-mode" href="story.html">
+        <img class="mode-logo" src="app/assets/modes/story-logo.png" width="330" height="859" alt="Story Mode explorer mascot">
+        <h2>Story Mode</h2>
+        <p>Create your explorer, choose a companion, and solve Python challenges across eight worlds.</p>
+        <span class="mode-action">Enter the adventure <span aria-hidden="true">→</span></span>
+      </a>
+    </nav>
+    <p class="mode-note">Phone, tablet or computer. Every visit starts fresh. Save file to keep your work; Load file to continue.</p>
+    <div id="offlineBanner" class="mode-offline" role="status"><span id="offlineGameStatus">Preparing offline access…</span><button id="retryOffline" hidden>Retry</button></div>
+  </main>
+  <noscript><p class="mode-note">The Python IDE and Story Mode need JavaScript enabled.</p></noscript>
+  <script src="app/music-score.js?v=a69a0334aa60"></script>
+  <script type="module" src="app/mode-select.js?v=569d645afee6"></script>
+</body>
+</html>

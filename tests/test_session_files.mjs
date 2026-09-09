@@ -1,0 +1,36 @@
+/** Exercise actual portable-file codec and the manual UI handlers with a small DOM. */
+import assert from 'node:assert/strict';
+import {blankProgress} from '../app/storage.js';
+import {parseSession,serializeSession,MAX_SAVE_BYTES} from '../app/session-file.js';
+import {installSessionControls} from '../app/session-controls.js';
+const ids=new Set(['q01','q02']);
+const python=blankProgress();python.name='Sam';python.workspaces.free={files:{'main.py':'print("Sam")'},current:'main.py',stdin:''};python.completed.q01={at:'today',code:'print("hello")'};
+const snapshot={name:'Sam',python,story:{version:1,team:'Sam',level:0},token:7};
+const encoded=serializeSession(snapshot),parsed=parseSession(JSON.parse(encoded.text),ids);
+assert.match(encoded.name,/^BITBOUND_Sam_/);assert.equal(parsed.python.workspaces.free.files['main.py'],'print("Sam")');assert.equal(parsed.story.team,'Sam');
+assert.equal(JSON.parse(encoded.text).token,undefined,'runtime revision token stays out of file');
+assert.equal(parseSession(python,ids).python.name,'Sam','old explicit Lab backups still import');
+assert.throws(()=>parseSession({format:'wrong',version:1},ids));
+const bad=structuredClone(JSON.parse(encoded.text));bad.python.workspaces.free.files['../escape.py']='x';assert.throws(()=>parseSession(bad,ids));
+let dirty=true,applied=0,saved=0,reloaded=0,allow=true,downloaded=[],message='';
+class Button{constructor(){this.listeners={};}addEventListener(type,fn){this.listeners[type]=fn;}}
+const save=new Button(),load=new Button(),fresh=new Button(),status={textContent:''};
+const input={click(){this.clicked=true;}};
+const selectors={'[data-save-session]':[save],'[data-load-session]':[load],'[data-new-session]':[fresh],'[data-session-status]':[status],'[data-save-session], [data-load-session], [data-new-session]':[save,load,fresh]};
+const events={};
+globalThis.document={getElementById:()=>input,querySelectorAll:selector=>selectors[selector]||[],body:{append(){}},createElement:()=>({click(){downloaded.push(this.download);},remove(){}})};
+globalThis.window={location:{reload(){reloaded++;}},addEventListener(type,fn){events[type]=fn;}};
+globalThis.confirm=()=>allow;
+const ui=installSessionControls({ids,getSnapshot:()=>snapshot,applySnapshot:pack=>{assert.equal(pack.python.name,'Sam');applied++;dirty=false;},onSaved:()=>{saved++;dirty=false;},hasUnsaved:()=>dirty,report:text=>message=text});
+assert.equal(downloaded.length,0,'initialization does not download or save anything');
+await save.listeners.click();assert.equal(saved,1);assert.equal(downloaded.length,1);assert.match(message,/requested/);assert.equal(save.disabled,false);
+load.listeners.click();assert.equal(input.clicked,true);
+const choose=(text,size=text.length)=>input.onchange({target:{value:'file',files:[{size,text:async()=>text}]}});
+await choose('{bad json');assert.equal(applied,0);assert.match(message,/Could not load/);
+await choose(encoded.text,MAX_SAVE_BYTES+1);assert.equal(applied,0);
+dirty=true;allow=false;await choose(encoded.text);assert.equal(applied,0,'cancel preserves the running session');
+allow=true;await choose(encoded.text);assert.equal(applied,1);assert.match(message,/Loaded your chosen/);
+dirty=true;let prevented=false;events.beforeunload({preventDefault(){prevented=true;}});assert.equal(prevented,true);
+allow=false;fresh.listeners.click();assert.equal(reloaded,0);allow=true;fresh.listeners.click();assert.equal(reloaded,1);
+events.pageshow({persisted:true});assert.equal(reloaded,2,'back/forward cache cannot restore the previous student silently');
+console.log('PASS manual files: portable round trip, old-file import, explicit-only download, malformed/oversize rejection, cancellation, unsaved exit and new-player/BFCache reset.');

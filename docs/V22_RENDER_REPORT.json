@@ -1,0 +1,18 @@
+{
+  "sourceSHA256": "34d3b5d3a9c9d0197604c90a21e59b622568b131c6b5a48e714974b612ded86d",
+  "rasterFrames": 4941,
+  "battleFrames": 837,
+  "pages": 81,
+  "sequenceFrames": 8070,
+  "renderMs": {
+    "median": 1.298174999999901,
+    "p95": 2.306362999999692,
+    "max": 89.9856260000015
+  },
+  "renderer": "Node + native Canvas on this machine; not browser FPS or device heat",
+  "checks": [
+    "actual draw calls match unique actor IDs",
+    "all story pages render without exceptions",
+    "all 81 story pages plus cell/forge sequences exported; ambient sampled at +2 and +8 seconds"
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "command": "npm test",
+  "exitCode": 0,
+  "result": "All suites passed",
+  "storyPages": 81,
+  "denseSamples": 81081,
+  "poseContractSamples": 16281,
+  "roamingQuestions": 268,
+  "executedPythonTraces": 144,
+  "codingSolutions": 48,
+  "codingCases": 180,
+  "nativeReview": {
+    "sourceSHA256": "5dc35c4950cef82372fbeed433cfefd55b66b10ef24dcd4b0478990a6c8ae6dd",
+    "rasterFrames": 4941,
+    "battleFrames": 837,
+    "pages": 81,
+    "sequenceFrames": 7980,
+    "renderMs": {
+      "median": 1.2091099999997823,
+      "p95": 1.9479519999986223,
+      "max": 40.540909000000056
+    },
+    "renderer": "Node + native Canvas on this machine; not browser FPS or device heat",
+    "checks": [
+      "actual draw calls match unique actor IDs",
+      "all story pages render without exceptions",
+      "all 81 story pages plus cell/forge sequences exported; ambient sampled at +2 and +8 seconds"
+    ]
+  }
+}

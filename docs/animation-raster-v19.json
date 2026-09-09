@@ -1,0 +1,16 @@
+{
+  "rasterFrames": 4941,
+  "pages": 81,
+  "sequenceFrames": 1080,
+  "renderMs": {
+    "median": 1.0204560000001948,
+    "p95": 1.6282919999994192,
+    "max": 8.067286999999851
+  },
+  "renderer": "Node + native Canvas on this machine; not browser FPS or device heat",
+  "checks": [
+    "actual draw calls match unique actor IDs",
+    "all story pages render without exceptions",
+    "continuous sequences exported for visual review"
+  ]
+}

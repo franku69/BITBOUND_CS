@@ -1,0 +1,12 @@
+{
+  "name": "bitbound-python-dsa",
+  "private": true,
+  "version": "2.19.0",
+  "type": "module",
+  "description": "Python Lab and a solo coding adventure with manual student save files and separate offline app caching.",
+  "scripts": {
+    "build": "python scripts/build.py",
+    "test": "python tests/test_encounter_bank.py && node tests/test_v19_encounters.cjs && node tests/test_v22_progression.cjs && node tests/test_v23_learning.cjs && node tests/test_v20_encounters.cjs && node tests/test_v19_party.cjs && python tests/test_curriculum.py && node tests/test_pyodide.mjs && python tests/test_tutorials.py && node tests/test_touch.cjs && node tests/test_story_curriculum.cjs && node tests/test_stoneborn.cjs && node tests/test_story_presentation.cjs && node tests/test_adventure.cjs && node tests/test_manual_story.cjs && node tests/test_mentor_animation.cjs && node tests/test_mentor_voice.cjs && node tests/test_lesson_buttons.cjs && node tests/test_player_animation.cjs && node tests/test_session_files.mjs && node tests/test_performance.cjs && node tests/test_audio.cjs && node tests/test_page_music.cjs && node tests/test_storage_runner.mjs && node tests/test_worker.mjs && node tests/test_streaming.mjs && node --experimental-vm-modules tests/test_workspace.mjs && node --experimental-vm-modules tests/test_workspace.mjs --standalone && node tests/test_animation_continuity.cjs && node tests/test_v20_animation.cjs && node tests/test_v21_story.cjs && node tests/test_story_motion.cjs && node tests/test_v22_cinematics.cjs && node tests/test_v23_animation.cjs && node tests/test_v24_character_rig.cjs && node tests/test_v17_gameplay.cjs && node tests/test_expansion.cjs && node tests/test_studio_intro.mjs && node tests/test_modes.mjs && node tests/test_offline.mjs && node tests/test_update_cache.mjs && python scripts/validate.py",
+    "benchmark:game": "node tests/benchmark_game.cjs"
+  }
+}

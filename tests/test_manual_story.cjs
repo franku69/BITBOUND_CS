@@ -1,0 +1,44 @@
+'use strict';
+const assert=require('node:assert/strict');
+const {buildContext}=require('./helpers/game-harness.cjs');
+(async()=>{
+  const seed={'bitbound-python-dsa-v1':JSON.stringify({version:1,name:'Previous student',completed:{q01:{code:'PRIVATE'}}}),'bitbound_dsa_adventure_v1':JSON.stringify({version:1,team:'Previous student',level:7})};
+  const {sandbox:s,elements,listeners}=buildContext('?quality=low',0,seed),api=s.TestAPI;
+  const dispatch=data=>{const frame=elements.get('puzzleOptions').children.at(-1);for(const handler of listeners.message)handler({origin:s.location.origin,source:frame?.contentWindow,data});};
+  assert.equal(api.completedQuestionCount(),0);assert.equal(s.BitboundStory.snapshot(),null);assert.equal(s.BitboundStory.hasUnsaved(),false);
+  for(const key of Object.keys(seed))assert.equal(s.localStorage.reads.includes(key),false,'old student records must not be read');
+  elements.get('explorerName').value='Sam';api.startNew();api.enterWorld();
+  assert.equal(api.state.members[0],'Sam');assert.equal(s.BitboundStory.hasUnsaved(),true);
+  for(let n=0;n<900;n++)api.update(1/60);
+  for(const callback of listeners.pagehide)callback();
+  for(const key of Object.keys(seed)){assert.equal(s.localStorage.writes.includes(key),false);assert.equal(s.localStorage.getItem(key),seed[key]);}
+  const empty=await s.BitboundStory.pythonSnapshot();assert.equal(empty.python,null,'Save with no editor needs no runtime initialization');
+  s.BitboundChallenges.prewarm();const frame=elements.get('puzzleOptions').children.at(-1);
+  dispatch({type:'bitbound:workspace-ready',revision:3});
+  dispatch({type:'bitbound:session-changed',revision:4});
+  const pending=s.BitboundStory.pythonSnapshot();
+  const request=frame.contentWindow.messages.at(-1);
+  assert.equal(request.type,'bitbound:session-snapshot');
+  // Unrelated frames and expired/incorrect IDs cannot fulfill a save request.
+  let settled=false;pending.then(()=>settled=true);
+  for(const handler of listeners.message)handler({origin:s.location.origin,source:{},data:{type:'bitbound:session-reply',requestId:request.requestId,revision:4,python:{version:1}}});
+  dispatch({type:'bitbound:session-reply',requestId:request.requestId+1,revision:4,python:{version:1}});
+  await Promise.resolve();assert.equal(settled,false);
+  const python={version:1,active:'free',workspaces:{free:{files:{'main.py':'print("Sam")'},current:'main.py',stdin:''}},completed:{}};
+  dispatch({type:'bitbound:session-reply',requestId:request.requestId,revision:4,python});
+  const snapshot=await pending;assert.equal(snapshot.python.workspaces.free.files['main.py'],'print("Sam")');
+  const token={story:s.BitboundStory.revision(),python:4};
+  dispatch({type:'bitbound:session-changed',revision:5});s.BitboundStory.markSaved(token);assert.equal(s.BitboundStory.hasUnsaved(),true,'edits during export are still unsaved');
+  s.BitboundStory.markSaved({...token,python:5});assert.equal(s.BitboundStory.hasUnsaved(),false);
+  const restore=s.BitboundStory.restorePython(python);const loadRequest=frame.contentWindow.messages.at(-1);
+  assert.equal(loadRequest.type,'bitbound:load-session');assert.equal(loadRequest.python,python);
+  dispatch({type:'bitbound:session-reply',requestId:loadRequest.requestId,revision:6});await restore;
+  const story=s.BitboundStory.snapshot();const fresh=buildContext('?quality=low',0,seed).sandbox;
+  assert.equal(fresh.TestAPI.completedQuestionCount(),0);
+  fresh.BitboundStory.restore(fresh.BitboundStory.validate(story));assert.equal(fresh.TestAPI.state.members[0],'Sam');
+  assert.equal(fresh.BitboundStory.hasUnsaved(),false);
+  const bad=structuredClone(story);bad.solved[0]='broken';assert.throws(()=>fresh.BitboundStory.validate(bad));assert.equal(fresh.TestAPI.state.members[0],'Sam');
+  const prototype=structuredClone(story);prototype.weapons=['constructor'];prototype.petId='toString';prototype.powerId='__proto__';
+  const safe=fresh.BitboundStory.validate(prototype);assert.deepEqual(Array.from(safe.weapons),['data_blade']);assert.notEqual(safe.petId,'toString');
+  console.log('PASS manual Story: old student data ignored, no autosave on gameplay/lifecycle, manual iframe snapshots/imports, revision races, explicit restore and malformed-file validation.');
+})().catch(error=>{console.error(error);process.exitCode=1;});

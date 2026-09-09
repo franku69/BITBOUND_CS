@@ -1,0 +1,35 @@
+import assert from 'node:assert/strict';
+import {ProgressStore,validateState,validName} from '../app/storage.js';
+import {PythonRunner} from '../app/runner.js';
+const ids=new Set(['q01','q02']);
+const oldData={version:1,active:'q01',name:'Previous student',workspaces:{q01:{files:{'main.py':'print("private")'},current:'main.py',stdin:''}}};
+let reads=0,writes=0;
+globalThis.localStorage={getItem(){reads++;return JSON.stringify(oldData);},setItem(){writes++;throw new Error('No automatic saves');}};
+let store=new ProgressStore(ids);assert.equal(store.state.name,'');assert.deepEqual(store.state.workspaces,{});
+store.state.workspaces.q01={files:{'main.py':'print(7)'},current:'main.py',stdin:''};
+store.state.completed.q01={at:'2026-09-07',code:'print(7)',solutionViewed:false};store.changed();assert.ok(store.dirty);
+const manual=JSON.parse(JSON.stringify(store.state));
+const fresh=new ProgressStore(ids);assert.equal(fresh.state.completed.q01,undefined);
+fresh.import(manual);assert.equal(fresh.state.workspaces.q01.files['main.py'],'print(7)');assert.equal(fresh.state.completed.q01.code,'print(7)');
+assert.equal(reads,0);assert.equal(writes,0);
+const revision=store.revision;store.changed();store.markSaved(revision);assert.ok(store.dirty,'edits after export remain unsaved');
+assert.throws(()=>validateState({version:2},ids));
+assert.throws(()=>validateState({version:1,workspaces:{q01:{files:{'../evil.py':'bad'}}}},ids));
+assert.equal(validName('collections.py'),false);assert.equal(validName('helpers.py'),true);
+const prior=fresh.state;assert.throws(()=>fresh.import({version:9}));assert.equal(fresh.state,prior,'bad import is atomic');
+// Deterministic worker protocol tests: serial requests, Stop and stale replies.
+const workers=[];
+class FakeWorker{constructor(){workers.push(this);}postMessage(data){this.sent=data;}terminate(){this.dead=true;}reply(data){this.onmessage({data});}}
+globalThis.Worker=FakeWorker;globalThis.location={protocol:'https:'};
+const runner=new PythonRunner();
+const first=runner.request({mode:'init'},10000);
+workers[0].reply({id:workers[0].sent.id,type:'ready'});await first;assert.equal(runner.loaded,true);
+const job=runner.request({mode:'run'},10000);
+await assert.rejects(runner.request({mode:'run'},10000),/already running/);
+const old=workers[0],oldId=old.sent.id;
+runner.stop();await assert.rejects(job,/Stopped/);assert.equal(old.dead,true);assert.equal(runner.loaded,false);
+const next=runner.request({mode:'init'},10000);
+old.reply({id:oldId,type:'result',result:{bad:true}});
+assert.ok(runner.pending,'stale old worker must not complete the new request');
+workers[1].reply({id:workers[1].sent.id,type:'ready'});await next;runner.dispose();
+console.log('PASS: fresh session isolation, explicit import, no storage reads/writes, invalid backups, serial worker requests, Stop, stale replies and restart.');

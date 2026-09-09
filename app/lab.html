@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#0c1323">
+  <meta name="description" content="BITBOUND Python and DSA practice: write real Python, solve missions, and learn on a phone or computer.">
+  <title>BITBOUND · Python Lab Mode</title>
+  <link rel="icon" href="data:,">
+  <link rel="manifest" href="../manifest.webmanifest">
+  <link rel="stylesheet" href="../vendor/codemirror/lib/codemirror.css?v=eb494ea972d2">
+  <link rel="stylesheet" href="../vendor/codemirror/addon/hint/show-hint.css?v=9058c1c14fcd">
+  <link rel="stylesheet" href="../vendor/codemirror/addon/dialog/dialog.css?v=5df690d771f1">
+  <link rel="stylesheet" href="../styles.css?v=59087e571131">
+</head>
+<body class="free-workspace">
+<a class="skip" href="#editorPanel">Skip to editor</a>
+<header class="topbar">
+  <span class="brand" aria-label="BITBOUND Python Practice"><span class="brand-mark">[b]</span><span>BITBOUND<small>PYTHON LAB MODE</small></span></span>
+  <nav aria-label="Practice modes"><button id="missionsBtn" class="nav-current">Practice <span id="totalDone">0/48</span></button><button id="freeBtn">Free lab</button></nav>
+  <div class="top-actions"><button type="button" data-music-toggle aria-label="Toggle background music">♫ Play music</button><a id="chooseModeLink" class="mode-return" href="../index.html">← Choose mode</a><button id="progressBtn">My progress</button><button id="helpBtn" aria-label="Open help">Help</button></div>
+</header>
+<div class="session-toolbar standalone-session" aria-label="Manual save controls"><button data-save-session>Save file</button><button data-load-session>Load file</button><button data-new-session>New player</button><span>Code + progress stay in this session until you download a save file.</span></div><input id="sessionFileUpload" type="file" accept=".json,application/json" hidden>
+<div class="workspace-save"><span id="saveStatus" role="status">Manual saves only · each new visit starts fresh.</span><div id="offlineBanner" class="lab-offline" role="status"><span id="offlineGameStatus">Preparing offline access…</span><button id="retryOffline" hidden>Retry</button></div></div>
+<div id="notice" class="notice" role="status" hidden></div>
+<div class="mobile-tabs" role="group" aria-label="Workspace view"><button data-view="mission" aria-pressed="false">Mission</button><button data-view="editor" aria-pressed="true">Code</button><button data-view="results" aria-pressed="false">Results</button></div>
+<main class="workbench" data-mobile-view="editor">
+  <section id="missionPanel" class="mission-panel" aria-label="Mission instructions">
+    <div class="mission-top"><span id="chapterLabel" class="eyebrow">PYTHON BASE CAMP</span><button id="chooseTask" aria-label="Choose a mission">All missions</button></div>
+    <div class="mission-number"><span id="missionNumber">01</span><span class="mission-type">CODING MISSION<br><b id="xpLabel">20 XP</b></span></div>
+    <h1 id="taskTitle">Wake the terminal</h1>
+    <p class="concept" id="taskConcept">print() sends text to the output panel. Text needs quotation marks.</p>
+    <h2>Your task</h2><p id="taskPrompt">Print exactly Hello, BITBOUND! on one line.</p>
+    <div class="function-tip" id="functionTip" hidden><b>New to functions?</b> Keep the supplied <code>def</code> line. Replace <code>pass</code> with your code. Use <code>return</code> for the answer; use <code>print(function(...))</code> to inspect a sample.</div>
+    <details id="examples"><summary>Inputs & expected results</summary><div id="exampleList"></div></details>
+    <div class="hint-box"><button id="hintBtn">Need a hint?</button><div id="hintContent"></div><button id="solutionBtn" class="text-btn">Show worked solution</button><pre id="solutionCode" hidden></pre></div>
+    <details><summary>Time & memory</summary><p id="complexityText"></p><p class="small">n means number of items. These costs describe the intended solution; the checker does not prove Big-O.</p></details>
+    <div id="taskCompletion" class="completion" role="status"></div>
+    <div class="mission-nav"><button id="previousBtn">← Previous</button><button id="nextBtn">Next mission →</button></div>
+  </section>
+  <section class="code-panel" id="editorPanel" aria-label="Python workspace" tabindex="-1">
+    <div class="workspace-head"><span class="eyebrow">WORKSPACE</span><span id="workspaceLabel">Mission 01</span><span id="cursorPosition">Ln 1, Col 1</span></div>
+    <div class="filebar"><label for="fileSelect" class="sr-only">Current file</label><select id="fileSelect"><option>main.py</option></select><button id="newFile" title="Add another Python file">+ File</button><button id="deleteFile" title="Delete selected helper file">Delete</button><button id="importCode">Import .py</button><button id="downloadCode">Save .py</button><input id="codeUpload" type="file" accept=".py,text/x-python,text/plain" hidden></div>
+    <label class="sr-only" for="codeEditor">Python code</label><textarea id="codeEditor" spellcheck="false" autocorrect="off" autocapitalize="off" autocomplete="off"># Put a message inside print()
+</textarea>
+    <div class="edit-tools" aria-label="Editing tools"><button id="indentBtn">Indent</button><button id="outdentBtn">Outdent</button><button data-insert=":">:</button><button data-insert="()">( )</button><button data-insert="[]">[ ]</button><button data-insert="{}">{ }</button><button data-insert="&quot;&quot;">&quot; &quot;</button><button id="undoBtn">Undo</button><button id="redoBtn">Redo</button><button id="completeBtn">Suggest</button><button id="searchBtn">Find</button><button id="resetBtn">Reset task</button></div>
+    <details class="stdin-box" id="stdinBox"><summary>Program input · one answer per line</summary><label for="stdin">Fill these lines before running code that uses input(). Each input() consumes one line.</label><textarea id="stdin" rows="3" maxlength="12000" autocapitalize="off" spellcheck="false" placeholder="Ada&#10;75"></textarea></details>
+    <div class="runbar"><button id="runBtn" class="primary">▶ Run</button><button id="checkBtn" class="gold">Check challenge</button><button id="traceBtn">Trace</button><button id="stopBtn" disabled>■ Stop</button><label class="limit-label">Limit<select id="timeLimit"><option value="15">15 sec</option><option value="60">60 sec</option></select></label></div>
+    <div class="workspace-foot"><span id="runtimeStatus" role="status">Python ready to load · runs on your device</span><span>Ctrl+Enter: Run · Esc: leave editor</span></div>
+  </section>
+  <section id="resultsPanel" class="results-panel" aria-label="Program results">
+    <div class="results-head"><h2>Terminal & checks</h2><button id="clearOutput">Clear</button></div>
+    <p id="runSummary" role="status">Write your code, then press Run. Check challenge tests it with several inputs.</p>
+    <pre id="output" tabindex="0" aria-label="Python program output">Your output appears here.</pre>
+    <div id="errorHelp" class="error-help" hidden></div>
+    <div id="testResults"></div>
+    <section id="tracePanel" hidden><h3>Replay the execution</h3><p class="small">A recorded trace of this run. A line event shows variables before that line executes. Up to 180 events.</p><div class="trace-controls"><button id="traceBack" aria-label="Previous trace step">←</button><input id="traceRange" type="range" min="0" max="0" value="0" aria-label="Trace step"><button id="traceForward" aria-label="Next trace step">→</button></div><p id="traceLabel"></p><pre id="traceVariables"></pre></section>
+  </section>
+</main>
+<dialog id="missionDialog"><div class="dialog-head"><h2>Choose your next mission</h2><button data-close="missionDialog" aria-label="Close missions">Close</button></div><p>Start at base camp, or jump to the topic your teacher assigned. Every mission stays available for practice.</p><div id="chapterList"></div></dialog>
+<dialog id="progressDialog"><div class="dialog-head"><h2>Your expedition</h2><button data-close="progressDialog">Close</button></div><label>Your name (optional)<input id="studentName" maxlength="60" placeholder="e.g. Ana"></label><div id="progressStats" class="progress-stats"></div><p class="small">Work stays in memory during this visit. Save file downloads your Python work and progress; Load file restores only the file you choose. New player clears this session.</p><div class="dialog-actions standalone-session"><button data-save-session class="primary">Save file</button><button data-load-session>Load file</button><button id="exportReport">Download teacher report</button></div><div id="progressChapters"></div></dialog>
+<dialog id="helpDialog"><div class="dialog-head"><h2>How to practice</h2><button data-close="helpDialog">Close</button></div><ol><li>Read the mission and examples. Keep the supplied function names.</li><li>Replace the comments or <code>pass</code> with your code. Indent blocks by four spaces.</li><li>Press <b>Run</b> to try a sample. For functions, add <code>print(your_function(...))</code>.</li><li>Press <b>Check challenge</b> to run all cases. Read the failing input, expected value, and your actual result.</li><li>Use hints, fix your code, and retry. Mistakes do not deduct XP. A mission awards XP once.</li></ol><h3>On a phone</h3><p>Use Mission / Code / Results above the workspace. The Indent and symbol buttons help when your keyboard has no Tab key. Landscape gives the editor more space. You can pinch to zoom.</p><h3>Python workspace</h3><p><b>Run always starts main.py.</b> Add helpers.py, then use <code>import helpers</code>. Files are kept per mission. Free lab is a separate workspace. Input is supplied before a run. Trace records line execution and variable snapshots; Stop ends the Python worker.</p><p>This is real CPython in your browser. Common standard-library modules, functions, classes, and data structures work. Desktop GUI libraries such as Tkinter and a full operating-system terminal are not available. Extra package installation is not part of this lab.</p><h3>Offline</h3><p>The browser downloads app files for offline use automatically. Wait for <b>Offline ready</b> on the game screen before disconnecting. Keep the same address and browser. Offline access stores the app, not student work. Save file to keep your own progress.</p><h3>Two modes</h3><p>Python Lab Mode opens this IDE directly. Choose mode returns to the opening screen, where Story Mode starts the adventure. Manual saves only · each new visit starts fresh. During a story challenge, close the editor to return to your explorer.</p><h3>Useful shortcuts</h3><p>Ctrl/Cmd+Enter: Run · Ctrl/Cmd+S: save current .py · Ctrl+Space: suggestions · Ctrl/Cmd+F: find · Ctrl/Cmd+/: comment · Esc: leave the editor. Suggestions are basic Python keywords and names, not full type analysis.</p></dialog>
+<noscript><p>This game needs JavaScript. Enable it in a modern browser.</p></noscript>
+<script>if(location.protocol==='file:'){var banner=document.getElementById('notice');banner.hidden=false;banner.textContent='To run Python, extract the ZIP and open START_WINDOWS.bat, or use the class website. Double-clicking index.html cannot load the Python workspace.';}</script>
+<script src="music-score.js?v=a69a0334aa60"></script>
+<script type="module" src="main.js?v=246a9c2b42ba"></script>
+<script nomodule>document.getElementById('notice').hidden=false;document.getElementById('notice').textContent='Please open this page in a modern browser that supports JavaScript modules.';</script>
+</body>
+</html>

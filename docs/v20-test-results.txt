@@ -1,0 +1,51 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> bitbound-python-dsa@2.14.0 test
+> python tests/test_encounter_bank.py && node tests/test_v19_encounters.cjs && node tests/test_v20_encounters.cjs && node tests/test_v19_party.cjs && python tests/test_curriculum.py && node tests/test_pyodide.mjs && python tests/test_tutorials.py && node tests/test_touch.cjs && node tests/test_story_curriculum.cjs && node tests/test_stoneborn.cjs && node tests/test_story_presentation.cjs && node tests/test_adventure.cjs && node tests/test_manual_story.cjs && node tests/test_mentor_animation.cjs && node tests/test_mentor_voice.cjs && node tests/test_lesson_buttons.cjs && node tests/test_player_animation.cjs && node tests/test_session_files.mjs && node tests/test_performance.cjs && node tests/test_audio.cjs && node tests/test_storage_runner.mjs && node tests/test_worker.mjs && node tests/test_streaming.mjs && node --experimental-vm-modules tests/test_workspace.mjs && node --experimental-vm-modules tests/test_workspace.mjs --standalone && node tests/test_animation_continuity.cjs && node tests/test_v20_animation.cjs && node tests/test_v17_gameplay.cjs && node tests/test_expansion.cjs && node tests/test_studio_intro.mjs && node tests/test_modes.mjs && node tests/test_offline.mjs && node tests/test_update_cache.mjs && python scripts/validate.py
+
+PASS 112 authored encounter questions, 47 executed Python traces, four AVL rotations and deletion boundary case.
+PASS encounters: all 112 answer/continue paths, world decks, required correct answer, boss and overlay guards, manual progress and unchanged shrine counts.
+PASS v20: 32 real world traversals; pause/resume, shield/contact/melee/projectile paths, keyboard containment, required completion, travel fallback, boss exclusions and art-failure recovery.
+PASS v19: four combat roles, windup/release timing, real melee and projectile damage, healing cooldown, boss support, betrayal cutoff and continuous grips.
+PASS v19 finale: ordered impacts/deaths, Aster survives and absorbs power, dropped equipment persists, BYTE secrecy, and hand-to-hand prop transfer.
+PASS: 48 reference solutions / 180 cases; all starters and wrong answers rejected.
+PASS: input, trace snapshots, tuple/boolean type checks, and output cap.
+PASS shipped Pyodide 0.27.7: 48 solutions, 180 cases, imports/reimports, input, trace and Python errors.
+3.12.7 (main, Jun  4 2025, 22:38:17) [Clang 19.0.0git (https:/github.com/llvm/llvm-project 0a8cd1ed1f4f35905df318015b
+.
+----------------------------------------------------------------------
+Ran 1 test in 0.004s
+
+OK
+PASS touch: dead zone, analog bounds, pointer capture, second-finger isolation, cancellation, pause/blur/rotation/visibility resets; Story-only controls.
+PASS Stoneborn story: prisoner rescue, party, betrayal/forging escape, paladin/BFS barrier, BYTE fusion, immortal ending; all 48 tutorial gates and challenge awards across eight worlds; NPC size/interaction/cache; partial terminals; guardian progression; 48/48 ending; five-world checkpoint migration.
+PASS Stoneborn events: origin/prison/fusion save-resume, shortcut isolation, finite animations, bounded allies, dagger forging, final-phase retries, telegraphs/recovery, shield damage and legacy migration.
+PASS v16 presentation: spoiler-free cast, 4 roles, ordered hall entrance, bounded 128-pose atlas/4 backdrops, castle progression, 5 unique reusable voices, mute/visibility/close, finite animation and delayed-cue cancellation.
+PASS adventure: 48 coding missions, solo start, pets/weapons, iframe-origin validation, single awards, checkpoint resume, terminal and bounded updates.
+PASS manual Story: old student data ignored, no autosave on gameplay/lifecycle, manual iframe snapshots/imports, revision races, explicit restore and malformed-file validation.
+PASS Byte: six cached taller world poses, bounded reactions, stop on close/hidden and reduced-motion handling.
+PASS Byte voice: deterministic bounded PCM, one looping source/cached buffer, E interaction, lesson answers, mute, hide/resume, all close paths and audio failure isolation.
+PASS lesson buttons: Window timer semantics, q01/q02 retry/continue, all 48 lessons under animation failure, and shrine-to-editor continuation.
+PASS player mannerisms: reused pose, blink/breath/wave/glance, finite landing/celebration, immediate controls, no physics changes, reduced motion, pause and reset.
+PASS manual files: portable round trip, old-file import, explicit-only download, malformed/oversize rejection, cancellation, unsaved exit and new-player/BFCache reset.
+PASS performance: fixed physics, frame pacing/idle cancellation, bounded terrain LRU, mining/grass invalidation, world reuse and interaction lifecycle.
+[{"refresh":60,"fps":20,"frames":41,"rafCalls":41,"timerCalls":41},{"refresh":60,"fps":30,"frames":61,"rafCalls":61,"timerCalls":61},{"refresh":60,"fps":60,"frames":120,"rafCalls":120,"timerCalls":120},{"refresh":120,"fps":20,"frames":41,"rafCalls":41,"timerCalls":41},{"refresh":120,"fps":30,"frames":61,"rafCalls":61,"timerCalls":61},{"refresh":120,"fps":60,"frames":121,"rafCalls":121,"timerCalls":121},{"refresh":144,"fps":20,"frames":41,"rafCalls":41,"timerCalls":41},{"refresh":144,"fps":30,"frames":61,"rafCalls":61,"timerCalls":61},{"refresh":144,"fps":60,"frames":121,"rafCalls":121,"timerCalls":121}]
+PASS audio: idle/hidden suspension, bounded voices, node disconnection, no per-note mix writes, mute and resume.
+PASS: fresh session isolation, explicit import, no storage reads/writes, invalid backups, serial worker requests, Stop, stale replies and restart.
+PASS: production worker protocol with shipped CPython, deque, helper import, endless-loop termination and fresh worker restart.
+PASS: output streams before a program finishes; final output remains exact.
+PASS: game-owned workspace startup, free coding, locked missions, completion session IDs, editor reuse and persistent independent drafts.
+(node:246) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+PASS standalone lab: immediate free IDE, fresh drafts, Run, separate mission work, ignored parent commands, no autosave and explicit file restore.
+(node:258) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+PASS animation continuity: 81 story pages, 8181 timeline samples, 2929 fixed-limb poses; formation spacing, unique actors, prison/escape cast, action priority and bounded caches.
+PASS v20 acting: continuous gifts/drinking, hand-attached forging, crawling below the gate, grounded punch contact and smooth key retrieval.
+PASS v17: private cast/secrecy, directed memories, four useful pet abilities/cooldowns, pause, aim commitment, terrain sight checks, appearance invalidation and bounded equipment caches.
+PASS v13 expansion: nine mob types, bounded safe spawning, AI attacks, six new weapon drops/rewards, 21 skills, manual saves, wider Byte, cached pet/mob animation and throttled audio.
+PASS studio intro: precedes modes, finite timer, Continue/Escape, focus restoration, reduced motion and cleanup on leave.
+PASS modes: chooser links, standalone IDE, story setup, removed launcher, return paths and separate module dependencies.
+PASS: automatic full pack, SHA checks, no repeat downloads, root/subpath and workspace offline navigation, offline WASM, partial-download retry and request deduplication.
+PASS update cache: complete module revision graph bypasses old automatic-storage code and reuses matching files.
+PASS: HTML entrypoints, asset references, unique IDs, JavaScript syntax, UI references, offline hashes and removal of mini interpreter.

@@ -1,0 +1,770 @@
+[
+  {
+    "id": "q01",
+    "story": "BYTE brushes dust from the inscription. “A stoneborn ought to start small. Learn this properly before you try the seal.” Today’s inscription is 01: Wake the terminal.",
+    "explain": "Python runs statements from top to bottom. print() displays a value in the output panel. Quotation marks tell Python that Beacon ready is text, rather than a variable name. The quotes themselves do not print.",
+    "code": "print(\"Beacon ready\")",
+    "output": "Beacon ready",
+    "question": "Which instruction prints the text Hello?",
+    "choices": [
+      "print(\"Hello\")",
+      "print(Hello)",
+      "\"print Hello\""
+    ],
+    "answer": 0,
+    "feedback": "Quotes make Hello a string; print() sends that string to the output. An unassigned name such as Hello would cause NameError.",
+    "payoff": "“Nicely done. Breakfast remains undefeated, but this inscription does not.” BYTE dusts off the glowing seal."
+  },
+  {
+    "id": "q02",
+    "story": "BYTE brushes dust from the inscription. “A stoneborn ought to start small. Learn this properly before you try the seal.” Today’s inscription is 02: Name your explorer.",
+    "explain": "input() reads one line and returns a string. Store the result in a variable, then join strings with +. In the IDE, put one answer per line in Program input before running. This example is shown with the answer Ada.",
+    "code": "name = input()\nprint(\"Welcome, \" + name)",
+    "output": "Welcome, Ada",
+    "question": "What type does input() return, even if someone types 12?",
+    "choices": [
+      "An integer",
+      "A string",
+      "A list"
+    ],
+    "answer": 1,
+    "feedback": "input() always returns text. Convert it explicitly if you need a number. The comma-space belongs inside the greeting string.",
+    "payoff": "“There. Read the rule, test it, understand it.” BYTE taps the inscription. “And mind the root behind you.”"
+  },
+  {
+    "id": "q03",
+    "story": "BYTE brushes dust from the inscription. “A stoneborn ought to start small. Learn this properly before you try the seal.” Today’s inscription is 03: Potion calculator.",
+    "explain": "Typed input is text. int() converts a whole-number string into an integer. Multiplication then does arithmetic. Here packs is a number; without int(), multiplying the input string by 3 would repeat its characters. Enter 4 for this example.",
+    "code": "packs = int(input())\npotions = packs * 3\nprint(potions)",
+    "output": "12",
+    "question": "If input() reads \"4\", what does input() * 3 produce?",
+    "choices": [
+      "12",
+      "\"444\"",
+      "7"
+    ],
+    "answer": 1,
+    "feedback": "String multiplication repeats the string: \"4\" * 3 becomes \"444\". int(\"4\") * 3 is the number 12. Non-numeric input needs validation or error handling.",
+    "payoff": "“Good. Try explaining why it worked before the next one.” A new spark wakes inside your stoneborn heart."
+  },
+  {
+    "id": "q04",
+    "story": "BYTE brushes dust from the inscription. “A stoneborn ought to start small. Learn this properly before you try the seal.” Today’s inscription is 04: Open the gate.",
+    "explain": "An if condition evaluates to True or False. A colon starts its block, and four spaces indent the statements inside it. else runs when the condition is false. >= includes the boundary itself, so energy 5 opens this gate.",
+    "code": "energy = 5\nif energy >= 5:\n    print(\"Open\")\nelse:\n    print(\"Rest\")",
+    "output": "Open",
+    "question": "Which value takes the else path here?",
+    "choices": [
+      "5",
+      "8",
+      "4"
+    ],
+    "answer": 2,
+    "feedback": "4 is less than 5, so energy >= 5 is False. Only one of these two branches runs.",
+    "payoff": "“You asked a useful question. Keep doing that.” BYTE tightens his backpack straps and points to the road."
+  },
+  {
+    "id": "q05",
+    "story": "BYTE brushes dust from the inscription. “A stoneborn ought to start small. Learn this properly before you try the seal.” Today’s inscription is 05: Build a reusable tool.",
+    "explain": "def names a function and its parameters. Calling it supplies arguments. return passes a result back to the caller; it does not display it. In this example, double(4) returns 8, and the surrounding print displays 8.",
+    "code": "def double(value):\n    return value * 2\n\nprint(double(4))",
+    "output": "8",
+    "question": "What does return do?",
+    "choices": [
+      "Always prints to the terminal",
+      "Gives a result back to the caller",
+      "Repeats a function forever"
+    ],
+    "answer": 1,
+    "feedback": "return sends a value back and ends that function call. A function that reaches its end without return gives back None.",
+    "payoff": "“Nicely done. Breakfast remains undefeated, but this inscription does not.” BYTE dusts off the glowing seal."
+  },
+  {
+    "id": "q06",
+    "story": "BYTE brushes dust from the inscription. “A stoneborn ought to start small. Learn this properly before you try the seal.” Today’s inscription is 06: Charge the beacon.",
+    "explain": "range(1, 4) produces 1, 2, 3: the stop value is excluded. Start total at 0 before the loop. Each += adds the current number to what we already have: 0 → 1 → 3 → 6. Resetting total inside the loop would lose earlier additions.",
+    "code": "total = 0\nfor number in range(1, 4):\n    total += number\nprint(total)",
+    "output": "6",
+    "question": "Which range includes the numbers 1 through n?",
+    "choices": [
+      "range(1, n)",
+      "range(1, n + 1)",
+      "range(n, 1)"
+    ],
+    "answer": 1,
+    "feedback": "The stop is excluded, so n + 1 makes n the last included number. A single pass over n numbers takes O(n) time.",
+    "payoff": "“There. Read the rule, test it, understand it.” BYTE taps the inscription. “And mind the root behind you.”"
+  },
+  {
+    "id": "q07",
+    "story": "The company waits ahead. BYTE taps the next inscription. “Your friends are watching. Let us see if you can keep up.” Today’s inscription is 07: Pack an inventory.",
+    "explain": "Square brackets create a list. Commas separate elements. Lists preserve order and allow duplicates; len() counts elements, including repeated ones. A list can also be empty: []. Use a list when position and order matter.",
+    "code": "bag = [\"rope\", \"torch\", \"rope\"]\nprint(len(bag))\nprint(bag)",
+    "output": "3\n['rope', 'torch', 'rope']",
+    "question": "How many elements are in [2, 2, 5]?",
+    "choices": [
+      "2",
+      "3",
+      "5"
+    ],
+    "answer": 1,
+    "feedback": "There are three positions. Duplicate values still occupy separate positions in a list.",
+    "payoff": "“Good. Try explaining why it worked before the next one.” A new spark wakes inside your stoneborn heart."
+  },
+  {
+    "id": "q08",
+    "story": "The company waits ahead. BYTE taps the next inscription. “Your friends are watching. Let us see if you can keep up.” Today’s inscription is 08: First and last.",
+    "explain": "Lists use zero-based indexes: 0 is first. Negative indexes count back from the end: -1 is last. Direct indexing is O(1). An empty list has neither a first nor a last item; check it before accessing either, or Python raises IndexError.",
+    "code": "bag = [\"key\", \"map\", \"snack\"]\nprint(bag[0])\nprint(bag[-1])",
+    "output": "key\nsnack",
+    "question": "What does bag[-1] select?",
+    "choices": [
+      "The first item",
+      "The last item",
+      "Every item except the last"
+    ],
+    "answer": 1,
+    "feedback": "-1 refers to the last existing item. It does not remove or copy the list.",
+    "payoff": "“You asked a useful question. Keep doing that.” BYTE tightens his backpack straps and points to the road."
+  },
+  {
+    "id": "q09",
+    "story": "The company waits ahead. BYTE taps the next inscription. “Your friends are watching. Let us see if you can keep up.” Today’s inscription is 09: Slice a path.",
+    "explain": "A slice items[start:stop:step] includes start and excludes stop. Missing step means 1. In this example indexes 1 and 2 are copied into a new list. A slice of k items takes O(k) time and extra space; it does not change the original list.",
+    "code": "route = [10, 20, 30, 40, 50]\nprint(route[1:3])\nprint(route[::2])",
+    "output": "[20, 30]\n[10, 30, 50]",
+    "question": "Which indexes does route[1:3] include?",
+    "choices": [
+      "1, 2 and 3",
+      "1 and 2",
+      "2 and 3"
+    ],
+    "answer": 1,
+    "feedback": "The start 1 is included, and the stop 3 is excluded. The step-2 example visits indexes 0, 2 and 4.",
+    "payoff": "“Nicely done. Breakfast remains undefeated, but this inscription does not.” BYTE dusts off the glowing seal."
+  },
+  {
+    "id": "q10",
+    "story": "The company waits ahead. BYTE taps the next inscription. “Your friends are watching. Let us see if you can keep up.” Today’s inscription is 10: Append one treasure.",
+    "explain": "append(value) adds exactly one object to the end and changes the existing list. It returns None, so do not write bag = bag.append(...). Appending is amortized O(1): usually constant time, with an occasional resize. Copy first if the original must stay unchanged.",
+    "code": "bag = [\"map\"]\nbag.append([\"ruby\", \"opal\"])\nprint(bag)\nprint(len(bag))",
+    "output": "['map', ['ruby', 'opal']]\n2",
+    "question": "How many items does append([1, 2]) add to a list?",
+    "choices": [
+      "One nested list",
+      "Two separate integers",
+      "None"
+    ],
+    "answer": 0,
+    "feedback": "append adds its entire argument as one item. The nested list still contains two integers, but occupies one outer position.",
+    "payoff": "“There. Read the rule, test it, understand it.” BYTE taps the inscription. “And mind the root behind you.”"
+  },
+  {
+    "id": "q11",
+    "story": "The company waits ahead. BYTE taps the next inscription. “Your friends are watching. Let us see if you can keep up.” Today’s inscription is 11: Extend the supplies.",
+    "explain": "extend(iterable) visits the supplied iterable and adds each of its elements. It changes the list and returns None. Extending by k items takes O(k) amortized time. Extending by a string adds characters, because strings are iterable too.",
+    "code": "bag = [\"map\"]\nbag.extend([\"ruby\", \"opal\"])\nprint(bag)",
+    "output": "['map', 'ruby', 'opal']",
+    "question": "What is the difference between append and extend?",
+    "choices": [
+      "Both always do the same thing",
+      "extend adds each item from an iterable",
+      "append can only add numbers"
+    ],
+    "answer": 1,
+    "feedback": "extend unpacks an iterable into individual additions; append adds one object, which may itself be an iterable.",
+    "payoff": "“Good. Try explaining why it worked before the next one.” A new spark wakes inside your stoneborn heart."
+  },
+  {
+    "id": "q12",
+    "story": "The company waits ahead. BYTE taps the next inscription. “Your friends are watching. Let us see if you can keep up.” Today’s inscription is 12: Count and locate.",
+    "explain": "count(value) returns how many equal items are present; index(value) returns the position of the first match. Both may scan the list in O(n) time. count returns 0 when absent, but index raises ValueError, so check membership when absence is possible.",
+    "code": "colors = [\"blue\", \"red\", \"blue\"]\nprint(colors.count(\"blue\"))\nprint(colors.index(\"blue\"))",
+    "output": "2\n0",
+    "question": "What does colors.index(\"blue\") return?",
+    "choices": [
+      "The number of blue stones",
+      "The first matching position",
+      "All matching positions"
+    ],
+    "answer": 1,
+    "feedback": "The first blue stone is at index 0. To count occurrences, use count instead.",
+    "payoff": "“You asked a useful question. Keep doing that.” BYTE tightens his backpack straps and points to the road."
+  },
+  {
+    "id": "q13",
+    "story": "BYTE blocks a draft with his backpack. “Another lesson. Another opportunity for something to go spectacularly wrong.” Today’s inscription is 13: Insert a checkpoint.",
+    "explain": "insert(index, value) puts the value before the current item at that index. Later items shift right. Inserting near the beginning takes O(n) time, while append is better for repeated end additions. The operation mutates the list and returns None.",
+    "code": "queue = [\"Ada\", \"Lin\"]\nqueue.insert(1, \"Sam\")\nprint(queue)",
+    "output": "['Ada', 'Sam', 'Lin']",
+    "question": "Where does insert(1, \"Sam\") place Sam?",
+    "choices": [
+      "After every existing item",
+      "Before the old item at index 1",
+      "In place of the old item at index 1"
+    ],
+    "answer": 1,
+    "feedback": "Insert creates a new position; it does not replace the existing item. Lin shifts from index 1 to index 2.",
+    "payoff": "“Nicely done. Breakfast remains undefeated, but this inscription does not.” BYTE dusts off the glowing seal."
+  },
+  {
+    "id": "q14",
+    "story": "BYTE blocks a draft with his backpack. “Another lesson. Another opportunity for something to go spectacularly wrong.” Today’s inscription is 14: Pop a supply.",
+    "explain": "pop() removes and returns the final element. pop(index) removes at a chosen position. Popping the end is O(1); popping near the front shifts later items and takes O(n). Popping an empty list raises IndexError, so check first.",
+    "code": "rack = [\"hammer\", \"brush\"]\ntool = rack.pop()\nprint(tool)\nprint(rack)",
+    "output": "brush\n['hammer']",
+    "question": "What value does pop() return here?",
+    "choices": [
+      "The remaining list",
+      "The removed brush string",
+      "None"
+    ],
+    "answer": 1,
+    "feedback": "The returned value is the removed item. The original rack is now shorter.",
+    "payoff": "“There. Read the rule, test it, understand it.” BYTE taps the inscription. “And mind the root behind you.”"
+  },
+  {
+    "id": "q15",
+    "story": "BYTE blocks a draft with his backpack. “Another lesson. Another opportunity for something to go spectacularly wrong.” Today’s inscription is 15: Remove one match.",
+    "explain": "remove(value) searches left to right and removes the first equal item. It does not remove every duplicate. If no match exists it raises ValueError. Searching and shifting make it O(n); the return value is None.",
+    "code": "flags = [\"red\", \"blue\", \"red\"]\nflags.remove(\"red\")\nprint(flags)",
+    "output": "['blue', 'red']",
+    "question": "Why is one red flag still present?",
+    "choices": [
+      "remove only removes the first match",
+      "remove never changes lists",
+      "The list is sorted automatically"
+    ],
+    "answer": 0,
+    "feedback": "Only the first red was removed. The later duplicate keeps its position relative to the remaining items.",
+    "payoff": "“Good. Try explaining why it worked before the next one.” A new spark wakes inside your stoneborn heart."
+  },
+  {
+    "id": "q16",
+    "story": "BYTE blocks a draft with his backpack. “Another lesson. Another opportunity for something to go spectacularly wrong.” Today’s inscription is 16: Reverse the route.",
+    "explain": "reverse() mutates a list by swapping its outer elements inward. It takes O(n) time and O(1) extra space. It returns None. Reversing flips the current order; it does not compare values to put them in ascending order.",
+    "code": "route = [8, 2, 5]\nroute.reverse()\nprint(route)",
+    "output": "[5, 2, 8]",
+    "question": "Is reversing [8, 2, 5] the same as sorting it?",
+    "choices": [
+      "Yes, always",
+      "No; reverse flips the existing order",
+      "Only when the list contains numbers"
+    ],
+    "answer": 1,
+    "feedback": "The reverse is [5, 2, 8], while ascending sort produces [2, 5, 8].",
+    "payoff": "“You asked a useful question. Keep doing that.” BYTE tightens his backpack straps and points to the road."
+  },
+  {
+    "id": "q17",
+    "story": "BYTE blocks a draft with his backpack. “Another lesson. Another opportunity for something to go spectacularly wrong.” Today’s inscription is 17: Sort the crystals.",
+    "explain": "list.sort() changes the original list and returns None. sorted(iterable) returns a new list and leaves the source unchanged. Both order comparable items. Python's general-purpose sort is O(n log n) in the worst case and can benefit from existing ordered runs.",
+    "code": "bolts = [7, 2, 4]\nordered = sorted(bolts)\nprint(ordered)\nprint(bolts)",
+    "output": "[2, 4, 7]\n[7, 2, 4]",
+    "question": "Which choice preserves the original list?",
+    "choices": [
+      "ordered = sorted(bolts)",
+      "ordered = bolts.sort()",
+      "bolts.reverse()"
+    ],
+    "answer": 0,
+    "feedback": "sorted creates a new sorted list. Assigning the result of sort would store None, because sort mutates in place.",
+    "payoff": "“Nicely done. Breakfast remains undefeated, but this inscription does not.” BYTE dusts off the glowing seal."
+  },
+  {
+    "id": "q18",
+    "story": "BYTE blocks a draft with his backpack. “Another lesson. Another opportunity for something to go spectacularly wrong.” Today’s inscription is 18: Map every index.",
+    "explain": "enumerate(iterable) yields an index-value pair each step, starting at 0 by default. Unpack that pair into two names. It avoids repeatedly searching for an item's index, which also helps when duplicate values exist. One pass is O(n).",
+    "code": "for index, tool in enumerate([\"saw\", \"file\"]):\n    print(index, tool)",
+    "output": "0 saw\n1 file",
+    "question": "What does enumerate give on each iteration?",
+    "choices": [
+      "Only the value",
+      "An index and the value",
+      "A sorted copy"
+    ],
+    "answer": 1,
+    "feedback": "The index records the current position, even when two positions contain the same value.",
+    "payoff": "“There. Read the rule, test it, understand it.” BYTE taps the inscription. “And mind the root behind you.”"
+  },
+  {
+    "id": "q19",
+    "story": "From the forge, you hear your companions making plans. BYTE clears his throat. “Concentrate on this concept. The celebration can wait.” Today’s inscription is 19: Compute the team average.",
+    "explain": "sum(values) adds numbers in O(n) time; len(values) gives a list's length in O(1). Divide the sum by the count to obtain the mean. Division by zero is an error, so this example returns 0.0 for an empty input. Follow each challenge's specified empty-case behavior.",
+    "code": "def mean(values):\n    if not values:\n        return 0.0\n    return sum(values) / len(values)\n\nprint(mean([2, 4, 6]))",
+    "output": "4.0",
+    "question": "Why check for an empty list before division?",
+    "choices": [
+      "To avoid division by zero",
+      "Because sum only accepts one item",
+      "Because len sorts the list"
+    ],
+    "answer": 0,
+    "feedback": "An empty list has length 0. Its mean is mathematically undefined, so a program must choose the required behavior explicitly.",
+    "payoff": "“Good. Try explaining why it worked before the next one.” A new spark wakes inside your stoneborn heart."
+  },
+  {
+    "id": "q20",
+    "story": "From the forge, you hear your companions making plans. BYTE clears his throat. “Concentrate on this concept. The celebration can wait.” Today’s inscription is 20: Unpack a coordinate.",
+    "explain": "A tuple is an ordered, immutable sequence. Unpacking assigns each element to a corresponding name. The number of names must match the number of elements in ordinary unpacking. You can replace a variable's whole tuple, but cannot assign to a tuple position.",
+    "code": "position = (3, 7)\nx, y = position\nprint(x)\nprint(y)",
+    "output": "3\n7",
+    "question": "Can position[0] = 9 change this tuple?",
+    "choices": [
+      "Yes; tuples are mutable",
+      "No; tuple elements cannot be reassigned",
+      "Yes, but only at index 0"
+    ],
+    "answer": 1,
+    "feedback": "The tuple is immutable. Create a new tuple if you need different coordinates; ordinary unpacking still lets you use its values separately.",
+    "payoff": "“You asked a useful question. Keep doing that.” BYTE tightens his backpack straps and points to the road."
+  },
+  {
+    "id": "q21",
+    "story": "From the forge, you hear your companions making plans. BYTE clears his throat. “Concentrate on this concept. The celebration can wait.” Today’s inscription is 21: Count the loot.",
+    "explain": "A dictionary maps unique keys to values. get(key, 0) reads an existing count or supplies 0 for a missing key. Add 1 and store it back. Dictionary lookup and update are average O(1), so counting n words takes expected O(n) time.",
+    "code": "counts = {}\nfor ore in [\"iron\", \"gold\", \"iron\"]:\n    counts[ore] = counts.get(ore, 0) + 1\nprint(counts[\"iron\"])",
+    "output": "2",
+    "question": "Why use get(ore, 0)?",
+    "choices": [
+      "It removes duplicates automatically",
+      "It supplies zero for a new mineral",
+      "It sorts the dictionary"
+    ],
+    "answer": 1,
+    "feedback": "The first occurrence has no dictionary entry yet. The default avoids a KeyError and starts its count at zero.",
+    "payoff": "“Nicely done. Breakfast remains undefeated, but this inscription does not.” BYTE dusts off the glowing seal."
+  },
+  {
+    "id": "q22",
+    "story": "From the forge, you hear your companions making plans. BYTE clears his throat. “Concentrate on this concept. The celebration can wait.” Today’s inscription is 22: Keep the first copy.",
+    "explain": "Sets store unique hashable values and provide average O(1) membership checks. They do not promise the original arrival order. Combine a seen set with an output list: accept an item only on its first appearance. This takes expected O(n) time and O(n) extra space.",
+    "code": "seen = set()\naccepted = []\nfor ore in [\"tin\", \"iron\", \"tin\"]:\n    if ore not in seen:\n        seen.add(ore)\n        accepted.append(ore)\nprint(accepted)",
+    "output": "['tin', 'iron']",
+    "question": "Why keep both a set and a list?",
+    "choices": [
+      "The set checks membership; the list preserves arrival order",
+      "Sets cannot hold strings",
+      "The list makes membership constant time"
+    ],
+    "answer": 0,
+    "feedback": "The two structures have different jobs. A set alone removes duplicates but is not an arrival-order record.",
+    "payoff": "“There. Read the rule, test it, understand it.” BYTE taps the inscription. “And mind the root behind you.”"
+  },
+  {
+    "id": "q23",
+    "story": "From the forge, you hear your companions making plans. BYTE clears his throat. “Concentrate on this concept. The celebration can wait.” Today’s inscription is 23: Read the map rows.",
+    "explain": "A nested loop visits the outer list's rows and the inner list's elements. For a rectangular R-by-C grid, visiting every cell takes O(R × C). Different row lengths are also fine. A single indexing operation grid[r][c] first chooses a row, then a cell.",
+    "code": "grid = [[1, 2], [3, 4]]\ntotal = 0\nfor row in grid:\n    for cell in row:\n        total += cell\nprint(total)",
+    "output": "10",
+    "question": "How many cells does this example visit?",
+    "choices": [
+      "2",
+      "4",
+      "8"
+    ],
+    "answer": 1,
+    "feedback": "There are two rows with two cells each. Each inner loop visits only the cells in its current row.",
+    "payoff": "“Good. Try explaining why it worked before the next one.” A new spark wakes inside your stoneborn heart."
+  },
+  {
+    "id": "q24",
+    "story": "From the forge, you hear your companions making plans. BYTE clears his throat. “Concentrate on this concept. The celebration can wait.” Today’s inscription is 24: Filter the squad.",
+    "explain": "Build a new list of accepted values instead. The condition here keeps even numbers, including zero and negative even numbers. One pass is O(n); the result uses space for the accepted items. A list comprehension is a compact way to express the same filter.",
+    "code": "crystals = [1, 2, 3, 4]\naccepted = [value for value in crystals if value % 2 == 0]\nprint(accepted)",
+    "output": "[2, 4]",
+    "question": "What is a safe way to filter a list?",
+    "choices": [
+      "Remove each rejected item while iterating that same list",
+      "Build a new list of accepted items",
+      "Assume indexes never shift"
+    ],
+    "answer": 1,
+    "feedback": "A separate result avoids skipped elements caused by changing the source list during iteration.",
+    "payoff": "“You asked a useful question. Keep doing that.” BYTE tightens his backpack straps and points to the road."
+  },
+  {
+    "id": "q25",
+    "story": "BYTE finds you beyond the prison. “You escaped one lock. The next one uses this.” You decide to learn the idea, even if you no longer trust its teacher. Today’s inscription is 25: Stack of supplies.",
+    "explain": "A stack supports push and pop at one end. A Python list's append and pop() provide these operations efficiently: append is amortized O(1), and removing the final item is O(1). Check for emptiness before popping. Stacks are useful for undo and nested work.",
+    "code": "stack = []\nstack.append(\"first\")\nstack.append(\"second\")\nprint(stack.pop())\nprint(stack)",
+    "output": "second\n['first']",
+    "question": "Which item leaves a stack first?",
+    "choices": [
+      "The earliest item inserted",
+      "The most recent item inserted",
+      "The smallest item"
+    ],
+    "answer": 1,
+    "feedback": "A stack is LIFO: last in, first out. It does not sort values or serve arrival order.",
+    "payoff": "“It worked? I mean—of course it worked.” A new spark wakes inside your stone-born heart."
+  },
+  {
+    "id": "q26",
+    "story": "BYTE finds you beyond the prison. “You escaped one lock. The next one uses this.” You decide to learn the idea, even if you no longer trust its teacher. Today’s inscription is 26: Queue at the portal.",
+    "explain": "A queue is FIFO: first in, first out. collections.deque supports append at the right and popleft at the left in O(1) time. Repeated list.pop(0) would shift the remaining items each time, making a full drain O(n²) instead of O(n).",
+    "code": "from collections import deque\nqueue = deque([\"Ada\", \"Lin\"])\nqueue.append(\"Sam\")\nprint(queue.popleft())\nprint(list(queue))",
+    "output": "Ada\n['Lin', 'Sam']",
+    "question": "Which operation efficiently removes the oldest arrival?",
+    "choices": [
+      "deque.popleft()",
+      "list.pop()",
+      "list.sort()"
+    ],
+    "answer": 0,
+    "feedback": "popleft removes the front in constant time. pop at the right would serve the newest arrival first.",
+    "payoff": "“Another success. Wonderful. Deeply inconvenient.” BYTE quickly pretends to tie his shoe."
+  },
+  {
+    "id": "q27",
+    "story": "BYTE finds you beyond the prison. “You escaped one lock. The next one uses this.” You decide to learn the idea, even if you no longer trust its teacher. Today’s inscription is 27: Balance the shield.",
+    "explain": "Push openings onto a stack. On a closing bracket, require a matching top item, then pop it. An unexpected closing bracket fails immediately. At the end, the stack must be empty; otherwise some openings were never closed. The scan is O(n).",
+    "code": "stack = []\nfor symbol in \"(())\":\n    if symbol == \"(\":\n        stack.append(symbol)\n    else:\n        stack.pop()\nprint(stack)",
+    "output": "[]",
+    "question": "Why is \"(()\" unbalanced?",
+    "choices": [
+      "There is an opening bracket left on the stack",
+      "It has too many closing brackets",
+      "Nested brackets are never allowed"
+    ],
+    "answer": 0,
+    "feedback": "One opening remains unmatched. This walkthrough uses known-valid parentheses; your validator must also guard an empty stack and check bracket types.",
+    "payoff": "“I checked that trap twice.” BYTE coughs. “Test! I meant test.”"
+  },
+  {
+    "id": "q28",
+    "story": "BYTE finds you beyond the prison. “You escaped one lock. The next one uses this.” You decide to learn the idea, even if you no longer trust its teacher. Today’s inscription is 28: Search the tunnel.",
+    "explain": "Linear search visits items one at a time. Return immediately on the first match; if the loop ends, use the required absent result, commonly -1. The best case is O(1); the worst case is O(n). It works on unsorted data and handles duplicates predictably.",
+    "code": "def find_first(values, target):\n    for index, value in enumerate(values):\n        if value == target:\n            return index\n    return -1\n\nprint(find_first([9, 4, 4], 4))",
+    "output": "1",
+    "question": "What does this search return when 4 appears twice?",
+    "choices": [
+      "Both positions",
+      "The first matching index",
+      "The number of matches"
+    ],
+    "answer": 1,
+    "feedback": "The early return stops at index 1. It does not continue to the second occurrence.",
+    "payoff": "“You keep getting stronger.” For once, BYTE does not sound pleased."
+  },
+  {
+    "id": "q29",
+    "story": "BYTE finds you beyond the prison. “You escaped one lock. The next one uses this.” You decide to learn the idea, even if you no longer trust its teacher. Today’s inscription is 29: Halve the search area.",
+    "explain": "Binary search needs sorted data and efficient indexing. Maintain inclusive low and high bounds. If the middle is too small, move low to mid + 1; otherwise move high to mid - 1. These updates guarantee progress. Searching n list entries takes O(log n) comparisons.",
+    "code": "values = [2, 4, 6, 8, 10]\nlow, high = 0, len(values) - 1\nmid = (low + high) // 2\nprint(values[mid])\n# Looking for 10: discard the middle and everything left of it.\nlow = mid + 1\nprint(values[low:high + 1])",
+    "output": "6\n[8, 10]",
+    "question": "Can ordinary binary search safely search an unsorted list?",
+    "choices": [
+      "Yes, because it uses indexes",
+      "No; discarding half relies on sorted order",
+      "Only when the list has duplicates"
+    ],
+    "answer": 1,
+    "feedback": "Sorted order tells us which half cannot contain the target. Without it, we might discard the answer.",
+    "payoff": "“Even now?” BYTE opens his notebook and crosses out another plan."
+  },
+  {
+    "id": "q30",
+    "story": "BYTE finds you beyond the prison. “You escaped one lock. The next one uses this.” You decide to learn the idea, even if you no longer trust its teacher. Today’s inscription is 30: Forge selection sort.",
+    "explain": "For each output position, scan the unsorted remainder for its minimum, then swap it into place. After the first pass, the first item is fixed. Repeated scans cost O(n²) time, with O(1) extra space. This is a learning algorithm; use Python's built-in sort for general work.",
+    "code": "values = [4, 2, 3]\nminimum = 0\nfor index in range(1, len(values)):\n    if values[index] < values[minimum]:\n        minimum = index\nvalues[0], values[minimum] = values[minimum], values[0]\nprint(values)",
+    "output": "[2, 4, 3]",
+    "question": "Is the whole list necessarily sorted after the first pass?",
+    "choices": [
+      "Yes",
+      "No; only the first position is settled",
+      "No; the largest item is settled"
+    ],
+    "answer": 1,
+    "feedback": "The minimum is placed first, but the remaining [4, 3] still needs another pass. The example deliberately shows only the first pass.",
+    "payoff": "“Fine. You understand it.” The inscription answers you, and another road opens."
+  },
+  {
+    "id": "q31",
+    "story": "A broken path stretches ahead. BYTE points at the inscription. “Surely this is where you stop.” You ask him to explain every step. Today’s inscription is 31: Follow the links.",
+    "explain": "A linked-list node has a value and a next reference. head is the first node; None marks the end. Unlike a Python list, a linked list has no direct positional indexing. To reach a later node, follow next links. A traversal takes O(n) time.",
+    "code": "class Node:\n    def __init__(self, value, next=None):\n        self.value = value\n        self.next = next\n\nhead = Node(\"camp\", Node(\"bridge\"))\nprint(head.value)\nprint(head.next.value)",
+    "output": "camp\nbridge",
+    "question": "What usually marks the end of a linked list?",
+    "choices": [
+      "An index of -1",
+      "A next reference equal to None",
+      "The smallest node value"
+    ],
+    "answer": 1,
+    "feedback": "The final node has next = None. An empty linked list is represented by head = None.",
+    "payoff": "“It worked? I mean—of course it worked.” A new spark wakes inside your stone-born heart."
+  },
+  {
+    "id": "q32",
+    "story": "A broken path stretches ahead. BYTE points at the inscription. “Surely this is where you stop.” You ask him to explain every step. Today’s inscription is 32: Count the nodes.",
+    "explain": "Start a cursor at head and a count at zero. While the cursor is not None, count the node and move to cursor.next. Forgetting the move causes an infinite loop. For a non-cyclic linked list, counting is O(n) time and O(1) extra space.",
+    "code": "class Node:\n    def __init__(self, value, next=None):\n        self.value, self.next = value, next\n\nhead = Node(7, Node(9))\ncount, current = 0, head\nwhile current is not None:\n    count += 1\n    current = current.next\nprint(count)",
+    "output": "2",
+    "question": "What count should an empty linked list produce?",
+    "choices": [
+      "0",
+      "1",
+      "An infinite loop"
+    ],
+    "answer": 0,
+    "feedback": "With head = None, the loop runs zero times, so the initialized count remains 0.",
+    "payoff": "“Another success. Wonderful. Deeply inconvenient.” BYTE quickly pretends to tie his shoe."
+  },
+  {
+    "id": "q33",
+    "story": "A broken path stretches ahead. BYTE points at the inscription. “Surely this is where you stop.” You ask him to explain every step. Today’s inscription is 33: Add at the front.",
+    "explain": "To prepend, create a node, set its next to the old head, and return or store the new head. This is O(1) time. It also handles an empty list because the old head is None. Merely creating the node does not update the caller's head variable.",
+    "code": "class Node:\n    def __init__(self, value, next=None):\n        self.value, self.next = value, next\n\nhead = Node(\"bridge\")\nhead = Node(\"camp\", head)\nprint(head.value)\nprint(head.next.value)",
+    "output": "camp\nbridge",
+    "question": "Which reference becomes the new head?",
+    "choices": [
+      "The newly created node",
+      "The old final node",
+      "None in every case"
+    ],
+    "answer": 0,
+    "feedback": "The new node is now first and points to the previous first node. Store or return it so the caller can enter the new path.",
+    "payoff": "“I checked that trap twice.” BYTE coughs. “Test! I meant test.”"
+  },
+  {
+    "id": "q34",
+    "story": "A broken path stretches ahead. BYTE points at the inscription. “Surely this is where you stop.” You ask him to explain every step. Today’s inscription is 34: Append at the tail.",
+    "explain": "With no stored tail, follow next until current.next is None, then connect the new node. This costs O(n). A maintained tail reference could make appending O(1), but must be updated correctly. For an empty list, the new node becomes head instead.",
+    "code": "class Node:\n    def __init__(self, value, next=None):\n        self.value, self.next = value, next\n\nhead = Node(1)\ncurrent = head\nwhile current.next is not None:\n    current = current.next\ncurrent.next = Node(2)\nprint(head.next.value)",
+    "output": "2",
+    "question": "Without a tail reference, what is the time cost of appending?",
+    "choices": [
+      "Always O(1)",
+      "O(n) to find the end",
+      "O(log n) from binary search"
+    ],
+    "answer": 1,
+    "feedback": "You must follow links to find the last node. This nonempty example needs a separate head = new_node case when the input is empty.",
+    "payoff": "“You keep getting stronger.” For once, BYTE does not sound pleased."
+  },
+  {
+    "id": "q35",
+    "story": "A broken path stretches ahead. BYTE points at the inscription. “Surely this is where you stop.” You ask him to explain every step. Today’s inscription is 35: Find a linked value.",
+    "explain": "Linked-list search compares the current node's value with the target, then follows next if they differ. It is O(n) in the worst case. You cannot gain O(log n) random access just by applying list-style binary-search indexes to linked nodes.",
+    "code": "class Node:\n    def __init__(self, value, next=None):\n        self.value, self.next = value, next\n\ncurrent = Node(4, Node(8))\nfound = False\nwhile current is not None:\n    if current.value == 8:\n        found = True\n        break\n    current = current.next\nprint(found)",
+    "output": "True",
+    "question": "Why follow next instead of using a middle index?",
+    "choices": [
+      "Linked nodes do not provide direct positional access",
+      "Values must be sorted first",
+      "Node values cannot be compared"
+    ],
+    "answer": 0,
+    "feedback": "The links are the route to later nodes. Finding a middle node also requires walking through earlier links.",
+    "payoff": "“Even now?” BYTE opens his notebook and crosses out another plan."
+  },
+  {
+    "id": "q36",
+    "story": "A broken path stretches ahead. BYTE points at the inscription. “Surely this is where you stop.” You ask him to explain every step. Today’s inscription is 36: Reverse the links.",
+    "explain": "Maintain previous and current. Save current.next in following, redirect current.next to previous, then advance both references. At the end, previous is the new head. The algorithm is O(n) time and O(1) extra space, and also handles head = None.",
+    "code": "class Node:\n    def __init__(self, value, next=None):\n        self.value, self.next = value, next\n\ncurrent = Node(1, Node(2))\nprevious = None\nwhile current is not None:\n    following = current.next\n    current.next = previous\n    previous, current = current, following\nprint(previous.value)\nprint(previous.next.value)",
+    "output": "2\n1",
+    "question": "Why save following before redirecting current.next?",
+    "choices": [
+      "To preserve access to the unprocessed remainder",
+      "To sort the values",
+      "To create an extra node for every item"
+    ],
+    "answer": 0,
+    "feedback": "Changing next first would overwrite the only reference you were using to reach the remaining nodes.",
+    "payoff": "“Fine. You understand it.” The inscription answers you, and another road opens."
+  },
+  {
+    "id": "q37",
+    "story": "The tower whispers about a warrior born from stone. BYTE speaks louder. “Ignore the echoes. This concept has a perfectly ordinary explanation.” Today’s inscription is 37: Find the base case.",
+    "explain": "Every terminating recursion needs a base case and progress toward it. For nonnegative integers, factorial(0) = 1; factorial(n) = n × factorial(n - 1). Calls wait on the call stack: factorial(3) waits for 2, then 1, then 0. Time and call-stack space are O(n).",
+    "code": "def factorial(n):\n    if n == 0:\n        return 1\n    return n * factorial(n - 1)\n\nprint(factorial(3))",
+    "output": "6",
+    "question": "What would happen if recursive calls never approached a base case?",
+    "choices": [
+      "Python would infer an answer",
+      "Calls would continue until an error or resource limit",
+      "The function would sort its input"
+    ],
+    "answer": 1,
+    "feedback": "Without progress, calls keep accumulating. Python has a recursion limit; validate inputs and prefer iteration when depth can be large.",
+    "payoff": "“It worked? I mean—of course it worked.” A new spark wakes inside your stone-born heart."
+  },
+  {
+    "id": "q38",
+    "story": "The tower whispers about a warrior born from stone. BYTE speaks louder. “Ignore the echoes. This concept has a perfectly ordinary explanation.” Today’s inscription is 38: Sum by recursion.",
+    "explain": "Pass an index to identify the remaining work. When the index reaches len(values), return zero. Otherwise add values[index] to a call at index + 1. This avoids creating a list slice on every call. It takes O(n) time and O(n) stack space; a loop uses less stack.",
+    "code": "def total(values, index=0):\n    if index == len(values):\n        return 0\n    return values[index] + total(values, index + 1)\n\nprint(total([2, 3, 4]))",
+    "output": "9",
+    "question": "Why pass an index instead of values[1:] on every call?",
+    "choices": [
+      "To avoid copying the remaining list repeatedly",
+      "To eliminate all recursive stack space",
+      "To sort the input"
+    ],
+    "answer": 0,
+    "feedback": "Repeated slices copy many overlapping elements and can make the total copying cost O(n²). The index version still uses one stack frame per element.",
+    "payoff": "“Another success. Wonderful. Deeply inconvenient.” BYTE quickly pretends to tie his shoe."
+  },
+  {
+    "id": "q39",
+    "story": "The tower whispers about a warrior born from stone. BYTE speaks louder. “Ignore the echoes. This concept has a perfectly ordinary explanation.” Today’s inscription is 39: Climb the Fibonacci steps.",
+    "explain": "Fibonacci uses F(0)=0, F(1)=1, and F(n)=F(n-1)+F(n-2). Plain recursion repeats overlapping work exponentially. Memoization stores each solved n once. For the usual arithmetic-cost model it needs O(n) subproblems and O(n) storage; large recursion depth still matters.",
+    "code": "def fib(n, memo):\n    if n < 2:\n        return n\n    if n not in memo:\n        memo[n] = fib(n - 1, memo) + fib(n - 2, memo)\n    return memo[n]\n\nprint(fib(6, {}))",
+    "output": "8",
+    "question": "What does memoization avoid?",
+    "choices": [
+      "Computing every different subproblem",
+      "Recomputing an already solved subproblem",
+      "All memory use"
+    ],
+    "answer": 1,
+    "feedback": "Memoization trades storage for less repeated work. This example passes a fresh dictionary explicitly, avoiding a shared mutable default argument.",
+    "payoff": "“I checked that trap twice.” BYTE coughs. “Test! I meant test.”"
+  },
+  {
+    "id": "q40",
+    "story": "The tower whispers about a warrior born from stone. BYTE speaks louder. “Ignore the echoes. This concept has a perfectly ordinary explanation.” Today’s inscription is 40: Euclid’s shortcut.",
+    "explain": "For nonnegative integers, gcd(a, b) equals gcd(b, a % b). When b becomes 0, a is the answer. The remainder is smaller than a positive b, so each call progresses. Under the usual arithmetic-cost model, the number of steps is logarithmic in the smaller positive input.",
+    "code": "def gcd(a, b):\n    if b == 0:\n        return a\n    return gcd(b, a % b)\n\nprint(gcd(18, 12))",
+    "output": "6",
+    "question": "What is the base case?",
+    "choices": [
+      "a and b must both equal 1",
+      "b == 0: return a",
+      "a % b == 1: return b"
+    ],
+    "answer": 1,
+    "feedback": "18,12 becomes 12,6, then 6,0. The base case returns 6 before attempting division by zero.",
+    "payoff": "“You keep getting stronger.” For once, BYTE does not sound pleased."
+  },
+  {
+    "id": "q41",
+    "story": "The tower whispers about a warrior born from stone. BYTE speaks louder. “Ignore the echoes. This concept has a perfectly ordinary explanation.” Today’s inscription is 41: Merge two routes.",
+    "explain": "Use one index per input list. Compare the current pair, append the smaller value, and advance only its index. When one list ends, copy the other's remainder. Merging n and m items costs O(n+m) time and O(n+m) output space; it does not need repeated sorting.",
+    "code": "left, right = [1, 4], [2, 3]\ni = j = 0\nmerged = []\nwhile i < len(left) and j < len(right):\n    if left[i] <= right[j]:\n        merged.append(left[i]); i += 1\n    else:\n        merged.append(right[j]); j += 1\nmerged.extend(left[i:])\nmerged.extend(right[j:])\nprint(merged)",
+    "output": "[1, 2, 3, 4]",
+    "question": "When one input runs out, what happens next?",
+    "choices": [
+      "Discard the other remainder",
+      "Append the remaining items of the other sorted input",
+      "Start the whole merge again"
+    ],
+    "answer": 1,
+    "feedback": "The remaining input is already ordered, so it can be copied directly. Every item is added exactly once.",
+    "payoff": "“Even now?” BYTE opens his notebook and crosses out another plan."
+  },
+  {
+    "id": "q42",
+    "story": "The tower whispers about a warrior born from stone. BYTE speaks louder. “Ignore the echoes. This concept has a perfectly ordinary explanation.” Today’s inscription is 42: Divide, solve, merge.",
+    "explain": "Merge sort stops at zero or one item. Otherwise split near the middle, recursively sort both halves, and merge them in linear time. There are O(log n) split levels, each doing O(n) total merge work: O(n log n) time. Typical implementations need O(n) auxiliary storage.",
+    "code": "values = [4, 1, 3, 2]\nmid = len(values) // 2\nleft, right = values[:mid], values[mid:]\nprint(left, right)\n# Recursive sorting yields [1, 4] and [2, 3].\n# The previous lesson's linear merge yields [1, 2, 3, 4].",
+    "output": "[4, 1] [3, 2]",
+    "question": "Why is splitting alone insufficient?",
+    "choices": [
+      "The halves still need sorting and merging",
+      "Every half is automatically sorted",
+      "The halves must be the same object"
+    ],
+    "answer": 0,
+    "feedback": "Splitting only reduces problem size. Sorted recursive results must still be merged to obtain a globally sorted result.",
+    "payoff": "“Fine. You understand it.” The inscription answers you, and another road opens."
+  },
+  {
+    "id": "q43",
+    "story": "The Demon Lord’s castle hums around you. BYTE looks toward the throne, then back at the inscription. “One last concept. Read it carefully.” Today’s inscription is 43: Walk a tree in order.",
+    "explain": "A binary node has left and right child references, either of which may be None. Inorder visits each node once, taking O(n) time and O(h) recursive stack space for height h. It produces sorted values only when the tree satisfies the binary-search-tree ordering rules.",
+    "code": "class Node:\n    def __init__(self, value, left=None, right=None):\n        self.value, self.left, self.right = value, left, right\n\ndef inorder(node):\n    if node is None:\n        return\n    inorder(node.left)\n    print(node.value)\n    inorder(node.right)\n\ninorder(Node(2, Node(1), Node(3)))",
+    "output": "1\n2\n3",
+    "question": "What is the inorder visiting order?",
+    "choices": [
+      "Node, left, right",
+      "Left, node, right",
+      "Left, right, node"
+    ],
+    "answer": 1,
+    "feedback": "Inorder visits the current node between its left and right subtrees. A general binary tree is not automatically a search tree.",
+    "payoff": "“It worked? I mean—of course it worked.” A new spark wakes inside your stone-born heart."
+  },
+  {
+    "id": "q44",
+    "story": "The Demon Lord’s castle hums around you. BYTE looks toward the throne, then back at the inscription. “One last concept. Read it carefully.” Today’s inscription is 44: Measure tree height.",
+    "explain": "This course counts height in nodes: an empty tree has height 0, and a leaf has height 1. For a node, compute 1 + max(left height, right height). Some references count edges instead, so always check the convention. The traversal is O(n), with O(h) stack space.",
+    "code": "class Node:\n    def __init__(self, left=None, right=None):\n        self.left, self.right = left, right\n\ndef height(node):\n    if node is None:\n        return 0\n    return 1 + max(height(node.left), height(node.right))\n\nprint(height(Node(Node(), None)))",
+    "output": "2",
+    "question": "Under this challenge's convention, what is a leaf's height?",
+    "choices": [
+      "0",
+      "1",
+      "2"
+    ],
+    "answer": 1,
+    "feedback": "A leaf contributes one node above two empty subtrees: 1 + max(0, 0) = 1.",
+    "payoff": "“Another success. Wonderful. Deeply inconvenient.” BYTE quickly pretends to tie his shoe."
+  },
+  {
+    "id": "q45",
+    "story": "The Demon Lord’s castle hums around you. BYTE looks toward the throne, then back at the inscription. “One last concept. Read it carefully.” Today’s inscription is 45: Connect the map.",
+    "explain": "An adjacency list maps each vertex to its neighbors. An undirected edge A—B must appear in both A's and B's lists. Include isolated vertices with an empty neighbor list when the task supplies them. Storage is O(V+E), with each undirected edge represented twice.",
+    "code": "graph = {\"camp\": [], \"bridge\": [], \"cave\": []}\ngraph[\"camp\"].append(\"bridge\")\ngraph[\"bridge\"].append(\"camp\")\nprint(graph[\"bridge\"])\nprint(graph[\"cave\"])",
+    "output": "['camp']\n[]",
+    "question": "How is an undirected edge stored?",
+    "choices": [
+      "Only from the alphabetically first vertex",
+      "In both endpoints' neighbor lists",
+      "As a sorted list of all vertex names"
+    ],
+    "answer": 1,
+    "feedback": "Both places can reach each other, so record both directions. The cave remains a valid isolated vertex with no neighbors.",
+    "payoff": "“I checked that trap twice.” BYTE coughs. “Test! I meant test.”"
+  },
+  {
+    "id": "q46",
+    "story": "The Demon Lord’s castle hums around you. BYTE looks toward the throne, then back at the inscription. “One last concept. Read it carefully.” Today’s inscription is 46: Explore level by level.",
+    "explain": "BFS uses a queue. Mark a vertex visited when you enqueue it, so two neighbors do not queue it repeatedly. Then pop from the front and enqueue unseen neighbors. With adjacency lists it takes O(V+E) time over reachable vertices and edges, and O(V) extra space.",
+    "code": "from collections import deque\ngraph = {\"A\": [\"B\", \"C\"], \"B\": [\"A\"], \"C\": [\"A\"]}\nqueue, seen = deque([\"A\"]), {\"A\"}\nwhile queue:\n    node = queue.popleft()\n    print(node)\n    for neighbor in graph[node]:\n        if neighbor not in seen:\n            seen.add(neighbor)\n            queue.append(neighbor)",
+    "output": "A\nB\nC",
+    "question": "When should this BFS mark a vertex visited?",
+    "choices": [
+      "When it is enqueued",
+      "Only after the entire search",
+      "Never, if a queue is used"
+    ],
+    "answer": 0,
+    "feedback": "Marking on enqueue prevents duplicate queued work and keeps cycles from causing endless revisits. Neighbor order can change the order within one distance level.",
+    "payoff": "“You keep getting stronger.” For once, BYTE does not sound pleased."
+  },
+  {
+    "id": "q47",
+    "story": "The Demon Lord’s castle hums around you. BYTE looks toward the throne, then back at the inscription. “One last concept. Read it carefully.” Today’s inscription is 47: Explore one path deeply.",
+    "explain": "DFS can use recursion or an explicit stack. A visited set prevents cycling through the same graph vertices. With adjacency lists it takes O(V+E) time and O(V) extra space. Recursion depth may be large; an explicit stack avoids Python's recursion limit for deep graphs.",
+    "code": "graph = {\"A\": [\"B\", \"C\"], \"B\": [\"D\"], \"C\": [], \"D\": []}\nseen = set()\ndef visit(node):\n    if node in seen:\n        return\n    seen.add(node)\n    print(node)\n    for neighbor in graph[node]:\n        visit(neighbor)\nvisit(\"A\")",
+    "output": "A\nB\nD\nC",
+    "question": "Why does D appear before C here?",
+    "choices": [
+      "DFS finishes the B branch before returning to C",
+      "DFS always sorts vertex names",
+      "D has the shortest path from A"
+    ],
+    "answer": 0,
+    "feedback": "DFS goes deeper through B to D, then backtracks to A and visits C. DFS order does not generally give shortest-path distances.",
+    "payoff": "“Even now?” BYTE opens his notebook and crosses out another plan."
+  },
+  {
+    "id": "q48",
+    "story": "The Demon Lord’s castle hums around you. BYTE looks toward the throne, then back at the inscription. “One last concept. Read it carefully.” Today’s inscription is 48: Find the shortest route.",
+    "explain": "Store distance 0 for the start. When discovering an unseen neighbor, set its distance to the current distance + 1. BFS visits increasing distance levels, so the first assigned distance is shortest in an unweighted graph. If the destination is never reached, report the task's absent value, such as -1.",
+    "code": "from collections import deque\ngraph = {\"A\": [\"B\"], \"B\": [\"A\", \"C\"], \"C\": [\"B\"]}\ndistance, queue = {\"A\": 0}, deque([\"A\"])\nwhile queue:\n    node = queue.popleft()\n    for neighbor in graph[node]:\n        if neighbor not in distance:\n            distance[neighbor] = distance[node] + 1\n            queue.append(neighbor)\nprint(distance.get(\"C\", -1))",
+    "output": "2",
+    "question": "When does ordinary BFS guarantee a shortest route by total cost?",
+    "choices": [
+      "When every edge has the same cost",
+      "For every graph with arbitrary edge weights",
+      "Only when the graph is a tree"
+    ],
+    "answer": 0,
+    "feedback": "BFS minimizes the number of edges. Unequal nonnegative weights need a weighted shortest-path method such as Dijkstra's algorithm instead.",
+    "payoff": "“Fine. You understand it.” The inscription answers you, and another road opens."
+  }
+]

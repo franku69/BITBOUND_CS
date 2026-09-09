@@ -1,0 +1,84 @@
+BITBOUND - PYTHON PRACTICE
+
+1. Extract the ZIP completely.
+2. On Windows with Python 3 installed, double-click START_WINDOWS.bat.
+   Leave the server window open. It opens the game in your browser.
+   If a port is blocked or busy, the launcher tries another automatically.
+   On macOS/Linux: python3 scripts/serve.py
+3. The USTP Game Dev Guild card plays briefly. Click Continue to skip.
+   The next screen offers Python Lab Mode | Story Mode.
+   Python Lab Mode opens the full Python IDE with a fresh free-code workspace.
+   Story Mode opens character design and companion selection.
+   New Expedition starts the animated Stoneborn Oath before the first world.
+   Next advances the story. Pause animation keeps the text on screen; Resume continues from that moment.
+4. Use Choose mode to return to the opening screen. The floating Python Lab
+   button is removed. Save file first if you want to keep your work.
+   In Story Mode, shrines and terminals open their own coding challenges.
+5. In a mission: read the task, write Python, Run, then Check challenge.
+   For input(), fill Program input before running, one answer per line.
+6. To share with students, upload ALL folder contents to GitHub Pages.
+   See DEPLOY_TO_GITHUB.txt. Students need only the website link.
+7. Keep the game open online until its banner says Offline ready.
+   Only app files download automatically (roughly 16 MB uncompressed).
+   Then reopen the same link in the same browser without internet.
+8. Save file downloads your session as JSON. Keep it in Downloads.
+   Load file continues ONLY the file you choose. Story saves also include
+   Python work. Save before closing, reloading or changing modes.
+9. New player resets the current session before sharing a device.
+   New visits start fresh. Old browser progress is ignored.
+
+Do not double-click index.html. Use the launcher or the HTTPS website link.
+No npm install, API key, paid Python service, or student account is needed.
+Python installation is only needed on a PC running the local server.
+The hosted game runs Python inside students' browsers.
+
+Rendering adapts automatically on slower devices. The game pauses while you code.
+The first Python startup takes time; later runs reuse the ready engine.
+Offline files must finish saving and remain in the browser's site storage.
+Clearing site data removes offline app files. Keep student save files separately.
+
+Teacher instructions: docs/TEACHER_GUIDE.md
+Developer instructions: docs/ARCHITECTURE.md
+
+NEW COMBAT OPTIONS
+Field Guide (C or slot 4): choose from 21 skills. K or the Skill touch button casts.
+Q or the weapon slot cycles collected gear. Nine mob types appear across the worlds.
+Byte is wider; all four companions have redesigned, animated sprites.
+
+THE STONEBORN OATH (v24)
+World 1: defeat the warden, take its key, return left to the prisoners, E / Use.
+Your four companions then help in combat. Speak to BYTE before new concepts.
+World 4: defeat the Oathforge Castellan, meet the company at the portal, and escape the cell.
+Final world: throne-path task, paladin fight, BFS barrier task, then Veyr + BYTE.
+Boss warning marks tell you where an attack will land. Dash and double-jump.
+The fused crown opens only during its gold recovery window. That is your chance.
+Save file during scenes or in the prison to resume there next time.
+Full chapter guide (contains spoilers): docs/STORY_MODE.md
+
+V18: Articulated movement and combat, unique story actors, enclosed prison and corrected BYTE departure/return. See docs/V18_VALIDATION.md for checks.
+
+V23 COMPLETE RUNE LESSONS
+Approach or attack a rune-marked creature to enter a Python/DSA question battle.
+Complete up to four questions in the set, then Back to the trail.
+Show a clue helps if stuck. Save file is available while answering.
+The world pauses while you answer. There is no Step away bypass.
+Wrong answers cost no health. Boss fights and story scenes cannot be interrupted.
+There are still 48 coding shrines/terminal tasks, plus 268 roaming questions.
+The separate teacher answer-key HTML file is for testing, not student distribution.
+
+Question order is fixed within each world, in four teaching stages. The next
+encounter gives the first unfinished lesson. Completed worlds review in order.
+See docs/QUESTION_COVERAGE.md for the full world-by-world learning path.
+
+Every question in your world is required, not just one question per topic.
+Find the STAGE 1/2/3/4 sentry before each shrine and press E / Use.
+It supplies all remaining questions for that stage, even with no roaming mobs.
+The shrine requires its stage; terminal and portal require all world lessons.
+Mission GPS shows your exact trail lesson progress.
+World counts: 40, 32, 32, 32, 32, 32, 32, 36 = 268 trail questions.
+World 4 uses applied code tracing/debugging and collections/object problems.
+Older World 4 save files retain their story/shrines but reopen those revised lessons.
+
+V24 CHARACTER UPDATE
+Human faces, one shared character rig, continuous walk cadence, natural gestures,
+settled fall poses and physically draped cloth. See docs/V24_VALIDATION.md.

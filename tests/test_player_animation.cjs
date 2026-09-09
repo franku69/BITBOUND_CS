@@ -1,0 +1,33 @@
+'use strict';
+const fs=require('node:fs'),vm=require('node:vm'),assert=require('node:assert/strict');
+const s={window:{}};vm.runInNewContext(fs.readFileSync('adventure/player-animation.js','utf8'),s);
+const a=new s.window.BitboundPlayerAnimation.PlayerAnimator();
+const player={x:12,y:30,w:24,h:44,vx:0,vy:0,onGround:true,attack:0,dashTime:0};
+const initial=JSON.stringify(player),pose=a.pose;
+let blink=false,wave=false,glance=false,breath=false;
+for(let n=0;n<500;n++){
+  assert.equal(a.update(1/60,player,false,true),pose,'one pose object is reused');
+  blink ||= pose.blink;wave ||= pose.arm>1.5;glance ||= pose.headX<0;breath ||= pose.headY<0;
+}
+assert.ok(blink&&wave&&glance&&breath);
+assert.equal(JSON.stringify(player),initial,'cosmetics never change physics');
+a.land();a.update(1/60,player);assert.ok(pose.bodyY>0);
+for(let n=0;n<15;n++)a.update(1/60,player);
+assert.equal(pose.bodyY,0,'landing settles');
+a.celebrate();a.update(1/60,player);assert.equal(pose.smile,true);assert.ok(pose.arm>2);
+player.vx=3;a.update(1/60,player);assert.equal(pose.arm,0,'movement takes immediate priority');
+player.vx=0;player.attack=.2;a.update(1/60,player);assert.equal(pose.arm,0,'attack takes priority');
+player.attack=0;player.onGround=false;a.update(1/60,player);assert.equal(pose.arm,0,'jump takes priority');
+player.onGround=true;a.celebrate();a.update(1/60,player,true,true);
+assert.deepEqual(JSON.parse(JSON.stringify(pose)),{bodyY:0,headX:0,headY:0,blink:false,arm:0,smile:false,motion:'idle',phase:0});
+a.reset();assert.equal(a.celebration,0);
+const {buildContext}=require('./helpers/game-harness.cjs');
+const {sandbox:g,elements}=buildContext('?quality=low');const api=g.TestAPI;
+api.startNew();api.enterWorld();api.playerAnimator.celebrate();
+api.show(api.UI.help);const clock=api.playerAnimator.clock;
+for(let n=0;n<60;n++)api.update(1/60);
+assert.equal(api.playerAnimator.clock,clock,'pause runs no cosmetic updates');
+api.hide(api.UI.help);api.update(1/60);assert.ok(api.playerAnimator.clock>clock);
+const before=JSON.stringify(api.player);api.drawPlayer();assert.equal(JSON.stringify(api.player),before);
+api.startNew();assert.equal(api.playerAnimator.celebration,0,'new expedition resets poses');
+console.log('PASS player mannerisms: reused pose, blink/breath/wave/glance, finite landing/celebration, immediate controls, no physics changes, reduced motion, pause and reset.');

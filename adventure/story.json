@@ -1,0 +1,1411 @@
+{
+  "title": "The Stoneborn Oath",
+  "chapters": [
+    {
+      "title": "The mountain sneezed",
+      "region": "STONEWAKE VALLEY",
+      "boss": "The Chain Warden",
+      "artifact": "First awakening",
+      "goal": "Restore the valley’s four shrine lamps and finish its two terminal seals. Defeat the Chain Warden, then return its key to the prisoners.",
+      "intro": "The valley is damp with morning. BYTE says the inscriptions teach Python, which sounds less edible than breakfast but potentially useful. Something with too many legs rustles in the grass. You pick up your weapon. First morning alive. Plenty to learn.",
+      "ending": "The cage stands open. Rook is already describing the lunch he deserves for being rescued. Fern points out who actually did the rescuing. Aster waves you over. There is room on the road for one more.",
+      "quip": "A perfectly normal shrine. Ignore the scorch marks."
+    },
+    {
+      "title": "The correct number of bowls",
+      "region": "THORNVEIL FOREST",
+      "boss": "The Vault Colossus",
+      "artifact": "A shared road",
+      "goal": "Read the forest’s lists and indexing instructions. Your new company guards and fights alongside you.",
+      "intro": "The forest folds green shadows over the road. Rook has named three mushrooms and threatened a fourth. Mira keeps a spell lit above your head. When the roots narrow the path, Aster goes first and Fern counts everyone through. She counts five now. You like the sound of it.",
+      "ending": "The Colossus folds into its own vault beneath the roots. Rook bows to the wreckage. Mira pulls you clear of one last falling slab and pretends she was reaching for her hat. Fern checks five heads, then five bowls.",
+      "quip": "Five companions. One list. Please do not sort us by height."
+    },
+    {
+      "title": "A ribbon for the gatekeeper",
+      "region": "EMBERGLOW CAVERNS",
+      "boss": "The Brass Watcher",
+      "artifact": "Trust earned",
+      "goal": "Repair the workshop lists and records; break the Brass Watcher’s seals with the company.",
+      "intro": "The forest vault has opened a route under the mountain. Crystal veins light Emberglow’s abandoned workshops; labels on its storage trays have slipped out of order. Mira shows you how the trays connect to the Brass Watcher’s gate. Before going deeper, the company gathers by a gallery fire. Fern has noticed what the falling gate did to your hands.",
+      "ending": "“With you, we can open anything,” Aster says. You are too tired to notice he says anything, not go anywhere. Mira notices. She offers you water before either of you can speak.",
+      "quip": "Lists can change. So can plans. Bring a spare torch."
+    },
+    {
+      "title": "A place already laid",
+      "region": "OATHFORGE KEEP",
+      "boss": "The Oathforge Castellan",
+      "artifact": "The broken oath",
+      "goal": "Repair the keep’s gate records, complete its seals, then defeat the Castellan with the company.",
+      "intro": "The Brass Watcher’s tunnel ends beneath Oathforge. Chains run from the gates to an armored guardian in its courtyard: the Castellan. Its records decide who may pass. Aster shows you the northern stair on Mira’s map. Beyond it lie the catacombs and the treasury the company came looking for. First, you must open this keep.",
+      "ending": "The keep is behind you, and its prison door is open. You no longer have a company. You do have a key, a scroll, and a remarkable talent for surviving other people’s plans. BYTE follows at a slightly less comfortable distance.",
+      "quip": "The Castellan checks every permit. Especially the ones attached to living people."
+    },
+    {
+      "title": "No cage is a conclusion",
+      "region": "IRONQUEUE CATACOMBS",
+      "boss": "The Iron Gaoler",
+      "artifact": "Freedom reclaimed",
+      "goal": "Use stacks, queues and searching to follow the stolen route through the citadel.",
+      "intro": "The stair from your prison leads into Ironqueue’s catacombs. You compare its old signposts with the scroll: an orderly route beneath Oathforge, then watch posts across the ravine, then Veyr’s castle. The company came this way. Bells call from different passages, and the route register is missing its keeper. You will have to track the turns and search its entries yourself.",
+      "ending": "The Gaoler’s last chain falls. BYTE announces that the next gate is impossible. You ask which concept it uses. He spends a surprisingly long time adjusting his backpack.",
+      "quip": "That cell had excellent security. Until you arrived."
+    },
+    {
+      "title": "The road they left broken",
+      "region": "VEYRFALL • CASTLE APPROACH",
+      "boss": "The Chain Revenant",
+      "artifact": "At the king’s doorstep",
+      "goal": "Repair linked paths across the approach and defeat the guardian at Veyr’s outer gate.",
+      "intro": "The catacomb stair rises into red daylight. Across the ravine, Veyr’s castle crowns the cliff. The scroll marks a chain of watch posts feeding signals to the drawbridge; the company left several links broken behind them. You can see the next post from this one. Reconnect the route, one link at a time, and the outer gate will have to answer.",
+      "ending": "The Revenant unravels across the drawbridge. The outer gate opens into candlelit darkness. You step beneath the portcullis. Behind you, the red sky narrows to a stripe, then disappears.",
+      "quip": "A moat. A gate. A terrifying silhouette. Excellent commitment to a theme."
+    },
+    {
+      "title": "The house that swallowed echoes",
+      "region": "VEYRFALL • INNER KEEP",
+      "boss": "The Echo Sentinel",
+      "artifact": "The remembered prophecy",
+      "goal": "Follow recursion and reused answers through the keep to open the inner hall.",
+      "intro": "The drawbridge is behind you. In the inner keep, branching passages repeat beneath smaller vaults. You mark where each stair returns before taking the next one. The company’s chalk arrows hurry towards the treasury; your route turns towards the hall. On a cracked wall, a prophecy begins: FROM STONE, A WARRIOR. BYTE talks over the rest. You remember his face beside your broken rock.",
+      "ending": "The Sentinel falls silent. Beyond it, a red carpet leads between two doors carved with a broken crown. You rest your palm against one. Voices drift from another corridor—familiar voices, counting treasure.",
+      "quip": "Whoever designed these stairs clearly disliked base cases."
+    },
+    {
+      "title": "What the gold could not buy",
+      "region": "VEYRFALL • THRONE HALL",
+      "boss": "Demon Lord Veyr",
+      "artifact": "The unbound dawn",
+      "goal": "Open the throne passage, defeat the paladin, solve the BFS barrier, then confront Veyr.",
+      "intro": "Beyond the Echo Sentinel, the corridor widens into the throne passage. Tree-shaped locks keep its keys in order; connected seals run between the doors beyond them. You recognise pieces of the route lessons you have learned. Farther in, red carpet climbs towards a throne. From a side passage come four familiar voices, arguing about their share.",
+      "ending": "The king is gone. His castle is rubble. The power that once kept a world afraid now belongs to someone who would rather see the next mountain than sit on a throne. The wind catches your laughter. There is still so much left to learn.",
+      "quip": "You really should have stayed a rock."
+    }
+  ],
+  "scenes": {
+    "origin": {
+      "title": "The mountain sneezed",
+      "pages": [
+        {
+          "speaker": "Narrator",
+          "art": "rock",
+          "text": "For as long as anyone in Stonewake could remember, the mountain had been a mountain. Goats climbed it. Rain wore it down. Travellers rested beneath the round boulder beside the old road and complained about the climb.\n\nThis morning, the boulder complained back.\n\nA hollow knock rolled through the valley. The goat on top stopped chewing.\n\nSomewhere inside the stone, you had discovered that you possessed a fist.",
+          "beat": "rock",
+          "originBeat": 0,
+          "shotId": "origin:0",
+          "location": "STONEWAKE · THE OLD ROAD",
+          "camera": {
+            "x": 328,
+            "y": 164,
+            "zoom": 1.1
+          },
+          "durationMs": 6500
+        },
+        {
+          "speaker": "Narrator",
+          "art": "rock",
+          "text": "You knocked again. Dust tickled your nose, which was another recent discovery.\n\nThe goat stepped down. Then it ran.\n\nYour third knock found the crack left by the first two. Gold shone through it, thin as a thread. The thread widened. Cold air touched your fingers.\n\nYou pushed.\n\nThe front of your whole world fell away, and a much larger world came rushing in.",
+          "beat": "rock",
+          "originBeat": 1,
+          "shotId": "origin:1",
+          "location": "STONEWAKE · THE OLD ROAD",
+          "camera": {
+            "x": 328,
+            "y": 164,
+            "zoom": 1.1
+          },
+          "durationMs": 6500
+        },
+        {
+          "speaker": "Narrator",
+          "art": "birth",
+          "text": "You jumped clear of the falling rock and landed badly enough to learn what knees were for.\n\nA pebble bounced off your head. You picked it up and frowned at it. Family, apparently, could be difficult.\n\nThen you looked up.\n\nClouds. Trees. Mountains beyond this mountain. All that space, and none of it touching your shoulders.\n\nYou crouched to inspect a blade of grass. It bent under your finger and sprang back. You tried it again, just to be sure.",
+          "beat": "birth",
+          "originBeat": 2,
+          "shotId": "origin:2",
+          "location": "STONEWAKE · THE OLD ROAD",
+          "camera": {
+            "x": 328,
+            "y": 164,
+            "zoom": 1.1
+          },
+          "durationMs": 6500
+        },
+        {
+          "speaker": "{name}",
+          "art": "birth",
+          "text": "“Hello?” You lifted a hand towards the sky.\n\nA bird answered from the road sign.\n\nYou waved more carefully. “Good. Someone knows how this works.”\n\nYour stomach growled. You looked down in alarm. Had something else come out of the rock with you?\n\nThe bird offered no advice. It did, however, appear to be eating. You decided that whatever happened next ought to include that.",
+          "beat": "birth",
+          "originBeat": 3,
+          "shotId": "origin:3",
+          "location": "STONEWAKE · THE OLD ROAD",
+          "camera": {
+            "x": 328,
+            "y": 164,
+            "zoom": 1.1
+          },
+          "durationMs": 6500
+        },
+        {
+          "speaker": "BYTE",
+          "art": "byte",
+          "text": "“That,” said a voice from the road, “was an extremely expensive mountain.”\n\nThe stranger came closer, picking his way through the rubble. Blue sleeves, dusty shoes, a backpack large enough to contain a second traveller. He raised one hand in greeting, then forgot to lower it.\n\nHis eyes moved from you to the broken stone.\n\n“Were you … in there?”\n\n“Until recently.”\n\nHe took a slow breath. You had the impression that the answer had made his morning considerably worse.",
+          "mood": "shock",
+          "beat": "byte",
+          "originBeat": 4,
+          "shotId": "origin:4",
+          "location": "STONEWAKE · THE OLD ROAD",
+          "camera": {
+            "x": 328,
+            "y": 164,
+            "zoom": 1.1
+          },
+          "durationMs": 6500
+        },
+        {
+          "speaker": "{name}",
+          "art": "byte",
+          "text": "“Did it belong to you?” you asked.\n\n“The rock? No.”\n\n“Then we can both be happy.” You offered him the warm pebble.\n\nHe approached as if you were offering a live coal. Your fingers met his palm; only when he closed his hand did you let go.\n\n“BYTE,” he said, studying the stone. “My name is BYTE.”\n\nYou told him yours. Saying it aloud made it feel more real.\n\nHe put the pebble away. “Well. We should find somewhere less … recently demolished.”",
+          "beat": "byte",
+          "originBeat": 5,
+          "shotId": "origin:5",
+          "location": "STONEWAKE · THE OLD ROAD",
+          "camera": {
+            "x": 328,
+            "y": 164,
+            "zoom": 1.1
+          },
+          "durationMs": 6500
+        },
+        {
+          "speaker": "BYTE",
+          "art": "byte",
+          "text": "BYTE pointed down the road. Lamps stood at intervals, most of them dark. Each had a stone shrine beneath it, covered in neat lines of unfamiliar marks.\n\n“Python,” he said. “Instructions left by the people who built this road. The shrines control the lamps, gates and guardians. Read the instructions properly and you can put things right.”\n\n“Can I put breakfast right?”\n\n“Survive the valley first.”\n\nYou considered this sensible advice. BYTE watched your pleased expression, then added, rather quickly, “I can explain the inscriptions.”",
+          "mood": "grin",
+          "beat": "byte",
+          "originBeat": 6,
+          "shotId": "origin:6",
+          "location": "STONEWAKE · THE OLD ROAD",
+          "camera": {
+            "x": 328,
+            "y": 164,
+            "zoom": 1.1
+          },
+          "durationMs": 6500
+        },
+        {
+          "speaker": "Narrator",
+          "art": "trail",
+          "text": "So you followed him.\n\nAt the first lamp, BYTE showed you how a short instruction could make words appear. You repeated it. The dark glass blinked awake.\n\nYou looked back at your broken rock, then ahead at the lamps winding into the valley. For the first time, you could imagine reaching somewhere you had never seen.\n\nBYTE was already moving. “Try to keep up.”\n\nYou hurried after him, delighted. A name, a guide, and something you could learn. Breakfast would have to be next.",
+          "beat": "trail",
+          "originBeat": 7,
+          "shotId": "origin:7",
+          "location": "STONEWAKE · THE OLD ROAD",
+          "camera": {
+            "x": 328,
+            "y": 164,
+            "zoom": 1.1
+          },
+          "durationMs": 6500
+        }
+      ],
+      "finish": "Meet the world →"
+    },
+    "prisoners": {
+      "title": "Four strangers and a very rude lock",
+      "pages": [
+        {
+          "speaker": "Fern",
+          "art": "cage",
+          "text": "The repaired lamps led you to the valley’s last gate. Beside its terminal stood an iron cage. Your guide stopped to inspect an inscription farther down the wall; a quiet whistle drew you the other way.\n\n“Psst. New person. The one checking whether elbows bend both ways.”\n\nA red-haired woman waved from behind the bars. You waved back.\n\n“Fern. Healer. Usually better at keeping people out of cages than this.” She glanced at her companions. “We could use a small miracle.”",
+          "mood": "talk",
+          "beat": "wave",
+          "shotId": "prisoners:0",
+          "location": "STONEWAKE · THE WARDEN’S GATE",
+          "camera": {
+            "x": 301,
+            "y": 177,
+            "zoom": 1.18
+          },
+          "durationMs": 6500
+        },
+        {
+          "speaker": "{name}",
+          "art": "cage",
+          "text": "You looked from one prisoner to the next.\n\n“Are you all practising being inside?”\n\nA broad man snorted, tried to stop, and folded over laughing. The blond knight beside him closed his eyes with the patience of someone enduring an old injury.\n\n“We are,” the knight said, “being detained.”\n\n“What is the difference?”\n\n“Mostly,” Fern said, “the company.”\n\nThat set the broad man off again. You liked them already. They seemed to understand being new to things.",
+          "beat": "laugh",
+          "shotId": "prisoners:1",
+          "location": "STONEWAKE · THE WARDEN’S GATE",
+          "camera": {
+            "x": 301,
+            "y": 177,
+            "zoom": 1.18
+          },
+          "durationMs": 6500
+        },
+        {
+          "speaker": "Aster",
+          "art": "cage",
+          "text": "The knight stepped forward and gave you a formal salute. His shoulder plate was dented; he straightened it before introducing himself.\n\n“Aster. Paladin. Captain of the Dawn Company. We came through Stonewake looking for the northern passage. Its warden decided our permit was inadequate.”\n\n“Rook called it a walking cupboard,” Fern supplied.\n\n“It was unnecessary.”\n\n“It had shelves,” said the broad man.\n\nAster let the silence settle. “We need to reach the forest beyond this gate. At present, the gate has the better of us.”",
+          "mood": "talk",
+          "beat": "salute",
+          "shotId": "prisoners:2",
+          "location": "STONEWAKE · THE WARDEN’S GATE",
+          "camera": {
+            "x": 301,
+            "y": 177,
+            "zoom": 1.18
+          },
+          "durationMs": 6500
+        },
+        {
+          "speaker": "Mira",
+          "art": "cage",
+          "text": "“Mira. Mage.” The woman in the violet hat moved to the lock. “And before you suggest a spell—”\n\nShe tapped it with her staff. Violet light ran along the iron and snapped back at her fingers. She withdrew her hand sharply.\n\n“—the warden carries the key. The cage rejects everyone else’s magic.”\n\nYou studied the scorch mark.\n\n“Does insulting it help?”\n\n“No. But I have found it essential to the process.” She shook out her hand and moved aside so you could see the terminal.",
+          "mood": "sad",
+          "beat": "lockSpark",
+          "shotId": "prisoners:3",
+          "location": "STONEWAKE · THE WARDEN’S GATE",
+          "camera": {
+            "x": 301,
+            "y": 177,
+            "zoom": 1.18
+          },
+          "durationMs": 6500
+        },
+        {
+          "speaker": "Rook",
+          "art": "cage",
+          "text": "“Rook,” said the broad man. “Berserker. I tried hitting it.”\n\n“Eighteen times,” Mira said.\n\n“Seventeen. One was a demonstration.” He flexed his fingers and gave you a conspiratorial grin. “Get us out and my little dagger is yours. Axe for the large problems. Dagger for the sneaky ones.”\n\nYou looked at his enormous weapon.\n\n“Which kind am I?”\n\nFor a moment he seemed caught off guard. Then he laughed. “The kind we would very much like on our side.”",
+          "mood": "grin",
+          "beat": "axeBoast",
+          "shotId": "prisoners:4",
+          "location": "STONEWAKE · THE WARDEN’S GATE",
+          "camera": {
+            "x": 301,
+            "y": 177,
+            "zoom": 1.18
+          },
+          "durationMs": 6500
+        },
+        {
+          "speaker": "Aster",
+          "art": "cage",
+          "text": "Aster pointed through the bars to the two sealed inscriptions beside the gate.\n\n“The terminal answers to the same Python you used at the shrines. Finish both tasks and it calls the Chain Warden. Defeat the warden, take its key, then bring it here.”\n\nHe stopped. His hand lowered from the bars.\n\n“That last part matters. Other people have promised to return.”\n\nYou looked at the empty road behind you. It was easy enough to leave a place. You were beginning to understand that coming back meant something different.",
+          "mood": "talk",
+          "beat": "pledge",
+          "shotId": "prisoners:5",
+          "location": "STONEWAKE · THE WARDEN’S GATE",
+          "camera": {
+            "x": 301,
+            "y": 177,
+            "zoom": 1.18
+          },
+          "durationMs": 6500
+        },
+        {
+          "speaker": "Fern",
+          "art": "cage",
+          "text": "Fern caught your sleeve gently before you turned away.\n\n“Wait. You do not owe us your life.”\n\n“Do I owe you lunch?”\n\nShe blinked, then laughed despite herself. “Only if you come back to eat it with us.”\n\nYou tested the thought. A meal with people who knew your name sounded better than breakfast alone beside a broken rock.\n\n“All right,” you said.\n\nShe released your sleeve. You went to the terminal, remembered the valley lessons, and began reading. Behind you, the cage had become very quiet.",
+          "mood": "grin",
+          "beat": "warning",
+          "shotId": "prisoners:6",
+          "location": "STONEWAKE · THE WARDEN’S GATE",
+          "camera": {
+            "x": 301,
+            "y": 177,
+            "zoom": 1.18
+          },
+          "durationMs": 6500
+        }
+      ],
+      "finish": "Wake the Chain Warden →"
+    },
+    "rescue": {
+      "title": "Room for one more",
+      "pages": [
+        {
+          "speaker": "Narrator",
+          "art": "rescue",
+          "text": "You returned with the warden’s key still warm in your hand.\n\nThe lock resisted the first turn. You eased it back, tried again, and felt the bolt slide clear. Rook pressed against the door as it rolled into its track.\n\nThen all four of them stood perfectly still.\n\n“Well?” you asked.\n\n“Sorry,” Fern said. “We have been imagining this for a while.”\n\nShe stepped through first. The others followed, blinking at the open road as though somebody had moved the sky closer.",
+          "beat": "openGate",
+          "shotId": "rescue:0",
+          "location": "STONEWAKE · BEYOND THE CAGE",
+          "camera": {
+            "x": 295,
+            "y": 179,
+            "zoom": 1.15
+          },
+          "durationMs": 6500
+        },
+        {
+          "speaker": "Fern",
+          "art": "party",
+          "text": "A short walk beyond the cage, Fern made you sit down and took both your hands.\n\n“You actually came back.”\n\n“You asked.”\n\nGreen light warmed the cuts across your knuckles. She held your fingers steady until the trembling stopped, though you had not mentioned that part.\n\nAster checked the road ahead. Mira counted their recovered supplies. Rook stood looking back at the cage.\n\nFor the first time since the fight, you let yourself feel tired. There were other people watching the road now.",
+          "mood": "cheer",
+          "beat": "healHands",
+          "shotId": "rescue:1",
+          "location": "STONEWAKE · BEYOND THE CAGE",
+          "camera": {
+            "x": 295,
+            "y": 179,
+            "zoom": 1.15
+          },
+          "durationMs": 6500
+        },
+        {
+          "speaker": "Rook",
+          "art": "party",
+          "text": "Rook crouched beside you when Fern was done.\n\n“A deal is a deal.” He offered the little dagger grip first and waited until you had it. “Boot pocket. Nobody checks boots.”\n\n“What if they want my boots?”\n\n“Then you have met a truly unreasonable person.”\n\nMira laughed into her sleeve. Rook pretended not to hear, but his ears went red.\n\nYou tested the dagger’s weight. Your first gift had been a pebble. This one could open a stubborn parcel, cut a strap, perhaps solve a sneaky problem. You put it where he had shown you.",
+          "mood": "grin",
+          "beat": "daggerGift",
+          "shotId": "rescue:2",
+          "location": "STONEWAKE · BEYOND THE CAGE",
+          "camera": {
+            "x": 295,
+            "y": 179,
+            "zoom": 1.15
+          },
+          "durationMs": 6500
+        },
+        {
+          "speaker": "Aster",
+          "art": "party",
+          "text": "You rested on a sun-warmed stone while Aster lowered himself onto one knee beside you. The warden had left a fresh scar across his shield.\n\n“The forest road leads north,” he said. “After that, the caverns and Oathforge Keep. We know the route. You seem unusually good at opening it.”\n\n“Is that an invitation?”\n\n“It is. Travel with us.”\n\nYou glanced at Fern’s cooking pot.\n\nAster followed your gaze. “Yes. Lunch is included.”\n\nIt was difficult to imagine a better offer.",
+          "mood": "talk",
+          "beat": "invite",
+          "shotId": "rescue:3",
+          "location": "STONEWAKE · BEYOND THE CAGE",
+          "camera": {
+            "x": 295,
+            "y": 179,
+            "zoom": 1.15
+          },
+          "durationMs": 6500
+        },
+        {
+          "speaker": "{name}",
+          "art": "party",
+          "text": "“What do I have to do to be in a company?”\n\n“Stay where I can reach you,” Fern said.\n\n“Duck when I shout,” said Mira.\n\n“Shout louder than the monsters,” said Rook.\n\nAster held out his hand. “We look after each other. That is the important part.”\n\nYou looked at the hand, then at the four faces waiting for your answer. Yesterday there had been no yesterday. Now there was somewhere you could belong tomorrow.\n\nYou reached out.",
+          "beat": "handshake",
+          "shotId": "rescue:4",
+          "location": "STONEWAKE · BEYOND THE CAGE",
+          "camera": {
+            "x": 295,
+            "y": 179,
+            "zoom": 1.15
+          },
+          "durationMs": 6500
+        },
+        {
+          "speaker": "Narrator",
+          "art": "party",
+          "text": "Your hand closed around Aster’s gauntlet. He squeezed once, firm and warm beneath the metal, and let go.\n\n“Five,” Fern said, testing the number.\n\nMira tipped her crooked hat. “Welcome to the worst-organised company on this road.”\n\nRook assured you that the disorganisation was tactical. Nobody believed him.\n\nAs you set off towards Thornveil, Aster matched his pace to yours. The forest was dark ahead, but four familiar footsteps surrounded your own. You had never heard a sound quite like it.",
+          "beat": "joinHands",
+          "shotId": "rescue:5",
+          "location": "STONEWAKE · BEYOND THE CAGE",
+          "camera": {
+            "x": 295,
+            "y": 179,
+            "zoom": 1.15
+          },
+          "durationMs": 6500
+        }
+      ],
+      "finish": "Join the Dawn Company →"
+    },
+    "camp1": {
+      "title": "The correct number of bowls",
+      "pages": [
+        {
+          "speaker": "Mira",
+          "art": "camp",
+          "text": "At the edge of Thornveil, the company stopped long enough to build a small fire. Mira unrolled a map and weighted its corners with stones.\n\n“Before anything tries to eat us: arrangements. Aster holds the front. I cast from behind him. Fern keeps our insides inside. Rook—”\n\n“Improves the enemy’s shape.”\n\n“—does that. You read the shrines. If something attacks while you think, we make it regret the interruption.”\n\nShe marked a narrow path through the roots. You leaned closer. This was what having a company meant in practice.",
+          "mood": "talk",
+          "beat": "battlePlan",
+          "shotId": "camp1:0",
+          "location": "THORNVEIL · FIRST NIGHT",
+          "camera": {
+            "x": 305,
+            "y": 174,
+            "zoom": 1.13
+          },
+          "durationMs": 6500
+        },
+        {
+          "speaker": "Fern",
+          "art": "camp",
+          "text": "Fern counted four bowls, frowned, and found another in the bottom of the pack.\n\n“Five,” you offered.\n\n“I know. I am getting used to it.” She filled the extra bowl and carried it over. “Soup first. Heroics tomorrow.”\n\nYou accepted it carefully. The spoon was better suited to the task than Rook’s dagger, though you still checked which end went first.\n\nNobody laughed until you did. Then everybody did, and you discovered that embarrassment could feel surprisingly warm.",
+          "mood": "grin",
+          "beat": "soup",
+          "shotId": "camp1:1",
+          "location": "THORNVEIL · FIRST NIGHT",
+          "camera": {
+            "x": 305,
+            "y": 174,
+            "zoom": 1.13
+          },
+          "durationMs": 6500
+        },
+        {
+          "speaker": "Rook",
+          "art": "camp",
+          "text": "Once the bowls were empty, Rook claimed he had fought a forest troll with a frying pan.\n\n“You dropped your axe,” Mira said.\n\n“Tactical versatility.”\n\nHe stood to demonstrate. In his telling, there had been a magnificent charge, a ringing blow and a troll so impressed it returned the pan.\n\n“It bent the pan around your head,” Fern said.\n\n“Out of respect.”\n\nYou laughed until your sides hurt. Rook bowed as though that had been the purpose of the story all along. Perhaps it had.",
+          "mood": "cheer",
+          "beat": "panTroll",
+          "shotId": "camp1:2",
+          "location": "THORNVEIL · FIRST NIGHT",
+          "camera": {
+            "x": 320,
+            "y": 150,
+            "zoom": 1.02
+          },
+          "durationMs": 6500
+        },
+        {
+          "speaker": "Aster",
+          "art": "camp",
+          "text": "The fire sank to red coals. Mira slept with her hat over her face. Fern had curled around her medicine bag. Rook’s snoring made the pot tremble.\n\nAster noticed you rubbing your arms. He came over, unfastened one edge of his cloak and settled beside you. Only then did he lift the cloth across your shoulders.\n\n“Cold?”\n\n“A little.”\n\n“Wake me if it gets worse.” He leaned back. “Nobody has to be strong all the time.”\n\nYou stayed awake a while, just to enjoy believing him.",
+          "mood": "talk",
+          "beat": "cloak",
+          "shotId": "camp1:3",
+          "location": "THORNVEIL · FIRST NIGHT",
+          "camera": {
+            "x": 305,
+            "y": 174,
+            "zoom": 1.13
+          },
+          "durationMs": 8500
+        }
+      ],
+      "finish": "Walk with your company →"
+    },
+    "camp2": {
+      "title": "A ribbon for the person who held the gate",
+      "pages": [
+        {
+          "speaker": "Narrator",
+          "art": "camp",
+          "text": "Beyond Thornveil, the road dropped into Emberglow’s old mining galleries. One gate was still connected to the Colossus you had broken beneath the forest. When its damaged chain slipped, the iron beam came down with you underneath it.\n\nYou remembered the weight settling into your palms. Mira crawling past your knees. Fern pulling her clear. Rook refusing to follow until you shouted at him.\n\nLater, beside the gallery’s campfire, you called it “only a little crushing.”\n\nFern put down her bowl with great care. That should have warned you.",
+          "beat": "gateRecall",
+          "shotId": "camp2:0",
+          "location": "EMBERGLOW · SHELTER IN THE GALLERY",
+          "camera": {
+            "x": 320,
+            "y": 150,
+            "zoom": 1.02
+          },
+          "durationMs": 6500
+        },
+        {
+          "speaker": "Fern",
+          "art": "camp",
+          "text": "“Sit.”\n\n“I am fine.”\n\n“That was not a medical question.”\n\nFern knelt beside you and held your wrist while the healing light faded. Then she took a blue ribbon from her bag, wound it twice around your wrist and worked a small, stubborn knot into the ends.\n\n“Company colours. So I can find the idiot holding up the ceiling next time.”\n\nYou watched her fingers. She could have tied it quickly. Instead, she checked that it would not rub against your skin.\n\nYou remembered that later.",
+          "mood": "angry",
+          "beat": "ribbon",
+          "shotId": "camp2:1",
+          "location": "EMBERGLOW · SHELTER IN THE GALLERY",
+          "camera": {
+            "x": 310,
+            "y": 182,
+            "zoom": 1.16
+          },
+          "durationMs": 8500
+        },
+        {
+          "speaker": "Mira",
+          "art": "camp",
+          "text": "Mira brought her cup over and set it beside yours. She needed both hands to stop it rattling against the stone.\n\n“I knew three spells that should have lifted that gate,” she said. “None of them worked.”\n\n“You got out.”\n\n“Because you stayed.”\n\nThe fire popped. She stared at it until her hands stopped shaking.\n\n“I will remember that.”\n\nYou did not know what to do with such a solemn promise, so you nudged her cup closer to the warmth. She smiled a little. It seemed enough.",
+          "mood": "sad",
+          "beat": "tremblingCup",
+          "shotId": "camp2:2",
+          "ribbonSide": 1,
+          "location": "EMBERGLOW · SHELTER IN THE GALLERY",
+          "camera": {
+            "x": 310,
+            "y": 182,
+            "zoom": 1.16
+          },
+          "durationMs": 6500
+        },
+        {
+          "speaker": "Rook",
+          "art": "camp",
+          "text": "The gate had torn your sleeve. Rook insisted he could mend it.\n\nHis large fingers made the needle look personally offended. You held your arm still while he bent over the tear, drawing a tiny loop of thread through the fabric.\n\n“There is a treasury beyond Oathforge,” he said. “Enough in it to stop renting tomorrow from people who own today.”\n\n“What would you buy?”\n\nThe needle paused.\n\n“A door nobody could kick in.”\n\nYou looked at his scarred hands and decided not to laugh at the crooked stitching.",
+          "mood": "talk",
+          "beat": "mend",
+          "shotId": "camp2:3",
+          "ribbonSide": 1,
+          "location": "EMBERGLOW · SHELTER IN THE GALLERY",
+          "camera": {
+            "x": 310,
+            "y": 182,
+            "zoom": 1.16
+          },
+          "durationMs": 8500
+        },
+        {
+          "speaker": "Aster",
+          "art": "camp",
+          "text": "“A future,” Aster said from across the fire. “That is what we are going north for.”\n\n“All of us?” you asked.\n\n“Of course.”\n\nMira took the needle from Rook and knelt beside your arm. “Hold the cloth, mighty berserker. You are making a curtain.”\n\nRook grumbled, but held it. She eased out the worst stitch and repaired the little tear while he watched.\n\nFor a while, all you heard was the fire and Fern humming. The treasury was still far away. Their hands, the warm cups, the five places around the fire—those were here.",
+          "mood": "grin",
+          "beat": "mendTogether",
+          "shotId": "camp2:4",
+          "ribbonSide": 1,
+          "location": "EMBERGLOW · SHELTER IN THE GALLERY",
+          "camera": {
+            "x": 310,
+            "y": 182,
+            "zoom": 1.16
+          },
+          "durationMs": 8500
+        }
+      ],
+      "finish": "Keep walking together →"
+    },
+    "camp3": {
+      "title": "Five places at Oathforge",
+      "pages": [
+        {
+          "speaker": "Rook",
+          "art": "camp",
+          "text": "Past Emberglow’s Brass Watcher, the tunnel climbed into daylight. Oathforge Keep stood on the ridge above it, black stone braced with iron. Chains ran from its gates to a tall armored figure in the central courtyard.\n\n“The Castellan,” Mira said. “The keep’s guardian. Those chains answer to its instructions.”\n\nRook cracked his knuckles. “Ugly building.”\n\n“You say that about every building.”\n\n“One day architects will listen.”\n\nYou smiled, but kept looking at the guardian. For the first time, the northern road seemed to be looking back.",
+          "mood": "grin",
+          "beat": "knuckles",
+          "shotId": "camp3:0",
+          "ribbonSide": 1,
+          "location": "OATHFORGE · BEFORE THE COURTYARD",
+          "camera": {
+            "x": 308,
+            "y": 180,
+            "zoom": 1.14
+          },
+          "durationMs": 6500
+        },
+        {
+          "speaker": "Aster",
+          "art": "camp",
+          "text": "Aster spread the map beside the fire. His finger traced the keep’s gate, the guardian’s courtyard, then a stair leading underground.\n\n“The Castellan controls the passage to the catacombs. We repair the gate records, break its seals and fight it together. Then a proper meal.”\n\n“Something sweeter than Fern’s medicine,” Rook added.\n\n“My medicine keeps you alive.”\n\n“It seems determined to make me regret it.”\n\nYou laughed with them. One more difficult place, with the same people beside you. You knew how to do that now.",
+          "mood": "talk",
+          "beat": "promiseMeal",
+          "shotId": "camp3:1",
+          "ribbonSide": 1,
+          "location": "OATHFORGE · BEFORE THE COURTYARD",
+          "camera": {
+            "x": 308,
+            "y": 180,
+            "zoom": 1.14
+          },
+          "durationMs": 6500
+        },
+        {
+          "speaker": "Fern",
+          "art": "camp",
+          "text": "Fern came over as you folded the map. She started to reach for the ribbon on your wrist, the way she always did before a fight.\n\nThis time, her fingers stopped short of it.\n\n“After this,” she began.\n\nAster looked up. Nothing sharp in the look. Nothing anyone could point to.\n\nFern lowered her hand.\n\n“After this, we should all sleep.”\n\nYou told her you would. She nodded, but did not return to her place immediately. You mistook the silence for worry about the guardian.",
+          "mood": "sad",
+          "beat": "hesitation",
+          "shotId": "camp3:2",
+          "ribbonSide": 1,
+          "location": "OATHFORGE · BEFORE THE COURTYARD",
+          "camera": {
+            "x": 308,
+            "y": 180,
+            "zoom": 1.14
+          },
+          "durationMs": 6500
+        },
+        {
+          "speaker": "Mira",
+          "art": "camp",
+          "text": "Mira unpacked five polished cups and placed them on a flat stone. Rook reached for one; she tapped his fingers away.\n\n“For after the Castellan.”\n\n“Cruelty. In our own camp.”\n\nYou helped straighten them. Five places, yours between Fern and Aster. Aster had promised a meal. Mira had brought the cups. Fern would check your hands when the fighting was over.\n\nYou had stopped counting to see whether you belonged.\n\nBeyond the camp, the keep’s chains pulled taut. Morning would be soon enough to deal with them.",
+          "mood": "grin",
+          "beat": "cups",
+          "shotId": "camp3:3",
+          "ribbonSide": 1,
+          "location": "OATHFORGE · BEFORE THE COURTYARD",
+          "camera": {
+            "x": 308,
+            "y": 180,
+            "zoom": 1.14
+          },
+          "durationMs": 6500
+        }
+      ],
+      "finish": "Enter Oathforge →"
+    },
+    "betrayal": {
+      "title": "The taste beneath the honey",
+      "pages": [
+        {
+          "speaker": "Narrator",
+          "art": "betrayal",
+          "text": "The Castellan fell in the courtyard you had traced on Mira’s map. Its chains slackened, and the stair beneath Oathforge opened. You had taken the heaviest blows; Fern promised to look at your shoulder once you were sheltered.\n\nInside the passage, Aster offered you the cup you had helped unpack.\n\n“To the person who got us here.”\n\nYou accepted it with a tired smile.\n\nHoney. Then a bitter metal taste. You tried to ask whether it was medicine, but your fingers forgot how to hold the cup.\n\nIt struck the floor before you did.",
+          "beat": "poison",
+          "shotId": "betrayal:0",
+          "ribbonSide": 1,
+          "location": "OATHFORGE · THE NORTHERN STAIR",
+          "camera": {
+            "x": 286,
+            "y": 194,
+            "zoom": 1.26
+          },
+          "durationMs": 8500
+        },
+        {
+          "speaker": "{name}",
+          "art": "betrayal",
+          "text": "You reached for Fern.\n\nNot because you understood. Because reaching for Fern was what you did when something hurt.\n\nShe knelt and caught your wrist. For one wonderful, foolish second, you waited for the green light.\n\nInstead, her fingers found the knot she had tied beneath the mountain. She loosened it carefully. The ribbon slipped free.\n\n“Fern?”\n\nShe held it between both hands. Her mouth moved, but nothing useful came out.\n\nThe cold stone pressed against your cheek. You began to understand.",
+          "beat": "ribbonTaken",
+          "shotId": "betrayal:1",
+          "ribbonSide": 1,
+          "location": "OATHFORGE · THE NORTHERN STAIR",
+          "camera": {
+            "x": 286,
+            "y": 194,
+            "zoom": 1.26
+          },
+          "durationMs": 6500
+        },
+        {
+          "speaker": "Aster",
+          "art": "betrayal",
+          "text": "“Do not fight the poison,” Aster said. “It makes it worse.”\n\nYou tried to lift your head. He watched the effort and did not kneel to help.\n\n“The treasury promises power to whoever reaches it. Every guardian makes you stronger. What happens when we reach the end and you decide you no longer need us?”\n\nYou could barely speak. “I never—”\n\n“I could not take the risk.”\n\nHe said it as though the risk were the cruel thing, and the cup had merely been sensible.",
+          "mood": "sad",
+          "beat": "coldCaptain",
+          "shotId": "betrayal:2",
+          "location": "OATHFORGE · THE NORTHERN STAIR",
+          "camera": {
+            "x": 286,
+            "y": 194,
+            "zoom": 1.26
+          },
+          "durationMs": 6500
+        },
+        {
+          "speaker": "Mira",
+          "art": "betrayal",
+          "text": "“You will wake up,” Mira said to the floor. “The dose should only keep you still.”\n\nYou remembered a gate pressing into your palms. Her violet hat scraping past your knees. How badly she had been shaking afterwards.\n\n“You said you would remember.”\n\nHer breath caught.\n\n“I do.”\n\nThe memory ended. Mira was still there, looking away from you.\n\nThat hurt worse than forgetting would have. She had carried the same moment all this way and still chosen the cup.",
+          "mood": "sad",
+          "beat": "gateRegret",
+          "shotId": "betrayal:3",
+          "location": "OATHFORGE · THE NORTHERN STAIR",
+          "camera": {
+            "x": 320,
+            "y": 150,
+            "zoom": 1.02
+          },
+          "durationMs": 6500
+        },
+        {
+          "speaker": "Rook",
+          "art": "betrayal",
+          "text": "Rook crouched and lifted your pack. His fingers found the strap Mira had repaired on the road.\n\n“A door nobody can kick in,” you whispered.\n\nHe went still.\n\nThen he pulled the pack against his chest. “You should not have made us need you this much.”\n\nYou looked at the hand holding your things. It had offered you a dagger grip first, as carefully as if kindness were something he had been practising in secret.\n\nHe turned away before you could ask where that man had gone.",
+          "mood": "angry",
+          "beat": "stolenPack",
+          "shotId": "betrayal:4",
+          "location": "OATHFORGE · THE NORTHERN STAIR",
+          "camera": {
+            "x": 286,
+            "y": 194,
+            "zoom": 1.26
+          },
+          "durationMs": 6500
+        },
+        {
+          "speaker": "Fern",
+          "art": "betrayal",
+          "text": "Fern closed her fist around the ribbon.\n\n“I am sorry.”\n\nYou waited for those words to do something. Open a bottle. Change a mind. Bring one of them back to your side.\n\nAster left first. Rook followed with your pack. Mira hesitated at the door; Fern touched her arm, and they went together.\n\nTheir footsteps faded down the northern stair.\n\nFor a long time you could still hear five sets of footsteps in your memory. The corridor itself had only four.\n\nThen the poison took the rest of the light.",
+          "mood": "sad",
+          "beat": "abandon",
+          "shotId": "betrayal:5",
+          "location": "OATHFORGE · THE NORTHERN STAIR",
+          "camera": {
+            "x": 286,
+            "y": 194,
+            "zoom": 1.26
+          },
+          "durationMs": 6500
+        },
+        {
+          "speaker": "BYTE",
+          "art": "prison",
+          "text": "You woke in a cell beneath the passage. An iron cuff held one wrist to the wall; the other chain had enough slack to reach the floor. Even sitting up took work.\n\nBYTE stood outside the bars.\n\n“Look at you. The mountain’s great miracle. One cup, and you cannot even stand.”\n\n“Did you know?”\n\nHis familiar smile vanished.\n\n“I kept sending you towards things that should have broken you. Every time, you came back stronger. Then four thieves offered you a place at their fire, and you handed them your throat.”\n\nYou pulled against the cuff. He stepped close enough to watch it bite.\n\n“No next lesson, stoneborn. Learn the floor.”",
+          "mood": "grin",
+          "beat": "prison",
+          "shotId": "betrayal:6",
+          "location": "OATHFORGE · THE NORTHERN STAIR",
+          "camera": {
+            "x": 286,
+            "y": 194,
+            "zoom": 1.26
+          },
+          "durationMs": 6500
+        }
+      ],
+      "finish": "Wake beneath Oathforge →"
+    },
+    "escape": {
+      "title": "Thank you for the lesson",
+      "pages": [
+        {
+          "speaker": "Narrator",
+          "art": "escape",
+          "text": "The notched blade entered the lock. You nearly forced it, then stopped. Heat, shape, cool. You had taken care over every step. You could take care over this one too.\n\nA stubborn pin lifted beneath the third tooth. You turned your wrist a fraction.\n\nClick.\n\nThe bolt slid back. You kept your hand on the door until the opening was wide enough, then stepped into the corridor.\n\nSuch a small sound. Such an unreasonable amount of world on the other side of it.",
+          "beat": "escape",
+          "escapeBeat": 0,
+          "shotId": "escape:0",
+          "location": "OATHFORGE · BELOW THE KEEP",
+          "camera": {
+            "x": 309,
+            "y": 177,
+            "zoom": 1.1
+          },
+          "durationMs": 8000
+        },
+        {
+          "speaker": "BYTE",
+          "art": "escape",
+          "text": "BYTE rounded the corner with a biscuit halfway to his mouth.\n\nHe stopped. The biscuit did not.\n\nYou watched it bounce beside his shoe.\n\n“No.” His eyes went from the open door to the empty cuff. “I left you chained. I left you without a weapon.”\n\nYou held up the key. Three uneven teeth, the familiar dagger grip.\n\n“That was not yours to change.”\n\n“Neither was my life.”\n\nThe biscuit lay between you. For once, neither of you had anything to say about breakfast.",
+          "mood": "shock",
+          "beat": "escape",
+          "escapeBeat": 1,
+          "shotId": "escape:1",
+          "location": "OATHFORGE · BELOW THE KEEP",
+          "camera": {
+            "x": 309,
+            "y": 177,
+            "zoom": 1.1
+          },
+          "durationMs": 8000
+        },
+        {
+          "speaker": "{name}",
+          "art": "trail",
+          "text": "“Get back inside.”\n\nBYTE said it softly. That was worse than shouting.\n\nYour knees still wanted to fold, but you walked past him. He shifted to block the corridor; you stopped close enough that he had to look up.\n\n“You taught me to look for the rule.”\n\n“I taught you to obey it.”\n\n“No. You only thought those were the same thing.”\n\nHe moved aside at last.\n\n“The road ends in Veyr’s hall,” he said after you. “A door opening does not mean you are free of what comes next.”",
+          "beat": "trail",
+          "escapeBeat": 2,
+          "shotId": "escape:2",
+          "location": "OATHFORGE · BELOW THE KEEP",
+          "camera": {
+            "x": 309,
+            "y": 177,
+            "zoom": 1.1
+          },
+          "durationMs": 6500
+        },
+        {
+          "speaker": "Narrator",
+          "art": "trail",
+          "text": "Your pack lay at the abandoned guard post. Rook had taken the coins. Fern had taken the medicine. The patched strap and empty bottle remained.\n\nYou knelt, threaded your arm through the strap, and stood slowly. The stitches held. That hurt. You let it hurt, then fastened the buckle.\n\nThe scroll’s route ran north through the catacombs, across the linked watch posts and into Veyr’s keep—the same road Aster had traced for you.\n\nNow you knew why he wanted it open.\n\nYou folded the scroll into your pack. If the road ended at a king who bought people with promises, you had something to ask him.",
+          "beat": "trail",
+          "escapeBeat": 3,
+          "shotId": "escape:3",
+          "location": "OATHFORGE · BELOW THE KEEP",
+          "camera": {
+            "x": 309,
+            "y": 177,
+            "zoom": 1.1
+          },
+          "durationMs": 6500
+        }
+      ],
+      "finish": "Take back the road →"
+    },
+    "rivals": {
+      "title": "Look who learned to pick a lock",
+      "pages": [
+        {
+          "speaker": "Narrator",
+          "art": "arrival",
+          "text": "Beyond the Echo Sentinel, the company’s abandoned markers led you to the throne passage. You had followed their shortcuts through the keep and opened the branching locks they had left behind.\n\nThe last inscription accepted your depth-first search. The doors parted.\n\nYou walked in alone.\n\nRed carpet softened your footsteps. At the far end of the hall, a crowned figure rested one hand on the throne. You stopped well short of the steps.\n\nVeyr looked up as if your arrival were an appointment he had expected someone else to cancel.",
+          "beat": "arrival",
+          "rivalBeat": 0,
+          "shotId": "rivals:0",
+          "location": "VEYRFALL · THE THRONE HALL",
+          "camera": {
+            "x": 320,
+            "y": 150,
+            "zoom": 1.02
+          },
+          "durationMs": 8000
+        },
+        {
+          "speaker": "Narrator",
+          "art": "reunion",
+          "text": "Boots struck marble behind you. Four sets.\n\nThe Dawn Company came through a side entrance, following the treasury route from the scroll. New gold trimmed Aster’s armor. Gems swung from Rook’s axe; Mira wore rings she had never owned by the campfire. Fern’s satchel was full again.\n\nThey were still arguing about how to divide something when Aster saw you.\n\nHis smile stayed in place for half a second after the rest of his face understood.\n\nThen the company stopped.",
+          "beat": "reunion",
+          "rivalBeat": 1,
+          "shotId": "rivals:1",
+          "location": "VEYRFALL · THE THRONE HALL",
+          "camera": {
+            "x": 320,
+            "y": 150,
+            "zoom": 1.02
+          },
+          "durationMs": 8000
+        },
+        {
+          "speaker": "Rook",
+          "art": "throne",
+          "text": "“You.”\n\nA ruby tapped against Rook’s axe as his hand tightened on the haft. He checked your wrists, then the doorway behind you, as though the prison might still catch up.\n\n“Of course.” His laugh came out too loud. “Of course the rock gets out.”\n\nYou looked at the gold on his belt.\n\n“Did you buy your door?”\n\nHe stopped laughing. His thumb covered the ruby, but there were too many other things to hide.",
+          "mood": "shock",
+          "beat": "throne",
+          "rivalBeat": 2,
+          "shotId": "rivals:2",
+          "location": "VEYRFALL · THE THRONE HALL",
+          "camera": {
+            "x": 334,
+            "y": 168,
+            "zoom": 1.08
+          },
+          "durationMs": 6500
+        },
+        {
+          "speaker": "Mira",
+          "art": "throne",
+          "text": "“That dose should have lasted weeks,” Mira said.\n\nThe words hung between you before she could take them back.\n\n“You checked?”\n\nShe lowered her eyes to the rings on her hand. You remembered the same fingers shaking around a tin cup after the fallen gate.\n\n“I thought—”\n\nYou waited.\n\nFor the first time since you met her, she could not find a useful end to a sentence. The king watched from his chair and said nothing at all.",
+          "mood": "shock",
+          "beat": "throne",
+          "rivalBeat": 3,
+          "shotId": "rivals:3",
+          "location": "VEYRFALL · THE THRONE HALL",
+          "camera": {
+            "x": 334,
+            "y": 168,
+            "zoom": 1.08
+          },
+          "durationMs": 6500
+        },
+        {
+          "speaker": "Fern",
+          "art": "throne",
+          "text": "Fern took half a step towards you. The blue ribbon showed at the mouth of her new satchel.\n\n“You look—”\n\n“Alive?”\n\nShe flinched.\n\nYou had imagined shouting at her. In the catacombs you had built whole arguments, thrown them at empty walls, won every one. Here, with her in front of you, your voice was quiet.\n\n“I worked very hard on that.”\n\nHer reaching hand stopped. This time you did not offer your wrist.",
+          "mood": "sad",
+          "beat": "throne",
+          "rivalBeat": 4,
+          "shotId": "rivals:4",
+          "location": "VEYRFALL · THE THRONE HALL",
+          "camera": {
+            "x": 334,
+            "y": 168,
+            "zoom": 1.08
+          },
+          "durationMs": 6500
+        },
+        {
+          "speaker": "Aster",
+          "art": "throne",
+          "text": "Aster recovered his smile. The one from the cage, polished until you could almost see yourself in it.\n\n“We can still talk.”\n\n“We did. Over a drink.”\n\n“We were frightened.”\n\n“So was I.”\n\nHis jaw tightened. Perhaps he had expected forgiveness to be another door you would open for him.\n\n“You have made this difficult.”\n\nYou set your feet on the carpet. “Only the part where I die.”\n\nA slow laugh rolled down from the throne.",
+          "mood": "grin",
+          "beat": "throne",
+          "rivalBeat": 5,
+          "shotId": "rivals:5",
+          "location": "VEYRFALL · THE THRONE HALL",
+          "camera": {
+            "x": 334,
+            "y": 168,
+            "zoom": 1.08
+          },
+          "durationMs": 6500
+        },
+        {
+          "speaker": "Demon Lord Veyr",
+          "art": "crown",
+          "text": "“Such devoted companions,” Veyr said. “And so unwilling to share the cost.”\n\nHe lifted one claw. Black fire travelled down the steps and climbed the four adventurers’ new armor. Their jewels answered it, one after another.\n\nThey had not merely taken treasure. They had put on its hooks.\n\n“Kill the stoneborn,” the king said, “and the last of you standing inherits my treasury. My strength. All the years you have been begging the world to spare.”\n\nThe light brightened. Aster stood a little straighter.",
+          "beat": "crown",
+          "rivalBeat": 6,
+          "shotId": "rivals:6",
+          "location": "VEYRFALL · THE THRONE HALL",
+          "camera": {
+            "x": 334,
+            "y": 168,
+            "zoom": 1.08
+          },
+          "durationMs": 6500
+        },
+        {
+          "speaker": "Mira",
+          "art": "crown",
+          "text": "“The last?” Mira whispered.\n\nFern looked at Aster. Rook looked at everyone.\n\nFor one treacherous heartbeat, your body remembered its old job: move in front, hold the gate, take the blow so they could get clear.\n\nThen Rook shifted his axe towards Mira.\n\nAster saw it. His shield rose in front of his own chest.\n\nYou let your first step stop. The company had heard the same promise four different ways, and the king was waiting to see which meaning cut deepest.",
+          "mood": "angry",
+          "beat": "crown",
+          "rivalBeat": 7,
+          "shotId": "rivals:7",
+          "location": "VEYRFALL · THE THRONE HALL",
+          "camera": {
+            "x": 334,
+            "y": 168,
+            "zoom": 1.08
+          },
+          "durationMs": 6500
+        },
+        {
+          "speaker": "Rook",
+          "art": "greed",
+          "text": "“A quarter of forever.” Rook tried the words as if they tasted rotten. “That is what we were going to settle for?”\n\n“Put down the axe,” Mira said. Her staff lifted an inch.\n\n“You first.”\n\nFern caught his sleeve. Green light threaded around his forearm, locking the elbow. You knew that colour. You had trusted it on your own hands.\n\nRook stared at her fingers.\n\n“Oh. So that is what your kindness looks like with teeth.”\n\nBehind his shield, Aster said nothing.",
+          "mood": "angry",
+          "beat": "greed",
+          "rivalBeat": 8,
+          "shotId": "rivals:8",
+          "location": "VEYRFALL · THE THRONE HALL",
+          "camera": {
+            "x": 334,
+            "y": 168,
+            "zoom": 1.08
+          },
+          "durationMs": 6500
+        },
+        {
+          "speaker": "Narrator",
+          "art": "greed",
+          "text": "Rook tore free. His first step cracked the marble.\n\nMira planted her staff. You knew that stance: at the drowned gate, you had trusted her to aim past your shoulder.\n\n“Wait—”\n\nHer spell left the staff as his axe swept across her guard. Light struck Rook’s chest. Metal struck Mira. For one suspended heartbeat they stared at each other, astonished that neither had chosen to miss.\n\nTheir knees failed together.\n\nFern reached for them. Relief moved through you—until the green threads tightened towards her own heart. She was taking the promised power.\n\nIt pulled back.\n\nYou lunged. The shockwave drove you behind your weapon. When the light cleared, her staff had fallen beside the other two.\n\nThree strands of light crossed the floor. Aster held his shield up and let them come.",
+          "beat": "greed",
+          "rivalBeat": 9,
+          "shotId": "rivals:9",
+          "location": "VEYRFALL · THE THRONE HALL",
+          "camera": {
+            "x": 334,
+            "y": 168,
+            "zoom": 1.08
+          },
+          "durationMs": 12000
+        },
+        {
+          "speaker": "Aster",
+          "art": "fallen",
+          "text": "Gold climbed Aster’s shield. Old dents filled themselves in. The stolen light settled beneath his breastplate, and he lowered his guard.\n\n“They lost control.”\n\nYou looked at Rook’s axe. He had once used it to divide bread into five wildly unequal pieces. Fern’s empty hand lay near the staff she had dropped.\n\n“You knew what that promise would do.”\n\n“I knew what they would do.”\n\nThe difference cost him nothing.\n\nVeyr began to applaud, slowly. Aster did not turn around. Perhaps he could no longer bear to look at the person approving of him.",
+          "mood": "angry",
+          "beat": "fallen",
+          "rivalBeat": 10,
+          "shotId": "rivals:10",
+          "location": "VEYRFALL · THE THRONE HALL",
+          "camera": {
+            "x": 334,
+            "y": 168,
+            "zoom": 1.08
+          },
+          "durationMs": 6500
+        },
+        {
+          "speaker": "Aster",
+          "art": "paladin",
+          "text": "“I kept them alive for years,” Aster said. “I carried this company before you existed.”\n\nHis sword came free of its scabbard. The king’s fire travelled along the edge.\n\n“You do not get to arrive yesterday and take my future.”\n\nYou raised your weapon. The patched strap pulled against your shoulder. The wrist where Fern’s ribbon had been felt strangely bare.\n\n“Then you should have built one that did not need my grave.”\n\nAster lowered his point towards you. There was no one left to stand between you now.",
+          "mood": "angry",
+          "beat": "paladin",
+          "rivalBeat": 11,
+          "shotId": "rivals:11",
+          "location": "VEYRFALL · THE THRONE HALL",
+          "camera": {
+            "x": 334,
+            "y": 168,
+            "zoom": 1.08
+          },
+          "durationMs": 6500
+        }
+      ],
+      "finish": "Face Aster, the Fallen Paladin →"
+    },
+    "paladinFall": {
+      "title": "What the gold could not buy",
+      "pages": [
+        {
+          "speaker": "Narrator",
+          "art": "oathEnd",
+          "text": "The next blow split Aster’s shield along its crest. Beneath the gold lay the old dent from the cage—the mark he had never quite managed to hide.\n\nHe fell to one knee.\n\nThe power Veyr had lent him loosened in thin threads and crossed to you. You braced against it. Aster reached for the broken edge of his shield as if he could pull the light back by holding the pieces together.\n\nHis hand shook.\n\nAt last, he looked as tired as he had on the day you met.",
+          "beat": "oathEnd",
+          "shotId": "paladinFall:0",
+          "location": "VEYRFALL · AFTER THE DUEL",
+          "camera": {
+            "x": 331,
+            "y": 181,
+            "zoom": 1.17
+          },
+          "durationMs": 6500
+        },
+        {
+          "speaker": "Aster",
+          "art": "oathEnd",
+          "text": "“We could have had everything.”\n\nYou thought of a fifth bowl beside a fire. Rook’s enormous fingers worrying at a tiny needle. Aster bringing half a cloak because you had been cold.\n\n“We had quite a lot.”\n\nThe memories did not become false merely because he had betrayed them. That was the difficult part. You wished they would.\n\nAster looked as though he might answer. Then his hand slipped from the shield, and he lay beside the company he had been so afraid to lose.",
+          "mood": "sad",
+          "beat": "shieldMemory",
+          "shotId": "paladinFall:1",
+          "location": "VEYRFALL · AFTER THE DUEL",
+          "camera": {
+            "x": 320,
+            "y": 150,
+            "zoom": 1.02
+          },
+          "durationMs": 6500
+        },
+        {
+          "speaker": "{name}",
+          "art": "oathEnd",
+          "text": "Fern’s ribbon had fallen from her satchel.\n\nYou went over and crouched beside it. For a moment you could not make your fingers close. Then you picked it up, brushed the dust away and tied it around your other wrist.\n\nNot a promise to them. Not permission to forget.\n\nA memory you could choose to carry without letting it choose your road.\n\nBehind you, the throne scraped against stone. You rose slowly. The person who had offered them forever was still waiting.",
+          "beat": "keepRibbon",
+          "shotId": "paladinFall:2",
+          "ribbonSide": 0,
+          "location": "VEYRFALL · AFTER THE DUEL",
+          "camera": {
+            "x": 331,
+            "y": 181,
+            "zoom": 1.17
+          },
+          "durationMs": 6500
+        },
+        {
+          "speaker": "Demon Lord Veyr",
+          "art": "barrier",
+          "text": "“Sentiment,” Veyr said. “An expensive habit.”\n\nYou turned towards the steps.\n\nHe struck the floor with one claw. A ring of violet fire rose between you, then another inside it. Paths connected bright points across the turning circles; some looped back, some vanished into sealed ends.\n\nYou stopped before the first line could touch you.\n\n“The company opened my road,” he said. “Let us see whether you can open the last door without them.”\n\nThe rings locked together. Their light hid the king’s smile.",
+          "beat": "barrier",
+          "shotId": "paladinFall:3",
+          "ribbonSide": 0,
+          "location": "VEYRFALL · AFTER THE DUEL",
+          "camera": {
+            "x": 331,
+            "y": 181,
+            "zoom": 1.17
+          },
+          "durationMs": 6500
+        },
+        {
+          "speaker": "{name}",
+          "art": "barrier",
+          "text": "You watched the marks complete a circuit. The same points returned. The same connections remained when the rings turned.\n\n“A graph,” you said.\n\nVeyr’s claws tightened on the arm of the throne.\n\nThe barrier’s terminal described the task: reach the far side in the fewest steps; every connection had equal cost. You had seen this in the route lessons. A queue, a visited set, one frontier at a time.\n\nYou went to the inscription.\n\nNot because BYTE had told you to. Because you understood what you were looking at.",
+          "beat": "barrier",
+          "shotId": "paladinFall:4",
+          "ribbonSide": 0,
+          "location": "VEYRFALL · AFTER THE DUEL",
+          "camera": {
+            "x": 331,
+            "y": 181,
+            "zoom": 1.17
+          },
+          "durationMs": 6500
+        }
+      ],
+      "finish": "Read the barrier’s inscription →"
+    },
+    "barrier": {
+      "title": "The shortest way to a very bad king",
+      "pages": [
+        {
+          "speaker": "Narrator",
+          "art": "barrierBreak",
+          "text": "The first frontier lit. Then the second. Your queue carried the search outwards until the far seal answered.\n\nOne route shone across the circles, each connection following the last. The barrier traced it as though checking your work.\n\nThe outer ring cracked.\n\nFor a moment the inner rings held. Then the crack reached them, and the whole intricate lock fell apart in bright fragments that faded before they touched the floor.\n\nOn the other side, Veyr rose from his chair.",
+          "beat": "barrierBreak",
+          "shotId": "barrier:0",
+          "ribbonSide": 0,
+          "location": "VEYRFALL · THE LAST SEAL",
+          "camera": {
+            "x": 463,
+            "y": 174,
+            "zoom": 1.19
+          },
+          "durationMs": 6500
+        },
+        {
+          "speaker": "{name}",
+          "art": "demon",
+          "text": "You stepped across the last fading mark.\n\n“Nice door.”\n\nVeyr’s wings opened until they covered the throne. The air moved against your face, hot and stale from centuries beneath the same roof.\n\n“ENOUGH.”\n\nYou settled your grip.\n\nFor the first time since you entered the hall, you agreed with him. No more people standing between you. No promises offered to somebody else. The king had to do his own fighting now.",
+          "beat": "demon",
+          "shotId": "barrier:1",
+          "ribbonSide": 0,
+          "location": "VEYRFALL · THE LAST SEAL",
+          "camera": {
+            "x": 463,
+            "y": 174,
+            "zoom": 1.19
+          },
+          "durationMs": 6500
+        },
+        {
+          "speaker": "Narrator",
+          "art": "demon",
+          "text": "His shoulder lowered before his claw moved. Red light spread over the place where the blow would land.\n\nYou shifted outside it. Marble burst where you had been standing.\n\nHe was fast. Stronger than Aster. But the strike dragged his weight forward, and for a brief moment the crown dipped within reach.\n\nYou watched him recover.\n\nThere was a warning, an attack, an opening. You had learned harder things while frightened. Breathe. Read the movement. Survive first, then answer.",
+          "beat": "demon",
+          "shotId": "barrier:2",
+          "ribbonSide": 0,
+          "location": "VEYRFALL · THE LAST SEAL",
+          "camera": {
+            "x": 463,
+            "y": 174,
+            "zoom": 1.19
+          },
+          "durationMs": 6500
+        }
+      ],
+      "finish": "Fight Demon Lord Veyr →"
+    },
+    "fusion": {
+      "title": "The lesson he never meant to teach",
+      "pages": [
+        {
+          "speaker": "Narrator",
+          "art": "fusion",
+          "text": "Veyr staggered against the throne steps. A crack ran through his crown. You moved in before he could recover.\n\nBlue flashed at the edge of your vision.\n\nBYTE rushed between you and the king, his backpack banging against his shoulder. You checked your swing and stepped back.\n\nFor one absurd instant, after the cell and every threat since it, some stubborn part of you still expected a familiar lesson.\n\nBYTE faced the throne.\n\n“MASTER!”\n\nThat word finished an answer you had been carrying for a long time.",
+          "beat": "fusion",
+          "fusionStage": 0,
+          "shotId": "fusion:0",
+          "ribbonSide": 0,
+          "location": "VEYRFALL · THE CRACKED CROWN",
+          "camera": {
+            "x": 480,
+            "y": 175,
+            "zoom": 1.21
+          },
+          "durationMs": 6500
+        },
+        {
+          "speaker": "BYTE",
+          "art": "fusion",
+          "text": "“This is the stoneborn,” BYTE said. “The one in the prophecy.”\n\nVeyr turned his head. The cracked crown slipped another fraction.\n\n“You were assigned to prevent this.”\n\n“I led them to the guardians. Every sealed road. Every lethal test I could find.” BYTE's hands moved faster than his explanation. “They kept asking questions.”\n\nThe king stared at him.\n\n“And I kept,” BYTE admitted, “answering them.”\n\nFor the first time, his hurried little jokes did not seem intended for you. He was trying to make his master stop looking at him that way.",
+          "mood": "shock",
+          "beat": "fusion",
+          "fusionStage": 1,
+          "shotId": "fusion:1",
+          "ribbonSide": 0,
+          "location": "VEYRFALL · THE CRACKED CROWN",
+          "camera": {
+            "x": 480,
+            "y": 175,
+            "zoom": 1.21
+          },
+          "durationMs": 6500
+        },
+        {
+          "speaker": "{name}",
+          "art": "fusion",
+          "text": "You remembered BYTE staring at the broken rock. His surprise when you returned from each guardian. The pleasure he had taken in seeing you chained.\n\n“So the lessons were his orders.”\n\n“The road was his order,” BYTE snapped. “You were meant to rush ahead, make a mistake, meet something you could not survive.”\n\n“But you explained the mistakes.”\n\nHe looked away.\n\nThe shrines had made you stronger because you had learned from them. He had mistaken your willingness to try for an inability to understand.",
+          "beat": "fusion",
+          "fusionStage": 2,
+          "shotId": "fusion:2",
+          "ribbonSide": 0,
+          "location": "VEYRFALL · THE CRACKED CROWN",
+          "camera": {
+            "x": 480,
+            "y": 175,
+            "zoom": 1.21
+          },
+          "durationMs": 6500
+        },
+        {
+          "speaker": "BYTE",
+          "art": "fusion",
+          "text": "“Born of stone,” BYTE said. “That is how the prophecy begins. It ends with his crown broken.”\n\nHe pointed at Veyr’s head. The crack was impossible to miss.\n\n“I found you before you knew what a hand was. You should have been easy. A little praise, a difficult shrine, a guardian waiting at the end.”\n\nHis finger swung back towards you.\n\n“You were meant to be overconfident. Not competent.”\n\nYou thought of all the times you had got an answer wrong and asked him to explain it again. You had never felt particularly confident then.",
+          "mood": "angry",
+          "beat": "fusion",
+          "fusionStage": 3,
+          "shotId": "fusion:3",
+          "ribbonSide": 0,
+          "location": "VEYRFALL · THE CRACKED CROWN",
+          "camera": {
+            "x": 480,
+            "y": 175,
+            "zoom": 1.21
+          },
+          "durationMs": 6500
+        },
+        {
+          "speaker": "{name}",
+          "art": "fusion",
+          "text": "“You could have stopped answering.”\n\n“You would not stop asking!”\n\n“And when I needed time?”\n\nBYTE made a thin, furious sound.\n\n“You gave it to me.”\n\nBehind him, Veyr tried to stand straight. One hand pressed against the crack in his crown.\n\nBYTE saw the movement. His anger faltered. For a moment there was only fear on his face—not of you failing, but of what his master would do now that you had not.\n\nThen he turned towards the steps.",
+          "beat": "fusion",
+          "fusionStage": 4,
+          "shotId": "fusion:4",
+          "ribbonSide": 0,
+          "location": "VEYRFALL · THE CRACKED CROWN",
+          "camera": {
+            "x": 480,
+            "y": 175,
+            "zoom": 1.21
+          },
+          "durationMs": 6500
+        },
+        {
+          "speaker": "BYTE",
+          "art": "fusion",
+          "text": "BYTE ran to the kneeling king. He braced one foot on the stair, reached up with both hands and seized the cracked crown.\n\n“Then here is the final lesson.”\n\nBlack threads rose from his fingers. They caught the crack, pulled tight and began unravelling his shadow. His sleeve thinned into blue sparks; his backpack fell inward with the rest of him.\n\nYou raised an arm against the pressure. The threads drove into Veyr’s breastplate, carrying BYTE with them until no separate figure remained.\n\nThe crown closed.\n\n“Some problems,” said two voices from one armored throat, “do not let you try again.”",
+          "mood": "angry",
+          "beat": "fusion",
+          "fusionStage": 5,
+          "shotId": "fusion:5",
+          "ribbonSide": 0,
+          "location": "VEYRFALL · THE CRACKED CROWN",
+          "camera": {
+            "x": 480,
+            "y": 175,
+            "zoom": 1.21
+          },
+          "durationMs": 10500
+        },
+        {
+          "speaker": "Narrator",
+          "art": "fused",
+          "text": "Veyr rose. A second face opened in the armor over his heart—BYTE’s grin, stretched into something that did not need a mouth to laugh.\n\nYou gave the steps more room.\n\nThe king’s new shield sealed while he moved. Then he drove a claw into the floor, and the effort pulled a flash of gold through the crown’s seam.\n\nThere. Still an opening.\n\nYou watched it close and waited for the next warning. The enemy had changed. Watching carefully had not stopped working.",
+          "beat": "fused",
+          "fusionStage": 6,
+          "shotId": "fusion:6",
+          "ribbonSide": 0,
+          "location": "VEYRFALL · THE CRACKED CROWN",
+          "camera": {
+            "x": 480,
+            "y": 175,
+            "zoom": 1.21
+          },
+          "durationMs": 6500
+        }
+      ],
+      "finish": "Break the fused crown →"
+    },
+    "ending": {
+      "title": "The sky was never the ceiling",
+      "pages": [
+        {
+          "speaker": "Narrator",
+          "art": "victory",
+          "text": "The seam flashed gold.\n\nYou moved inside the final swing and drove your weapon into it. The crown held for one breath, resisting with all the borrowed strength beneath it.\n\nYou pushed through.\n\nThe crack opened from point to point. BYTE began a last objection from the face in Veyr’s armor, but the light took the sentence apart before he could finish.\n\nThe crown broke. Its pieces struck the steps, and the king who had promised forever began to come undone.",
+          "beat": "victory",
+          "endingBeat": 0,
+          "shotId": "ending:0",
+          "ribbonSide": 0,
+          "location": "VEYRFALL · AN OPEN SKY",
+          "camera": {
+            "x": 355,
+            "y": 160,
+            "zoom": 1.1
+          },
+          "durationMs": 6500
+        },
+        {
+          "speaker": "Narrator",
+          "art": "victory",
+          "text": "The released power hit you like the mountain opening a second time.\n\nYou dug your heels into the marble. The ribbon lashed against your wrist. Stolen years, locked-away strength, all the fear that had kept the northern road closed—it poured through you and found no crown to fasten itself to.\n\nYour wounds closed. The ache left your bones.\n\nWhen the light faded, you could hear the castle settling around you. You could hear your own steady heartbeat beneath it.\n\nYou had survived. For a while, that was enough to understand.",
+          "beat": "victory",
+          "endingBeat": 1,
+          "shotId": "ending:1",
+          "ribbonSide": 0,
+          "location": "VEYRFALL · AN OPEN SKY",
+          "camera": {
+            "x": 355,
+            "y": 160,
+            "zoom": 1.1
+          },
+          "durationMs": 6500
+        },
+        {
+          "speaker": "Narrator",
+          "art": "treasure",
+          "text": "Locks burst below the throne. Gold spilled down the stairs; relics lifted from their cases, waiting for the new owner of the king’s power.\n\nYou took the treasure. The strength. The impossible years he had hoarded while everyone outside argued over the few they were given.\n\nThe empty throne waited as well.\n\nYou walked close enough to touch it, then stopped.\n\nIt was an enormous chair. An excellent place to sit still while other people brought you news of a world you never went out to see.",
+          "beat": "treasure",
+          "endingBeat": 2,
+          "shotId": "ending:2",
+          "ribbonSide": 0,
+          "location": "VEYRFALL · AN OPEN SKY",
+          "camera": {
+            "x": 355,
+            "y": 160,
+            "zoom": 1.1
+          },
+          "durationMs": 6500
+        },
+        {
+          "speaker": "{name}",
+          "art": "treasure",
+          "text": "“Forever?”\n\nYou remembered the cell. The cold cuff, the narrow patch of light. You remembered a fire with five bowls beside it. The rock that had held you before you knew there was an outside.\n\nThe chair offered a different kind of staying.\n\n“No.”\n\nBack in the silent hall, you wound the ribbon twice around your wrist and tightened the knot yourself.\n\nYou could keep what had mattered without remaining where it had hurt you.\n\nThere were other mountains. You had only met one from the inside.",
+          "beat": "falseForever",
+          "endingBeat": 3,
+          "shotId": "ending:3",
+          "ribbonSide": 0,
+          "location": "VEYRFALL · AN OPEN SKY",
+          "camera": {
+            "x": 320,
+            "y": 150,
+            "zoom": 1.02
+          },
+          "durationMs": 14000
+        },
+        {
+          "speaker": "Narrator",
+          "art": "impact",
+          "text": "You set one foot on the lowest stair and drew back your fist.\n\nThe first blow drove a crack through the throne’s foundation. It climbed the dais, split the king’s seat and branched into the nearest pillar.\n\nYou pulled your hand free. Dust fell on your shoulder.\n\nFor the second blow, you did not hold back.\n\nThe pillar answered with a sound deeper than thunder. Across the hall, its twin began to lean. The ceiling that had hidden the sky from you shivered along every seam.",
+          "beat": "impact",
+          "endingBeat": 4,
+          "shotId": "ending:4",
+          "ribbonSide": 0,
+          "location": "VEYRFALL · AN OPEN SKY",
+          "camera": {
+            "x": 355,
+            "y": 160,
+            "zoom": 1.1
+          },
+          "durationMs": 10500
+        },
+        {
+          "speaker": "Narrator",
+          "art": "leap",
+          "text": "You stepped back from the breaking throne and bent your knees.\n\nThe floor cratered beneath your heels.\n\nThen you jumped.\n\nThrough the vault above the hall. Through the falling roof. Through the crown-shaped spire that had thrown its shadow across the northern road.\n\nStone broke around your shoulders and fell away beneath you. Your ribbon streamed blue through the dust. For a moment you could see every place you had walked, from the catacombs to the distant green valley.\n\nThe sky had not become smaller. You had learned how to reach it.",
+          "beat": "leap",
+          "endingBeat": 5,
+          "shotId": "ending:5",
+          "ribbonSide": 0,
+          "location": "VEYRFALL · AN OPEN SKY",
+          "camera": {
+            "x": 320,
+            "y": 150,
+            "zoom": 1.02
+          },
+          "durationMs": 8000
+        },
+        {
+          "speaker": "Narrator",
+          "art": "collapse",
+          "text": "Below you, the split spire sank into the empty hall. The outer towers leaned after it, shedding roofs and windows before folding into their own courtyards.\n\nA wave of dust rolled across the drawbridge. Iron gates tore loose and vanished beneath the rubble. The last prison wall opened to the morning.\n\nYou watched until the crown-shaped shadow was gone.\n\nStone, at last, allowed to be stone again.\n\nBeyond the ruins, the lamps along the old road were still shining. You had put those right. They could stay.",
+          "beat": "collapse",
+          "endingBeat": 6,
+          "shotId": "ending:6",
+          "ribbonSide": 0,
+          "location": "VEYRFALL · AN OPEN SKY",
+          "camera": {
+            "x": 320,
+            "y": 150,
+            "zoom": 1.02
+          },
+          "durationMs": 8000
+        },
+        {
+          "speaker": "Narrator",
+          "art": "dawn",
+          "text": "Above the dust, the air was cold and wonderfully empty.\n\nNo orders. No locks. No one deciding which impossible thing you ought to fail at next.\n\nYou turned towards the mountains beyond the paling horizon. There would be roads there, and people, and things you did not yet know how to do. You could ask. You could learn. You could leave when it was time.\n\nYour stomach growled.\n\nImmortality, apparently, had not solved breakfast.\n\nYou laughed so hard that the wind took the sound ahead of you.",
+          "beat": "dawn",
+          "endingBeat": 7,
+          "shotId": "ending:7",
+          "ribbonSide": 0,
+          "location": "VEYRFALL · AN OPEN SKY",
+          "camera": {
+            "x": 320,
+            "y": 150,
+            "zoom": 1.02
+          },
+          "durationMs": 6500
+        },
+        {
+          "speaker": "{name}",
+          "art": "dawn",
+          "text": "“All right, world.”\n\nYou lifted the wrist with the blue ribbon and pointed towards a ridge no one had marked on your map.\n\nBelow, the last tower settled into the dust. Ahead, a river caught the sunrise. Somewhere beyond it, someone was probably making soup.\n\nYou had been a prisoner, a companion, a fool and a very difficult problem. None of them had to be the last thing you became.\n\n“Show me something new.”\n\nAnd you went to find it.",
+          "beat": "dawn",
+          "endingBeat": 8,
+          "shotId": "ending:8",
+          "ribbonSide": 0,
+          "location": "VEYRFALL · AN OPEN SKY",
+          "camera": {
+            "x": 320,
+            "y": 150,
+            "zoom": 1.02
+          },
+          "durationMs": 6500
+        }
+      ],
+      "finish": "Begin your next adventure →"
+    }
+  }
+}

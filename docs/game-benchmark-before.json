@@ -1,0 +1,33 @@
+{
+  "environment": "Node VM + mocked Canvas. Measures JS time and drawing commands only; no physical device, browser, GPU or temperature measurement.",
+  "framesPerWorld": 600,
+  "worlds": [
+    {
+      "world": 1,
+      "meanCpuMs": 0.29120484333333335,
+      "canvasCommandsPerFrame": 2707
+    },
+    {
+      "world": 2,
+      "meanCpuMs": 0.27234846166666665,
+      "canvasCommandsPerFrame": 2580
+    },
+    {
+      "world": 3,
+      "meanCpuMs": 0.25110445666666675,
+      "canvasCommandsPerFrame": 2681
+    },
+    {
+      "world": 4,
+      "meanCpuMs": 0.21360835500000008,
+      "canvasCommandsPerFrame": 2308
+    },
+    {
+      "world": 5,
+      "meanCpuMs": 0.2866501899999999,
+      "canvasCommandsPerFrame": 2817
+    }
+  ],
+  "meanCpuMs": 0.26298326133333333,
+  "canvasCommandsPerFrame": 2618.6
+}

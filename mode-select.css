@@ -1,0 +1,48 @@
+/* Lightweight entry screen: a brief CSS studio intro, no game engine or external fonts. */
+:root { color-scheme: dark; font: 16px/1.6 system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; color: #e9f4ff; background: #091421; }
+* { box-sizing: border-box; }
+body { margin: 0; min-height: 100vh; min-height: 100dvh; display: grid; place-items: center; padding: max(24px, env(safe-area-inset-top, 0px)) max(20px, env(safe-area-inset-right, 0px)) max(24px, env(safe-area-inset-bottom, 0px)) max(20px, env(safe-area-inset-left, 0px)); background: radial-gradient(ellipse at 50% 0, #16304b, transparent 70%); }
+.mode-picker { width: min(100%, 980px); text-align: center; }
+.eyebrow { color: #8bd8f6; font: 700 12px/1.6 ui-monospace, Consolas, monospace; letter-spacing: .18em; }
+h1 { margin: 12px 0 0; font: 900 clamp(46px, 10vw, 96px)/1.1 ui-monospace, Consolas, monospace; letter-spacing: -.04em; text-shadow: 4px 4px #1d5270; }
+.mode-intro { margin: 16px 0 32px; color: #b5cadc; font-size: clamp(17px, 2vw, 21px); }
+.mode-options { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; text-align: left; }
+.mode-card { display: flex; flex-direction: column; min-width: 0; padding: clamp(22px, 3vw, 36px); border: 2px solid #31536c; border-radius: 12px; color: inherit; background: #0c1b2c; text-decoration: none; touch-action: manipulation; }
+.mode-card:hover { background: #11253a; border-color: var(--accent); }
+.mode-card:focus-visible, button:focus-visible { outline: 3px solid #ffd576; outline-offset: 5px; }
+.lab-mode { --accent: #6aedd8; border-color: #3e8d87; }
+.story-mode { --accent: #ffd576; border-color: #8d7540; }
+.mode-symbol { display: grid; place-items: center; width: 60px; height: 60px; border: 1px solid var(--accent); border-radius: 8px; color: var(--accent); font: 700 30px/1 ui-monospace, Consolas, monospace; }
+.mode-card h2 { margin: 24px 0 10px; font-size: clamp(21px, 3vw, 28px); line-height: 1.25; }
+.mode-card p { margin: 0 0 30px; color: #adc3d6; }
+.mode-action { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-top: auto; min-height: 44px; padding-top: 16px; border-top: 1px solid #2c4258; color: var(--accent); font-weight: 700; }
+.mode-note { color: #93aec4; font-size: 13px; margin: 24px 0 8px; }
+.mode-offline { color: #8fa9bc; min-height: 30px; font-size: 12px; overflow-wrap: anywhere; }
+.mode-offline.ready { color: #99dfbf; }
+.mode-offline.ready #offlineGameStatus::before { content: '✓ '; }
+button { min-height: 44px; margin-left: 8px; padding: 5px 14px; color: #d8f6ee; background: #153244; border: 1px solid #547284; border-radius: 5px; font: inherit; cursor: pointer; touch-action: manipulation; }
+[hidden] { display: none !important; }
+.studio-intro[open] { position: fixed; inset: 0; z-index: 100; display: grid; place-items: center; width: 100%; max-width: none; height: 100%; height: 100dvh; max-height: none; margin: 0; padding: max(18px, env(safe-area-inset-top)) max(18px, env(safe-area-inset-right)) max(18px, env(safe-area-inset-bottom)) max(18px, env(safe-area-inset-left)); border: 0; overflow: auto; color: #e8f6ff; background: radial-gradient(ellipse at 50% 35%, #163343 0, #08141f 65%); }
+.studio-card { width: min(100%, 640px); text-align: center; animation: guild-arrive .65s ease-out both; }
+.studio-card h2 { margin: 18px 0 0; line-height: 0; }
+.guild-wordmark { display: block; width: clamp(240px, 60vw, 416px); max-width: 100%; height: auto; margin: 0 auto; }
+.guild-emblem { display: block; width: clamp(100px, 24vh, 184px); max-width: 58vw; height: auto; margin: 0 auto; border: 3px solid #efd18c; box-shadow: 5px 5px 0 #1f6476; image-rendering: pixelated; }
+.studio-eyebrow { color: #8cc8d1; font: 700 10px/1.7 ui-monospace, Consolas, monospace; letter-spacing: .15em; margin: 22px 0 12px; }
+#studioCaption { margin: 24px 0 18px; color: #96acbd; font: 12px/1.8 ui-monospace, Consolas, monospace; letter-spacing: .2em; }
+#studioCaption strong { color: #80e4d5; margin-left: 8px; }
+.studio-loading { height: 3px; width: 136px; margin: 0 auto; background: #274254; overflow: hidden; }
+.studio-loading span { display: block; width: 100%; height: 100%; background: #ffdc88; transform-origin: left; animation: guild-open 1.8s ease-out both; }
+.studio-opening { font-size: 12px; color: #a6becc; }
+.studio-card button { margin: 16px 0 0; min-width: 130px; background: #143441; border-color: #517b83; }
+@keyframes guild-arrive { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+@keyframes guild-open { from { transform: scaleX(.05); } to { transform: scaleX(1); } }
+@media (prefers-reduced-motion: reduce) { .studio-card, .studio-loading span { animation: none; } }
+@media (max-height: 450px) { .guild-emblem { width: 76px; border-width: 2px; box-shadow: 3px 3px 0 #1f6476; } .studio-eyebrow { margin-top: 8px; } .studio-card h2 { margin-top: 8px; } .guild-wordmark { width: 260px; } #studioCaption { margin: 10px 0; } .studio-card button { margin-top: 4px; } }
+@media (max-width: 600px) { body { padding: 24px 16px; } .mode-options { grid-template-columns: minmax(0, 1fr); gap: 14px; } .mode-card { padding: 22px; } .mode-card h2 { margin-top: 14px; } .mode-card p { margin-bottom: 18px; } .mode-symbol { width: 44px; height: 44px; font-size: 24px; } .mode-intro { margin-bottom: 22px; } }
+@media (max-height: 500px) and (min-width: 601px) { body { padding-block: 14px; } h1 { font-size: 44px; } .eyebrow { margin: 0; } .mode-intro { margin: 8px 0 16px; } .mode-card { padding: 18px; } .mode-symbol { display: none; } .mode-card h2 { margin: 0 0 8px; } .mode-card p { margin-bottom: 16px; font-size: 14px; } .mode-note { margin-top: 16px; } }
+
+/* Supplied portrait logos retain their complete aspect ratio on every card. */
+.mode-logo { display:block; width:auto; height:clamp(100px,15vh,144px); max-width:100%; object-fit:contain; align-self:flex-start; image-rendering:pixelated; border:1px solid var(--accent); border-radius:6px; }
+.mode-music { margin:0 0 20px; font-size:14px; }
+@media (max-width:600px) { .mode-logo { height:104px; } }
+@media (max-height:500px) and (min-width:601px) { .mode-logo { height:78px; margin-bottom:12px; } .mode-music { margin-bottom:12px; } }

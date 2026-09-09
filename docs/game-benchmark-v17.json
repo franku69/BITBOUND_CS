@@ -1,0 +1,171 @@
+{
+  "environment": "Node VM + mocked Canvas. Measures JS time and drawing commands only; no physical device, browser, GPU or temperature measurement.",
+  "stationary": {
+    "framesPerWorld": 600,
+    "worlds": [
+      {
+        "world": 1,
+        "meanCpuMs": 0.03450280166666666,
+        "canvasCommandsPerFrame": 102,
+        "chunkBuilds": 0
+      },
+      {
+        "world": 2,
+        "meanCpuMs": 0.024690978333333315,
+        "canvasCommandsPerFrame": 97,
+        "chunkBuilds": 0
+      },
+      {
+        "world": 3,
+        "meanCpuMs": 0.04346645,
+        "canvasCommandsPerFrame": 297,
+        "chunkBuilds": 0
+      },
+      {
+        "world": 4,
+        "meanCpuMs": 0.02207971333333333,
+        "canvasCommandsPerFrame": 92,
+        "chunkBuilds": 0
+      },
+      {
+        "world": 5,
+        "meanCpuMs": 0.025154141666666685,
+        "canvasCommandsPerFrame": 92,
+        "chunkBuilds": 0
+      },
+      {
+        "world": 6,
+        "meanCpuMs": 0.02163080333333331,
+        "canvasCommandsPerFrame": 93,
+        "chunkBuilds": 0
+      },
+      {
+        "world": 7,
+        "meanCpuMs": 0.023725891666666665,
+        "canvasCommandsPerFrame": 92,
+        "chunkBuilds": 0
+      },
+      {
+        "world": 8,
+        "meanCpuMs": 0.021823610000000004,
+        "canvasCommandsPerFrame": 92,
+        "chunkBuilds": 0
+      }
+    ],
+    "meanCpuMs": 0.027134298749999994,
+    "canvasCommandsPerFrame": 119.625,
+    "maxCacheBytes": 3145728
+  },
+  "scrolling": {
+    "framesPerWorld": 600,
+    "worlds": [
+      {
+        "world": 1,
+        "meanCpuMs": 0.030844728333333363,
+        "canvasCommandsPerFrame": 105.24,
+        "chunkBuilds": 48
+      },
+      {
+        "world": 2,
+        "meanCpuMs": 0.02621814499999999,
+        "canvasCommandsPerFrame": 97.925,
+        "chunkBuilds": 48
+      },
+      {
+        "world": 3,
+        "meanCpuMs": 0.04008719499999993,
+        "canvasCommandsPerFrame": 293.3,
+        "chunkBuilds": 48
+      },
+      {
+        "world": 4,
+        "meanCpuMs": 0.02871065666666662,
+        "canvasCommandsPerFrame": 98.17833333333333,
+        "chunkBuilds": 48
+      },
+      {
+        "world": 5,
+        "meanCpuMs": 0.03496986500000001,
+        "canvasCommandsPerFrame": 98.96166666666667,
+        "chunkBuilds": 48
+      },
+      {
+        "world": 6,
+        "meanCpuMs": 0.0300272316666666,
+        "canvasCommandsPerFrame": 102.06166666666667,
+        "chunkBuilds": 48
+      },
+      {
+        "world": 7,
+        "meanCpuMs": 0.02230757166666668,
+        "canvasCommandsPerFrame": 95.64333333333333,
+        "chunkBuilds": 48
+      },
+      {
+        "world": 8,
+        "meanCpuMs": 0.02679756833333329,
+        "canvasCommandsPerFrame": 99.17166666666667,
+        "chunkBuilds": 48
+      }
+    ],
+    "meanCpuMs": 0.02999537020833331,
+    "canvasCommandsPerFrame": 123.81020833333334,
+    "maxCacheBytes": 6291456
+  },
+  "scrollingWithoutCache": {
+    "framesPerWorld": 600,
+    "worlds": [
+      {
+        "world": 1,
+        "meanCpuMs": 0.2987588416666666,
+        "canvasCommandsPerFrame": 2998.36,
+        "chunkBuilds": 0
+      },
+      {
+        "world": 2,
+        "meanCpuMs": 0.26375320666666674,
+        "canvasCommandsPerFrame": 3009.9883333333332,
+        "chunkBuilds": 0
+      },
+      {
+        "world": 3,
+        "meanCpuMs": 0.2568767116666667,
+        "canvasCommandsPerFrame": 3093.74,
+        "chunkBuilds": 0
+      },
+      {
+        "world": 4,
+        "meanCpuMs": 0.24284288000000004,
+        "canvasCommandsPerFrame": 2913.2283333333335,
+        "chunkBuilds": 0
+      },
+      {
+        "world": 5,
+        "meanCpuMs": 0.2514361766666669,
+        "canvasCommandsPerFrame": 2952.5466666666666,
+        "chunkBuilds": 0
+      },
+      {
+        "world": 6,
+        "meanCpuMs": 0.24191309666666674,
+        "canvasCommandsPerFrame": 3007.991666666667,
+        "chunkBuilds": 0
+      },
+      {
+        "world": 7,
+        "meanCpuMs": 0.23480073666666687,
+        "canvasCommandsPerFrame": 2960.5433333333335,
+        "chunkBuilds": 0
+      },
+      {
+        "world": 8,
+        "meanCpuMs": 0.25048670666666645,
+        "canvasCommandsPerFrame": 2876.745,
+        "chunkBuilds": 0
+      }
+    ],
+    "meanCpuMs": 0.2551085445833334,
+    "canvasCommandsPerFrame": 2976.6429166666667,
+    "maxCacheBytes": 3145728
+  }
+}
