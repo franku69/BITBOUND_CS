@@ -1,9 +1,8 @@
 /* ------------------------ Utilities ------------------------- */
 // Independent pause ownership: rotating cannot dismiss a lesson or a story page.
 let handheld = null;
-let orientationPaused = false;
 function syncPresentationPause() {
-  state.paused = orientationPaused || UI.overlays.some(overlay => overlay.classList.contains('show'));
+  state.paused = UI.overlays.some(overlay => overlay.classList.contains('show'));
   state.needsRender = true;
   document.body.classList.toggle('adventure-paused', state.paused);
   AudioEngine.setDuck(state.paused);

@@ -57,7 +57,6 @@ UI.nextBtn.onclick = () => {
 };
 UI.slots.forEach( (b, i) => b.onclick = () => selectSlot(i));
 window.addEventListener('keydown', (e) => {
-  if (orientationPaused) return;
   const k = e.key.toLowerCase();
   if (questionDirector.active) {
     if (e.defaultPrevented) return;

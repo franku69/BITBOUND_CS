@@ -2,8 +2,9 @@
 import {loadPyodide} from '../runtime/pyodide.mjs';
 import {readFile} from 'node:fs/promises';
 import assert from 'node:assert/strict';
+import {runtimePath} from './helpers/runtime-path.mjs';
 const root=new URL('../',import.meta.url);
-const py=await loadPyodide({indexURL:new URL('runtime/',root).pathname,fullStdLib:false});
+const py=await loadPyodide({indexURL:runtimePath(new URL('runtime/',root)),fullStdLib:false});
 py.runPython(await readFile(new URL('app/grader.py',root),'utf8'));
 const curriculum=JSON.parse(await readFile(new URL('app/curriculum.json',root),'utf8'));
 let count=0;

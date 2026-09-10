@@ -1,5 +1,5 @@
 {
-  "baseline": "v26 content + approved v29 handheld and encounter surfaces",
+  "baseline": "v29 content + requested v30 landscape host",
   "normalizeHtmlAssetRevisions": true,
   "sha256": {
     "adventure/assets/boss1_circuit.png": "b3a4762987f2058670499a50179a5577986f0b7ed0e2766e2dc6111733359b50",
@@ -20,10 +20,12 @@
     "index.html": "fcb641fa1a206413de2c9be0784e582f22817d2d1a4b3f36af4ccf1c47eaa591",
     "mobile-refinements.css": "db6b66c06b093966b30509cd1c174986d4c5c346bb88ab56bc108bfeeb0d74bf",
     "mode-select.css": "1f5b1bcf274bdd648a6b8aef27d4d8575b7e036738d423813cae3aec89b821d8",
-    "story.html": "51337e4713ba5250de018f6aeb76e77568e3563e8e977a3e540dbce49ed36f6f",
+    "story.html": "c7ea1813eb6b98e1632e174e6b037c8dddb792bf6c8e0478d7f2bab1a53bc4e6",
     "styles.css": "59087e571131e471cd3df0b637fcf57b068d6314943992ce6e423041ed157cbc",
-    "adventure/handheld.css": "999a06f3179f1078f5479fb87f25bfad554028499e7b49a18492e715de049add",
-    "adventure/encounter.css": "654fdbf91654d37402e140fb4d15e26fa62d20f4335b68b487443bb64c620055"
+    "adventure/handheld.css": "bac3a25ad93ed2a9a3a8efa50fa7d99cdb6e6b5be6d894801a51f3718452d206",
+    "adventure/encounter.css": "654fdbf91654d37402e140fb4d15e26fa62d20f4335b68b487443bb64c620055",
+    "story-game.html": "a49cf356cbe25015b608089d9c5dd942d1748f1cf9348a6ca4201ebd1eaac4bf",
+    "adventure/landscape.css": "bf990572a9daecce2b7663cdcca1d79275025f8ffc17f5dd4528d9022bc3396b"
   },
-  "review": "v29 changes only control selection, handheld detection surfaces, and mob-question interaction/layout. Narrative, world lesson ordering, question banks, character art, music, manual saves and the standalone Lab remain unchanged."
+  "review": "v30 changes only landscape presentation and routing. The existing inner Story page loses the rotation-choice prompt, targets top-level mode links and retains all narrative, questions, character art, encounters and music."
 }

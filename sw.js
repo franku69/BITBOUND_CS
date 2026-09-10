@@ -1,10 +1,10 @@
 /* Offline assets are verified as a resumable job, never as a blocking install. */
-const VERSION='bitbound-dsa-78c0a86b84f4';
+const VERSION='bitbound-dsa-601a8e3b481f';
 const BASE=new URL('./',self.location);
 // Repositories on the same GitHub Pages origin must not delete each other's packs.
 const SCOPE_PREFIX='bitbound-app:'+BASE.pathname+':';
 const CACHE=SCOPE_PREFIX+VERSION;
-const ASSET_REVISIONS={"app/editor.js": "5ce3c7231c2c", "app/offline.js": "20172dc4b8c7", "app/offline-session.js": "34ba92aa5025", "app/storage.js": "36b40012af2b", "app/session-file.js": "6056f6bc5e88", "app/session-controls.js": "dbc525e82702", "app/game-session.js": "9248311693fa", "app/lab/catalog.js": "f0f80a5ca921", "shared/protocol.js": "df9ccbf32de4", "app/page-music.js": "6a7687a0e20b", "app/report.js": "acd68343c2ee", "app/lab/mission-view.js": "a0228cfd5404", "app/lab/results-view.js": "66a83e304519", "app/lab/files.js": "410dd122497f", "app/runner.js": "691cc513495f", "app/lab/execution.js": "e4292ccfd403", "app/lab/controller.js": "e97f2d2bef48", "app/main.js": "25d8c5851b50", "app/studio-intro.js": "f597bc298277", "app/mode-select.js": "22bfef50d1de", "app/music-score.js": "76b8a8ae162a", "app/python-worker.js": "1d1d3dc0c3e3", "mode-select.css": "1f5b1bcf274b", "mobile-refinements.css": "db6b66c06b09", "adventure/style.css": "d07c5978cc4b", "adventure/mobile.css": "b32d0b71480f", "game-windows.css": "67c9cf63e671", "adventure/story-controls.css": "c2a6a29bf3e7", "adventure/handheld.css": "999a06f3179f", "adventure/encounter.css": "654fdbf91654", "adventure/engine.js": "88af5b43e7d4", "adventure/questions.js": "1bf047666f6d", "adventure/game.js": "2c3fdc39e1bd", "vendor/codemirror/lib/codemirror.css": "eb494ea972d2", "vendor/codemirror/addon/hint/show-hint.css": "9058c1c14fcd", "vendor/codemirror/addon/dialog/dialog.css": "5df690d771f1", "styles.css": "59087e571131"};
+const ASSET_REVISIONS={"app/editor.js": "5ce3c7231c2c", "app/offline.js": "20172dc4b8c7", "app/offline-session.js": "34ba92aa5025", "app/storage.js": "36b40012af2b", "app/session-file.js": "6056f6bc5e88", "app/session-controls.js": "dbc525e82702", "app/game-session.js": "9248311693fa", "app/lab/catalog.js": "f0f80a5ca921", "shared/protocol.js": "df9ccbf32de4", "app/page-music.js": "6a7687a0e20b", "app/report.js": "acd68343c2ee", "app/lab/mission-view.js": "a0228cfd5404", "app/lab/results-view.js": "66a83e304519", "app/lab/files.js": "410dd122497f", "app/runner.js": "691cc513495f", "app/lab/execution.js": "e4292ccfd403", "app/lab/controller.js": "e97f2d2bef48", "app/main.js": "25d8c5851b50", "app/studio-intro.js": "f597bc298277", "app/mode-select.js": "22bfef50d1de", "app/music-score.js": "76b8a8ae162a", "app/python-worker.js": "1d1d3dc0c3e3", "mode-select.css": "1f5b1bcf274b", "mobile-refinements.css": "db6b66c06b09", "adventure/landscape.css": "bf990572a9da", "adventure/handheld.js": "16a2025749ed", "adventure/landscape.js": "e610bb6693d2", "vendor/codemirror/lib/codemirror.css": "eb494ea972d2", "vendor/codemirror/addon/hint/show-hint.css": "9058c1c14fcd", "vendor/codemirror/addon/dialog/dialog.css": "5df690d771f1", "styles.css": "59087e571131", "adventure/style.css": "d07c5978cc4b", "adventure/mobile.css": "b32d0b71480f", "game-windows.css": "67c9cf63e671", "adventure/story-controls.css": "c2a6a29bf3e7", "adventure/handheld.css": "bac3a25ad93e", "adventure/encounter.css": "654fdbf91654", "adventure/engine.js": "9deeef3ab08d", "adventure/questions.js": "1bf047666f6d", "adventure/game.js": "b71a9870f739"};
 const PYTHON_CACHE='bitbound-python-0.27.7';
 const EDITOR_CACHE='bitbound-editor-5.65.20';
 const MANIFEST_URL=new URL('offline-manifest.json',BASE).href;
@@ -142,7 +142,7 @@ self.addEventListener('fetch',event=>{
   if(request.method!=='GET'||url.origin!==BASE.origin||!url.pathname.startsWith(BASE.pathname)||url.pathname.endsWith('/sw.js'))return;
   const path=relative(url);
   if(request.cache==='reload')return;
-  if(['','index.html','story.html','app/lab.html'].includes(path)&&request.mode==='navigate'){
+  if(['','index.html','story.html','story-game.html','app/lab.html'].includes(path)&&request.mode==='navigate'){
     event.respondWith(fetch(request).catch(async()=>await savedResponse(url.href)||Response.error()));return;
   }
   const normalized=new URL(url);

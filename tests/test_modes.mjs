@@ -3,7 +3,7 @@ import {readFile,access} from 'node:fs/promises';
 import assert from 'node:assert/strict';
 const root=new URL('../',import.meta.url);
 const read=file=>readFile(new URL(file,root),'utf8');
-const [home,lab,story]=await Promise.all(['index.html','app/lab.html','story.html'].map(read));
+const [home,lab,host,story]=await Promise.all(['index.html','app/lab.html','story.html','story-game.html'].map(read));
 assert.match(home,/<a id="labModeLink"[^>]+href="app\/lab.html"/);
 assert.match(home,/<a id="storyModeLink"[^>]+href="story.html"/);
 assert.doesNotMatch(home,/<canvas|<iframe|startScreen|pythonLabBtn/);
@@ -14,6 +14,10 @@ assert.match(story,/<section id="startScreen" class="overlay show start-bg">/);
 assert.doesNotMatch(story,/pythonLabBtn|python-lab-launcher/);
 assert.match(story,/<section id="puzzleOverlay" hidden/);
 assert.ok((story.match(/class="mode-return" href="index.html"/g)||[]).length>=4);
+assert.match(host, /id="storyFrame"[^>]+src="story-game.html"/);
+assert.doesNotMatch(host, /adventure\/(?:game|engine)\.js/);
+assert.doesNotMatch(story, /rotatePrompt|landscapeStay|Continue in portrait/);
+assert.ok((story.match(/class="mode-return" href="index.html" target="_top"/g)||[]).length>=4);
 // Follow module imports to catch accidental story-engine dependencies in the lab/chooser.
 async function dependencies(entry,seen=new Set()){
  const url=new URL(entry,root);if(seen.has(url.href))return seen;

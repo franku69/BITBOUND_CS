@@ -142,7 +142,7 @@ self.addEventListener('fetch',event=>{
   if(request.method!=='GET'||url.origin!==BASE.origin||!url.pathname.startsWith(BASE.pathname)||url.pathname.endsWith('/sw.js'))return;
   const path=relative(url);
   if(request.cache==='reload')return;
-  if(['','index.html','story.html','app/lab.html'].includes(path)&&request.mode==='navigate'){
+  if(['','index.html','story.html','story-game.html','app/lab.html'].includes(path)&&request.mode==='navigate'){
     event.respondWith(fetch(request).catch(async()=>await savedResponse(url.href)||Response.error()));return;
   }
   const normalized=new URL(url);

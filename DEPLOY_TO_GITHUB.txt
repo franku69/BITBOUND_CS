@@ -1,8 +1,7 @@
-BITBOUND v29 — UPDATE THE EXISTING GITHUB PAGES PROJECT
+BITBOUND v30 — UPDATE THE EXISTING GITHUB PAGES PROJECT
 
-This release fixes Windows build paths, mobile control detection and the mob
-question interface. It retains the story, lessons, art, manual saves and installer.
-Read docs/V29_VALIDATION.md for executed checks and remaining device validation.
+This release makes mobile Story always landscape and fixes Windows runtime paths. It retains the story, lessons, art, manual saves and installer.
+Read docs/V30_VALIDATION.md for executed checks and remaining device validation.
 
 1. Extract the release ZIP. Copy the CONTENTS of BITBOUND_Python_DSA into the
    existing repository you already cloned:
@@ -26,7 +25,7 @@ Read docs/V29_VALIDATION.md for executed checks and remaining device validation.
 
 4. Upload your verified update:
      git add .
-     git commit -m "Fix Windows paths, handheld detection and mob question controls"
+     git commit -m "Make Story always landscape and fix Windows Pyodide paths"
      git push
    Keep the existing Pages publishing settings. The new Project quality workflow
    adds verification only; it does not configure or deploy the website.
@@ -38,15 +37,17 @@ Read docs/V29_VALIDATION.md for executed checks and remaining device validation.
 
 6. Verify the actual published release:
      python scripts/check_offline_pack.py --url https://franku69.github.io/BITBOUND_CS/
-   It must say PASS for all 62 assets and the matching worker. If deployment is
+   It must say PASS for all 66 assets and the matching worker. If deployment is
    still in progress, wait for it to finish before checking again.
 
 7. Test both modes on the browsers used by your students. Run Python, open a
    shrine, test the D-pad, A/B, Select and Start buttons and manually Save/Load a session. After
    Offline ready, test reopening the same link without a connection.
-   Story setup/settings should show v29 beside Play controls. If Auto detect does
+   Story setup/settings should show v30 beside Play controls. If Auto detect does
    not fit the device, select Handheld (D-pad + A/B). Reach trail gameplay to see
-   the console. During a mob lesson, select an answer, Confirm, then Next; combat
+   the console. There is no landscape prompt: the surface rotates automatically.
+   Include BOTH story.html and story-game.html plus the new landscape assets.
+   During a mob lesson, select an answer, Confirm, then Next; combat
    stays paused and its action buttons are replaced by the question controls.
 
 Do not clear browser data as a routine update step. The installer verifies and

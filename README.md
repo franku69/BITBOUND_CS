@@ -5,21 +5,22 @@ coding missions, 268 world-specific trail lessons, BYTE tutorials, animated
 companions and bosses. Every visit starts fresh; students keep work with **Save
 file** and restore it with **Load file**.
 
-This v29 release fixes Windows build paths and improves mobile Story controls and mob lessons.
+This v30 release makes mobile Story Mode always landscape and fixes Windows Pyodide test paths.
 Use the D-pad to move, A to jump, hold B to attack, L to dash, R for power and Use
 to interact. Select changes weapons; Start opens pause, manual saves and settings.
 The accepted story, questions, artwork, music and desktop layout are preserved.
 
-Story Mode detects phones/tablets and offers landscape immediately. Tap **Enter
-landscape play** to request fullscreen and orientation locking where supported.
-Otherwise, turn the device sideways. **Continue in portrait** is available if the
-device cannot rotate. The Python editor remains usable with the phone keyboard.
+Story Mode opens directly into a landscape play surface, with no orientation
+prompt or portrait-play option. If the browser stays upright, the entire Story
+surface rotates sideways at full size. Turn the device sideways to view it
+normally. The existing Play tap requests native fullscreen/landscape when the
+browser supports it; rejected requests never block play or change the layout.
 Standalone Python Lab keeps its existing responsive layout.
 
 In setup or Start → How to play, choose **Play controls → Handheld · D-pad + A/B**
 if Auto detect does not match your device. Detection also recognizes touch input
 and mobile browsers in desktop mode. The controls appear during active trail play;
-reading screens pause combat and provide their own controls. The status says **v29**.
+reading screens pause combat and provide their own controls. The status says **v30**.
 
 In mob lessons, tap an answer or use ▲/▼, then **Confirm**. A correct response
 enables **Next question** or **Back to the trail**. These buttons stay outside the
@@ -76,13 +77,13 @@ For a focused iteration: `npm test -- --group animation` (or `interface`, `pytho
 
 Read [CONTRIBUTING.md](CONTRIBUTING.md) for where to make each kind of change and
 [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) for boundaries and contracts. Earlier
-versioned validation files are historical reports; `V29_VALIDATION.md` describes
+versioned validation files are historical reports; `V30_VALIDATION.md` describes
 this release.
 
 ## Package and publish
 
 ```sh
-npm run release -- ../BITBOUND_Python_Practice_v29.zip
+npm run release -- ../BITBOUND_Python_Practice_v30.zip
 ```
 
 The release command builds, runs the complete quality gate and packages a verified

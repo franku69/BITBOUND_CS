@@ -10,7 +10,7 @@ function environment(path='/BITBOUND_CS/'){
   const app='bitbound-app:'+path+':'+version;
   const files={
     'index.html':'<h1>BITBOUND</h1><p>A WORLD BUILT FOR CURIOUS MINDS</p>',
-    'story.html':'<h1>Story</h1>', 'app/lab.html':'<h1>Python Lab</h1>',
+    'story.html':'<h1>Story host</h1>', 'story-game.html':'<h1>Story</h1>', 'app/lab.html':'<h1>Python Lab</h1>',
     'app/main.js':'/* new code */', 'runtime/pyodide.asm.wasm':'runtime fixture'
   };
   const manifest={version,files:Object.keys(files),hashes:{},sizes:{},bytes:0,assetRevisions:{'app/main.js':'new-revision'}};
@@ -56,7 +56,7 @@ for(const path of ['/','/BITBOUND_CS/']){
   assert.equal(e.counts.get('index.html'),2,'only the changed homepage needs refetching');
   assert.equal(e.counts.get('runtime/pyodide.asm.wasm'),1,'preserve downloaded Python runtime');
   e.control.online=false;
-  for(const page of ['index.html','story.html','app/lab.html'])assert.equal(await (await e.request(page)).text(),e.files[page]);
+  for(const page of ['index.html','story.html','story-game.html','app/lab.html'])assert.equal(await (await e.request(page)).text(),e.files[page]);
   e.control.online=true;
   // An evicted file + a failed request clears ready and recovers on retry.
   e.stores.get(e.app).delete(e.base+'story.html');e.control.blocked='story.html';

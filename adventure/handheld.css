@@ -133,42 +133,17 @@
 .handheld #startScreen > .start-card { width: min(1080px, 100%); max-width: 100%; margin: 0 auto; }
 .handheld .practice-open.overlay > .modal { max-height: none; }
 
-.rotate-prompt {
-  position: fixed; inset: 0; z-index: 250; overflow-y: auto; display: grid; place-items: center;
-  padding: max(18px, var(--safe-top)) max(18px, var(--safe-right)) max(18px, var(--safe-bottom)) max(18px, var(--safe-left));
-  background: #081520; color: #e1f3f4; font: 16px/1.55 system-ui, sans-serif;
-}
-.rotate-card { max-width: 390px; text-align: center; margin: auto; }
-.rotate-card h2 { font-size: clamp(23px, 6vw, 32px); line-height: 1.2; margin: 16px 0; }
-.rotate-card .eyebrow { font-size: 10px; letter-spacing: .12em; color: #b9ccbf; }
-.rotate-card > button { display: block; width: 100%; min-height: 48px; padding: 12px; margin: 12px 0; border: 1px solid #8cbaae; border-radius: 8px; background: #a4ded0; color: #09212a; font: 700 15px system-ui; touch-action: manipulation; }
-.rotate-card > button:disabled { opacity: .65; }
-.rotate-card #landscapeStay { background: transparent; border-color: #38505c; color: #b6cbd4; }
-.rotate-card > small { color: #9fb7c3; font-size: 12px; }
-.rotate-console { margin: 8px auto 28px; display: flex; align-items: center; justify-content: space-between; padding: 12px; width: 224px; height: 108px; background: #273d48; border: 2px solid #769b9c; border-radius: 18px; transform: rotate(-8deg); box-shadow: 0 8px 0 #020a0f; }
-.rotate-console > span { color: #9ce3d1; font-size: 23px; }
-.rotate-console > i { width: 116px; height: 72px; display: grid; place-items: center; background: #06131d; border: 3px solid #526873; border-radius: 5px; color: #dbb87b; font: 700 12px monospace; }
 @media (max-height: 380px) and (orientation: landscape) {
   .handheld .handheld-grip { gap: 6px; }
   .handheld .console-ab { min-height: 86px; }
   .handheld .console-wordmark { font-size: 9px; }
   .handheld #hudTitle, .handheld #hudRunner { display: none; }
 }
-/* Explicit accessibility fallback for devices that cannot physically rotate. */
-@media (orientation: portrait) {
-  .handheld #gameViewport {
-    top: max(24px, var(--safe-top)); transform: translateX(-50%);
-    width: calc(100vw - 20px - var(--safe-left) - var(--safe-right));
-  }
-  .handheld .handheld-grip { top: auto; bottom: max(6px, var(--safe-bottom)); height: 256px; }
-  .handheld #gameViewport #hotbar { bottom: -60px; }
-  .handheld .console-wordmark { display: none; }
-  .handheld .handheld-grip { gap: 6px; }
-}
-@media (prefers-reduced-motion: reduce) { .rotate-console { transform: none; } }
-
 @media (max-height: 300px) and (orientation: landscape) {
   .handheld .console-wordmark { display: none; }
   .handheld .handheld-grip { gap: 4px; padding-block: 4px; }
   .handheld .console-ab { min-height: 76px; }
 }
+
+/* The host already excludes notches/home indicators before rotating the frame. */
+.handheld { --safe-top: 0px; --safe-right: 0px; --safe-bottom: 0px; --safe-left: 0px; }

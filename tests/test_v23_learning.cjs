@@ -65,6 +65,6 @@ for(const kind of ['guardian','paladin','demon','fused']){
  const {a}=setup(3);a.state.boss={active:true,dead:false,storyKind:kind};
  assert.equal(a.requireWorldLessons(4),false);assert.equal(a.questionDirector.active,null,'sentries never interrupt '+kind);
 }
-const html=fs.readFileSync(path.join(__dirname,'../story.html'),'utf8');
+const html=fs.readFileSync(path.join(__dirname,'../story-game.html'),'utf8');
 assert.match(html,/id="encounterSave"[^>]*data-save-session/);
 console.log(`PASS v23 educational route: all ${total} questions required through physical shrines/sentries in ${sets} sets, with zero random mobs; multi-round pause/retries, save/resume, migration, terminal/portal gates and all boss exclusions.`);

@@ -16,6 +16,14 @@
     ]
   },
   {
+    "name": "native runtime paths on Windows and POSIX",
+    "group": "architecture",
+    "command": [
+      "node",
+      "tests/test_runtime_paths.mjs"
+    ]
+  },
+  {
     "name": "domain contracts",
     "group": "architecture",
     "command": [

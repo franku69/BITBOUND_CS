@@ -1,0 +1,9 @@
+/* Physical safe areas belong to the outer surface. The game's media queries
+   use the frame's logical landscape viewport, in every browser orientation. */
+html, body { width: 100%; height: 100%; margin: 0; overflow: hidden; background: #08131c; color: #d7ecee; }
+#storyStage { position: fixed; inset: env(safe-area-inset-top, 0px) env(safe-area-inset-right, 0px) env(safe-area-inset-bottom, 0px) env(safe-area-inset-left, 0px); overflow: hidden; }
+#storyFrame { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; display: block; visibility: hidden; transform-origin: 0 0; background: #08131c; }
+#storyLoading { position: absolute; inset: 0; z-index: 1; pointer-events: none; display: grid; place-items: center; margin: 0; font: 16px system-ui; }
+#storyLoading[hidden] { display: none; }
+noscript { position: fixed; inset: 0; padding: 24px; background: #08131c; font: 18px/1.5 system-ui; }
+noscript a { color: #a0e3cf; }

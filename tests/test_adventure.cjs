@@ -2,7 +2,7 @@
 const assert=require('node:assert/strict');
 const fs=require('node:fs');
 const path=require('node:path');
-const html=fs.readFileSync(path.join(__dirname,'..','story.html'),'utf8');
+const html=fs.readFileSync(path.join(__dirname,'..','story-game.html'),'utf8');
 const {buildContext}=require('./helpers/game-harness.cjs');
 
 const test=buildContext('?quality=low');

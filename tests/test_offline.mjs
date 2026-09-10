@@ -29,7 +29,8 @@ messages=await pack();assert.equal(messages.at(-1).type,'complete');assert.equal
 const manifest=JSON.parse(await readFile(new URL('offline-manifest.json',root),'utf8'));
 online=false;
 let response=await navigate('index.html');assert.match(await response.text(),/Choose Your Mode/);
-response=await navigate('story.html');assert.match(await response.text(),/id="startScreen"/);
+response=await navigate('story.html');assert.match(await response.text(),/id="storyFrame"/);
+response=await navigate('story-game.html');assert.match(await response.text(),/id="startScreen"/);
 response=await navigate('app/lab.html');assert.match(await response.text(),/Python Lab Mode/);
 response=await navigate('app/workspace.html');assert.match(await response.text(),/url=lab.html/);
 response=await navigate('runtime/pyodide.asm.wasm');assert.ok((await response.arrayBuffer()).byteLength>1e7);

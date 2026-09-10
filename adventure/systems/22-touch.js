@@ -28,32 +28,21 @@ function resetTouchInput() {
 }
 handheld = new window.BitboundHandheld.Handheld({
   window, document,
-  prompt: $('rotatePrompt'), enter: $('landscapeEnter'), stay: $('landscapeStay'), status: $('landscapeStatus'),
   selectors: [$('setupControlMode'), $('helpControlMode')],
-  indicators: [$('setupControlStatus'), $('helpControlStatus')],
-  canRotate: () => !UI.puzzle.classList.contains('show'),
-  onBlock: blocked => {
-    orientationPaused = blocked;
-    $('shell').inert = blocked;
-    resetTouchInput();
-    syncPresentationPause();
-    AudioEngine.setBackground(document.hidden || blocked);
-    if (blocked) {
-      stopStoryAnimation();
-      stopEncounterAnimation();
-      mentorAnimator.stop();
-    } else if (plotUI.overlay.classList.contains('show')) {
-      scheduleStoryPlayback();
-    }
-  }
+  indicators: [$('setupControlStatus'), $('helpControlStatus')]
 });
-// Startup detects portrait immediately. Browser locking is attempted on the first play tap.
+// The host already presents landscape. Native fullscreen is optional on Play.
 UI.startBtn.addEventListener('click', () => handheld.requestLandscape());
 $('handheldFullscreen').addEventListener('click', () => handheld.requestLandscape());
 $('puzzleClose').addEventListener('click', () => {
   if (document.fullscreenElement) handheld.requestLandscape();
 });
 window.addEventListener('resize', resetTouchInput);
+window.addEventListener('bitbound:landscape', () => {
+  resetTouchInput();
+  resetFrameTiming();
+  scheduleFrame();
+});
 window.addEventListener('blur', resetTouchInput);
 window.addEventListener('pagehide', () => {
   resetTouchInput();
@@ -63,7 +52,7 @@ window.addEventListener('pagehide', () => {
 document.addEventListener('visibilitychange', () => {
   resetTouchInput();
   resetFrameTiming();
-  AudioEngine.setBackground(document.hidden || orientationPaused);
+  AudioEngine.setBackground(document.hidden);
   if (document.hidden) {
     for (const key of Object.keys(state.keys)) state.keys[key] = false;
   } else {
@@ -73,7 +62,7 @@ document.addEventListener('visibilitychange', () => {
 });
 window.addEventListener('pageshow', () => {
   handheld.refresh();
-  AudioEngine.setBackground(document.hidden || orientationPaused);
+  AudioEngine.setBackground(document.hidden);
   resetFrameTiming();
   scheduleFrame();
 });

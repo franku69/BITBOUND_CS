@@ -2,125 +2,112 @@
 const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const vm = require('node:vm');
-const scope = { window: {} };
+const scope = {window: {}, document: {getElementById: () => null}};
 vm.runInNewContext(fs.readFileSync('adventure/handheld.js', 'utf8'), scope);
-const { Handheld } = scope.window.BitboundHandheld;
+vm.runInNewContext(fs.readFileSync('adventure/landscape.js', 'utf8'), scope);
+const {Handheld} = scope.window.BitboundHandheld;
+const {Landscape, landscapeGeometry} = scope.window.BitboundLandscapeAPI;
 function target() {
-  return {
-    listeners: new Map(), hidden: false, disabled: false,
+  return {listeners: new Map(), style: {}, hidden: false,
     addEventListener(type, fn) { if (!this.listeners.has(type)) this.listeners.set(type, new Set()); this.listeners.get(type).add(fn); },
     removeEventListener(type, fn) { this.listeners.get(type)?.delete(fn); },
-    emit(type, event = {}) { this.listeners.get(type)?.forEach(fn => fn(event)); },
-    focus() { this.focused = true; }
+    emit(type, e = {}) { this.listeners.get(type)?.forEach(fn => fn(e)); },
+    dispatchEvent(e) { this.emit(e.type, e); }, Event: class {constructor(type) {this.type = type;}}
   };
 }
-function platform({ mobile = true, width = 390, height = 844, points = 5, coarse = mobile, hoverless = mobile, userAgent = '', platform = '', mobileHint = false } = {}) {
-  const changes = [], classes = new Set(), calls = [];
-  const mq = Object.assign(target(), { matches: coarse });
-  const hover = Object.assign(target(), { matches: hoverless });
-  const doc = Object.assign(target(), { activeElement: target(), fullscreenElement: null, documentElement: target() });
-  doc.documentElement.classList = { toggle(k, on) { if (on) classes.add(k); else classes.delete(k); } };
-  const win = Object.assign(target(), { innerWidth: width, innerHeight: height,
-    navigator: { maxTouchPoints: points, userAgent, platform, userAgentData: { mobile: mobileHint } }, screen: { orientation: target() }, matchMedia: query => query.includes('pointer') ? mq : hover });
-  const prompt = target(), enter = target(), stay = target(), status = target();
-  const selectors = [target(), target()], indicators = [target(), target()];
-  let coding = false;
-  const controller = new Handheld({ window: win, document: doc, prompt, enter, stay, status, selectors, indicators,
-    canRotate: () => !coding, onBlock: v => changes.push(v) });
-  return { controller, win, doc, prompt, enter, stay, status, classes, calls, mq, changes, selectors, indicators,
-    coding(value) { coding = value; controller.refresh(); },
-    landscape() { win.innerWidth = 844; win.innerHeight = 390; win.emit('resize'); },
-    portrait() { win.innerWidth = 390; win.innerHeight = 844; win.emit('resize'); }
-  };
+function platform({mobile = true, width = 390, height = 844, points = 5, ua = '', ipad = false} = {}) {
+  const mq = Object.assign(target(), {matches: mobile});
+  const win = Object.assign(target(), {navigator: {maxTouchPoints: points, userAgent: ua, platform: ipad ? 'MacIntel' : ''},
+    matchMedia: () => mq, screen: {orientation: target()}});
+  const doc = Object.assign(target(), {documentElement: target(), fullscreenElement: null});
+  const stage = {getBoundingClientRect: () => ({width, height})};
+  const child = Object.assign(target(), {navigator: win.navigator, matchMedia: win.matchMedia});
+  const classes = new Set(), childDoc = {documentElement: {classList: {toggle(k, on) {on ? classes.add(k) : classes.delete(k);}}}};
+  const frame = Object.assign(target(), {contentWindow: child}), status = target();
+  const host = new Landscape({window: win, document: doc, stage, frame, status});
+  child.parent = {BitboundLandscape: host};
+  const selectors = [Object.assign(target(), {value:'auto'}), Object.assign(target(), {value:'auto'})], indicators = [{}, {}];
+  const controls = new Handheld({window: child, document: childDoc, selectors, indicators});
+  return {win, doc, child, frame, host, controls, status, classes, mq, selectors, indicators,
+    resize(w, h) {width = w; height = h; win.emit('resize');}};
 }
 (async () => {
-  const p = platform();
-  assert.ok(p.prompt.hidden === false && p.controller.blocked, 'mobile opens immediately with portrait guidance');
-  assert.ok(p.classes.has('handheld')); assert.deepEqual(p.changes, [true]);
-  assert.ok(p.enter.focused); p.controller.refresh(); assert.equal(p.changes.length, 1, 'stable resize cannot multiply pause events');
-  p.landscape(); assert.ok(p.prompt.hidden); assert.equal(p.controller.blocked, false);
-  p.portrait(); p.stay.emit('click'); assert.ok(p.prompt.hidden, 'portrait fallback always reachable');
-  p.controller.refresh(); assert.ok(p.prompt.hidden, 'viewport noise does not revoke user fallback');
-  p.landscape(); p.portrait(); assert.equal(p.prompt.hidden, false, 'next rotation offers landscape again');
-  p.coding(true); assert.equal(p.prompt.hidden, true, 'Python keyboard/portrait typing is not blocked');
-  p.coding(false); assert.equal(p.prompt.hidden, false);
-  p.doc.activeElement = p.stay; let tabs = 0; p.prompt.emit('keydown', { key: 'Tab', preventDefault() { tabs++; } }); assert.equal(tabs, 1);
-  p.prompt.emit('keydown', { key: 'Escape', preventDefault() {}, stopPropagation() {} }); assert.ok(p.prompt.hidden, 'accessible escape is never trapped');
-
-  const desktop = platform({ mobile: false, width: 1440, height: 900, points: 10, coarse: false, hoverless: false });
-  desktop.doc.documentElement.requestFullscreen = () => { throw Error('Must not request fullscreen on a laptop'); };
-  await desktop.controller.requestLandscape(); assert.equal(desktop.controller.blocked, false); assert.equal(desktop.classes.has('handheld'), false, 'touchscreen laptop with mouse stays desktop');
-  const tablet = platform({ mobile: true, width: 1024, height: 768 }); assert.ok(tablet.classes.has('handheld')); assert.ok(tablet.prompt.hidden);
-
-  // Desktop-mode mobile browsers and tablets with a mouse must still have a pad.
-  for (const nav of [{userAgent: 'Mozilla/5.0 (Linux; Android 14)'}, {userAgent: 'iPhone'},
-    {platform: 'MacIntel', points: 5}, {mobileHint: true}]) {
-    const phone = platform({mobile: false, width: 844, height: 390, coarse: false, hoverless: false, ...nav});
-    assert.ok(phone.classes.has('handheld'));
-    assert.ok(phone.classes.has('touch-capable'), 'visibility and layout share the same detector');
+  for (const [w, h] of [[320,568],[390,844],[430,932],[768,1024],[1024,768],[1440,900]]) {
+    const g = landscapeGeometry(w, h, true);
+    assert.ok(g.width >= g.height, 'landscape viewport on ' + w + 'x' + h);
+    assert.equal(g.width * g.height, w * h, 'rotation never shrinks the available surface');
+    for (const [x,y] of [[0,0],[g.width,0],[0,g.height],[g.width,g.height]]) {
+      const px = g.rotated ? w-y : x, py = g.rotated ? x : y;
+      assert.ok(px >= 0 && px <= w && py >= 0 && py <= h, 'transformed corners stay inside physical safe area');
+    }
   }
-  desktop.win.emit('pointerdown', {pointerType: 'mouse'});
+  const p = platform();
+  assert.equal(p.frame.style.width, '844px'); assert.equal(p.frame.style.height, '390px');
+  assert.equal(p.frame.style.transform, 'translateX(390px) rotate(90deg)');
+  assert.equal(p.frame.style.visibility, 'visible'); assert.ok(p.status.hidden);
+  assert.ok(p.classes.has('handheld') && p.classes.has('touch-capable'));
+  assert.match(p.indicators[0].textContent, /Landscape.*v30/);
+  assert.equal(p.host.connect({}), null, 'an unrelated frame cannot use the bridge');
+  let notifications = 0; p.child.addEventListener('bitbound:landscape', () => notifications++);
+  p.host.refresh(); assert.equal(notifications, 0, 'stable viewport does not repeat work');
+  p.resize(844,390); assert.equal(p.frame.style.transform, 'none'); assert.equal(notifications, 1);
+  p.resize(390,844); assert.equal(p.frame.style.width, '844px'); assert.equal(notifications, 2);
+  p.selectors[0].value='keyboard'; p.selectors[0].emit('change');
+  assert.equal(p.classes.has('handheld'), false); assert.equal(p.selectors[1].value, 'keyboard');
+  assert.equal(p.frame.style.width, '844px', 'phone with keyboard still uses landscape');
+  p.selectors[1].value='auto'; p.selectors[1].emit('change'); assert.ok(p.classes.has('handheld'));
+
+  const desktop = platform({mobile:false,width:1440,height:900,points:10});
+  desktop.doc.documentElement.requestFullscreen = () => {throw Error('desktop must not request fullscreen');};
+  await desktop.host.enter(); assert.equal(desktop.frame.style.transform, 'none');
   assert.equal(desktop.classes.has('handheld'), false);
-  desktop.win.emit('pointerdown', {pointerType: 'touch'});
-  assert.ok(desktop.classes.has('handheld'), 'actual touch recovers an unrecognized mobile UA');
-  desktop.selectors[0].value = 'keyboard'; desktop.selectors[0].emit('change');
-  assert.equal(desktop.classes.has('handheld'), false);
-  assert.equal(desktop.classes.has('touch-capable'), false);
-  assert.equal(desktop.selectors[1].value, 'keyboard');
-  desktop.win.emit('pointerdown', {pointerType: 'touch'});
-  assert.equal(desktop.classes.has('handheld'), false, 'explicit keyboard preference wins');
-  desktop.selectors[1].value = 'handheld'; desktop.selectors[1].emit('change');
-  assert.ok(desktop.classes.has('handheld')); assert.equal(desktop.selectors[0].value, 'handheld');
-  assert.match(desktop.indicators[0].textContent, /D-pad/);
-  desktop.controller.setMode('invalid'); assert.equal(desktop.controller.mode, 'handheld');
+  desktop.child.emit('pointerdown', {pointerType:'touch'}); assert.ok(desktop.classes.has('handheld'));
+  for (const nav of [{ua:'Mozilla Android 14'}, {ua:'iPhone'}, {ipad:true}]) {
+    const phone = platform({mobile:false,...nav}); assert.equal(phone.host.geometry.rotated, true);
+    assert.ok(phone.classes.has('handheld'));
+  }
+  const denied = platform();
+  denied.doc.documentElement.requestFullscreen = async () => {throw Error('NotAllowedError');};
+  denied.win.screen.orientation.lock = async () => {throw Error('NotSupportedError');};
+  await denied.host.enter(); assert.equal(denied.host.geometry.rotated, true);
+  assert.equal(denied.host.requesting, false); assert.equal(denied.controls.blocked, undefined, 'no blocking orientation state');
+  const absent = platform(); await absent.host.enter(); assert.equal(absent.host.geometry.rotated, true);
+  const locked = platform(), calls=[];
+  locked.doc.documentElement.requestFullscreen = async () => {calls.push('fullscreen'); locked.doc.fullscreenElement=locked.doc.documentElement;};
+  locked.win.screen.orientation.lock = async mode => {calls.push(mode); locked.resize(844,390);};
+  locked.win.screen.orientation.unlock = () => calls.push('unlock');
+  await locked.host.enter(); assert.deepEqual(calls, ['fullscreen','landscape']); assert.ok(locked.host.locked);
+  locked.doc.fullscreenElement=null; locked.doc.emit('fullscreenchange'); assert.equal(calls.at(-1),'unlock');
+  locked.resize(390,844); assert.ok(locked.host.geometry.rotated, 'fullscreen exit never returns to portrait layout');
+  const late = platform(); let release;
+  late.doc.documentElement.requestFullscreen = () => new Promise(r => {release=r;});
+  let attempts=0; late.win.screen.orientation.lock=async()=>attempts++;
+  const wait=late.host.enter(); await late.host.enter(); late.host.dispose(); release(); await wait;
+  assert.equal(attempts,0,'late fullscreen cannot lock a departed page');
+  const lateLock=platform(); let finish, unlocks=0;
+  lateLock.win.screen.orientation.lock=()=>new Promise(r=>{finish=r;});
+  lateLock.win.screen.orientation.unlock=()=>unlocks++;
+  const waiting=lateLock.host.enter(); lateLock.host.dispose(); finish(); await waiting;
+  assert.equal(unlocks,1,'late native lock released after disposal');
+  assert.ok([...late.win.listeners.values()].every(set=>set.size===0));
 
-  const locked = platform();
-  locked.doc.documentElement.requestFullscreen = async () => {
-    locked.calls.push('fullscreen'); locked.doc.fullscreenElement = locked.doc.documentElement;
-  };
-  locked.win.screen.orientation.lock = async mode => { locked.calls.push(mode); locked.landscape(); };
-  locked.win.screen.orientation.unlock = () => locked.calls.push('unlock');
-  await locked.controller.requestLandscape();
-  assert.deepEqual(locked.calls, ['fullscreen', 'landscape']); assert.ok(locked.controller.locked); assert.ok(locked.prompt.hidden); assert.equal(locked.enter.disabled, false);
-  locked.coding(true); assert.equal(locked.calls.at(-1), 'unlock'); assert.equal(locked.controller.locked, false, 'release lock for coding');
-  locked.coding(false); await locked.controller.requestLandscape();
-  locked.doc.fullscreenElement = null; locked.doc.emit('fullscreenchange'); assert.equal(locked.controller.locked, false);
-  const count = locked.calls.length; locked.doc.emit('fullscreenchange'); assert.equal(locked.calls.length, count, 'fullscreen exit does not force re-entry');
-
-  const unsupported = platform();
-  unsupported.doc.documentElement.requestFullscreen = async () => { throw Error('NotAllowedError'); };
-  unsupported.win.screen.orientation.lock = async () => { throw Error('NotSupportedError'); };
-  await unsupported.controller.requestLandscape(); assert.equal(unsupported.enter.disabled, false); assert.equal(unsupported.prompt.hidden, false); assert.match(unsupported.status.textContent, /Turn your device sideways/);
-  unsupported.landscape(); assert.ok(unsupported.prompt.hidden, 'manual rotation works despite rejected APIs');
-  const noApi = platform(); await noApi.controller.requestLandscape(); assert.equal(noApi.enter.disabled, false);
-  noApi.stay.emit('click'); assert.ok(noApi.prompt.hidden);
-
-  const race = platform(); let release;
-  race.doc.documentElement.requestFullscreen = () => new Promise(resolve => { release = resolve; });
-  race.win.screen.orientation.lock = async () => race.calls.push('lock');
-  const pending = race.controller.requestLandscape();
-  await race.controller.requestLandscape(); assert.ok(race.enter.disabled, 'duplicate taps share the in-flight request');
-  race.coding(true); release(); await pending; assert.deepEqual(race.calls, [], 'late fullscreen cannot lock an active editor');
-  const late = platform(); let finish;
-  late.win.screen.orientation.lock = () => new Promise(resolve => { finish = resolve; });
-  late.win.screen.orientation.unlock = () => late.calls.push('unlock');
-  const waiting = late.controller.requestLandscape(); late.controller.dispose(); finish(); await waiting;
-  assert.deepEqual(late.calls, ['unlock'], 'late lock is released after teardown');
-  assert.ok([...late.win.listeners.values()].every(set => set.size === 0));
-
-  // Exercise pause ownership in the production game, not only the platform model.
-  const { buildContext } = require('./helpers/game-harness.cjs');
-  const { sandbox: s, elements } = buildContext('?quality=low');
-  const a = s.TestAPI; a.startNew(); a.enterWorld();
-  a.handheld.coarse.matches = true; s.innerWidth = 390; s.innerHeight = 844;
-  a.state.keys.d = true; a.handheld.refresh();
-  assert.equal(a.state.paused, true); assert.equal(a.state.keys.d, false); assert.ok(elements.get('shell').inert);
-  const before = a.player.x; a.update(1); assert.equal(a.player.x, before, 'rotate prompt suspends combat and movement');
-  a.show(a.UI.mentor); s.innerWidth = 844; s.innerHeight = 390; a.handheld.refresh();
-  assert.ok(a.state.paused); assert.ok(a.UI.mentor.classList.contains('show'), 'rotation cannot close an open lesson');
-  a.hide(a.UI.mentor); assert.equal(a.state.paused, false); assert.equal(elements.get('shell').inert, false);
-  s.innerWidth = 390; s.innerHeight = 844; a.handheld.refresh();
-  a.show(a.UI.puzzle); assert.equal(a.handheld.blocked, false); assert.ok(a.state.paused, 'editing remains a separate pause owner');
-  a.hide(a.UI.puzzle); assert.ok(a.handheld.blocked); assert.ok(a.state.paused);
-  console.log('PASS landscape: immediate mobile guidance, desktop/tablet detection, gesture fullscreen/lock, rejected/missing APIs, coding exception, focus/fallback, async cancellation, manual rotation and independent lesson/combat pause ownership.');
-})().catch(error => { console.error(error); process.exitCode = 1; });
+  // Connect the real game, including its actual D-pad and overlay pause ownership.
+  const {buildContext} = require('./helpers/game-harness.cjs');
+  const h=buildContext('?quality=low'), s=h.sandbox, a=s.TestAPI;
+  const live=platform(); live.frame.contentWindow=a.handheld.win; s.parent={BitboundLandscape:live.host};
+  s.Event=class {constructor(type){this.type=type;}};
+  s.dispatchEvent=e=>h.listeners[e.type]?.forEach(fn=>fn(e));
+  live.host.notify(); assert.ok(a.handheld.presentation===live.host,'late host handshake recovers');
+  a.startNew(); a.enterWorld(); assert.equal(a.state.paused,false,'portrait hardware never pauses the game');
+  const pad=h.elements.get('moveDpad');
+  pad.listeners.pointerdown[0]({pointerId:4,button:0,clientX:175,clientY:110,preventDefault(){}});
+  assert.equal(a.state.touchAxis,1);
+  live.resize(844,390); assert.equal(a.state.touchAxis,0,'rotation releases held input even when logical dimensions match');
+  a.show(a.UI.mentor); live.resize(390,844);
+  assert.ok(a.state.paused && a.UI.mentor.classList.contains('show'),'rotating preserves an open lesson');
+  a.hide(a.UI.mentor); assert.equal(a.state.paused,false);
+  a.show(a.UI.puzzle); live.resize(844,390); assert.ok(a.state.paused && a.UI.puzzle.classList.contains('show'));
+  a.hide(a.UI.puzzle); assert.equal(a.state.paused,false,'closing code returns directly to landscape play');
+  assert.doesNotMatch(fs.readFileSync('story-game.html','utf8'), /rotatePrompt|landscapeStay|Continue in portrait/);
+  console.log('PASS landscape: immediate full-size rotated surface, six viewport geometries, shared device detection, no portrait prompt, physical rotation/input reset, native API success/denial/absence, async cleanup, late host handshake and preserved lesson/editor pause ownership.');
+})().catch(e=>{console.error(e);process.exitCode=1;});

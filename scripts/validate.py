@@ -17,7 +17,7 @@ class References(HTMLParser):
             if not value or value.startswith(('#','data:','http:','https:','mailto:')):continue
             file=(self.path.parent/unquote(urlsplit(value).path)).resolve()
             if not file.exists():errors.append(f'{self.path.relative_to(ROOT)}: missing {value}')
-for path in [ROOT/'index.html',ROOT/'story.html',ROOT/'adventure/index.html',ROOT/'app/lab.html',ROOT/'app/workspace.html']:
+for path in [ROOT/'index.html',ROOT/'story.html',ROOT/'story-game.html',ROOT/'adventure/index.html',ROOT/'app/lab.html',ROOT/'app/workspace.html']:
     References(path).feed(path.read_text(encoding='utf-8'))
 for path in ROOT.rglob('*.js'):
     if path.name=='sw-template.js' or any(part in path.parts for part in ('vendor','runtime','node_modules','.git')):continue
@@ -33,7 +33,7 @@ assert manifest['version'] in (ROOT/'sw.js').read_text(encoding='utf-8')
 assert 'team-grid' not in (ROOT/'index.html').read_text(encoding='utf-8')
 assert 'DSA MASTERY' not in (ROOT/'index.html').read_text(encoding='utf-8')
 assert 'location.replace' not in (ROOT/'app/lab.html').read_text(encoding='utf-8')
-assert 'pythonLabBtn' not in (ROOT/'story.html').read_text(encoding='utf-8')
+assert 'pythonLabBtn' not in (ROOT/'story-game.html').read_text(encoding='utf-8')
 assert 'id="game"' not in (ROOT/'index.html').read_text(encoding='utf-8')
 assert 'adventure/game.js' not in (ROOT/'app/lab.html').read_text(encoding='utf-8')
 assert not re.search('runMiniPython|evalMiniPythonExpr|numericOutput', (ROOT/'adventure/game.js').read_text(encoding='utf-8'))
@@ -43,7 +43,7 @@ for module in [ROOT/'app/main.js',*(ROOT/'app/lab').glob('*.js')]:
     for name in re.findall(r"\$\(\s*'([^']+)'\s*\)",module.read_text(encoding='utf-8')):
         if name not in ids:errors.append(str(module.relative_to(ROOT))+': missing UI element '+name)
 # Story controls must exist too; a permissive test DOM cannot hide missing IDs.
-ids=set(re.findall(r'id="([^"]+)"',(ROOT/'story.html').read_text(encoding='utf-8')))
+ids=set(re.findall(r'id="([^"]+)"',(ROOT/'story-game.html').read_text(encoding='utf-8')))
 for name in re.findall(r"\$\('([^']+)'\)",(ROOT/'adventure/game.js').read_text(encoding='utf-8')):
     if name not in ids:errors.append('Missing Story UI element '+name)
 if errors:raise SystemExit('\n'.join(errors))

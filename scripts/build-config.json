@@ -57,7 +57,8 @@
   "entryPages": [
     "index.html",
     "story.html",
-    "app/lab.html"
+    "app/lab.html",
+    "story-game.html"
   ],
   "offlineFolders": [
     "app",
@@ -87,7 +88,11 @@
     "vendor/codemirror/addon/hint/show-hint.css",
     "vendor/codemirror/addon/dialog/dialog.css",
     "adventure/handheld.css",
-    "adventure/encounter.css"
+    "adventure/encounter.css",
+    "story-game.html",
+    "adventure/handheld.js",
+    "adventure/landscape.js",
+    "adventure/landscape.css"
   ],
   "preferenceStorageOwners": [
     "app/music-score.js"

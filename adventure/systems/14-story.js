@@ -60,11 +60,11 @@ function storyDuration(art, page) {
   return page.beat && STORY_BEATS[page.beat] ? 6500: ['arrival', 'reunion', 'impact', 'leap', 'collapse', 'greed', 'fusion'].includes(art) ? 7200: 4800;
 }
 function scheduleStoryPlayback() {
-  if (!storyPlayback || storyPlayback.paused || document.hidden || orientationPaused) return;
+  if (!storyPlayback || storyPlayback.paused || document.hidden) return;
   const epoch = sceneEpoch, p = storyPlayback;
   p.last = performance.now();
   const tick = () => {
-    if (epoch !== sceneEpoch || p !== storyPlayback || p.paused || document.hidden || orientationPaused) return;
+    if (epoch !== sceneEpoch || p !== storyPlayback || p.paused || document.hidden) return;
     const progress = Math.min(1, p.elapsed / p.duration), ambient = Math.max(0, (p.elapsed - p.duration) / 1000);
     if (!paintStoryFrame(p.art, progress, ambient)) return;
     playStoryTimelineCue(scenePageData, p.previous, progress);

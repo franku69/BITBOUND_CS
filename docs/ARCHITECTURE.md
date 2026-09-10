@@ -149,35 +149,53 @@ new dependency pattern through a reviewed build/design change, not a bypass.
 
 The GitHub quality workflow checks Windows and Linux. Local headless tests cannot
 prove physical mobile layout, browser frame rate, temperature or actual audio.
-See `V29_VALIDATION.md` for exactly what was tested for this release.
+See `V30_VALIDATION.md` for exactly what was tested for this release.
 
 
-## Handheld presentation (v29)
+## Landscape presentation (v30)
 
-`adventure/handheld.js` owns browser capability detection, gesture-triggered
-fullscreen/orientation requests, the portrait fallback and listener cleanup.
-It receives platform objects and a pause callback; it owns no game or save state.
-Requests are invalidated when coding opens or the page leaves, so a delayed
-browser promise cannot lock an editor. There is no orientation polling.
+`story.html` is a lightweight host. `adventure/landscape.js` sizes one same-origin
+frame, `story-game.html`, to a landscape viewport on mobile. In an upright browser
+it rotates that frame 90 degrees at full size. The frame's CSS viewport and pointer
+coordinates remain native and landscape, so D-pad, canvas, scrolling and all game
+media queries share one coordinate system. There is one game engine, one canvas
+and no extra animation loop. Physical safe areas are applied by the outer host.
+The inner handheld layout uses zero safe insets to avoid double-counting them.
 
-`adventure/touch-controls.js` owns a captured D-pad pointer and independent action
-pointers. `systems/22-touch.js` connects them to existing gameplay actions. Held
-attacks run through the existing simulation/cooldown, without a new timer loop.
-The downward D-pad direction shares the keyboard fast-fall behavior.
+`adventure/handheld.js` holds the shared device policy and the game-side bridge.
+Only the host's own frame can connect. It exchanges control preference and a
+presentation-change event; no story/save contents cross this bridge. Setup and
+pause selectors reflect the same session-only choice. An explicit keyboard choice
+on a phone changes controls while keeping the landscape surface. Late frame/host
+startup is handled, so cached scripts cannot lose the connection.
 
-`orientationPaused` is an independent pause owner in `05-progress.js`. Clearing it
-cannot close an existing lesson/story overlay. Opening Python questions releases
-the orientation lock; the keyboard never triggers the rotate prompt while editing.
+The native fullscreen/lock attempt runs on the existing Play/Fullscreen gesture.
+If the API is unavailable or denied, the rotated surface already works. There is
+no orientation prompt, portrait fallback, forced reload, or orientation pause.
+Fullscreen exit preserves the landscape surface; pending locks are cancelled when
+the host leaves. Orientation changes release held controls without closing a
+lesson, resetting a checkpoint or changing combat/animation state.
 
-`adventure/handheld.css` owns console rails, the 16:9 playfield and safe areas.
-The canvas resolution/physics are unchanged. Story dialogs sit outside the game
-viewport, so they retain the whole display. Touchscreen laptops with a primary
-mouse retain the desktop presentation until they use touch or select Handheld.
-`Handheld` is the sole owner of both `.handheld` and `.touch-capable`; do not add a
-second detector to the game adapter. Explicit Auto/Handheld/Keyboard selection is
-session-only and does not touch student saves. The same value drives both setup
-and pause selectors. `tests/test_handheld.cjs` covers mobile UA overrides, real
-touch detection, primary mouse input and explicit user preference.
+`adventure/touch-controls.js` still owns pointer capture, D-pad movement and
+independent action pointers. `systems/22-touch.js` connects them to gameplay and
+resets them on both frame resize and physical presentation changes. Do not add a
+second rotation correction to input coordinates: the browser maps them through
+the frame. All return-to-mode links in the inner game target the top-level page.
+Direct navigation to the inner game redirects to the public Story host.
+
+Tests in `test_handheld.cjs` cover presentation geometry, detection, late host
+connection, rejected/missing native APIs, cancellation and real-game input/pause
+integration. Offline tests navigate both host and inner game under root/subpath
+hosting. These checks do not replace physical device/browser rendering tests.
+
+## Node runtime paths (v30)
+
+Both `test_pyodide.mjs` and `worker-node-adapter.mjs` use
+`tests/helpers/runtime-path.mjs`, which delegates to Node's `fileURLToPath`.
+Never pass URL.pathname to a filesystem/runtime API: `/D:/...` and encoded spaces
+are URL syntax, not native Windows paths. The path contract suite executes Node's
+Windows and POSIX conversions explicitly, including drive letters, UNC paths,
+spaces, Unicode and `#`. The pinned browser Python runtime stays unchanged.
 
 ## Mob-question interaction (v29)
 
