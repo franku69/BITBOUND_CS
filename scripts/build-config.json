@@ -86,7 +86,8 @@
     "vendor/codemirror/lib/codemirror.css",
     "vendor/codemirror/addon/hint/show-hint.css",
     "vendor/codemirror/addon/dialog/dialog.css",
-    "adventure/handheld.css"
+    "adventure/handheld.css",
+    "adventure/encounter.css"
   ],
   "preferenceStorageOwners": [
     "app/music-score.js"

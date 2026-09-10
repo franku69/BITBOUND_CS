@@ -54,7 +54,7 @@ body.python-window-visible .offline-summary { display: none; }
   #startScreen, .story-mode-page .overlay:not(.practice-open) {
     padding: max(12px, var(--safe-top)) max(12px, var(--safe-right)) max(12px, var(--safe-bottom)) max(12px, var(--safe-left));
   }
-  #startScreen > .start-card, .story-scene-card, .mentor-card, .encounter-card, .intro-card {
+  #startScreen > .start-card, .story-scene-card, .mentor-card, .intro-card {
     max-height: calc(100vh - 24px - var(--safe-top) - var(--safe-bottom)) !important;
     max-height: calc(100dvh - 24px - var(--safe-top) - var(--safe-bottom)) !important;
     min-width: 0; overflow-x: hidden; overflow-y: auto; scroll-padding-block: 16px;
@@ -82,7 +82,7 @@ body.python-window-visible .offline-summary { display: none; }
   .story-scene-footer { gap: 8px; }
   .story-scene-footer > div { gap: 6px; }
   .story-scene-footer > div button { padding: 8px; flex: 1 1 auto; }
-  .encounter-card pre, #mentorCode, #mentorOutput { max-width: 100%; overflow-x: auto; }
+  #mentorCode, #mentorOutput { max-width: 100%; overflow-x: auto; }
   .offline-banner { font-size: 12px; padding: 8px; }
 }
 

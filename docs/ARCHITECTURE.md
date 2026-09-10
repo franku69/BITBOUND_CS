@@ -149,10 +149,10 @@ new dependency pattern through a reviewed build/design change, not a bypass.
 
 The GitHub quality workflow checks Windows and Linux. Local headless tests cannot
 prove physical mobile layout, browser frame rate, temperature or actual audio.
-See `V27_VALIDATION.md` for exactly what was tested for this release.
+See `V29_VALIDATION.md` for exactly what was tested for this release.
 
 
-## Handheld presentation (v28)
+## Handheld presentation (v29)
 
 `adventure/handheld.js` owns browser capability detection, gesture-triggered
 fullscreen/orientation requests, the portrait fallback and listener cleanup.
@@ -172,4 +172,24 @@ the orientation lock; the keyboard never triggers the rotate prompt while editin
 `adventure/handheld.css` owns console rails, the 16:9 playfield and safe areas.
 The canvas resolution/physics are unchanged. Story dialogs sit outside the game
 viewport, so they retain the whole display. Touchscreen laptops with a primary
-mouse retain the desktop presentation.
+mouse retain the desktop presentation until they use touch or select Handheld.
+`Handheld` is the sole owner of both `.handheld` and `.touch-capable`; do not add a
+second detector to the game adapter. Explicit Auto/Handheld/Keyboard selection is
+session-only and does not touch student saves. The same value drives both setup
+and pause selectors. `tests/test_handheld.cjs` covers mobile UA overrides, real
+touch detection, primary mouse input and explicit user preference.
+
+## Mob-question interaction (v29)
+
+`systems/14-question-encounters.js` owns selection/confirm/continue state. Choosing
+a button only changes selection; confirming calls the existing answer validator.
+Only explicit continuation commits completion. Keyboard and touch enter the same
+functions; rendering/animation cannot gate an answer or advance a lesson.
+`adventure/encounter.css` owns the dialog grid and scrolling. Its footer is outside
+the scrollable content. Keep scene/audio/save controls inside `.encounter-tools`,
+and keep the native button/focus behavior when adding controls.
+
+`test_v19_encounters.cjs` exercises all 268 authored questions through actual
+button callbacks. `test_encounter_controls.cjs` covers selection, retry, pad/keyboard
+navigation, explicit continuation, round reset and resume. World progression and
+boss-exclusion contracts are tested separately from presentation.

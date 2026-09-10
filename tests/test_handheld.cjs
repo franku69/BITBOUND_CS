@@ -14,19 +14,20 @@ function target() {
     focus() { this.focused = true; }
   };
 }
-function platform({ mobile = true, width = 390, height = 844, points = 5, coarse = mobile, hoverless = mobile } = {}) {
+function platform({ mobile = true, width = 390, height = 844, points = 5, coarse = mobile, hoverless = mobile, userAgent = '', platform = '', mobileHint = false } = {}) {
   const changes = [], classes = new Set(), calls = [];
   const mq = Object.assign(target(), { matches: coarse });
   const hover = Object.assign(target(), { matches: hoverless });
   const doc = Object.assign(target(), { activeElement: target(), fullscreenElement: null, documentElement: target() });
   doc.documentElement.classList = { toggle(k, on) { if (on) classes.add(k); else classes.delete(k); } };
   const win = Object.assign(target(), { innerWidth: width, innerHeight: height,
-    navigator: { maxTouchPoints: points }, screen: { orientation: target() }, matchMedia: query => query.includes('pointer') ? mq : hover });
+    navigator: { maxTouchPoints: points, userAgent, platform, userAgentData: { mobile: mobileHint } }, screen: { orientation: target() }, matchMedia: query => query.includes('pointer') ? mq : hover });
   const prompt = target(), enter = target(), stay = target(), status = target();
+  const selectors = [target(), target()], indicators = [target(), target()];
   let coding = false;
-  const controller = new Handheld({ window: win, document: doc, prompt, enter, stay, status,
+  const controller = new Handheld({ window: win, document: doc, prompt, enter, stay, status, selectors, indicators,
     canRotate: () => !coding, onBlock: v => changes.push(v) });
-  return { controller, win, doc, prompt, enter, stay, status, classes, calls, mq, changes,
+  return { controller, win, doc, prompt, enter, stay, status, classes, calls, mq, changes, selectors, indicators,
     coding(value) { coding = value; controller.refresh(); },
     landscape() { win.innerWidth = 844; win.innerHeight = 390; win.emit('resize'); },
     portrait() { win.innerWidth = 390; win.innerHeight = 844; win.emit('resize'); }
@@ -50,6 +51,28 @@ function platform({ mobile = true, width = 390, height = 844, points = 5, coarse
   desktop.doc.documentElement.requestFullscreen = () => { throw Error('Must not request fullscreen on a laptop'); };
   await desktop.controller.requestLandscape(); assert.equal(desktop.controller.blocked, false); assert.equal(desktop.classes.has('handheld'), false, 'touchscreen laptop with mouse stays desktop');
   const tablet = platform({ mobile: true, width: 1024, height: 768 }); assert.ok(tablet.classes.has('handheld')); assert.ok(tablet.prompt.hidden);
+
+  // Desktop-mode mobile browsers and tablets with a mouse must still have a pad.
+  for (const nav of [{userAgent: 'Mozilla/5.0 (Linux; Android 14)'}, {userAgent: 'iPhone'},
+    {platform: 'MacIntel', points: 5}, {mobileHint: true}]) {
+    const phone = platform({mobile: false, width: 844, height: 390, coarse: false, hoverless: false, ...nav});
+    assert.ok(phone.classes.has('handheld'));
+    assert.ok(phone.classes.has('touch-capable'), 'visibility and layout share the same detector');
+  }
+  desktop.win.emit('pointerdown', {pointerType: 'mouse'});
+  assert.equal(desktop.classes.has('handheld'), false);
+  desktop.win.emit('pointerdown', {pointerType: 'touch'});
+  assert.ok(desktop.classes.has('handheld'), 'actual touch recovers an unrecognized mobile UA');
+  desktop.selectors[0].value = 'keyboard'; desktop.selectors[0].emit('change');
+  assert.equal(desktop.classes.has('handheld'), false);
+  assert.equal(desktop.classes.has('touch-capable'), false);
+  assert.equal(desktop.selectors[1].value, 'keyboard');
+  desktop.win.emit('pointerdown', {pointerType: 'touch'});
+  assert.equal(desktop.classes.has('handheld'), false, 'explicit keyboard preference wins');
+  desktop.selectors[1].value = 'handheld'; desktop.selectors[1].emit('change');
+  assert.ok(desktop.classes.has('handheld')); assert.equal(desktop.selectors[0].value, 'handheld');
+  assert.match(desktop.indicators[0].textContent, /D-pad/);
+  desktop.controller.setMode('invalid'); assert.equal(desktop.controller.mode, 'handheld');
 
   const locked = platform();
   locked.doc.documentElement.requestFullscreen = async () => {

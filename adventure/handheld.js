@@ -3,9 +3,11 @@
   'use strict';
 
   class Handheld {
-    constructor({ window: win, document: doc, prompt, enter, stay, status,
+    constructor({ window: win, document: doc, prompt, enter, stay, status, selectors = [], indicators = [],
       canRotate = () => true, onBlock = () => {} }) {
-      Object.assign(this, { win, doc, prompt, enter, stay, status, canRotate, onBlock });
+      Object.assign(this, { win, doc, prompt, enter, stay, status, selectors, indicators, canRotate, onBlock });
+      this.mode = 'auto';
+      this.touchUsed = false;
       this.coarse = win.matchMedia('(pointer: coarse)');
       this.hoverless = win.matchMedia('(hover: none)');
       this.blocked = false;
@@ -20,6 +22,14 @@
       this.listen(win.screen?.orientation, 'change', refresh);
       this.listen(this.coarse, 'change', refresh);
       this.listen(this.hoverless, 'change', refresh);
+      // One source of truth for detection, layout and control visibility.
+      // A real touch also covers browsers requesting a desktop user agent.
+      this.listen(win, 'pointerdown', event => {
+        if (event.pointerType !== 'touch' || this.touchUsed) return;
+        this.touchUsed = true;
+        if (this.mode === 'auto') this.refresh();
+      });
+      selectors.forEach(select => this.listen(select, 'change', () => this.setMode(select.value)));
       this.listen(doc, 'fullscreenchange', () => {
         // Leaving fullscreen never immediately forces the browser back into it.
         if (!doc.fullscreenElement) this.unlock();
@@ -56,15 +66,30 @@
     }
 
     isMobile() {
-      // A touch-enabled laptop with a mouse retains its desktop presentation.
-      return this.coarse.matches || (this.hoverless.matches &&
-        (this.win.navigator?.maxTouchPoints || 0) > 0);
+      if (this.mode !== 'auto') return this.mode === 'handheld';
+      const nav = this.win.navigator || {};
+      const points = nav.maxTouchPoints || 0;
+      return this.touchUsed || this.coarse.matches || (this.hoverless.matches && points > 0) ||
+        nav.userAgentData?.mobile === true || /Android|iPhone|iPad|iPod/i.test(nav.userAgent || '') ||
+        (nav.platform === 'MacIntel' && points > 1);
+    }
+
+    setMode(mode) {
+      if (!['auto', 'handheld', 'keyboard'].includes(mode)) return;
+      this.mode = mode;
+      this.refresh();
     }
 
     refresh() {
       if (this.disposed) return;
       this.mobile = this.isMobile();
       this.doc.documentElement.classList.toggle('handheld', this.mobile);
+      this.doc.documentElement.classList.toggle('touch-capable', this.mobile);
+      this.doc.documentElement.classList.toggle('keyboard-controls', !this.mobile);
+      this.selectors.forEach(select => { select.value = this.mode; });
+      this.indicators.forEach(label => {
+        label.textContent = this.mobile ? 'Handheld controls ready · D-pad + A/B · v29' : 'Keyboard controls ready · v29';
+      });
       const canRotate = this.canRotate();
       if (!canRotate || !this.mobile) this.unlock();
       const portrait = this.win.innerHeight > this.win.innerWidth;

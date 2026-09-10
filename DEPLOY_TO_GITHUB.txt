@@ -1,8 +1,8 @@
-BITBOUND v28 — UPDATE THE EXISTING GITHUB PAGES PROJECT
+BITBOUND v29 — UPDATE THE EXISTING GITHUB PAGES PROJECT
 
-This release adds landscape handheld controls to mobile Story Mode. It retains
-the v27 module structure, accepted content, manual saves and offline installer.
-Read docs/V28_VALIDATION.md for behavior and the physical-device checks.
+This release fixes Windows build paths, mobile control detection and the mob
+question interface. It retains the story, lessons, art, manual saves and installer.
+Read docs/V29_VALIDATION.md for executed checks and remaining device validation.
 
 1. Extract the release ZIP. Copy the CONTENTS of BITBOUND_Python_DSA into the
    existing repository you already cloned:
@@ -26,23 +26,28 @@ Read docs/V28_VALIDATION.md for behavior and the physical-device checks.
 
 4. Upload your verified update:
      git add .
-     git commit -m "Add landscape handheld mode and multitouch console controls"
+     git commit -m "Fix Windows paths, handheld detection and mob question controls"
      git push
    Keep the existing Pages publishing settings. The new Project quality workflow
    adds verification only; it does not configure or deploy the website.
 
 5. Wait for GitHub Actions quality checks and the Pages deployment to finish.
+   Both Windows and Linux quality checks must pass.
    Save any work in an old browser tab, then reload the website while online:
    https://franku69.github.io/BITBOUND_CS/
 
 6. Verify the actual published release:
      python scripts/check_offline_pack.py --url https://franku69.github.io/BITBOUND_CS/
-   It must say PASS for all 61 assets and the matching worker. If deployment is
+   It must say PASS for all 62 assets and the matching worker. If deployment is
    still in progress, wait for it to finish before checking again.
 
 7. Test both modes on the browsers used by your students. Run Python, open a
    shrine, test the D-pad, A/B, Select and Start buttons and manually Save/Load a session. After
    Offline ready, test reopening the same link without a connection.
+   Story setup/settings should show v29 beside Play controls. If Auto detect does
+   not fit the device, select Handheld (D-pad + A/B). Reach trail gameplay to see
+   the console. During a mob lesson, select an answer, Confirm, then Next; combat
+   stays paused and its action buttons are replaced by the question controls.
 
 Do not clear browser data as a routine update step. The installer verifies and
 reuses matching assets. Offline caching contains app files; it is not an autosave.

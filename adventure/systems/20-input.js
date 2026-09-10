@@ -60,6 +60,7 @@ window.addEventListener('keydown', (e) => {
   if (orientationPaused) return;
   const k = e.key.toLowerCase();
   if (questionDirector.active) {
+    if (e.defaultPrevented) return;
     if (k === 'escape') {
       e.preventDefault();
       showEncounterHint();
@@ -67,7 +68,11 @@ window.addEventListener('keydown', (e) => {
     // Keep Space/Enter and Tab native for the focused answer control.
     if (!e.repeat && !e.ctrlKey && !e.altKey && ['a', 'b', 'c'].includes(k)) {
       e.preventDefault();
-      answerQuestionEncounter(k.charCodeAt(0) - 97);
+      selectEncounterChoice(k.charCodeAt(0) - 97);
+    }
+    if (!e.ctrlKey && !e.altKey && ['arrowup', 'arrowdown'].includes(k)) {
+      e.preventDefault();
+      moveEncounterSelection(k === 'arrowup' ? -1 : 1);
     }
     return;
   }

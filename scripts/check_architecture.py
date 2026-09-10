@@ -17,6 +17,7 @@ COMMENTS = re.compile(r"/\*[\s\S]*?\*/|(?m:^\s*//[^\n]*)")
 
 
 def check(root=ROOT):
+    root = root.resolve()
     errors = []
     config = read_json(root / "scripts/build-config.json")
     order = read_json(root / "adventure/systems/order.json")

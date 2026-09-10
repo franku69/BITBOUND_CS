@@ -29,7 +29,7 @@ for (const overlay of UI.overlays) {
     ensureAudio();
     AudioEngine.toggleMusic();
   };
-  const controls = content.querySelector?. ('.story-scene-footer > div, .mentor-controls, .start-actions, .python-window-head .challenge-actions');
+  const controls = content.querySelector?. ('.story-scene-footer > div, .mentor-controls, .start-actions, .python-window-head .challenge-actions, .encounter-tools');
   (controls || content).appendChild(button);
 }
 updateAudioButtons();

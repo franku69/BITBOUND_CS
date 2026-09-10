@@ -1,4 +1,9 @@
 /* Story-only touch activation, including tablet browsers in desktop mode. */
+.keyboard-controls #handheldControls { display: none !important; }
+.control-preference { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; margin: 20px 0; padding: 12px; border: 1px solid #416475; border-radius: 8px; text-align: left; font: 15px/1.4 system-ui; }
+.control-preference label { font-weight: 700; color: #bfdfde; }
+.control-preference select { min-height: 48px; max-width: 100%; padding: 8px 12px; font: 16px system-ui; border: 1px solid #78a8ae; border-radius: 6px; background: #112a3b; color: #d6ecee; }
+.control-preference small { flex-basis: 100%; color: #a1c5cd; font-size: 12px; }
 .touch-capable .touch-controls {
   display: flex; align-items: flex-end; justify-content: space-between;
   position: fixed; left: max(8px, var(--safe-left)); right: max(8px, var(--safe-right));

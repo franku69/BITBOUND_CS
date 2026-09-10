@@ -26,14 +26,11 @@ function resetTouchInput() {
   dpad.reset();
   touchButtons.forEach(button => button.reset());
 }
-function detectTouch() {
-  document.documentElement.classList.toggle('touch-capable', window.matchMedia('(any-pointer: coarse)').matches || (navigator.maxTouchPoints || 0) > 0);
-}
-detectTouch();
-window.matchMedia('(any-pointer: coarse)').addEventListener?.('change', detectTouch);
 handheld = new window.BitboundHandheld.Handheld({
   window, document,
   prompt: $('rotatePrompt'), enter: $('landscapeEnter'), stay: $('landscapeStay'), status: $('landscapeStatus'),
+  selectors: [$('setupControlMode'), $('helpControlMode')],
+  indicators: [$('setupControlStatus'), $('helpControlStatus')],
   canRotate: () => !UI.puzzle.classList.contains('show'),
   onBlock: blocked => {
     orientationPaused = blocked;

@@ -19,9 +19,13 @@ for(const q of a.ENCOUNTER_BANK){
  const e=enemy();a.state.enemies=[e];assert.ok(a.openQuestionEncounter(e),q.id);
  assert.equal(a.state.paused,true);assert.equal(a.encounterUI.next.disabled,true);
  a.encounterUI.choices.children[(q.answer+1)%3].onclick();
+ assert.equal(a.questionDirector.active.correct,false,'selection alone never grades');
+ assert.equal(a.encounterUI.next.disabled,false);a.encounterUI.next.onclick();
  assert.equal(a.encounterUI.next.disabled,true);assert.equal(a.player.health,5);
  assert.equal(a.closeQuestionEncounter(),false,'cannot silently complete a wrong response');
  a.encounterUI.choices.children[q.answer].onclick();assert.equal(a.encounterUI.next.disabled,false);
+ a.encounterUI.next.onclick();assert.ok(a.questionDirector.active.correct,'explicit confirmation grades');
+ assert.equal(a.state.encounterRead[q.id],undefined,'wait for Next before committing progress');
  a.encounterUI.next.onclick();assert.equal(a.state.encounterRead[q.id],true);finishRuneSet(a);assert.equal(e.alive,false);assert.equal(a.state.paused,false);
  assert.equal(a.player.health,5,'reward respects health cap');
 }

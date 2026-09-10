@@ -11599,6 +11599,10 @@ const encounterUI = {
   meta: $('encounterMeta'),
   portrait: $('encounterPortrait'),
   round: $('encounterRound'),
+  panel: $('encounterQuestion'),
+  content: $('encounterContent'),
+  previous: $('encounterPrevious'),
+  following: $('encounterFollowing'),
   save: $('encounterSave')
 };
 const questionDirector = {
@@ -11715,6 +11719,7 @@ function openQuestionEncounter(enemy, options = {}) {
 function renderEncounterQuestion() {
   const active = questionDirector.active, { question, enemy } = active, progress = worldLessonProgress(active.world);
   active.correct = false;
+  active.selected = null;
   encounterUI.title.textContent = question.topic;
   encounterUI.meta.textContent = `${question.id.toUpperCase()} · WORLD ${active.world+1} · ${active.review?'REVIEW':'LESSON'} ${question.sequence}/${ENCOUNTER_WORLDS[active.world].length} · ${question.stageTitle}`;
   encounterUI.round.textContent = `ROUND ${active.round+1} / ${active.set.length} · WORLD LESSONS ${progress.done} / ${progress.total}`;
@@ -11724,18 +11729,56 @@ function renderEncounterQuestion() {
   encounterUI.code.hidden = !question.code;
   encounterUI.feedback.textContent = 'The world is paused. A wrong answer costs no health. Read the clue, then try again.';
   encounterUI.next.disabled = true;
-  encounterUI.next.textContent = active.round + 1 < active.set.length ? 'Next question →': 'Back to the trail →';
+  encounterUI.next.textContent = 'Confirm answer';
   encounterUI.hint.disabled = false;
+  encounterUI.previous.disabled = false;
+  encounterUI.following.disabled = false;
   encounterUI.choices.replaceChildren();
   question.choices.forEach( (text, index) => {
     const b = document.createElement('button');
     b.type = 'button';
-    b.textContent = String.fromCharCode(65 + index) + '. ' + text;
+    const letter = document.createElement('span'), label = document.createElement('span');
+    letter.className = 'encounter-letter';
+    letter.textContent = String.fromCharCode(65 + index);
+    label.className = 'encounter-answer';
+    label.textContent = text;
+    b.appendChild(letter);
+    b.appendChild(label);
     b.dataset.choice = String(index);
-    b.onclick = () => answerQuestionEncounter(index);
+    b.setAttribute('aria-pressed', 'false');
+    b.onclick = () => selectEncounterChoice(index);
     encounterUI.choices.appendChild(b);
   });
   encounterUI.title.focus?. ();
+  encounterUI.panel.scrollTop = 0;
+  encounterUI.content.scrollTop = 0;
+}
+function selectEncounterChoice(index) {
+  const active = questionDirector.active;
+  if (!active || active.correct || !Number.isInteger(index) || index < 0 || index >= active.question.choices.length) return false;
+  active.selected = index;
+  [...encounterUI.choices.children].forEach((button, i) => {
+    button.setAttribute('aria-pressed', String(i === index));
+  });
+  encounterUI.next.disabled = false;
+  encounterUI.next.textContent = 'Confirm ' + String.fromCharCode(65 + index);
+  return true;
+}
+function moveEncounterSelection(direction) {
+  const active = questionDirector.active;
+  if (!active || active.correct) return;
+  const count = active.question.choices.length;
+  const index = active.selected === null ? (direction > 0 ? 0 : count - 1) : (active.selected + direction + count) % count;
+  selectEncounterChoice(index);
+  const button = encounterUI.choices.children[index];
+  button.focus?.({ preventScroll: true });
+  button.scrollIntoView?.({ block: 'nearest', inline: 'nearest' });
+}
+function confirmEncounterChoice() {
+  const active = questionDirector.active;
+  if (!active) return false;
+  if (active.correct) return closeQuestionEncounter();
+  return answerQuestionEncounter(active.selected);
 }
 function answerQuestionEncounter(index) {
   const active = questionDirector.active;
@@ -11753,15 +11796,29 @@ function answerQuestionEncounter(index) {
     active.correct = true;
     encounterUI.next.disabled = false;
     encounterUI.hint.disabled = true;
+    encounterUI.previous.disabled = true;
+    encounterUI.following.disabled = true;
+    encounterUI.next.textContent = active.round + 1 < active.set.length ? 'Next question →' : 'Back to the trail →';
     for (const b of encounterUI.choices.children) b.disabled = true;
+    encounterUI.next.focus?.({ preventScroll: true });
     sfx.checkpoint();
     animateEncounter('win');
-  } else animateEncounter('retry');
+  } else {
+    active.selected = null;
+    encounterUI.next.disabled = true;
+    encounterUI.next.textContent = 'Choose again';
+    encounterUI.choices.children[index].focus?.({ preventScroll: true });
+    animateEncounter('retry');
+  }
+  encounterUI.feedback.scrollIntoView?.({ block: 'nearest', inline: 'nearest' });
   return correct;
 }
 function showEncounterHint() {
   const active = questionDirector.active;
-  if (active && !active.correct) encounterUI.feedback.textContent = 'Clue: ' + active.question.explanation;
+  if (active && !active.correct) {
+    encounterUI.feedback.textContent = 'Clue: ' + active.question.explanation;
+    encounterUI.feedback.scrollIntoView?.({ block: 'nearest', inline: 'nearest' });
+  }
 }
 function closeQuestionEncounter() {
   const active = questionDirector.active;
@@ -11864,16 +11921,23 @@ function drawQuestionRune(e) {
   ctx.fillText('?', x, y + 5);
   ctx.textAlign = 'left';
 }
-encounterUI.next.onclick = closeQuestionEncounter;
+encounterUI.next.onclick = confirmEncounterChoice;
+encounterUI.previous.onclick = () => moveEncounterSelection(-1);
+encounterUI.following.onclick = () => moveEncounterSelection(1);
 encounterUI.hint.onclick = showEncounterHint;
 encounterUI.overlay.addEventListener('keydown', event => {
+  if (event.key === 'Enter' && event.target?.dataset?.choice !== undefined) {
+    event.preventDefault();
+    if (!event.repeat) confirmEncounterChoice();
+    return;
+  }
   if (event.key === 'Escape') {
     event.preventDefault();
     showEncounterHint();
     return;
   }
   if (event.key !== 'Tab') return;
-  const controls = [... encounterUI.choices.children, encounterUI.hint, encounterUI.save, encounterUI.next].filter(b => !b.disabled && !b.hidden);
+  const controls = [...encounterUI.overlay.querySelectorAll('button, [tabindex="0"]')].filter(b => !b.disabled && !b.hidden);
   if (event.shiftKey && (document.activeElement === controls[0] || document.activeElement === encounterUI.title)) {
     event.preventDefault();
     controls.at(- 1)?.focus();
@@ -13437,6 +13501,7 @@ window.addEventListener('keydown', (e) => {
   if (orientationPaused) return;
   const k = e.key.toLowerCase();
   if (questionDirector.active) {
+    if (e.defaultPrevented) return;
     if (k === 'escape') {
       e.preventDefault();
       showEncounterHint();
@@ -13444,7 +13509,11 @@ window.addEventListener('keydown', (e) => {
     // Keep Space/Enter and Tab native for the focused answer control.
     if (!e.repeat && !e.ctrlKey && !e.altKey && ['a', 'b', 'c'].includes(k)) {
       e.preventDefault();
-      answerQuestionEncounter(k.charCodeAt(0) - 97);
+      selectEncounterChoice(k.charCodeAt(0) - 97);
+    }
+    if (!e.ctrlKey && !e.altKey && ['arrowup', 'arrowdown'].includes(k)) {
+      e.preventDefault();
+      moveEncounterSelection(k === 'arrowup' ? -1 : 1);
     }
     return;
   }
@@ -13539,14 +13608,11 @@ function resetTouchInput() {
   dpad.reset();
   touchButtons.forEach(button => button.reset());
 }
-function detectTouch() {
-  document.documentElement.classList.toggle('touch-capable', window.matchMedia('(any-pointer: coarse)').matches || (navigator.maxTouchPoints || 0) > 0);
-}
-detectTouch();
-window.matchMedia('(any-pointer: coarse)').addEventListener?.('change', detectTouch);
 handheld = new window.BitboundHandheld.Handheld({
   window, document,
   prompt: $('rotatePrompt'), enter: $('landscapeEnter'), stay: $('landscapeStay'), status: $('landscapeStatus'),
+  selectors: [$('setupControlMode'), $('helpControlMode')],
+  indicators: [$('setupControlStatus'), $('helpControlStatus')],
   canRotate: () => !UI.puzzle.classList.contains('show'),
   onBlock: blocked => {
     orientationPaused = blocked;
@@ -13625,7 +13691,7 @@ for (const overlay of UI.overlays) {
     ensureAudio();
     AudioEngine.toggleMusic();
   };
-  const controls = content.querySelector?. ('.story-scene-footer > div, .mentor-controls, .start-actions, .python-window-head .challenge-actions');
+  const controls = content.querySelector?. ('.story-scene-footer > div, .mentor-controls, .start-actions, .python-window-head .challenge-actions, .encounter-tools');
   (controls || content).appendChild(button);
 }
 updateAudioButtons();

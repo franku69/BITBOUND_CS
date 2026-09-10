@@ -386,5 +386,13 @@
       "node",
       "tests/test_handheld.cjs"
     ]
+  },
+  {
+    "name": "encounter control selection and confirmation",
+    "group": "interface",
+    "command": [
+      "node",
+      "tests/test_encounter_controls.cjs"
+    ]
   }
 ]

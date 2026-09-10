@@ -8,9 +8,10 @@
   <link rel="stylesheet" href="adventure/style.css?v=d07c5978cc4b" />
 <link rel="stylesheet" href="adventure/mobile.css?v=b32d0b71480f">
 <link rel="manifest" href="manifest.webmanifest"><meta name="theme-color" content="#0b1321"><link rel="stylesheet" href="game-windows.css?v=67c9cf63e671">
-<link rel="stylesheet" href="adventure/story-controls.css?v=5e0fbbfa90b6">
-  <link rel="stylesheet" href="mobile-refinements.css?v=30e32bac8f4a">
-  <link rel="stylesheet" href="adventure/handheld.css?v=90580602599a">
+<link rel="stylesheet" href="adventure/story-controls.css?v=c2a6a29bf3e7">
+  <link rel="stylesheet" href="mobile-refinements.css?v=db6b66c06b09">
+  <link rel="stylesheet" href="adventure/handheld.css?v=999a06f3179f">
+  <link rel="stylesheet" href="adventure/encounter.css?v=654fdbf91654">
 </head>
 <body class="story-mode-page">
   <input id="sessionFileUpload" type="file" accept=".json,application/json" hidden>
@@ -164,13 +165,18 @@
           </div>
         </section>
 
+        <div class="control-preference">
+          <label for="setupControlMode">Play controls</label>
+          <select id="setupControlMode" aria-describedby="setupControlStatus"><option value="auto">Auto detect</option><option value="handheld">Handheld · D-pad + A/B</option><option value="keyboard">Keyboard + mouse</option></select>
+          <small id="setupControlStatus" role="status"></small>
+        </div>
         <div class="start-actions">
           <button id="startBtn" class="big-btn">NEW EXPEDITION</button><button class="secondary-btn" data-load-session>LOAD MY SAVE FILE</button>
         </div>
         <p class="session-note" data-session-status>Fresh session. Nobody else’s browser progress is loaded. Save your own file before leaving.</p>
         <div id="startError" class="error-text"></div>
         <div id="performanceMode" class="performance-mode">PERFORMANCE MODE: CHECKING DEVICE…</div>
-        <div class="tiny-controls">Touch: drag the joystick; use Jump, Attack and Use. Keyboard: A/D move • SPACE / SPACE×2 jump • SHIFT dash • S fast-fall/drop • J attack • 2/K Concept Power • Q weapons • E interact • C guide • H help • M music • N SFX</div>
+        <div class="tiny-controls">Handheld: D-pad to move, A to jump, hold B to attack, L to dash, R for power, Use to interact. Keyboard: A/D move • SPACE / SPACE×2 jump • SHIFT dash • S fast-fall/drop • J attack • 2/K Concept Power • Q weapons • E interact • C guide • H help • M music • N SFX</div>
       </div>
     </section>
 
@@ -204,12 +210,26 @@
 
     <section id="encounterOverlay" class="overlay" hidden role="dialog" aria-modal="true" aria-labelledby="encounterTitle">
       <div class="encounter-card">
-        <canvas id="encounterPortrait" width="640" height="224" aria-hidden="true"></canvas>
-        <header><div><p class="eyebrow" id="encounterMeta"></p><h2 id="encounterTitle" tabindex="-1"></h2></div></header>
-        <p id="encounterRound" class="encounter-round"></p>
-        <p id="encounterIntro"></p><p id="encounterPrompt"></p><pre id="encounterCode" hidden></pre>
-        <div id="encounterChoices" aria-label="Choose an answer"></div><p id="encounterFeedback" role="status" aria-live="polite"></p>
-        <footer><button id="encounterSave" type="button" data-save-session>Save file</button><button id="encounterHint" type="button">Show a clue</button><button id="encounterContinue" type="button" disabled>Back to the trail →</button></footer>
+        <header class="encounter-heading"><div><p class="eyebrow" id="encounterMeta"></p><h2 id="encounterTitle" tabindex="-1"></h2></div><span class="encounter-paused">COMBAT PAUSED</span></header>
+        <div class="encounter-content" id="encounterContent">
+          <aside class="encounter-scene">
+            <canvas id="encounterPortrait" width="640" height="224" aria-hidden="true"></canvas>
+            <p id="encounterRound" class="encounter-round"></p>
+            <p id="encounterIntro"></p>
+            <div class="encounter-tools"><button id="encounterSave" type="button" data-save-session>Save file</button></div>
+          </aside>
+          <div class="encounter-question" id="encounterQuestion" tabindex="0" role="region" aria-label="Question and answers">
+            <p id="encounterPrompt"></p><pre id="encounterCode" hidden></pre>
+            <p class="encounter-instruction">Select an answer, then press Confirm. Take your time.</p>
+            <div id="encounterChoices" role="group" aria-label="Choose an answer"></div>
+            <p id="encounterFeedback" role="status" aria-live="polite" aria-atomic="true"></p>
+          </div>
+        </div>
+        <footer class="encounter-console">
+          <div class="encounter-navigation" role="group" aria-label="Select an answer"><button id="encounterPrevious" type="button" aria-label="Previous answer">▲</button><button id="encounterFollowing" type="button" aria-label="Next answer">▼</button></div>
+          <button id="encounterHint" type="button">Clue</button>
+          <button id="encounterContinue" type="button" disabled>Confirm answer</button>
+        </footer>
       </div>
     </section>
 
@@ -286,7 +306,12 @@
           <div><kbd>GPS</kbd><b>Gold Beacon</b><span>The right-side Mission GPS and gold world beacon always point to the next required objective.</span></div>
           <div><kbd>ESC</kbd><b>Pause / close</b><span>Close menus. Save file manually before leaving.</span></div>
         </div>
-        <p class="handheld-help">D-pad: move; up: jump; down: drop. A: jump (tap twice for a double jump). Hold B to attack. L: dash. R: power. Use: talk or open a shrine. Select: change weapon. Start: pause, save or adjust sound.</p>
+        <div class="control-preference">
+          <label for="helpControlMode">Play controls</label>
+          <select id="helpControlMode" aria-describedby="helpControlStatus"><option value="auto">Auto detect</option><option value="handheld">Handheld · D-pad + A/B</option><option value="keyboard">Keyboard + mouse</option></select>
+          <small id="helpControlStatus" role="status"></small>
+        </div>
+        <p class="handheld-help">D-pad: move; up: jump; down: drop. A: jump (tap twice for a double jump). Hold B to attack. L: dash. R: power. Use: talk or open a shrine. Select: change weapon. Start: pause, save or adjust sound. During a mob question, use ▲/▼ or tap an answer, then Confirm. The fight stays paused.</p>
         <button id="handheldFullscreen" class="secondary-btn handheld-help" type="button">Enter fullscreen landscape</button>
         <p class="help-tip">Boss strategy: use the arena platforms for high ground and projectile cover. Dash through telegraphed charges, double-jump over ground shockwaves, fast-fall to change direction, and choose melee or ranged weapons based on your position.</p>
         <p class="help-tip">Play at your own pace. Coding challenges open at shrines and terminals. Close a challenge to return to your explorer.</p><a class="mode-return" href="index.html">← Choose mode (save your file first)</a>
@@ -384,9 +409,9 @@
       <small>Your place is held while you rotate.</small>
     </div>
   </section>
-  <script src="adventure/engine.js?v=741f14f56d68"></script>
+  <script src="adventure/engine.js?v=88af5b43e7d4"></script>
   <script src="adventure/questions.js?v=1bf047666f6d"></script>
-  <script src="adventure/game.js?v=cb89a3448279"></script>
+  <script src="adventure/game.js?v=2c3fdc39e1bd"></script>
 <script>if(location.protocol==='file:')document.getElementById('offlineGameStatus').textContent='Start with START_WINDOWS.bat or open your HTTPS game link to use Python.';</script>
 <script type="module" src="app/game-session.js?v=9248311693fa"></script>
 </body>

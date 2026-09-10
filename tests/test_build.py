@@ -44,6 +44,33 @@ class BuildContracts(unittest.TestCase):
         revisions = version_assets(self.root, self.config)
         self.assertEqual((self.root / "app/main.js").read_text().count("?v=" + revisions["shared/value.js"]), 2)
 
+    def test_noncanonical_root_has_the_same_revision_graph(self):
+        # Windows TEMP can use RUNNER~1 while resolve() returns runneradmin.
+        # A lexical alias exercises the same root/child mismatch on every OS.
+        write(self.root / "app/main.js", "import '../shared/value.js';\n")
+        write(self.root / "shared/value.js", "export const answer = 42;\n")
+        alias = self.root / "scripts" / ".."
+        first = version_assets(alias, self.config)
+        self.assertEqual(first, version_assets(self.root.resolve(), self.config))
+        write(self.root / "shared/value.js", "export const answer = 43;\n")
+        self.assertNotEqual(first["app/main.js"], version_assets(alias, self.config)["app/main.js"])
+        write(self.root / "shared/value.js", "import '../app/main.js';\n")
+        with self.assertRaisesRegex(ValueError, "Circular"):
+            version_assets(alias, self.config)
+
+    @unittest.skipUnless(sys.platform == "win32", "Windows short-path API")
+    def test_windows_short_root(self):
+        import ctypes
+        buffer = ctypes.create_unicode_buffer(32768)
+        short_path = ctypes.windll.kernel32.GetShortPathNameW
+        short_path.argtypes = (ctypes.c_wchar_p, ctypes.c_wchar_p, ctypes.c_uint32)
+        short_path.restype = ctypes.c_uint32
+        length = short_path(str(self.root), buffer, len(buffer))
+        self.assertGreater(length, 0)
+        write(self.root / "app/main.js", "export const answer = 42;\n")
+        self.assertEqual(version_assets(Path(buffer.value), self.config),
+                         version_assets(self.root.resolve(), self.config))
+
     def test_cycles_and_missing_dependencies_fail_before_manifest(self):
         write(self.root / "app/main.js", "import './other.js';\n")
         with self.assertRaises(ValueError):

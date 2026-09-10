@@ -10,6 +10,9 @@ HTML_ASSET = re.compile(r'((?:src|href)=")([^"?#]+)(?:\?v=[0-9a-f]+)?"')
 
 
 def version_assets(root, config):
+    # Canonicalize the root too: Windows TEMP may use an 8.3 directory alias.
+    # Resolved children must never be compared with an unresolved root.
+    root = root.resolve()
     revisions, visiting = {}, set()
 
     def version_module(path):

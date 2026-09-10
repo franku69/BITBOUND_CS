@@ -1,7 +1,7 @@
 {
   "name": "bitbound-python-dsa",
   "private": true,
-  "version": "2.22.0",
+  "version": "2.23.0",
   "type": "module",
   "description": "Python Lab and a solo coding adventure with manual student save files and separate offline app caching.",
   "scripts": {

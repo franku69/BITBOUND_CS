@@ -44,9 +44,10 @@ for(const method of ['melee','projectile','ally','kill']){
   assert.equal(prevented,false,'native '+key+' reaches focused control');
  }
  const wrong=(expected+1)%3;for(const f of h.listeners.keydown)f({key:'abc'[wrong],target:{tagName:'BUTTON'},preventDefault(){}});
+ assert.equal(a.encounterUI.next.disabled,false);a.encounterUI.next.onclick();
  assert.equal(a.encounterUI.next.disabled,true);
  for(const f of h.listeners.keydown)f({key:'abc'[expected],target:{tagName:'BUTTON'},preventDefault(){}});
- assert.equal(a.encounterUI.next.disabled,false);clear(a);
+ assert.equal(a.encounterUI.next.disabled,false);a.encounterUI.next.onclick();assert.ok(a.questionDirector.active.correct);clear(a);
 }
 // An ordinary nearby creature reveals a rune after travel; no additional enemies spawn.
 {

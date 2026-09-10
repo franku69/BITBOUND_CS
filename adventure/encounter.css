@@ -1,0 +1,74 @@
+/* Encounter layout owns scrolling. The action deck is a separate grid row,
+   so code and long choices cannot push Confirm outside the viewport. */
+#encounterOverlay[hidden] { display: none !important; }
+.story-mode-page #encounterOverlay {
+  position: fixed; inset: 0; z-index: 130; backdrop-filter: none;
+  background: #030d16ed;
+  padding: max(8px, var(--safe-top)) max(8px, var(--safe-right)) max(8px, var(--safe-bottom)) max(8px, var(--safe-left));
+}
+#encounterOverlay .encounter-card {
+  box-sizing: border-box; width: min(1080px, 100%); min-width: 0;
+  height: min(780px, calc(100vh - 16px - var(--safe-top) - var(--safe-bottom)));
+  height: min(780px, calc(100dvh - 16px - var(--safe-top) - var(--safe-bottom)));
+  max-height: none; overflow: hidden; display: grid;
+  grid-template-rows: auto minmax(0, 1fr) auto;
+  padding: 0; border: 2px solid #81b5bc; border-radius: 14px;
+  color: #e5f1f4; background: #0b1c2a; font: 16px/1.5 system-ui, sans-serif;
+  box-shadow: 0 6px 0 #02090f;
+}
+.encounter-heading { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 14px 20px; border-bottom: 1px solid #304c5e; }
+.encounter-heading > div { min-width: 0; }
+.encounter-heading h2 { margin: 2px 0 0; font-size: clamp(18px, 2.7vw, 26px); line-height: 1.15; }
+.encounter-heading .eyebrow { margin: 0; font-size: 11px; letter-spacing: .04em; color: #a6d6ce; overflow-wrap: anywhere; }
+.encounter-paused { flex: none; color: #a6d6ce; font: 700 10px monospace; letter-spacing: .06em; }
+.encounter-content { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr); min-height: 0; overflow: hidden; }
+.encounter-scene { padding: 16px; overflow-y: auto; overscroll-behavior: contain; border-right: 1px solid #304c5e; background: #102332; }
+#encounterPortrait { display: block; image-rendering: pixelated; width: 100%; height: auto; aspect-ratio: 20 / 7; border: 1px solid #385667; border-radius: 6px; background: #081520; }
+#encounterRound { margin: 14px 0 8px; padding: 8px 10px; border-left: 3px solid #8adfcb; color: #baf4de; background: #153b43; font-size: 12px; font-weight: 700; }
+#encounterIntro { margin: 8px 0; color: #afc6d1; font-size: 13px; }
+.encounter-tools { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 16px; }
+.encounter-question { min-height: 0; overflow: auto; overscroll-behavior: contain; padding: 18px; scroll-padding: 16px; }
+#encounterPrompt { margin: 0 0 14px; font-size: 18px; font-weight: 650; line-height: 1.45; }
+#encounterCode { background: #05111c; border: 1px solid #345164; border-radius: 6px; padding: 12px; white-space: pre; overflow-x: auto; tab-size: 4; font: 15px/1.6 ui-monospace, monospace; }
+.encounter-instruction { margin: 12px 0; color: #a8c7d4; font-size: 12px; }
+#encounterChoices { display: grid; gap: 10px; }
+.encounter-card button { box-sizing: border-box; font: 600 15px/1.35 system-ui, sans-serif; min-width: 44px; min-height: 48px; border: 1px solid #587e90; border-radius: 8px; background: #193447; color: #ecf5fa; padding: 10px 12px; touch-action: manipulation; cursor: pointer; }
+.encounter-card button:focus-visible, .encounter-question:focus-visible { outline: 3px solid #ffe29a; outline-offset: -3px; }
+#encounterChoices button { display: flex; align-items: center; gap: 12px; min-height: 56px; text-align: left; }
+.encounter-letter { flex: 0 0 28px; display: grid; place-items: center; width: 28px; height: 28px; border-radius: 50%; background: #0b2030; color: #a6dacc; font: 700 14px monospace; }
+.encounter-answer { min-width: 0; white-space: pre-wrap; overflow-wrap: anywhere; font: 15px/1.5 ui-monospace, monospace; }
+#encounterChoices button[aria-pressed="true"] { border-color: #a5ebd4; box-shadow: inset 0 0 0 1px #a5ebd4; background: #21494d; }
+#encounterChoices button[data-result="correct"] { border-color: #8aebce; background: #194c40; }
+#encounterChoices button[data-result="incorrect"] { border-color: #ffc2a3; background: #51332a; }
+#encounterFeedback { padding: 12px; margin: 16px 0 0; border-left: 3px solid #9fcdcd; background: #102a36; color: #d1efe7; font-size: 14px; }
+.encounter-console { display: flex; gap: 10px; align-items: center; padding: 12px 16px; border-top: 1px solid #4c6a76; background: #172d3c; }
+.encounter-navigation { display: flex; gap: 4px; }
+.encounter-console button { min-height: 52px; box-shadow: 0 3px 0 #030e16; }
+#encounterContinue { flex: 1; max-width: 260px; margin-left: auto; background: #a0e3cf; border-color: #bfeede; color: #102a31; text-align: center; }
+.encounter-card button:disabled { cursor: default; }
+.encounter-console button:disabled { opacity: .5; box-shadow: none; }
+.encounter-tools button, .encounter-tools .section-music-toggle { margin: 0; padding: 8px 10px; font-size: 12px; }
+@media (max-width: 600px) {
+  .encounter-content { display: block; overflow: auto; overscroll-behavior: contain; }
+  .encounter-scene { overflow: visible; padding: 12px; border-right: 0; border-bottom: 1px solid #304c5e; }
+  #encounterPortrait { max-height: 110px; object-fit: contain; }
+  #encounterIntro { font-size: 12px; }
+  .encounter-tools { margin-top: 8px; }
+  .encounter-question { overflow: visible; padding: 14px 12px; }
+  .encounter-heading { padding: 10px 12px; }
+  .encounter-paused { display: none; }
+  .encounter-console { padding: 10px 8px; gap: 6px; }
+  .encounter-console button { padding-inline: 8px; font-size: 13px; }
+}
+@media (max-height: 500px) and (min-width: 601px) {
+  .encounter-heading { padding: 8px 12px; }
+  .encounter-heading h2 { font-size: 18px; }
+  .encounter-heading .eyebrow { font-size: 10px; }
+  .encounter-content { grid-template-columns: minmax(0, .7fr) minmax(0, 1.3fr); }
+  .encounter-scene, .encounter-question { padding: 12px; }
+  #encounterIntro { font-size: 12px; }
+  #encounterRound { margin-top: 8px; font-size: 11px; }
+  #encounterPrompt { font-size: 16px; }
+  .encounter-console { padding: 8px 12px; }
+  .encounter-console button { min-height: 48px; }
+}
