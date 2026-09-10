@@ -1,0 +1,390 @@
+[
+  {
+    "name": "accepted educational and visual content",
+    "group": "architecture",
+    "command": [
+      "python",
+      "tests/test_accepted_content.py"
+    ]
+  },
+  {
+    "name": "build contracts",
+    "group": "architecture",
+    "command": [
+      "python",
+      "tests/test_build.py"
+    ]
+  },
+  {
+    "name": "domain contracts",
+    "group": "architecture",
+    "command": [
+      "node",
+      "tests/test_domains.mjs"
+    ]
+  },
+  {
+    "name": "encounter_bank",
+    "group": "gameplay",
+    "command": [
+      "python",
+      "tests/test_encounter_bank.py"
+    ]
+  },
+  {
+    "name": "v19_encounters",
+    "group": "gameplay",
+    "command": [
+      "node",
+      "tests/test_v19_encounters.cjs"
+    ]
+  },
+  {
+    "name": "v22_progression",
+    "group": "gameplay",
+    "command": [
+      "node",
+      "tests/test_v22_progression.cjs"
+    ]
+  },
+  {
+    "name": "v23_learning",
+    "group": "gameplay",
+    "command": [
+      "node",
+      "tests/test_v23_learning.cjs"
+    ]
+  },
+  {
+    "name": "v20_encounters",
+    "group": "gameplay",
+    "command": [
+      "node",
+      "tests/test_v20_encounters.cjs"
+    ]
+  },
+  {
+    "name": "v19_party",
+    "group": "gameplay",
+    "command": [
+      "node",
+      "tests/test_v19_party.cjs"
+    ]
+  },
+  {
+    "name": "curriculum",
+    "group": "python",
+    "command": [
+      "python",
+      "tests/test_curriculum.py"
+    ]
+  },
+  {
+    "name": "pyodide",
+    "group": "python",
+    "command": [
+      "node",
+      "tests/test_pyodide.mjs"
+    ]
+  },
+  {
+    "name": "tutorials",
+    "group": "python",
+    "command": [
+      "python",
+      "tests/test_tutorials.py"
+    ]
+  },
+  {
+    "name": "touch",
+    "group": "interface",
+    "command": [
+      "node",
+      "tests/test_touch.cjs"
+    ]
+  },
+  {
+    "name": "story_curriculum",
+    "group": "python",
+    "command": [
+      "node",
+      "tests/test_story_curriculum.cjs"
+    ]
+  },
+  {
+    "name": "stoneborn",
+    "group": "gameplay",
+    "command": [
+      "node",
+      "tests/test_stoneborn.cjs"
+    ]
+  },
+  {
+    "name": "story_presentation",
+    "group": "gameplay",
+    "command": [
+      "node",
+      "tests/test_story_presentation.cjs"
+    ]
+  },
+  {
+    "name": "adventure",
+    "group": "gameplay",
+    "command": [
+      "node",
+      "tests/test_adventure.cjs"
+    ]
+  },
+  {
+    "name": "manual_story",
+    "group": "gameplay",
+    "command": [
+      "node",
+      "tests/test_manual_story.cjs"
+    ]
+  },
+  {
+    "name": "mentor_animation",
+    "group": "animation",
+    "command": [
+      "node",
+      "tests/test_mentor_animation.cjs"
+    ]
+  },
+  {
+    "name": "mentor_voice",
+    "group": "gameplay",
+    "command": [
+      "node",
+      "tests/test_mentor_voice.cjs"
+    ]
+  },
+  {
+    "name": "lesson_buttons",
+    "group": "gameplay",
+    "command": [
+      "node",
+      "tests/test_lesson_buttons.cjs"
+    ]
+  },
+  {
+    "name": "player_animation",
+    "group": "animation",
+    "command": [
+      "node",
+      "tests/test_player_animation.cjs"
+    ]
+  },
+  {
+    "name": "session_files",
+    "group": "interface",
+    "command": [
+      "node",
+      "tests/test_session_files.mjs"
+    ]
+  },
+  {
+    "name": "performance",
+    "group": "gameplay",
+    "command": [
+      "node",
+      "tests/test_performance.cjs"
+    ]
+  },
+  {
+    "name": "audio",
+    "group": "gameplay",
+    "command": [
+      "node",
+      "tests/test_audio.cjs"
+    ]
+  },
+  {
+    "name": "page_music",
+    "group": "interface",
+    "command": [
+      "node",
+      "tests/test_page_music.cjs"
+    ]
+  },
+  {
+    "name": "storage_runner",
+    "group": "interface",
+    "command": [
+      "node",
+      "tests/test_storage_runner.mjs"
+    ]
+  },
+  {
+    "name": "worker",
+    "group": "python",
+    "command": [
+      "node",
+      "tests/test_worker.mjs"
+    ]
+  },
+  {
+    "name": "streaming",
+    "group": "python",
+    "command": [
+      "node",
+      "tests/test_streaming.mjs"
+    ]
+  },
+  {
+    "name": "workspace",
+    "group": "interface",
+    "command": [
+      "node",
+      "--experimental-vm-modules",
+      "tests/test_workspace.mjs"
+    ]
+  },
+  {
+    "name": "workspace standalone",
+    "group": "interface",
+    "command": [
+      "node",
+      "--experimental-vm-modules",
+      "tests/test_workspace.mjs",
+      "--standalone"
+    ]
+  },
+  {
+    "name": "animation_continuity",
+    "group": "animation",
+    "command": [
+      "node",
+      "tests/test_animation_continuity.cjs"
+    ]
+  },
+  {
+    "name": "v20_animation",
+    "group": "animation",
+    "command": [
+      "node",
+      "tests/test_v20_animation.cjs"
+    ]
+  },
+  {
+    "name": "v21_story",
+    "group": "animation",
+    "command": [
+      "node",
+      "tests/test_v21_story.cjs"
+    ]
+  },
+  {
+    "name": "story_motion",
+    "group": "animation",
+    "command": [
+      "node",
+      "tests/test_story_motion.cjs"
+    ]
+  },
+  {
+    "name": "v22_cinematics",
+    "group": "animation",
+    "command": [
+      "node",
+      "tests/test_v22_cinematics.cjs"
+    ]
+  },
+  {
+    "name": "v23_animation",
+    "group": "animation",
+    "command": [
+      "node",
+      "tests/test_v23_animation.cjs"
+    ]
+  },
+  {
+    "name": "v24_character_rig",
+    "group": "animation",
+    "command": [
+      "node",
+      "tests/test_v24_character_rig.cjs"
+    ]
+  },
+  {
+    "name": "v17_gameplay",
+    "group": "gameplay",
+    "command": [
+      "node",
+      "tests/test_v17_gameplay.cjs"
+    ]
+  },
+  {
+    "name": "expansion",
+    "group": "gameplay",
+    "command": [
+      "node",
+      "tests/test_expansion.cjs"
+    ]
+  },
+  {
+    "name": "studio_intro",
+    "group": "interface",
+    "command": [
+      "node",
+      "tests/test_studio_intro.mjs"
+    ]
+  },
+  {
+    "name": "modes",
+    "group": "interface",
+    "command": [
+      "node",
+      "tests/test_modes.mjs"
+    ]
+  },
+  {
+    "name": "offline",
+    "group": "offline",
+    "command": [
+      "node",
+      "tests/test_offline.mjs"
+    ]
+  },
+  {
+    "name": "offline_recovery",
+    "group": "offline",
+    "command": [
+      "node",
+      "tests/test_offline_recovery.mjs"
+    ]
+  },
+  {
+    "name": "offline_session",
+    "group": "offline",
+    "command": [
+      "node",
+      "--experimental-vm-modules",
+      "tests/test_offline_session.mjs"
+    ]
+  },
+  {
+    "name": "update_cache",
+    "group": "offline",
+    "command": [
+      "node",
+      "tests/test_update_cache.mjs"
+    ]
+  },
+  {
+    "name": "validate",
+    "group": "architecture",
+    "command": [
+      "python",
+      "scripts/validate.py"
+    ]
+  },
+  {
+    "name": "handheld orientation and pause lifecycle",
+    "group": "interface",
+    "command": [
+      "node",
+      "tests/test_handheld.cjs"
+    ]
+  }
+]

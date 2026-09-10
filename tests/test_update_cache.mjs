@@ -7,7 +7,7 @@ const root=new URL('../',import.meta.url),base='https://class.example/game/';
 const manifest=JSON.parse(await readFile(new URL('offline-manifest.json',root),'utf8'));
 // Validate the complete import graph, not only entry script tags.
 for(const [path,revision] of Object.entries(manifest.assetRevisions)){
-  if(!path.startsWith('app/')||!path.endsWith('.js'))continue;
+  if(!['app/','shared/'].some(prefix=>path.startsWith(prefix))||!path.endsWith('.js'))continue;
   const text=await readFile(new URL(path,root),'utf8');
   assert.equal(createHash('sha256').update(text).digest('hex').slice(0,12),revision,path+' has its content hash');
   for(const match of text.matchAll(/(?:import|export)\s+(?:[^'";]*?\s+from\s*)?['"](\.\.?\/[^'"]+\.js(?:\?v=[a-f0-9]+)?)['"]/g)){

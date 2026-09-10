@@ -1,54 +1,50 @@
-BITBOUND v26 — UPDATE THE EXISTING GITHUB PAGES SITE
+BITBOUND v28 — UPDATE THE EXISTING GITHUB PAGES PROJECT
 
-The v25 production failure was an edited index.html paired with the old offline
-manifest. That caused worker installation to fail. v26 includes a matching
-release plus a recoverable installer. It preserves the removed studio tagline.
+This release adds landscape handheld controls to mobile Story Mode. It retains
+the v27 module structure, accepted content, manual saves and offline installer.
+Read docs/V28_VALIDATION.md for behavior and the physical-device checks.
 
-1. Download and fully extract this ZIP.
-2. Copy the CONTENTS of BITBOUND_Python_DSA into your existing repository folder:
-   C:\Users\im\Desktop\python_for_students\BITBOUND_Python_DSA
-   Replace the previous files together. Keep your existing Git repository.
-   Include app/, adventure/, runtime/, vendor/, all root HTML/CSS files,
-   offline-manifest.json, sw.js, .nojekyll and .gitattributes.
-   Upload the extracted files, not the ZIP.
-3. The release is already built. Before committing, optionally check its bytes:
+1. Extract the release ZIP. Copy the CONTENTS of BITBOUND_Python_DSA into the
+   existing repository you already cloned:
+   C:\Users\im\Desktop\python_for_students\BITBOUND_CS_upload
+   Replace matching files. Keep that repository's .git folder.
+   Include .github/, .editorconfig, .gitattributes, .gitignore and .nojekyll.
+   Do not create another nested BITBOUND_Python_DSA inside the repository.
+
+2. In PowerShell, from BITBOUND_CS_upload:
      python scripts/check_offline_pack.py
-   If you edit ANY HTML, CSS, JavaScript, image or lesson file, rebuild FIRST:
-     python scripts/build.py
-     python scripts/check_offline_pack.py
-   Do not edit index.html again after building without rebuilding again.
-4. In your existing repository's PowerShell window:
+   This ZIP is already built and verified. For the full developer gate (Node.js
+   22+ and Python 3.10+), run:
+     npm run check
+
+3. If you edit a source, HTML, CSS, image, JSON or documentation file included in
+   the offline pack, regenerate before committing:
+     npm run build
+     npm run check
+   Do not modify generated files by hand. Do not edit a release file after the
+   build without rebuilding again. CONTRIBUTING.md identifies the source owners.
+
+4. Upload your verified update:
      git add .
-     git commit -m "Fix offline installation and improve mobile UI"
+     git commit -m "Add landscape handheld mode and multitouch console controls"
      git push
-   Keep your current working Pages publishing settings.
-5. Wait for the Pages deployment to finish. Open:
+   Keep the existing Pages publishing settings. The new Project quality workflow
+   adds verification only; it does not configure or deploy the website.
+
+5. Wait for GitHub Actions quality checks and the Pages deployment to finish.
+   Save any work in an old browser tab, then reload the website while online:
    https://franku69.github.io/BITBOUND_CS/
-   Reload while online. Do not clear site storage; the new worker updates itself.
-   Save any work in an existing game tab before reloading it.
-6. Check the deployed files with this read-only command:
+
+6. Verify the actual published release:
      python scripts/check_offline_pack.py --url https://franku69.github.io/BITBOUND_CS/
-   It should report that all 53 assets and the worker match. If deployment is
-   still in progress, wait for it to finish and rerun the check.
-7. Wait for "Offline ready" before disconnecting. In Story Mode the detailed
-   status can be minimized. On touch devices, open Guide to pause and see the
-   status, skills, music and manual Save file / Load file controls.
-8. Try both modes. Run print("Hello, BITBOUND!") in Python Lab. In Story Mode,
-   test the joystick with Jump, Attack and Use; tap Gear to cycle collected
-   weapons. On a phone, test portrait and landscape and open a coding shrine.
-9. Only after "Offline ready", reopen the SAME link in the SAME browser while
-   disconnected and check Story Mode and a Python run again.
+   It must say PASS for all 61 assets and the matching worker. If deployment is
+   still in progress, wait for it to finish before checking again.
 
-The cache stores app files, not student progress. New visits still start fresh.
-Students must use Save file before leaving. Each browser needs its own first
-online download (about 17 MB). Private browsing, blocked storage or browser
-storage eviction can make offline access unavailable; online play still works.
+7. Test both modes on the browsers used by your students. Run Python, open a
+   shrine, test the D-pad, A/B, Select and Start buttons and manually Save/Load a session. After
+   Offline ready, test reopening the same link without a connection.
 
-A site that is partially uploaded or whose files were edited after building
-cannot truthfully be marked offline-ready. Retry resumes valid downloaded files
-and reports the problem. .gitattributes preserves exact file bytes on Windows
-so Git's automatic line-ending conversion cannot invalidate the offline hashes.
-
-No student GitHub account, npm install, local Python install or backend is needed
-for the published site. Local maintainer scripts require Python 3. Build and
-regression testing: python scripts/build.py, then npm test (requires Node.js).
+Do not clear browser data as a routine update step. The installer verifies and
+reuses matching assets. Offline caching contains app files; it is not an autosave.
+Never omit runtime/python_stdlib.zip or run git init inside an extracted ZIP.
+For future changes, work in BITBOUND_CS_upload so the Git history stays intact.

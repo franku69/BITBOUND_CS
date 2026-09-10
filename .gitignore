@@ -1,0 +1,11 @@
+node_modules/
+__pycache__/
+*.py[cod]
+.venv/
+.pytest_cache/
+*.build-tmp
+.DS_Store
+Thumbs.db
+release/
+coverage/
+# Keep runtime/python_stdlib.zip tracked: offline Python requires it.

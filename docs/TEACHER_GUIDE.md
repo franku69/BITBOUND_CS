@@ -1,6 +1,6 @@
 # BITBOUND Python Practice — teacher guide
 
-Choose **Python Lab Mode** during a coding discussion, or **Story Mode** for Byte's guided adventure. Each new visit begins with a fresh session. The centered character creator, 48 story missions and mobile joystick remain.
+Choose **Python Lab Mode** during a coding discussion, or **Story Mode** for Byte's guided adventure. Each new visit begins with a fresh session. The centered character creator, 48 story missions and world-specific lessons remain. Mobile Story Mode now has landscape handheld controls.
 
 ## Shared devices and manual files
 
@@ -41,7 +41,17 @@ Each chapter has four shrine missions and two terminal missions. All 48 are also
 
 ## Phone controls and the IDE
 
-Touch devices show a left movement joystick and right-side Jump, Attack, Dash, Power, Drop and Use buttons. Different fingers can move and act simultaneously. Jump twice for the existing double jump. Controls reset and hide for dialogs; keyboard controls continue to work.
+Phones/tablets use a landscape handheld layout. On first opening Story Mode in
+portrait, tap Enter landscape play or rotate sideways. Browsers that cannot lock
+orientation still support manual rotation; Continue in portrait is available.
+
+The left D-pad moves; up jumps; down drops/fast-falls. A jumps (tap twice for the
+existing double jump). Hold B to attack. L dashes, R casts power, and Use talks or
+opens a shrine. Select cycles weapons. Start pauses and opens settings and manual
+Save/Load controls. Different fingers can move and act simultaneously. Input resets
+for dialogs, rotation and app switching. Rotating cannot close an open lesson.
+Coding questions remain usable with the phone keyboard. Keyboard controls and
+standalone Python Lab retain their existing behavior.
 
 For free coding, choose Python Lab and type your program. In a function challenge, keep the supplied function name and replace pass. Supply input() answers in Program input, one per line. Run executes main.py; use print() to inspect function results. Check challenge runs the mission cases. Trace shows bounded line events with variable state before each line executes. Stop terminates a stuck worker; the next run then needs a new interpreter.
 
@@ -66,7 +76,7 @@ Reports contain passing code, attempts and solution views for the current or exp
 
 The USTP Game Dev Guild opening card precedes the mode chooser. It disappears after 1.8 seconds, or students can press Continue immediately. Python Lab remains independent of the story engine. Offline readiness is still reported separately; the studio card is not a download meter.
 
-Students can choose from 21 combat skills in Field Guide (C or slot 4), under Equipped skill. K or the Skill touch button activates the equipped skill. Changing skills starts a cooldown while preserving their earned skill level. Combat names are playful references, not simulations of the underlying algorithms.
+Students can choose from 21 combat skills in Field Guide (C or slot 4), under Equipped skill. K or the R / Power touch button activates the equipped skill. Changing skills starts a cooldown while preserving their earned skill level. Combat names are playful references, not simulations of the underlying algorithms.
 
 Four redesigned companions animate during play. Nine enemy types become available gradually across the eight regions, with a strict population cap. Six new weapons expand the inventory to 20; Q or the weapon slot cycles collected weapons. Details and drop sources are in README.md. The SFX toggle controls new creature, weapon and movement sounds along with Byte's existing optional dialogue chatter. Audio remains silent in Python Lab.
 

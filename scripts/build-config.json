@@ -1,0 +1,94 @@
+{
+  "domains": [
+    {
+      "namespace": "GameConfig",
+      "source": "adventure/domain/game-config.js"
+    },
+    {
+      "namespace": "CampaignModel",
+      "source": "adventure/domain/campaign-state.js"
+    },
+    {
+      "namespace": "LearningModel",
+      "source": "adventure/domain/learning-path.js"
+    },
+    {
+      "namespace": "PlotModel",
+      "source": "adventure/domain/plot-state.js"
+    },
+    {
+      "namespace": "StorySaveModel",
+      "source": "adventure/domain/story-save.js"
+    },
+    {
+      "namespace": "WorkspaceProtocol",
+      "source": "shared/protocol.js"
+    }
+  ],
+  "engineSources": [
+    "app/music-score.js",
+    "adventure/core.js",
+    "adventure/performance.js",
+    "adventure/terrain-cache.js",
+    "adventure/touch-controls.js",
+    "adventure/handheld.js",
+    "adventure/mentor-sprite.js",
+    "adventure/mentor-animation.js",
+    "adventure/player-animation.js",
+    "adventure/mentor-voice.js",
+    "adventure/encounter-catalog.js",
+    "adventure/creature-sprites.js"
+  ],
+  "editorSources": [
+    "lib/codemirror.js",
+    "mode/python/python.js",
+    "addon/edit/matchbrackets.js",
+    "addon/edit/closebrackets.js",
+    "addon/comment/comment.js",
+    "addon/hint/show-hint.js",
+    "addon/search/searchcursor.js",
+    "addon/dialog/dialog.js",
+    "addon/search/search.js"
+  ],
+  "moduleRoots": [
+    "app",
+    "shared"
+  ],
+  "entryPages": [
+    "index.html",
+    "story.html",
+    "app/lab.html"
+  ],
+  "offlineFolders": [
+    "app",
+    "shared",
+    "runtime",
+    "adventure/assets"
+  ],
+  "offlineFiles": [
+    "index.html",
+    "story.html",
+    "mode-select.css",
+    "mobile-refinements.css",
+    "styles.css",
+    "game-windows.css",
+    "manifest.webmanifest",
+    "adventure/engine.js",
+    "adventure/index.html",
+    "adventure/game.js",
+    "adventure/questions.js",
+    "adventure/style.css",
+    "adventure/mobile.css",
+    "adventure/story-controls.css",
+    "docs/TEACHER_GUIDE.md",
+    "docs/ARCHITECTURE.md",
+    "vendor/codemirror/codemirror-python.bundle.js",
+    "vendor/codemirror/lib/codemirror.css",
+    "vendor/codemirror/addon/hint/show-hint.css",
+    "vendor/codemirror/addon/dialog/dialog.css",
+    "adventure/handheld.css"
+  ],
+  "preferenceStorageOwners": [
+    "app/music-score.js"
+  ]
+}

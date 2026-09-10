@@ -1,0 +1,28 @@
+{
+  "environment": "Node VM + mocked Canvas. Measures JS time and drawing commands only; no physical device, browser, GPU or temperature measurement.",
+  "before": {
+    "stationary": {
+      "meanCpuMs": 0.03684569895833332,
+      "canvasCommandsPerFrame": 136.935,
+      "maxCacheBytes": 3145728
+    },
+    "scrolling": {
+      "meanCpuMs": 0.036464115833333324,
+      "canvasCommandsPerFrame": 138.49041666666668,
+      "maxCacheBytes": 6291456
+    }
+  },
+  "after": {
+    "stationary": {
+      "meanCpuMs": 0.037743534375000005,
+      "canvasCommandsPerFrame": 136.935,
+      "maxCacheBytes": 3145728
+    },
+    "scrolling": {
+      "meanCpuMs": 0.03714340354166667,
+      "canvasCommandsPerFrame": 137.404375,
+      "maxCacheBytes": 6291456
+    }
+  },
+  "interpretation": "Single-run synthetic measurements. CPU values are within a few percent; bounded cache usage is unchanged. This does not measure browser FPS, GPU work, phone temperature or physical memory."
+}

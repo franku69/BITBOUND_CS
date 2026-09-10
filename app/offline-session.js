@@ -1,5 +1,5 @@
 /** One resumable offline job per page. Python starts only when its IDE needs it. */
-import {registerOffline, prepareOffline} from './offline.js?v=5a799376e9a2';
+import { registerOffline, prepareOffline } from './offline.js?v=20172dc4b8c7';
 let started = false;
 export function startOfflineSession() {
   if (started) return;
@@ -11,14 +11,32 @@ export function startOfflineSession() {
   const reopen = document.getElementById('showOffline');
   if (!status || !banner || !retry) return;
   let running = false, complete = false, autoHide;
-  const report = message => { if (status.textContent !== message) status.textContent = message; };
+  const report = message => {
+    if (status.textContent !== message) status.textContent = message;
+  };
   function showDetails(show) {
     banner.hidden = !show;
-    if (reopen) { reopen.hidden = show; reopen.setAttribute('aria-expanded', String(show)); }
+    if (reopen) {
+      reopen.hidden = show;
+      reopen.setAttribute('aria-expanded', String(show));
+    }
   }
-  if (dismiss) dismiss.onclick = () => { clearTimeout(autoHide); showDetails(false); reopen?.focus({preventScroll: true}); };
-  if (reopen) reopen.onclick = () => { clearTimeout(autoHide); showDetails(true); dismiss?.focus({preventScroll: true}); };
-  function compact(label) { if (reopen) { reopen.textContent = label; reopen.setAttribute('aria-label', label + '. Show offline details'); } }
+  if (dismiss) dismiss.onclick = () => {
+    clearTimeout(autoHide);
+    showDetails(false);
+    reopen?.focus({ preventScroll: true });
+  };
+  if (reopen) reopen.onclick = () => {
+    clearTimeout(autoHide);
+    showDetails(true);
+    dismiss?.focus({ preventScroll: true });
+  };
+  function compact(label) {
+    if (reopen) {
+      reopen.textContent = label;
+      reopen.setAttribute('aria-label', label + '. Show offline details');
+    }
+  }
   async function initialize() {
     if (running || complete) return;
     running = true;
@@ -34,8 +52,11 @@ export function startOfflineSession() {
         compact('Online play');
         return;
       }
-      await prepareOffline((done, total, bytes, totalBytes) => {
-        if (!totalBytes) { report('Checking saved offline files…'); return; }
+      await prepareOffline( (done, total, bytes, totalBytes) => {
+        if (!totalBytes) {
+          report('Checking saved offline files…');
+          return;
+        }
         const percent = Math.min(100, Math.floor(bytes / totalBytes * 100));
         report(`Saving offline files · ${percent}% (${done}/${total}). Keep this tab open until ready.`);
         compact(`Offline ${percent}%`);
@@ -45,7 +66,7 @@ export function startOfflineSession() {
       banner.classList.add('ready');
       compact('✓ Offline ready');
       // Story gets its play space back. Details remain available with one tap.
-      if (reopen) autoHide = setTimeout(() => showDetails(false), 5000);
+      if (reopen) autoHide = setTimeout( () => showDetails(false), 5000);
     } catch (error) {
       banner.classList.add('offline-error');
       if (error.name === 'QuotaExceededError' || error.code === 'storage') {
@@ -58,9 +79,16 @@ export function startOfflineSession() {
       console.warn('BITBOUND offline setup:', error.code || error.name, error.file || '', error.message);
       compact('Offline needs retry');
       retry.hidden = false;
-    } finally { running = false; }
+    } finally {
+      running = false;
+    }
   }
-  retry.onclick = () => { complete = false; initialize(); };
-  window.addEventListener('online', () => { if (!complete) initialize(); });
+  retry.onclick = () => {
+    complete = false;
+    initialize();
+  };
+  window.addEventListener('online', () => {
+    if (!complete) initialize();
+  });
   initialize();
 }

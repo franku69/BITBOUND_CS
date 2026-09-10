@@ -1,39 +1,82 @@
-/* Touch controls share actions with keyboard input, but own their movement axis. */
-
-const touchActions={jump,attack,interact,dash,drop:dropOrFastFall,power:castConceptPower,cycle:cycleWeapon};
-const joystick=new window.BitboundTouch.Joystick($('moveJoystick'),$('joystickKnob'),{
-  enabled:()=>state.started&&!state.paused,
-  move:axis=>{state.touchAxis=axis;}
+/* Story input adapter: the same actions and cooldowns serve keyboard and touch. */
+const touchInput = { down: false, attack: false };
+const touchActions = {
+  jump, attack, interact, dash,
+  power: castConceptPower,
+  cycle: cycleWeapon,
+  pause: () => show(UI.help)
+};
+const touchEnabled = () => state.started && !state.paused;
+const dpad = new window.BitboundTouch.DPad($('moveDpad'), {
+  up: $('dpadUp'), down: $('dpadDown'), left: $('dpadLeft'), right: $('dpadRight')
+}, {
+  enabled: touchEnabled,
+  move: (axis, down) => { state.touchAxis = axis; touchInput.down = down; },
+  jump, drop: dropOrFastFall
 });
-function resetTouchInput(){
-  state.touchAxis=0;
-  // Boot draws once before this component is constructed; no reset is needed then.
-  joystick.reset();
+const touchButtons = [...document.querySelectorAll('[data-game-action]')].map(button => {
+  const action = button.dataset.gameAction;
+  return new window.BitboundTouch.ActionButton(button, {
+    enabled: touchEnabled,
+    press: () => touchActions[action]?.(),
+    held: value => { if (action === 'attack') touchInput.attack = value; }
+  });
+});
+function resetTouchInput() {
+  dpad.reset();
+  touchButtons.forEach(button => button.reset());
 }
-function detectTouch(){
-  document.documentElement.classList.toggle('touch-capable',
-    window.matchMedia('(any-pointer: coarse)').matches||(navigator.maxTouchPoints||0)>0);
+function detectTouch() {
+  document.documentElement.classList.toggle('touch-capable', window.matchMedia('(any-pointer: coarse)').matches || (navigator.maxTouchPoints || 0) > 0);
 }
 detectTouch();
-window.matchMedia('(any-pointer: coarse)').addEventListener?.('change',detectTouch);
-for(const button of document.querySelectorAll('[data-game-action]')){
-  const action=button.dataset.gameAction;
-  button.addEventListener('pointerdown',event=>{
-    event.preventDefault();if(state.paused||!state.started)return;
-    button.setPointerCapture(event.pointerId);touchActions[action]?.();
-  });
-  // Keyboard and assistive activation do not emit pointerdown.
-  button.addEventListener('click',event=>{
-    if(event.detail===0&&!state.paused&&state.started)touchActions[action]?.();
-  });
-}
-window.addEventListener('resize',resetTouchInput);
-window.addEventListener('blur',resetTouchInput);
-window.addEventListener('pagehide',()=>{resetTouchInput();resetFrameTiming();AudioEngine.setBackground(true);});
-document.addEventListener('visibilitychange',()=>{
-  resetTouchInput();resetFrameTiming();
-  AudioEngine.setBackground(document.hidden);
-  if(document.hidden){for(const key of Object.keys(state.keys))state.keys[key]=false;}
-  else{AudioEngine.setDuck(state.paused);scheduleFrame();}
+window.matchMedia('(any-pointer: coarse)').addEventListener?.('change', detectTouch);
+handheld = new window.BitboundHandheld.Handheld({
+  window, document,
+  prompt: $('rotatePrompt'), enter: $('landscapeEnter'), stay: $('landscapeStay'), status: $('landscapeStatus'),
+  canRotate: () => !UI.puzzle.classList.contains('show'),
+  onBlock: blocked => {
+    orientationPaused = blocked;
+    $('shell').inert = blocked;
+    resetTouchInput();
+    syncPresentationPause();
+    AudioEngine.setBackground(document.hidden || blocked);
+    if (blocked) {
+      stopStoryAnimation();
+      stopEncounterAnimation();
+      mentorAnimator.stop();
+    } else if (plotUI.overlay.classList.contains('show')) {
+      scheduleStoryPlayback();
+    }
+  }
 });
-window.addEventListener('pageshow',()=>{AudioEngine.setBackground(document.hidden);resetFrameTiming();scheduleFrame();});
+// Startup detects portrait immediately. Browser locking is attempted on the first play tap.
+UI.startBtn.addEventListener('click', () => handheld.requestLandscape());
+$('handheldFullscreen').addEventListener('click', () => handheld.requestLandscape());
+$('puzzleClose').addEventListener('click', () => {
+  if (document.fullscreenElement) handheld.requestLandscape();
+});
+window.addEventListener('resize', resetTouchInput);
+window.addEventListener('blur', resetTouchInput);
+window.addEventListener('pagehide', () => {
+  resetTouchInput();
+  resetFrameTiming();
+  AudioEngine.setBackground(true);
+});
+document.addEventListener('visibilitychange', () => {
+  resetTouchInput();
+  resetFrameTiming();
+  AudioEngine.setBackground(document.hidden || orientationPaused);
+  if (document.hidden) {
+    for (const key of Object.keys(state.keys)) state.keys[key] = false;
+  } else {
+    AudioEngine.setDuck(state.paused);
+    scheduleFrame();
+  }
+});
+window.addEventListener('pageshow', () => {
+  handheld.refresh();
+  AudioEngine.setBackground(document.hidden || orientationPaused);
+  resetFrameTiming();
+  scheduleFrame();
+});

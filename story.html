@@ -8,12 +8,14 @@
   <link rel="stylesheet" href="adventure/style.css?v=d07c5978cc4b" />
 <link rel="stylesheet" href="adventure/mobile.css?v=b32d0b71480f">
 <link rel="manifest" href="manifest.webmanifest"><meta name="theme-color" content="#0b1321"><link rel="stylesheet" href="game-windows.css?v=67c9cf63e671">
-<link rel="stylesheet" href="adventure/story-controls.css?v=e2bd55592459">
+<link rel="stylesheet" href="adventure/story-controls.css?v=5e0fbbfa90b6">
   <link rel="stylesheet" href="mobile-refinements.css?v=30e32bac8f4a">
+  <link rel="stylesheet" href="adventure/handheld.css?v=90580602599a">
 </head>
 <body class="story-mode-page">
   <input id="sessionFileUpload" type="file" accept=".json,application/json" hidden>
   <div id="shell">
+    <div id="gameViewport">
     <canvas id="game" width="1280" height="720" aria-label="BITBOUND game canvas"></canvas>
 
     <div id="scanlines"></div>
@@ -49,7 +51,6 @@
       <button id="powerSlot" class="slot power-slot" data-slot="1" title="Press 2 to select your Concept Power. Press K to cast instantly without changing your equipped weapon."><span class="key">2</span><span class="power-emblem"><span id="powerIcon" class="slot-icon power">01</span></span><span class="power-copy"><b id="powerName">Concept Power</b><small id="powerStatus">READY • 0/4 XP</small></span><span id="powerLevelBadge" class="power-level-badge">LV 1</span><span class="power-cooldown-track"><span id="powerCooldownFill" class="power-cooldown-fill"></span></span></button>
       <button class="slot" data-slot="2" aria-label="Place a torch"><span class="key">3</span><span class="slot-icon torch">♨</span><span>Torches <b id="torchCount">6</b></span></button>
       <button class="slot" data-slot="3" aria-label="Pause and open field guide, skills and save controls"><span class="key">4</span><span class="slot-icon guide">▤</span><span>Field Guide</span></button>
-      <button class="touch-tool" id="cycleWeaponTouch" data-game-action="cycle" aria-label="Cycle equipped weapon" title="Next weapon">↻<small>Gear</small></button>
     </div>
 
     <div id="petHud" class="pet-hud hidden" aria-label="Selected list companion">
@@ -95,6 +96,8 @@
     <div id="respawnBanner" class="respawn-banner hidden">
       <b id="respawnBannerTitle">RESPAWNED</b>
       <span id="respawnBannerText">Follow the gold objective beacon.</span>
+    </div>
+
     </div>
 
     <section id="startScreen" class="overlay show start-bg">
@@ -283,6 +286,8 @@
           <div><kbd>GPS</kbd><b>Gold Beacon</b><span>The right-side Mission GPS and gold world beacon always point to the next required objective.</span></div>
           <div><kbd>ESC</kbd><b>Pause / close</b><span>Close menus. Save file manually before leaving.</span></div>
         </div>
+        <p class="handheld-help">D-pad: move; up: jump; down: drop. A: jump (tap twice for a double jump). Hold B to attack. L: dash. R: power. Use: talk or open a shrine. Select: change weapon. Start: pause, save or adjust sound.</p>
+        <button id="handheldFullscreen" class="secondary-btn handheld-help" type="button">Enter fullscreen landscape</button>
         <p class="help-tip">Boss strategy: use the arena platforms for high ground and projectile cover. Dash through telegraphed charges, double-jump over ground shockwaves, fast-fall to change direction, and choose melee or ranged weapons based on your position.</p>
         <p class="help-tip">Play at your own pace. Coding challenges open at shrines and terminals. Close a challenge to return to your explorer.</p><a class="mode-return" href="index.html">← Choose mode (save your file first)</a>
         <div class="story-session-tools" aria-label="Manual session files"><button class="secondary-btn" data-save-session>Save file</button><button class="secondary-btn" data-load-session>Load file</button><button class="secondary-btn" data-new-session>New player</button></div><p class="session-note" data-session-status>Manual saves only. Save file downloads your story + Python work. Each new visit starts fresh.</p><div class="rescue-box"><b>LOST OR PHYSICALLY STUCK?</b><span>This does not solve anything for you. It only returns the explorer to the latest safe checkpoint and shows the next objective again.</span><button id="unstuckBtn" class="secondary-btn">RETURN TO CHECKPOINT • NO SCORE PENALTY</button></div>
@@ -340,14 +345,49 @@
   </div>
   <div id="offlineBanner" class="offline-banner"><span id="offlineGameStatus" role="status" aria-live="polite">Preparing offline access…</span><div class="offline-actions"><button id="retryOffline" type="button" hidden>Retry</button><button id="dismissOffline" type="button" aria-label="Minimize offline status">×</button></div></div>
   <button id="showOffline" class="offline-summary" type="button" aria-controls="offlineBanner" aria-expanded="false" hidden>Offline setup…</button>
-  <div class="touch-controls" aria-label="Touch game controls">
-    <div class="joystick-area"><button id="moveJoystick" class="move-joystick" aria-label="Movement joystick. Drag left or right to move. Use Jump to jump."><span class="joystick-arrows" aria-hidden="true">← &nbsp; →</span><span id="joystickKnob" class="joystick-knob" aria-hidden="true"></span></button><span class="joystick-caption">MOVE</span></div>
-    <div class="touch-actions"><button data-game-action="drop">Drop</button><button data-game-action="dash">Dash</button><button data-game-action="jump">Jump</button><button data-game-action="attack">Attack</button><button data-game-action="power">Power</button><button data-game-action="interact">Use</button></div>
+  <div id="handheldControls" class="touch-controls" aria-label="Handheld game controls">
+    <div class="handheld-grip handheld-left">
+      <span class="console-wordmark" aria-hidden="true">BITBOUND</span>
+      <div id="moveDpad" class="dpad" role="group" aria-label="Directional pad. Slide to change direction.">
+        <button id="dpadUp" class="dpad-up" aria-label="Jump" aria-pressed="false">▲</button>
+        <button id="dpadLeft" class="dpad-left" aria-label="Move left" aria-pressed="false">◀</button>
+        <span class="dpad-center" aria-hidden="true"></span>
+        <button id="dpadRight" class="dpad-right" aria-label="Move right" aria-pressed="false">▶</button>
+        <button id="dpadDown" class="dpad-down" aria-label="Drop through platform or fast-fall" aria-pressed="false">▼</button>
+      </div>
+      <div class="console-system">
+        <button id="cycleWeaponTouch" data-game-action="cycle" aria-label="Select: change equipped weapon">SELECT<small>Gear</small></button>
+        <button id="pauseTouch" data-game-action="pause" aria-label="Start: pause, save and settings">START<small>Pause</small></button>
+      </div>
+    </div>
+    <div class="handheld-grip handheld-right">
+      <span class="console-wordmark" aria-hidden="true">STORY MODE</span>
+      <div class="console-shoulders">
+        <button data-game-action="dash" aria-label="L: dash"><b>L</b><small>Dash</small></button>
+        <button data-game-action="power" aria-label="R: cast concept power"><b>R</b><small>Power</small></button>
+      </div>
+      <div class="console-ab">
+        <button class="console-b" data-game-action="attack" aria-label="B: attack. Hold to keep attacking."><b>B</b><small>Attack</small></button>
+        <button class="console-a" data-game-action="jump" aria-label="A: jump. Tap twice to double jump."><b>A</b><small>Jump</small></button>
+      </div>
+      <button class="console-use" data-game-action="interact" aria-label="Use: talk, open a shrine or interact">USE <span>· Talk</span></button>
+    </div>
   </div>
-  <script src="adventure/engine.js?v=6bfec7cb343b"></script>
-  <script src="adventure/questions.js?v=4392737b090d"></script>
-  <script src="adventure/game.js?v=630e5acf20aa"></script>
+  <section id="rotatePrompt" class="rotate-prompt" role="dialog" aria-modal="true" aria-labelledby="landscapeTitle" aria-describedby="landscapeStatus" hidden>
+    <div class="rotate-card">
+      <div class="rotate-console" aria-hidden="true"><span>✚</span><i>BITBOUND</i><span>● ●</span></div>
+      <p class="eyebrow">STORY MODE · HANDHELD PLAY</p>
+      <h2 id="landscapeTitle">Adventure looks better sideways.</h2>
+      <p id="landscapeStatus" role="status" aria-live="polite">Turn your device to landscape for a full view and comfortable controls.</p>
+      <button id="landscapeEnter" type="button">Enter landscape play</button>
+      <button id="landscapeStay" type="button">Continue in portrait</button>
+      <small>Your place is held while you rotate.</small>
+    </div>
+  </section>
+  <script src="adventure/engine.js?v=741f14f56d68"></script>
+  <script src="adventure/questions.js?v=1bf047666f6d"></script>
+  <script src="adventure/game.js?v=cb89a3448279"></script>
 <script>if(location.protocol==='file:')document.getElementById('offlineGameStatus').textContent='Start with START_WINDOWS.bat or open your HTTPS game link to use Python.';</script>
-<script type="module" src="app/game-session.js?v=17ddf8acb9c6"></script>
+<script type="module" src="app/game-session.js?v=9248311693fa"></script>
 </body>
 </html>

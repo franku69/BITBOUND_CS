@@ -1,0 +1,169 @@
+/* Story-only touch activation, including tablet browsers in desktop mode. */
+.touch-capable .touch-controls {
+  display: flex; align-items: flex-end; justify-content: space-between;
+  position: fixed; left: max(8px, var(--safe-left)); right: max(8px, var(--safe-right));
+  bottom: max(8px, var(--safe-bottom)); gap: 12px; pointer-events: none; z-index: 45;
+}
+.adventure-paused .touch-controls { display: none !important; }
+/* Handheld presentation owns its layout; desktop art and game coordinates stay intact. */
+#gameViewport { display: contents; }
+.handheld-help { display: none; }
+.handheld .handheld-help { display: block; }
+.handheld {
+  --console-rail: clamp(136px, 18vw, 176px);
+  --console-gap: 8px;
+  --console-ink: #d8edf2;
+}
+.handheld #shell { height: 100vh; height: 100dvh; background: #08131c; }
+
+/* The pad is a real cross, not four overlapping directional regions. */
+.touch-capable .touch-controls .handheld-grip {
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  width: 136px; max-width: none; gap: 12px; pointer-events: auto;
+}
+.touch-capable .touch-controls .dpad {
+  display: grid; grid-template-columns: repeat(3, 44px); grid-template-rows: repeat(3, 44px);
+  width: 132px; height: 132px; flex: none; gap: 0; touch-action: none;
+  user-select: none; -webkit-user-select: none;
+}
+.touch-capable .touch-controls button {
+  box-sizing: border-box; cursor: pointer; touch-action: none; -webkit-touch-callout: none;
+  user-select: none; -webkit-user-select: none; color: var(--console-ink, #d8edf2);
+  min-width: 44px; min-height: 44px; margin: 0;
+  border: 1px solid #57707b; background: #24333e;
+  box-shadow: 0 3px 0 #02080d, inset 0 1px 0 #7e919744;
+  font: 700 12px/1.1 system-ui, sans-serif;
+}
+.touch-capable .touch-controls button small { display: block; margin-top: 3px; font: 11px/1.1 system-ui; }
+.touch-capable .touch-controls button.pressed {
+  background: #427d83; border-color: #b6fff2; box-shadow: inset 0 2px 0 #091b25;
+}
+.touch-capable .touch-controls .dpad button { border-radius: 5px; padding: 0; font-size: 18px; }
+.dpad-up { grid-area: 1 / 2; }
+.dpad-left { grid-area: 2 / 1; }
+.dpad-right { grid-area: 2 / 3; }
+.dpad-down { grid-area: 3 / 2; }
+.dpad-center { grid-area: 2 / 2; background: #24333e; border: 5px solid #24333e; box-shadow: inset 0 0 0 1px #344a56; pointer-events: none; }
+.console-wordmark { font: 700 10px/1.2 monospace; letter-spacing: .14em; color: #9eb8bf; }
+.console-system, .console-shoulders, .console-ab { display: flex; gap: 8px; align-items: center; }
+.touch-capable .touch-controls .console-system button { width: 60px; border-radius: 14px; padding: 6px 2px; font-size: 10px; }
+.touch-capable .touch-controls .console-shoulders button { width: 60px; border-radius: 12px 12px 6px 6px; padding: 5px; }
+.console-shoulders b { font-size: 15px; color: #b3ebda; }
+.console-ab { min-height: 100px; }
+.touch-capable .touch-controls .console-ab button { width: 58px; height: 58px; border-radius: 50%; padding: 5px; background: #742f51; border: 2px solid #c9829b; }
+.touch-capable .touch-controls .console-ab .console-a { align-self: flex-start; background: #265a59; border-color: #8fcbb3; }
+.touch-capable .touch-controls .console-ab .console-b { align-self: flex-end; }
+.console-ab b { font-size: 21px; }
+.touch-capable .touch-controls .console-ab button.pressed { background: #957141; border-color: #ffe8a8; }
+.touch-capable .touch-controls .console-use { width: 128px; border-radius: 8px; background: #132c38; color: #d4f4e5; }
+.console-use span { font-weight: 400; }
+.handheld .touch-controls .handheld-grip {
+  box-sizing: border-box; position: fixed; top: var(--safe-top); bottom: var(--safe-bottom);
+  width: var(--console-rail); padding: 8px 2px;
+  background: linear-gradient(110deg, #223440, #15242e); border: 1px solid #304b57;
+  border-radius: 22px; box-shadow: inset 2px 0 0 #56707822;
+}
+.handheld .handheld-left { left: max(3px, var(--safe-left)); }
+.handheld .handheld-right { right: max(3px, var(--safe-right)); }
+.handheld #gameViewport {
+  display: block; position: absolute; left: calc(50% + (var(--safe-left) - var(--safe-right)) / 2);
+  top: calc(50% - 28px + (var(--safe-top) - var(--safe-bottom)) / 2); transform: translate(-50%, -50%);
+  width: min(calc(100vw - 2 * var(--console-rail) - 2 * var(--console-gap) - var(--safe-left) - var(--safe-right)), calc((100vh - 72px - var(--safe-top) - var(--safe-bottom)) * 16 / 9));
+  width: min(calc(100vw - 2 * var(--console-rail) - 2 * var(--console-gap) - var(--safe-left) - var(--safe-right)), calc((100dvh - 72px - var(--safe-top) - var(--safe-bottom)) * 16 / 9));
+  aspect-ratio: 16 / 9; border: 2px solid #4b6771; border-radius: 5px;
+  box-shadow: 0 0 0 5px #02080d, 0 0 0 6px #253943;
+}
+.handheld #game { border-radius: 3px; }
+.handheld #gameViewport #hud {
+  left: 0 !important; right: 0 !important; top: 0 !important; height: 38px;
+  display: flex; justify-content: space-between; align-items: flex-start;
+  padding: 4px 6px; gap: 4px; background: linear-gradient(#07101de8, transparent);
+}
+.handheld #hud .hud-left, .handheld #hud .hud-right { gap: 4px; align-items: flex-start; }
+.handheld #hud .hud-right { flex-direction: row; }
+.handheld #hudWorld { padding: 4px; font-size: 9px; }
+.handheld #hudTitle { font-size: 9px; max-width: 120px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.handheld #hudRunner { font-size: 8px; }
+.handheld #hud .hearts { font-size: 12px; }
+.handheld #hud .academic-points { width: 52px; padding: 3px; border-width: 1px; box-shadow: none; }
+.handheld .academic-points > span { font-size: 5px; }
+.handheld #hudAcademicPoints { font-size: 12px; margin: 2px 0 0; }
+.handheld .academic-points small, .handheld .hud-center, .handheld #campaignHud,
+.handheld #mobilityHud, .handheld #petHud, .handheld #raceTimer, .handheld .race-timer { display: none !important; }
+.handheld #gameViewport #bossBar { top: 40px; width: min(260px, 74%); padding: 4px; }
+.handheld .boss-name { font-size: 9px; margin-bottom: 3px; }
+.handheld .boss-track { height: 7px; }
+.handheld #gameViewport #hotbar {
+  bottom: -60px; width: 218px; gap: 5px; padding: 3px; border-width: 1px; box-shadow: none;
+}
+.handheld #hotbar .slot { height: 48px; flex: 1 1 44px; min-width: 44px; padding: 2px; }
+.handheld #hotbar .slot.selected { transform: none; }
+.handheld #hotbar .slot .key { display: none; }
+.handheld #hotbar .slot-icon { font-size: 22px; }
+.handheld #hotbar #powerSlot .power-cooldown-track { display: block !important; }
+.handheld #gameViewport #missionCompass:not(.hidden) {
+  display: flex !important; align-items: center; gap: 4px; justify-content: space-between;
+  left: 4px; right: 4px !important; top: auto !important; bottom: 4px;
+  width: auto; max-width: none !important; margin: 0; padding: 3px 5px;
+  border: 1px solid #5f623b; background: #07131de6; box-shadow: none;
+}
+.handheld #missionCompass .mission-guide-head, .handheld #objectiveAction,
+.handheld #routeTrack, .handheld #trailProgress, .handheld .mission-guide-foot > span:last-child { display: none; }
+.handheld #objectiveTitle { min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; font: 10px/1.2 system-ui; margin: 0; }
+.handheld .mission-guide-foot { flex: none; margin: 0; font-size: 8px; }
+.handheld #interactPrompt { bottom: 28px; max-width: 90%; padding: 3px 5px; font-size: 10px; }
+.handheld #interactPrompt .kbd { font-size: 0; }
+.handheld #interactPrompt .kbd::after { content: 'USE'; font-size: 10px; }
+.handheld #toast { top: 44px; bottom: auto; max-width: 90%; font-size: 10px; padding: 5px; }
+.handheld #respawnBanner { top: 55px; width: 90%; padding: 6px; }
+.handheld #respawnBanner b { font-size: 10px; }
+.handheld #respawnBannerText { display: none; }
+.handheld #rewardBanner { top: 42px; width: 86%; padding: 5px; }
+.handheld #rewardBanner small, .handheld #rewardMeta { font-size: 8px; }
+.handheld #rewardTitle { font-size: 11px; }
+/* Fullscreen dialogs use the entire display, independent of the smaller game screen. */
+.handheld .overlay { position: fixed; }
+.handheld .overlay:not(.practice-open) { padding: max(8px, var(--safe-top)) max(8px, var(--safe-right)) max(8px, var(--safe-bottom)) max(8px, var(--safe-left)); }
+.handheld .overlay .modal { max-height: calc(100dvh - 16px - var(--safe-top) - var(--safe-bottom)); }
+.handheld #startScreen > .start-card { width: min(1080px, 100%); max-width: 100%; margin: 0 auto; }
+.handheld .practice-open.overlay > .modal { max-height: none; }
+
+.rotate-prompt {
+  position: fixed; inset: 0; z-index: 250; overflow-y: auto; display: grid; place-items: center;
+  padding: max(18px, var(--safe-top)) max(18px, var(--safe-right)) max(18px, var(--safe-bottom)) max(18px, var(--safe-left));
+  background: #081520; color: #e1f3f4; font: 16px/1.55 system-ui, sans-serif;
+}
+.rotate-card { max-width: 390px; text-align: center; margin: auto; }
+.rotate-card h2 { font-size: clamp(23px, 6vw, 32px); line-height: 1.2; margin: 16px 0; }
+.rotate-card .eyebrow { font-size: 10px; letter-spacing: .12em; color: #b9ccbf; }
+.rotate-card > button { display: block; width: 100%; min-height: 48px; padding: 12px; margin: 12px 0; border: 1px solid #8cbaae; border-radius: 8px; background: #a4ded0; color: #09212a; font: 700 15px system-ui; touch-action: manipulation; }
+.rotate-card > button:disabled { opacity: .65; }
+.rotate-card #landscapeStay { background: transparent; border-color: #38505c; color: #b6cbd4; }
+.rotate-card > small { color: #9fb7c3; font-size: 12px; }
+.rotate-console { margin: 8px auto 28px; display: flex; align-items: center; justify-content: space-between; padding: 12px; width: 224px; height: 108px; background: #273d48; border: 2px solid #769b9c; border-radius: 18px; transform: rotate(-8deg); box-shadow: 0 8px 0 #020a0f; }
+.rotate-console > span { color: #9ce3d1; font-size: 23px; }
+.rotate-console > i { width: 116px; height: 72px; display: grid; place-items: center; background: #06131d; border: 3px solid #526873; border-radius: 5px; color: #dbb87b; font: 700 12px monospace; }
+@media (max-height: 380px) and (orientation: landscape) {
+  .handheld .handheld-grip { gap: 6px; }
+  .handheld .console-ab { min-height: 86px; }
+  .handheld .console-wordmark { font-size: 9px; }
+  .handheld #hudTitle, .handheld #hudRunner { display: none; }
+}
+/* Explicit accessibility fallback for devices that cannot physically rotate. */
+@media (orientation: portrait) {
+  .handheld #gameViewport {
+    top: max(24px, var(--safe-top)); transform: translateX(-50%);
+    width: calc(100vw - 20px - var(--safe-left) - var(--safe-right));
+  }
+  .handheld .handheld-grip { top: auto; bottom: max(6px, var(--safe-bottom)); height: 256px; }
+  .handheld #gameViewport #hotbar { bottom: -60px; }
+  .handheld .console-wordmark { display: none; }
+  .handheld .handheld-grip { gap: 6px; }
+}
+@media (prefers-reduced-motion: reduce) { .rotate-console { transform: none; } }
+
+@media (max-height: 300px) and (orientation: landscape) {
+  .handheld .console-wordmark { display: none; }
+  .handheld .handheld-grip { gap: 4px; padding-block: 4px; }
+  .handheld .console-ab { min-height: 76px; }
+}

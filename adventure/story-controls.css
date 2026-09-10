@@ -1,35 +1,3 @@
-/* Story-only controls. The class also covers touch devices using desktop mode. */
-.touch-capable { --touch-space: 132px; }
-.touch-capable #hotbar { bottom: calc(var(--touch-space) + env(safe-area-inset-bottom, 0px)); }
-.touch-capable #petHud { left: var(--edge-left); bottom: calc(var(--touch-space) + 12px + env(safe-area-inset-bottom, 0px)); }
-.touch-capable .touch-controls {
-  display: flex; align-items: flex-end; justify-content: space-between;
-  position: fixed; left: max(8px, env(safe-area-inset-left, 0px)); right: max(8px, env(safe-area-inset-right, 0px));
-  bottom: max(8px, env(safe-area-inset-bottom, 0px)); gap: 12px; pointer-events: none; z-index: 45;
-}
-.touch-capable .touch-controls .joystick-area { display: flex; flex: 0 0 auto; flex-direction: column; align-items: center; gap: 2px; }
-.touch-capable .touch-controls .move-joystick {
-  position: relative; display: block; width: 108px; height: 108px; min-width: 108px; padding: 0;
-  border: 2px solid #85dbe9; border-radius: 50%; background: #071b2de8; color: #aec7d8;
-  touch-action: none; user-select: none; -webkit-user-select: none; pointer-events: auto;
-  box-shadow: inset 0 0 0 8px #19364a; cursor: grab;
-}
-.joystick-arrows { position: absolute; inset: 0; display: grid; place-content: center; font: 20px monospace; pointer-events: none; }
-.joystick-knob { position: absolute; width: 42px; height: 42px; left: calc(50% - 21px); top: calc(50% - 21px); border: 2px solid #a8f4ff; border-radius: 50%; background: #33617a; box-shadow: 0 3px 0 #041121; pointer-events: none; }
-.move-joystick.active .joystick-knob { background: #4b8299; }
-.joystick-caption { font: 10px/1.2 monospace; color: #cdeef9; text-shadow: 1px 1px #000; }
-.touch-capable .touch-controls .touch-actions { display: grid; grid-template-columns: repeat(3, minmax(44px, 1fr)); flex: 0 1 204px; gap: 6px; }
-.touch-capable .touch-actions button { min-height: 48px; min-width: 44px; padding: 6px; touch-action: none; pointer-events: auto; font: 700 12px system-ui; color: #fff; background: #10273fe8; border: 1px solid #86d2ed; border-radius: 10px; }
-.touch-capable .touch-actions [data-game-action="interact"] { background: #1c534b; border-color: #8fead5; }
-.touch-capable .touch-actions [data-game-action="jump"] { border-color: #f4cf70; }
-.touch-capable .offline-banner { bottom: calc(var(--touch-space) + 76px + env(safe-area-inset-bottom, 0px)); font-size: 12px; }
-.touch-capable .adventure-paused .offline-banner { bottom: max(12px, env(safe-area-inset-bottom, 0px)); }
-.adventure-paused .touch-controls { display: none !important; }
-@media (max-height: 450px) {
-  .touch-capable { --touch-space: 116px; }
-  .touch-capable .touch-controls .move-joystick { width: 96px; height: 96px; min-width: 96px; }
-}
-
 /* Byte's lesson is a scrollable, paused dialog; no typewriter or backdrop blur. */
 #mentorOverlay[hidden] { display: none; }
 #mentorOverlay { z-index: 75; background: #020916d9; backdrop-filter: none; }

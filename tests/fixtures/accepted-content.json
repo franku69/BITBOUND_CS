@@ -1,0 +1,28 @@
+{
+  "baseline": "v26 content + approved v28 handheld surfaces",
+  "normalizeHtmlAssetRevisions": true,
+  "sha256": {
+    "adventure/assets/boss1_circuit.png": "b3a4762987f2058670499a50179a5577986f0b7ed0e2766e2dc6111733359b50",
+    "adventure/assets/boss2_circuit.png": "ac1c5d5a60bdecd0bc64d9bff8055ec4dbda6681f837c544ff0fea043c7496ed",
+    "adventure/encounter-questions.json": "67b7ca1332ed8010cc21b6a84cbef64a6265be50aae01986b37343eae6a83dc5",
+    "adventure/mobile.css": "b32d0b71480f59260830e20b35fa87475cc9eb0d060b507e56bbd6097755d92b",
+    "adventure/story-controls.css": "5e0fbbfa90b659f52b062a51973de7d2c3c9b5310d59796c6119cd2c53e2a5de",
+    "adventure/story.json": "472495181cb43b26738670ea40a008e2abb9acc925f00868309cbd31b0721a4b",
+    "adventure/style.css": "d07c5978cc4bbc81c4f9d769ad3a3d6f419652946109e7d1364ba26a4690e5ae",
+    "adventure/tutorials.json": "0cee76ca2b7620f68c8b8d393c5a00fecf27e31040a3de3d67b04910ea47938c",
+    "app/assets/guild-logo.png": "a3941e439aec05bdb2f3dcbd9a015e36fa04b3884608c7102f87b30d76e83a48",
+    "app/assets/guild-wordmark.svg": "7d084dbefb78bdc76cc770edb01f7a0ef785a9677b90c7c3217e08dd50a8e985",
+    "app/assets/modes/lab-logo.png": "23baeb4a0dfc079918f1dac3e93e7f0fb0375d89551abc4a9ba0706980fb74e6",
+    "app/assets/modes/story-logo.png": "47dc44b70182d8fc22dbda80de463542c228ebde71c3e0081c23c686a4f02677",
+    "app/curriculum.json": "3d331f0ed117179662b07f35855cc707442094ceb209106ad4dcfc6254ab286b",
+    "app/lab.html": "216da13c839ed304875d6f86f813c4f19b63b3c9226cdbe9311deb4250639732",
+    "game-windows.css": "67c9cf63e671c3e9849f1a4590d63a32f96492dca986f35704346fd09007874b",
+    "index.html": "fcb641fa1a206413de2c9be0784e582f22817d2d1a4b3f36af4ccf1c47eaa591",
+    "mobile-refinements.css": "30e32bac8f4aa424dfc1d1c6c76a91a56f47d8eed4f52aa7528898b77684955b",
+    "mode-select.css": "1f5b1bcf274bdd648a6b8aef27d4d8575b7e036738d423813cae3aec89b821d8",
+    "story.html": "5b22b233573fef1ef3f8891e9fd1b9d984bba7208e579f341dd42d09404119bd",
+    "styles.css": "59087e571131e471cd3df0b637fcf57b068d6314943992ce6e423041ed157cbc",
+    "adventure/handheld.css": "90580602599a139e4932249589a113740c4b549dc00a9ba87aa534ac0cd5ca37"
+  },
+  "review": "v28 changes only Story control markup and styles. Narrative, question banks, character art, music and the standalone Lab are unchanged."
+}

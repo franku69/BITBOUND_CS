@@ -1,54 +1,83 @@
 'use strict';
-const assert=require('node:assert/strict');
-const fs=require('node:fs');
-const vm=require('node:vm');
-const sandbox={window:{}};
-vm.runInNewContext(fs.readFileSync('adventure/touch-controls.js','utf8'),sandbox);
-const events={},classes=new Set(),knob={style:{}};
-let capture=null,axis=0,enabled=true;
-const element={
-  addEventListener:(type,fn)=>events[type]=fn,
-  getBoundingClientRect:()=>({left:20,top:30,width:100,height:100}),
-  setPointerCapture:id=>capture=id,hasPointerCapture:id=>capture===id,releasePointerCapture:()=>capture=null,
-  classList:{add:name=>classes.add(name),remove:name=>classes.delete(name)}
-};
-const stick=new sandbox.window.BitboundTouch.Joystick(element,knob,{enabled:()=>enabled,move:value=>axis=value});
-const point=(pointerId,x,y=80)=>({pointerId,clientX:x,clientY:y,button:0,preventDefault(){}});
-events.pointerdown(point(1,70));assert.equal(axis,0,'center dead zone');assert.equal(capture,1);
-events.pointermove(point(1,74));assert.equal(axis,0,'small drift ignored');
-events.pointermove(point(1,102));assert.equal(axis,1);
-events.pointerdown(point(2,38));assert.equal(axis,1,'second finger cannot steal stick');
-events.pointermove(point(2,38));assert.equal(axis,1);
-events.pointerup(point(2,38));assert.equal(axis,1,'releasing an action finger leaves movement held');
-events.pointermove(point(1,-200));assert.equal(axis,-1,'outside drag clamped');
-events.pointercancel(point(1,-200));assert.equal(axis,0);assert.equal(capture,null);
-events.pointerdown(point(3,86));assert.ok(axis>0&&axis<1,'analog movement');
-events.lostpointercapture(point(3,86));assert.equal(axis,0);assert.equal(knob.style.transform,'translate(0px, 0px)');
-enabled=false;events.pointerdown(point(4,102));assert.equal(stick.pointerId,null,'paused stick ignored');
-enabled=true;events.pointerdown(point(5,102));enabled=false;events.pointermove(point(5,102));assert.equal(axis,0,'pause while dragging resets');
-const {buildContext}=require('./helpers/game-harness.cjs');
-const {sandbox:s,listeners,elements}=buildContext('?quality=low');const api=s.TestAPI;
-api.startNew();api.enterWorld();
-const gameStick=elements.get('moveJoystick');
-const drag=()=>{gameStick.listeners.pointerdown[0]({pointerId:8,button:0,clientX:180,clientY:110,preventDefault(){}});assert.ok(api.state.touchAxis>0);};
-drag();api.show(api.UI.help);assert.equal(api.state.touchAxis,0);api.hide(api.UI.help);
-drag();for(const callback of listeners.blur)callback();assert.equal(api.state.touchAxis,0);
-drag();for(const callback of listeners.resize)callback();assert.equal(api.state.touchAxis,0);
-drag();s.document.hidden=true;for(const callback of listeners['document:visibilitychange'])callback();assert.equal(api.state.touchAxis,0);
-assert.match(fs.readFileSync('story.html','utf8'),/id="moveJoystick"/);
-assert.doesNotMatch(fs.readFileSync('app/lab.html','utf8'),/id="moveJoystick"/);
-console.log('PASS touch: dead zone, analog bounds, pointer capture, second-finger isolation, cancellation, pause/blur/rotation/visibility resets; Story-only controls.');
+const assert = require('node:assert/strict');
+const fs = require('node:fs');
+const vm = require('node:vm');
+const callbacks = [];
+const sandbox = { window: { setTimeout: fn => { callbacks.push(fn); return callbacks.length; }, clearTimeout() {} } };
+vm.runInNewContext(fs.readFileSync('adventure/touch-controls.js', 'utf8'), sandbox);
+function node() {
+  const classes = new Set();
+  return {
+    events: {}, attrs: {}, capture: null,
+    addEventListener(type, fn) { this.events[type] = fn; },
+    getBoundingClientRect: () => ({ left: 20, top: 30, width: 132, height: 132 }),
+    setPointerCapture(id) { this.capture = id; }, hasPointerCapture(id) { return this.capture === id; }, releasePointerCapture() { this.capture = null; },
+    classList: { toggle(k, on) { if (on) classes.add(k); else classes.delete(k); } },
+    setAttribute(k, v) { this.attrs[k] = v; }
+  };
+}
+let axis = 0, down = false, jumps = 0, drops = 0, enabled = true;
+const el = node(), buttons = Object.fromEntries(['up', 'down', 'left', 'right'].map(k => [k, node()]));
+const dpad = new sandbox.window.BitboundTouch.DPad(el, buttons, {
+  enabled: () => enabled, move: (a, d) => { axis = a; down = d; }, jump: () => jumps++, drop: () => drops++
+});
+const point = (pointerId, x, y = 96) => ({ pointerId, clientX: x, clientY: y, button: 0, preventDefault() {} });
+el.events.pointerdown(point(1, 140)); assert.equal(axis, 1); assert.equal(el.capture, 1);
+el.events.pointermove(point(2, 30)); assert.equal(axis, 1, 'another finger cannot steal movement');
+el.events.pointerup(point(2, 30)); assert.equal(axis, 1);
+el.events.pointermove(point(1, 30)); assert.equal(axis, -1, 'slide reverses movement');
+el.events.pointermove(point(1, 86)); assert.equal(axis, 0, 'center releases movement');
+el.events.pointermove(point(1, 140, 40)); assert.equal(axis, 1); assert.equal(jumps, 1, 'diagonal jump');
+el.events.pointermove(point(1, 140, 42)); assert.equal(jumps, 1, 'held up does not consume both jumps');
+el.events.pointermove(point(1, 86)); el.events.pointermove(point(1, 86, 40)); assert.equal(jumps, 2);
+el.events.pointermove(point(1, 140, 150)); assert.equal(down, true); assert.equal(drops, 1);
+el.events.pointercancel(point(1, 140)); assert.equal(axis, 0); assert.equal(down, false); assert.equal(el.capture, null);
+assert.equal(buttons.right.attrs['aria-pressed'], 'false');
+el.events.pointerdown(point(3, 140)); enabled = false; el.events.pointermove(point(3, 140)); assert.equal(axis, 0);
+el.events.pointerdown(point(4, 140)); assert.equal(dpad.pointerId, null, 'paused inputs ignored');
+enabled = true; el.events.pointerdown(point(5, 140)); el.events.lostpointercapture(point(5, 140)); assert.equal(axis, 0);
+let stopped = 0;
+const key = { key: ' ', preventDefault() {}, stopPropagation() { stopped++; } };
+buttons.left.events.keydown(key); assert.equal(axis, -1); buttons.left.events.keyup(key); assert.equal(axis, 0); assert.equal(stopped, 2);
+buttons.right.events.click({ detail: 0 }); assert.equal(axis, 1); callbacks.pop()(); assert.equal(axis, 0, 'assistive click has finite movement, never a stuck key');
 
-// Touch users can change gear without a Q key, while moving with another finger.
-const buttons=s.document.querySelectorAll('[data-game-action]');
-assert.equal(buttons.length,7);
-const cycle=buttons.find(button=>button.dataset.gameAction==='cycle');
-api.state.started=true;api.state.paused=false;
-api.grantWeapon(Object.keys(api.WEAPONS)[1]);api.state.weaponIndex=0;
-const tap={pointerId:9,preventDefault(){}};
-cycle.listeners.pointerdown[0](tap);assert.equal(api.state.weaponIndex,1);
-cycle.listeners.click[0]({detail:1});assert.equal(api.state.weaponIndex,1,'pointer tap is not triggered a second time by click');
-cycle.listeners.click[0]({detail:0});assert.equal(api.state.weaponIndex,0,'assistive and keyboard activation works');
-api.show(api.UI.help);cycle.listeners.pointerdown[0](tap);assert.equal(api.state.weaponIndex,0,'gear cannot change through a lesson overlay');api.hide(api.UI.help);
-api.UI.slots[3].onclick();assert.ok(api.state.paused);assert.ok(api.UI.guide.classList.contains('show'),'Field Guide gives touch users pause, skills, music and manual saves');
-console.log('PASS mobile gear: touch cycle, no double activation, keyboard access, pause guard and Field Guide access.');
+const actionEl = node(); let attacks = 0, held = false;
+const action = new sandbox.window.BitboundTouch.ActionButton(actionEl, { enabled: () => enabled, press: () => attacks++, held: value => held = value });
+el.events.pointerdown(point(6, 140));
+actionEl.events.pointerdown(point(7, 0)); assert.equal(attacks, 1); assert.ok(held); assert.equal(axis, 1, 'move + attack with independent fingers');
+actionEl.events.click({ detail: 1 }); assert.equal(attacks, 1, 'pointer click never attacks twice');
+actionEl.events.pointerup(point(8, 0)); assert.ok(held, 'foreign release ignored');
+actionEl.events.pointercancel(point(7, 0)); assert.equal(held, false); assert.equal(axis, 1);
+actionEl.events.click({ detail: 0 }); assert.equal(attacks, 2, 'keyboard/assistive activation');
+actionEl.events.pointerdown(point(9, 0)); action.reset(); assert.equal(held, false); assert.equal(actionEl.capture, null);
+enabled = false; actionEl.events.pointerdown(point(10, 0)); assert.equal(attacks, 3);
+
+const { buildContext } = require('./helpers/game-harness.cjs');
+const { sandbox: s, listeners, elements } = buildContext('?quality=low');
+const api = s.TestAPI;
+api.startNew(); api.enterWorld();
+const gamePad = elements.get('moveDpad');
+const drag = () => { gamePad.listeners.pointerdown[0](point(18, 180, 110)); assert.equal(api.state.touchAxis, 1); };
+drag(); api.show(api.UI.help); assert.equal(api.state.touchAxis, 0); api.hide(api.UI.help);
+drag(); listeners.blur.forEach(fn => fn()); assert.equal(api.state.touchAxis, 0);
+drag(); listeners.resize.forEach(fn => fn()); assert.equal(api.state.touchAxis, 0);
+drag(); s.document.hidden = true; listeners['document:visibilitychange'].forEach(fn => fn()); assert.equal(api.state.touchAxis, 0);
+s.document.hidden = false;
+const controls = s.document.querySelectorAll('[data-game-action]');
+const attackButton = controls.find(b => b.dataset.gameAction === 'attack');
+const jumpButton = controls.find(b => b.dataset.gameAction === 'jump');
+drag();
+jumpButton.listeners.pointerdown[0](point(19, 0)); assert.ok(api.player.vy < 0, 'A jumps while moving');
+jumpButton.listeners.pointerup[0](point(19, 0));
+attackButton.listeners.pointerdown[0](point(20, 0)); assert.ok(api.touchInput.attack); assert.ok(api.player.attackCd > 0);
+api.player.attackCd = 0; api.update(1 / 60); assert.ok(api.player.attackCd > 0, 'held B attacks using the existing cooldown');
+api.show(api.UI.help); assert.equal(api.touchInput.attack, false); assert.equal(api.state.touchAxis, 0); api.hide(api.UI.help);
+const cycle = controls.find(b => b.dataset.gameAction === 'cycle');
+api.grantWeapon(Object.keys(api.WEAPONS)[1]); api.state.weaponIndex = 0;
+cycle.listeners.pointerdown[0](point(21, 0)); assert.equal(api.state.weaponIndex, 1);
+cycle.listeners.click[0]({ detail: 1 }); assert.equal(api.state.weaponIndex, 1);
+cycle.listeners.pointerup[0](point(21, 0)); cycle.listeners.click[0]({ detail: 0 }); assert.equal(api.state.weaponIndex, 0);
+controls.find(b => b.dataset.gameAction === 'pause').listeners.pointerdown[0](point(22, 0));
+assert.ok(api.state.paused); assert.ok(api.UI.help.classList.contains('show'), 'Start opens real pause/save/settings controls');
+assert.doesNotMatch(fs.readFileSync('app/lab.html', 'utf8'), /moveDpad|handheldControls/);
+console.log('PASS handheld input: sliding/diagonal D-pad, A jump, held B combat, independent fingers, capture cancellation, keyboard and assistive input, pause/blur/rotation/background resets, Select gear and Start pause.');

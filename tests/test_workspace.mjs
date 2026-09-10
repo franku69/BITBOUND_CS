@@ -28,8 +28,28 @@ if(standalone){
 }
 const context=vm.createContext({window,document,location:{search:'',hash:'',origin:'https://class.example'},history:{replaceState(){}},console,URL,URLSearchParams,TextEncoder,structuredClone,performance,setTimeout,clearTimeout,localStorage:globalThis.localStorage,fetch:async()=>({ok:true,json:async()=>curriculum}),prompt:()=>null,confirm:()=>true});
 const providers={'./page-music.js':{startPageMusic(){return {select(){}};}},'./session-controls.js':{installSessionControls(options){fileOptions=options;return {};}},'./offline-session.js':{startOfflineSession(options){offlineStarts++;assert.equal(options,undefined,'offline setup is independent of Python startup');}},'./runner.js':{PythonRunner:FakeRunner},'./editor.js':{PythonEditor:FakeEditor},'./storage.js':storage,'./report.js':{escapeHtml:String,exportTeacherReport(){}}};
-const module=new vm.SourceTextModule(source,{context,identifier:'https://class.example/app/main.js',initializeImportMeta:meta=>{meta.url='https://class.example/app/main.js';}});
-await module.link(async specifier=>{const exports=providers[specifier.split('?')[0]];return new vm.SyntheticModule(Object.keys(exports),function(){for(const [key,value]of Object.entries(exports))this.setExport(key,value);},{context});});
+// Follow real feature modules; only browser/worker adapters are replaced.
+const modules=new Map();
+const baseURL='https://class.example/app/';
+const providerURLs=new Map(Object.entries(providers).map(([name,value])=>[new URL(name,baseURL).href,value]));
+async function loadModule(input){
+  const url=new URL(input);url.search='';
+  if(modules.has(url.href))return modules.get(url.href);
+  const provided=providerURLs.get(url.href);
+  let loaded;
+  if(provided){
+    loaded=new vm.SyntheticModule(Object.keys(provided),function(){
+      for(const [key,value]of Object.entries(provided))this.setExport(key,value);
+    },{context,identifier:url.href});
+  }else{
+    const code=await readFile(new URL('..'+url.pathname,import.meta.url),'utf8');
+    loaded=new vm.SourceTextModule(code,{context,identifier:url.href,
+      initializeImportMeta:meta=>{meta.url=url.href;}});
+  }
+  modules.set(url.href,loaded);return loaded;
+}
+const module=await loadModule(baseURL+'main.js');
+await module.link((specifier,reference)=>loadModule(new URL(specifier,reference.identifier)));
 await module.evaluate();
 const send=async data=>{for(const listener of events.get('message')||[])await listener({source:parent,origin:'https://class.example',data});};
 if(standalone){
@@ -89,3 +109,46 @@ assert.equal(memory.size,0,'embedded editor never saves to browser storage');
 console.log('PASS: game-owned workspace startup, free coding, locked missions, completion session IDs, editor reuse and persistent independent drafts.');
 
 }
+
+// v27 regression: native feature modules must retain source/origin isolation.
+const beforeForeignMessage=editor.value;
+for(const listener of events.get('message')||[]){
+  await listener({source:{},origin:'https://class.example',data:{type:'bitbound:open-workspace',taskId:'q02'}});
+  await listener({source:parent,origin:'https://foreign.example',data:{type:'bitbound:open-workspace',taskId:'q02'}});
+}
+assert.equal(editor.value,beforeForeignMessage);
+const choose=async id=>{
+  if(standalone){
+    elements.get('chapterList').onclick({target:{closest:()=>({dataset:{task:id}})}});
+  }else await send({type:'bitbound:open-workspace',taskId:id,session:200});
+};
+
+// An asynchronous import must not silently land in whichever task is selected later.
+await choose('free');
+let finishRead;
+const importing=elements.get('codeUpload').onchange({target:{value:'',files:[{
+  name:'helper.py',size:20,text:()=>new Promise(resolve=>{finishRead=resolve;})
+}]}});
+await choose('q02');
+const selectedBeforeImport=editor.value;
+finishRead('print("late import")');await importing;
+assert.equal(editor.value,selectedBeforeImport);
+assert.match(elements.get('notice').textContent,/workspace changed/);
+
+// Loading a session waits for a genuinely delayed cancellation, not setTimeout(0).
+await choose('q01');
+editor.value='print("old student")';editor.change(editor.value);
+let rejectPending;
+runner.run=()=>new Promise((resolve,reject)=>{rejectPending=reject;});
+runner.stop=()=>{runner.stops++;setTimeout(()=>rejectPending(new Error('Stopped for load')),15);};
+const running=elements.get('checkBtn').onclick();
+assert.equal(elements.get('runBtn').disabled,true);
+const replacement=storage.blankProgress();replacement.active='free';
+replacement.workspaces.free={files:{'main.py':'print("new student")'},current:'main.py',stdin:''};
+const loading=standalone?fileOptions.applySnapshot({python:replacement,story:null}):send({type:'bitbound:load-session',requestId:201,python:replacement});
+assert.equal(editor.value,'print("old student")','load waits for actual run settlement');
+await Promise.all([running,loading]);
+assert.equal(editor.value,'print("new student")');
+assert.equal(elements.get('runBtn').disabled,false);
+assert.equal(elements.get('output').textContent,'Your output appears here.','old run cannot overwrite the loaded workspace UI');
+console.log('PASS Lab lifecycle: source/origin isolation, delayed import routing and delayed cancellation before manual session replacement.');
